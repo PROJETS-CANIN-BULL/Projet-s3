@@ -6,7 +6,14 @@ class ControllerUtilisateur {
             'id' => $_GET['id'],
             'password' => $_GET['password']
         );
-        ModelUtilisateur::verfierUtilisateur($data);
+        if(ModelUtilisateur::verfierUtilisateur($data)==NULL){
+            require('../view/error.php');
+
+        }else{
+            require('../view/accueil.php');
+
+        }
+
     }
         
 }

@@ -32,7 +32,6 @@ class ModelUtilisateur {
     $utilisateur = $req_prep->fetchAll();
     // Attention, si il n'y a pas de résultats, on renvoie false
     if (empty($utilisateur))
-    	echo "Identifiant ou mot de passe incorrect";
         return false;
     return $utilisateur[0];
 }
