@@ -5,7 +5,7 @@ class ControllerUtilisateur {
         $data = array(
             'id' => $_GET['id'],
             'password' => $_GET['password']
-        )
+        );
         ModelUtilisateur::verfierUtilisateur($data);
     }
         

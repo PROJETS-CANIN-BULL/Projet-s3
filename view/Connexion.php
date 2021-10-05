@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form method="get" action="util.php">
+<form method="get" action="../controller/routeur.php">
     <!--<form method="post" action="created.php"> -->
     <fieldset>
         <legend>Se connecter</legend>

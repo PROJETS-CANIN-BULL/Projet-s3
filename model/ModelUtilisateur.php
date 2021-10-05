@@ -17,13 +17,13 @@ class ModelUtilisateur {
 	}
 
 	public static function verfierUtilisateur($data) {
-	$sql = "SELECT * from Utilisateur WHERE id=:nom_tag AND motDePasse=:nom_tag2";
+	$sql = "SELECT * from Utilisateur WHERE pseudo=:nom_tag AND motDePasse=:nom_tag2";
     // Préparation de la requête
     $req_prep = Model::getPDO()->prepare($sql);
 
     $values = array(
-        "nom_tag" => $data['id'],
-        "nom_tag2" => $data['password']
+        "nom_tag" => $data["id"],
+        "nom_tag2" => $data["password"]
     );
 
     $req_prep->execute($values);
@@ -32,7 +32,7 @@ class ModelUtilisateur {
     $utilisateur = $req_prep->fetchAll();
     // Attention, si il n'y a pas de résultats, on renvoie false
     if (empty($utilisateur))
-    	echo "Mot de passe incorrect";
+    	echo "Identifiant ou mot de passe incorrect";
         return false;
     return $utilisateur[0];
 }
