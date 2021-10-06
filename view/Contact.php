@@ -5,7 +5,7 @@
     <title> Bull's Friends Association </title>
 </head>
 <body>
-    <h2> Page accueil</h2>
+    <h2> Contact</h2>
     <header>
     </header>
     <main>

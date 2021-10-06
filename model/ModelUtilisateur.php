@@ -7,11 +7,11 @@ class ModelUtilisateur {
     private $mail;
     private $password;
 
-    public function __construct($m = NULL, $c = NULL, $i = NULL) {
-  		if (!is_null($m) && !is_null($c) && !is_null($i)) {
-   			$this->marque = $m;
-    		$this->couleur = $c;
-    		$this->immatriculation = $i;
+    public function __construct($i = NULL, $c = NULL, $p = NULL) {
+  		if (!is_null($i) && !is_null($c) && !is_null($p)) {
+   			$this->id = $i;
+    		$this->mail = $c;
+    		$this->password = $p;
 
   		}
 	}
