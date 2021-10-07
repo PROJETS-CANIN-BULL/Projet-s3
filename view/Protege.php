@@ -5,12 +5,13 @@
     <title> Bull's Friends Association </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="../css/commun.css" rel="stylesheet" type="text/css">
-    <link href="../css/Adopter.css" rel="stylesheet" type="text/css">
+    <link href="../css/Proteger.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
-    <h2> A adopter</h2>
-    <header>  
-        <nav>
+    <h2> Les protégés</h2>
+    <header>
+    <nav>
         <ul id="menu">
             <li><a href="../view/accueil.php">Logo</a></li>
             <li><a href="../view/Adopter.php">A Adopter</a></li>
@@ -21,6 +22,7 @@
             <li><a href="">Rechercher</a></li>
         </ul>
     </nav>
+
 
     </header>
     <main>

@@ -34,6 +34,22 @@ class ModelUtilisateur {
     if (empty($utilisateur))
         return false;
     return $utilisateur[0];
-}
+    }
+
+    public static function creerUtilisateur($data)
+    {
+        $sql = "INSERT INTO `Utilisateur`(`pseudo`, `motDePasse`, `mail`) VALUES (:tag,:tag2,:tag3) ";
+    $req_prep = Model::getPDO()->prepare($sql);
+
+    $values = array(
+        "tag" => $data["id"],
+        "tag2" => $data["password"],
+        "tag3"=> $data["mail"]
+    );
+    $req_prep->execute($values);
+
+    }
+
+
 }
 ?>

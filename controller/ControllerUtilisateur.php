@@ -15,6 +15,24 @@ class ControllerUtilisateur {
         }
 
     }
+    public static function creationCompte(){
+         $data = array(
+            'id' => $_GET['id'],
+            'password' => $_GET['password'],
+            'mail'=> $_GET['mail']
+        );
+        if(ModelUtilisateur::verfierUtilisateur($data)!=NULL){
+            require('../view/accueil.php');
+
+        }else{
+            ModelUtilisateur::creerUtilisateur($data);
+            require('../view/accueil.php');
+
+
+        }
+
+
+    }
         
 }
 ?>
