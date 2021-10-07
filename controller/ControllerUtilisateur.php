@@ -7,10 +7,10 @@ class ControllerUtilisateur {
             'password' => $_GET['password']
         );
         if(ModelUtilisateur::verfierUtilisateur($data)==NULL){
-            require('../view/Error.php');
+            require('../view/error.php');
 
         }else{
-            require('../view/Accueil.php');
+            require('../view/accueil.php');
 
         }
 
