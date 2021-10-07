@@ -16,7 +16,7 @@
     </p>
       <p>
         <label for="mail">Mail</label>
-        <input type="text"placeholder="Email" name="mail" id="mail" required>
+        <input type="text"placeholder="Email" name="mail" id="mail" required type="email">
     </p>
     <p>
         <label for="password">Mot de Passe</label>
