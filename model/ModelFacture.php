@@ -2,7 +2,7 @@
 require_once "Model.php"; 
 
 
-class ModelUtilisateur {
+class ModelFacture {
     private $numFacture;
     private $numPuce;
     private $type;

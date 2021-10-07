@@ -2,7 +2,7 @@
 require_once "Model.php"; 
 
 
-class ModelUtilisateur {
+class ModelVeto {
     private $nomVeto;
     private $numTelephoneVeto;
 
@@ -23,7 +23,7 @@ class ModelUtilisateur {
 
    		$values = array(
        		"tag" => $data["nomVeto"],
-        	"tag2" => $data["numTelephoneVeto"];
+        	"tag2" => $data["numTelephoneVeto"]
     );
     	$req_prep->execute($values);
 

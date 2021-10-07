@@ -2,7 +2,7 @@
 require_once "Model.php"; 
 
 
-class ModelUtilisateur {
+class ModelFamille {
     private $civilite;
     private $nomFamille;
     private $prenomFamille;
