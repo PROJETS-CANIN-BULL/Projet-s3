@@ -8,7 +8,6 @@
     <link href="../css/Proteger.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
 
-
 </head>
 <body>
     <header>
