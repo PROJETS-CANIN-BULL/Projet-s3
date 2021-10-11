@@ -48,6 +48,7 @@ class ControllerUtilisateur {
       require(File::build_path(array("view","Protege.php")));
     }
     public static function Frais(){
+      $frais=ModelFacture::getAllFacture();
       require(File::build_path(array("view","Frais.php")));
 
     }

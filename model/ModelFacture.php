@@ -15,6 +15,7 @@ class ModelFacture {
     private $dateFacture;
     private $crediteur;
     private $numVeto;
+    private $nomchien;
 
 
 
@@ -47,10 +48,18 @@ class ModelFacture {
         	"tag8" => $data["numVeto"],
     );
     	$req_prep->execute($values);
-
-
-
 	}
+
+  public static function getAllFacture(){
+      $sql = "SELECT * FROM Frais";
+      $req_prep = Model::getPDO()->prepare($sql);
+      $req_prep->execute($values);
+      $req_prep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
+      $frais = $req_prep->fetchAll();
+      if (empty($frais))
+          return false;
+      return $frais;
+  }
 
 	public static function modifierCout($data) {
 	}
@@ -88,6 +97,10 @@ class ModelFacture {
     }
     public function getNumVeto(){
       return $this->numVeto;
+    }
+
+    public function getNomchien(){
+      return $this->nomchien;
     }
 
 
