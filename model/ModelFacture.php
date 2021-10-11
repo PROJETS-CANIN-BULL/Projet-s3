@@ -1,5 +1,9 @@
 <?php
-require_once (File::build_path(array("Model.php")));
+require_once (File::build_path(array("model","Model.php")));
+require_once (File::build_path(array("model","ModelVeto.php")));
+require_once (File::build_path(array("model","ModelChien.php")));
+
+
 
 
 class ModelFacture {
@@ -53,6 +57,40 @@ class ModelFacture {
 
 	public static function modifierDate($data) {
 	}
+
+  //Getter
+    public function getNumpuce(){
+      return $this->numPuce;
+    }
+
+    public function getNumFacture(){
+      return $this->numFacture;
+    }
+
+    public function getType(){
+      return $this->type;
+    }
+
+    public function getMotif(){
+      return $this->motif;
+    }
+
+    public function getCout(){
+      return $this->cout;
+    }
+
+    public function getDateFacture(){
+      return $this->dateFacture;
+    }
+
+    public function getCrediteur(){
+      return $this->crediteur;
+    }
+    public function getNumVeto(){
+      return $this->numVeto;
+    }
+
+
 
 }
 

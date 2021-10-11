@@ -1,5 +1,5 @@
 <?php
-require_once (File::build_path(array("Model.php")));
+require_once (File::build_path(array("model","Model.php")));
 
 class ModelVeto {
     private $nomVeto;
@@ -12,7 +12,7 @@ class ModelVeto {
   		if (!is_null($nomVeto) && !is_null($numTelephoneVeto)) {
     		$this->nomVeto = $nomVeto;
     		$this->numTelephoneVeto = $numTelephoneVeto;
-    		
+
   		}
 	}
 
@@ -36,6 +36,14 @@ class ModelVeto {
 
 	public static function modifierNumTelephone($data) {
 	}
+
+  public function getNomVeto(){
+      return $this->nomVeto;
+    }
+
+  public function getNumTelephoneVeto(){
+      return $this->numTelephoneVeto;
+    }
 
 }
 

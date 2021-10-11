@@ -1,5 +1,6 @@
 <?php
-require_once (File::build_path(array("Model.php")));
+require_once (File::build_path(array("model","Model.php")));
+
 
 
 class ModelFamilleAccueil {
@@ -48,6 +49,28 @@ class ModelFamilleAccueil {
 
     public static function modifierNumTelephone($data) {
     }
+
+    //Getter
+    public function getCivilite(){
+        return $this->civilite;
+      }
+
+    public function getNomFamille(){
+        return $this->nomFamille;
+      }
+
+    public function getPrenomFamille(){
+        return $this->prenomFamille;
+      }
+
+    public function getMail(){
+        return $this->mail;
+      }
+
+    public function getNumTelephone(){
+        return $this->numTelephone;
+      }
+
 
 }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title> Bull's Friends Association </title>
-    <link rel="stylesheet" href="../css/formulaire.css">
+    <link rel="stylesheet" href="css/formulaire.css">
 </head>
 <body>
 

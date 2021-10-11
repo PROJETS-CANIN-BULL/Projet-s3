@@ -1,5 +1,6 @@
 <?php
-require_once (File::build_path(array("Model.php")));
+require_once (File::build_path(array("model","Model.php")));
+
 
 
 class ModelFamille {
@@ -19,13 +20,13 @@ class ModelFamille {
     		$this->prenomFamille = $prenom;
     		$this->mail = $mail;
     		$this->numTelephone = $num;
-    		
-  		}
-	}
 
-	public static function ajouterFamille($data) {
-		$sql = "INSERT INTO `Famille`(`civilite`, `nomFamille`, `prenomFamille`, `mail`, `numTelephone`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6)";
-		$req_prep = Model::getPDO()->prepare($sql);
+  		}
+	  }
+
+	 public static function ajouterFamille($data) {
+		  $sql = "INSERT INTO `Famille`(`civilite`, `nomFamille`, `prenomFamille`, `mail`, `numTelephone`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6)";
+		  $req_prep = Model::getPDO()->prepare($sql);
 
    		$values = array(
        		"tag" => $data["civilite"],
@@ -33,21 +34,39 @@ class ModelFamille {
         	"tag3" => $data["prenomFamille"],
         	"tag4" => $data["mail"],
         	"tag5" => $data["numTelephone"],
-    );
+      );
     	$req_prep->execute($values);
+	   }
 
+	   public static function modofierNom($data) {
+	    }
 
+	   public static function modifierPrenom($data) {
+	    }
 
-	}
+	   public static function modifierNumTelephone($data) {
+	    }
 
-	public static function modofierNom($data) {
-	}
+  //Getter
+    public function getCivilite(){
+      return $this->civilite;
+    }
 
-	public static function modifierPrenom($data) {
-	}
+    public function getNomFamille(){
+      return $this->nomFamille;
+    }
 
-	public static function modifierNumTelephone($data) {
-	}
+    public function getPrenomFamille(){
+      return $this->prenomFamille;
+    }
+
+    public function getMail(){
+      return $this->mail;
+    }
+
+    public function getNumTelephone(){
+      return $this->numTelephone;
+    }
 
 }
 

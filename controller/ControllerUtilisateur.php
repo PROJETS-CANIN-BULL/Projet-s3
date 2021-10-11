@@ -8,6 +8,10 @@ require_once (File::build_path(array("model","ModelVeto.php")));
 
 
 class ControllerUtilisateur {
+    public static function seConnecter(){
+      require(File::build_path(array("view","Connexion.php")));
+    }
+
     public static function connexion() {
         $data = array(
             'id' => $_GET['id'],
@@ -18,9 +22,7 @@ class ControllerUtilisateur {
 
         }else{
             require (File::build_path(array("view","accueil.php")));
-
         }
-
     }
     public static function creationCompte(){
          $data = array(
@@ -37,6 +39,27 @@ class ControllerUtilisateur {
             require (File::build_path(array("view","accueil.php")));
         }
     }
-        
+
+    public static function accueil(){
+      require(File::build_path(array("view","accueil.php")));
+    }
+    public static function Protege(){
+      $chien = ModelChien::getAllChiens();
+      require(File::build_path(array("view","Protege.php")));
+    }
+    public static function Frais(){
+      require(File::build_path(array("view","Frais.php")));
+
+    }
+    public static function Contact(){
+      require(File::build_path(array("view","Contact.php")));
+    }
+    public static function FAQ(){
+      require(File::build_path(array("view","FAQ.php")));
+    }
+    public static function Adopter(){
+      require(File::build_path(array("view","Adopter.php")));
+    }
+
 }
 ?>

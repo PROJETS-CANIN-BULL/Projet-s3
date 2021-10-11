@@ -1,9 +1,9 @@
 <?php
-require_once (File::build_path(array("Model.php")));
+require_once (File::build_path(array("model","Model.php")));
 
 
 class ModelUtilisateur {
-	private $id;
+		private $id;
     private $mail;
     private $password;
 
@@ -49,6 +49,13 @@ class ModelUtilisateur {
     $req_prep->execute($values);
 
     }
+		public function getId(){
+			return $this->id;
+		}
+
+		public function getMail(){
+			return $this->mail;
+		}
 
 
 }

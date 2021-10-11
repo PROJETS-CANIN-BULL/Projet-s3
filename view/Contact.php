@@ -4,10 +4,9 @@
     <meta charset="utf-8" />
     <title> Bull's Friends Association </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="../css/commun.css" rel="stylesheet" type="text/css">
-    <link href="../css/Contact.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-
+    <link href="css/commun.css" rel="stylesheet" type="text/css">
+    <link href="css/accueil.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 </head>
 <body>
     <header>
@@ -18,13 +17,13 @@
   <div class="container">
           <nav>
         <ul id="menu">
-            <li><a href="../view/accueil.php">Logo</a></li>
-            <li><a href="../view/Adopter.php">A Adopter</a></li>
-            <li><a href="../view/Protege.php">Les protégés</a></li>
-            <li><a href="../view/Frais.php">Frais</a></li>
-            <li><a href="../view/FAQ.php">FAQ</a></li>
-            <li><a href="../view/Contact.php">Contact</a></li>
-            <li><a href="">Rechercher</a></li>
+          <li><a href="index.php?action=accueil"><img src="insérer l'emplacement de l'image ici" title="logo" alt="logo"></a></li>
+          <li><a href="index.php?action=Adopter">A Adopter</a></li>
+          <li><a href="index.php?action=Protege">Les protégés</a></li>
+          <li><a href="index.php?action=Frais">Frais</a></li>
+          <li><a href="index.php?action=FAQ">FAQ</a></li>
+          <li><a href="index.php?action=Contact">Contact</a></li>
+          <li><a href="">Rechercher</a></li>
         </ul>
     </nav>
     </header>

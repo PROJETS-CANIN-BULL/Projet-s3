@@ -1,9 +1,9 @@
 <?php
-require_once (File::build_path(array("Model.php")));
+require_once (File::build_path(array("model","Model.php")));
 
 
 class ModelChien {
-	private $numPuce;
+		private $numPuce;
     private $nomChien;
     private $race;
     private $dateNaissance;
@@ -50,9 +50,6 @@ class ModelChien {
         	"tag10" => $data["idFamille"],
     );
     	$req_prep->execute($values);
-
-
-
 	}
 
 	public static function modifierSterilisation($data) {
@@ -61,23 +58,90 @@ class ModelChien {
 	public static function modifierIdFamille($data) {
 	}
 
-// Renvoie liste chiens non adoptes 
+// Renvoie liste chiens non adoptes
 	public static function chiensNonAdoptes(){
 		$sql = "SELECT * FROM Chien where idFamille=NULL";
 		$req_prep = Model::getPDO()->prepare($sql);
     	$req_prep->execute($values);
-    	$req_prep->setFetchMode(PDO::FETCH_CLASS, 'Chien');
+    	$req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
     	$chien = $req_prep->fetchAll();
     	if (empty($chien))
        		return false;
     	return $chien;
-		
+
 	}
 
 //Savoir si un chien est adopte
 	public static function adopterChien($data) {
 
 	}
+
+
+		public static function getAllChiens(){
+			/*$sql = "SELECT * FROM Chien";
+			$req_prep = Model::getPDO()->prepare($sql);
+	    	$req_prep->execute($values);
+	    	$req_prep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+	    	$chien = $req_prep->fetchAll();
+	    	if (empty($chien))
+	       		return false;
+	    	return $chien;*/
+				try{
+						$PDO = Model::getPDO();
+						$rep = $PDO->query("SELECT * FROM Chien");
+						$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+						$chien = $rep->fetchAll();
+						return $chien;
+
+				} catch(PDOException $e) {
+								if (Conf::getDebug()) {
+										echo $e->getMessage(); // affiche un message d'erreur
+								} else {
+										echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+								}
+								die();
+						}
+		}
+		
+		//Getter
+			public function getNumpuce(){
+				return $this->numPuce;
+			}
+
+			public function getNomchien(){
+				return $this->nomChien;
+			}
+
+			public function getRace(){
+				return $this->race;
+			}
+
+			public function getSexe(){
+				return $this->sexe;
+			}
+
+			public function getDateNaissance(){
+				return $this->dateNaissance;
+			}
+
+			public function getRobe(){
+				return $this->robe;
+			}
+
+			public function getSterilisation(){
+				return $this->sterilisation;
+			}
+			public function getDateAccueil(){
+				return $this->dateAccueil;
+			}
+
+			public function getNomAncienProprio(){
+				return $this->nomAncienProprio;
+			}
+
+			public function getIDFamille(){
+				return $this->idFamille;
+			}
 
 }
 
