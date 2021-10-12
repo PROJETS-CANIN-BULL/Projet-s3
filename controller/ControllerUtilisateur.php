@@ -59,6 +59,7 @@ class ControllerUtilisateur {
       require(File::build_path(array("view","FAQ.php")));
     }
     public static function Adopter(){
+      $chien = ModelChien::getChiensNonAdoptes();
       require(File::build_path(array("view","Adopter.php")));
     }
 

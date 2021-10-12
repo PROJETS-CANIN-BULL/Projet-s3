@@ -59,15 +59,22 @@ class ModelChien {
 	}
 
 // Renvoie liste chiens non adoptes
-	public static function chiensNonAdoptes(){
-		$sql = "SELECT * FROM Chien where idFamille=NULL";
-		$req_prep = Model::getPDO()->prepare($sql);
-    	$req_prep->execute($values);
-    	$req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
-    	$chien = $req_prep->fetchAll();
-    	if (empty($chien))
-       		return false;
-    	return $chien;
+	public static function getChiensNonAdoptes(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM Chien WHERE idFamille IS NULL" );
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
 
 	}
 
@@ -78,14 +85,6 @@ class ModelChien {
 
 
 		public static function getAllChiens(){
-			/*$sql = "SELECT * FROM Chien";
-			$req_prep = Model::getPDO()->prepare($sql);
-	    	$req_prep->execute($values);
-	    	$req_prep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-	    	$chien = $req_prep->fetchAll();
-	    	if (empty($chien))
-	       		return false;
-	    	return $chien;*/
 				try{
 						$PDO = Model::getPDO();
 						$rep = $PDO->query("SELECT * FROM Chien");
@@ -97,12 +96,12 @@ class ModelChien {
 								if (Conf::getDebug()) {
 										echo $e->getMessage(); // affiche un message d'erreur
 								} else {
-										echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+										echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
 								}
 								die();
 						}
 		}
-		
+
 		//Getter
 			public function getNumpuce(){
 				return $this->numPuce;

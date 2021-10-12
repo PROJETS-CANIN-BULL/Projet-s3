@@ -45,15 +45,14 @@
           <article class="col-10">
 
               <?php
-              foreach ($chien as $c)
+              foreach ($chien as $c){
                 echo "<ul><li> Nom du chien : ".$c->getNomchien()." </li>";
                 echo "<li> Date de Naissance : ".$c->getDateNaissance()." </li> ";
                 echo "<li> Race : ".$c->getRace()."</li>";
                 echo "<li> Sexe : ".$c->getSexe()."</li>";
                 echo "<li> Robe : ".$c->getRobe()."</li>";
                 echo "<li> Sterelisation : ".$c->getSterilisation()."</li>";
-                echo "<li> Date début accueil : ".$c->getDateAccueil()."</li>";
-
+                echo "<li> Date début accueil : ".$c->getDateAccueil()."</li></ul>";}
                ?>
 
           </article>

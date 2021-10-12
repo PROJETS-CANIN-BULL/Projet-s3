@@ -51,14 +51,21 @@ class ModelFacture {
 	}
 
   public static function getAllFacture(){
-      $sql = "SELECT * FROM Frais";
-      $req_prep = Model::getPDO()->prepare($sql);
-      $req_prep->execute($values);
-      $req_prep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
-      $frais = $req_prep->fetchAll();
-      if (empty($frais))
-          return false;
-      return $frais;
+    try{
+        $PDO = Model::getPDO();
+        $rep = $PDO->query("SELECT * FROM Frais" );
+        $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
+        $frais = $rep->fetchAll();
+        return $frais;
+
+    } catch(PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage(); // affiche un message d'erreur
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
   }
 
 	public static function modifierCout($data) {
