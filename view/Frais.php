@@ -44,14 +44,15 @@
             </article>
             <article class="col-10">
               <?php
-              foreach (frais as $f){
-                echo "<ul><li> NumFacture : ".$c->getNumFacture()." </li>";
-                echo "<li> Type : ".$c->getType()." </li> ";
-                echo "<li> Motif : ".$c->getMotif()."</li>";
-                echo "<li> cout : ".$c->getCout()."</li>";
-                echo "<li> Date : ".$c->getDateFacture()."</li>";
-                echo "<li> Crediteur : ".$c->getCrediteur()."</li>";
-      
+              foreach ($frais as $f){
+                echo "<ul><li> NumFacture : ".$f->getNumFacture()." </li>";
+                echo "<li> Type : ".$f->getType()." </li> ";
+                echo "<li> Motif : ".$f->getMotif()."</li>";
+                echo "<li> cout : ".$f->getCout()."</li>";
+                echo "<li> Date : ".$f->getDateFacture()."</li>";
+                echo "<li> Crediteur : ".$f->getCrediteur()."</li>";
+              }
+
                ?>
                 </article>
 
