@@ -9,23 +9,32 @@ class ModelFamilleAccueil {
     private $prenomFamilleAccuiel;
     private $mail;
     private $numTelephone;
+    private $adresseFamilleAccueil;
+    private $codePostalFamilleAccueil;
+    private $villeFamilleAccueil;
+    private $paysFamilleAccueil;
 
 
 
 
-    public function __construct($civilite = NULL, $nom = NULL,$prenom = NULL, $mail = NULL, $num = NULL) {
-        if (!is_null($civilite) && !is_null($nom) &&!is_null($prenom) && !is_null($mail) && !is_null($num)) {
+    public function __construct($civilite = NULL, $nom = NULL,$prenom = NULL, $mail = NULL, $num = NULL, $adresseFamilleAccueil = NULL, $codePostalFamilleAccueil = NULL,$villeFamilleAccueil = NULL, $paysFamilleAccueil = NULL) {
+        if (!is_null($civilite) && !is_null($nom) &&!is_null($prenom) && !is_null($mail) && !is_null($num) && !is_null($adresseFamilleAccueil) &&!is_null($codePostalFamilleAccueil) && !is_null($villeFamilleAccueil) && !is_null($paysFamilleAccueil)) {
             $this->civilite = $civilite;
             $this->nomFamilleAccueil = $nom;
             $this->prenomFamilleAccuiel = $prenom;
             $this->mail = $mail;
             $this->numTelephone = $num;
+            $this->adresseFamilleAccueil = $adresseFamilleAccueil;
+            $this->codePostalFamilleAccueil = $codePostalFamilleAccueil;
+            $this->villeFamilleAccueil = $villeFamilleAccueil;
+            $this->paysFamilleAccueil = $paysFamilleAccueil;
+
 
         }
     }
 
     public static function ajouterFamilleAccueil($data) {
-        $sql = "INSERT INTO `FamilleAccueil`(`civilite`, `nomFamilleAccueil`, `prenomFamilleAccueil`, `mail`, `numTelephone`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6)";
+        $sql = "INSERT INTO `FamilleAccueil`(`idFamilleAccueil`, `civilite`, `nomFamilleAccueil`, `prenomFamilleAccueil`, `mail`, `numTelephone`, `adresseFamilleAccueil`, `codePostalFamilleAccueil`, `villeFamilleAccueil`, `paysFamilleAccueil`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6;:tag7;:tag8;:tag9)";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -34,7 +43,11 @@ class ModelFamilleAccueil {
             "tag3" => $data["prenomFamilleAccueil"],
             "tag4" => $data["mail"],
             "tag5" => $data["numTelephone"],
-        );
+            "tag6" => $data["adresseFamilleAccueil"],
+            "tag7" => $data["codePostalFamilleAccueil"],
+            "tag8" => $data["villeFamilleAccueil"],
+            "tag9" => $data["paysFamilleAccueil"],
+                  );
         $req_prep->execute($values);
 
 
@@ -70,7 +83,18 @@ class ModelFamilleAccueil {
     public function getNumTelephone(){
         return $this->numTelephone;
       }
-
+    public function getAdresseFamilleAccueil(){
+        return $this->adresseFamilleAccueil;
+      }
+    public function getCodePostalFamilleAccueil(){
+        return $this->codePostalFamilleAccueil;
+    }
+    public function getVilleFamilleAccueil(){
+        return $this->villeFamilleAccueil;
+    }
+    public function getPaysFamilleAccueil(){
+        return $this->paysFamilleAccueil;
+    }
 
 }
 
