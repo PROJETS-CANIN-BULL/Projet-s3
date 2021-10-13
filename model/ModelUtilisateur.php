@@ -47,7 +47,7 @@ class ModelUtilisateur {
         "tag" => $data["id"],
         "tag2" => $data["password"],
         "tag3"=> $data["mail"],
-				"tag4" => $data["type"],
+				"tag4" => "visiteur",
     );
     $req_prep->execute($values);
 

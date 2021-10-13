@@ -16,11 +16,11 @@
     </p>
       <p>
         <label for="mail">Mail</label>
-        <input type="text"placeholder="Email" name="mail" id="mail" required type="email">
+        <input placeholder="Email" name="mail" id="mail" type="email" required>
     </p>
     <p>
         <label for="password">Mot de Passe</label>
-        <input type="text"placeholder="Mot de passe" name="password" id="password" required>
+        <input type="text" placeholder="Mot de passe" name="password" id="password" required>
     </p>
     <p>
         <input type="submit" value="Envoyer" />

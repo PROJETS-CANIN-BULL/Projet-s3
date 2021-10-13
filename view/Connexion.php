@@ -28,7 +28,7 @@
         </p>
 
         <p>
-            <a href="account_creation.php">Créer un compte</a>
+            <a href="index.php?action=lienCreationCompte">Créer un compte</a>
         </p>
     </fieldset>
 </form>

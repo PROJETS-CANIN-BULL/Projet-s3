@@ -24,6 +24,10 @@ class ControllerUtilisateur {
             require (File::build_path(array("view","accueil.php")));
         }
     }
+
+    public static function lienCreationCompte(){
+      require (File::build_path(array("view","account_creation.php")));
+    }
     public static function creationCompte(){
          $data = array(
             'id' => $_GET['id'],
