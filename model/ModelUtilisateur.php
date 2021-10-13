@@ -6,12 +6,14 @@ class ModelUtilisateur {
 		private $id;
     private $mail;
     private $password;
+		private $type;
 
-    public function __construct($i = NULL, $c = NULL, $p = NULL) {
-  		if (!is_null($i) && !is_null($c) && !is_null($p)) {
+    public function __construct($i = NULL, $c = NULL, $p = NULL, $type=NULL) {
+  		if (!is_null($i) && !is_null($c) && !is_null($p)&& !is_null($type)) {
    			$this->id = $i;
     		$this->mail = $c;
     		$this->password = $p;
+				$this->type = $type;
 
   		}
 	}
@@ -38,13 +40,14 @@ class ModelUtilisateur {
 
     public static function creerUtilisateur($data)
     {
-        $sql = "INSERT INTO `Utilisateur`(`pseudo`, `motDePasse`, `mail`) VALUES (:tag,:tag2,:tag3) ";
+        $sql = "INSERT INTO `Utilisateur`(`pseudo`, `motDePasse`, `mail`,`type` ) VALUES (:tag,:tag2,:tag3,:tag4) ";
     $req_prep = Model::getPDO()->prepare($sql);
 
     $values = array(
         "tag" => $data["id"],
         "tag2" => $data["password"],
-        "tag3"=> $data["mail"]
+        "tag3"=> $data["mail"],
+				"tag4" => $data["type"],
     );
     $req_prep->execute($values);
 
@@ -55,6 +58,9 @@ class ModelUtilisateur {
 
 		public function getMail(){
 			return $this->mail;
+		}
+		public function getType(){
+			return $this->type;
 		}
 
 

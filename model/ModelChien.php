@@ -13,12 +13,13 @@ class ModelChien {
     private $dateAccueil;
     private $nomAncienProprio;
     private $idFamille;
+		private $description;
 
 
 
 
-    public function __construct($num = NULL, $nom = NULL, $race = NULL,$dateNaiss = NULL, $sexe = NULL, $robe = NULL,$sterilisation = NULL, $dateAccueil = NULL, $nomAncienProp = NULL, $id=NULL) {
-  		if (!is_null($num) && !is_null($nom) && !is_null($race) &&!is_null($dateNaiss) && !is_null($sexe) && !is_null($robe) &&!is_null($sterilisation) && !is_null($dateAccueil) && !is_null($nomAncienProp) && !is_null($id)) {
+    public function __construct($num = NULL, $nom = NULL, $race = NULL,$dateNaiss = NULL, $sexe = NULL, $robe = NULL,$sterilisation = NULL, $dateAccueil = NULL, $nomAncienProp = NULL, $id=NULL, $description=NULL) {
+  		if (!is_null($num) && !is_null($nom) && !is_null($race) &&!is_null($dateNaiss) && !is_null($sexe) && !is_null($robe) &&!is_null($sterilisation) && !is_null($dateAccueil) && !is_null($nomAncienProp) && !is_null($id) && !is_null($description)) {
    			$this->numPuce = $num;
     		$this->nomChien = $nom;
     		$this->race = $race;
@@ -29,12 +30,14 @@ class ModelChien {
     		$this->dateAccueil = $dateAccueil;
     		$this->nomAncienProprio = $nomAncienProp;
     		$this->idFamille= $id;
+				$this->description= $description;
+
 
   		}
 	}
 
 	public static function ajouterChien($data) {
-		$sql = "INSERT INTO `Chien`(`numPuce`, `nomChien`, `race`, `dateNaissance`, `sexe`, `robe`, `sterilisation`, `dateAccueil`, `nomAncienProprio`, `idFamille`) VALUES (:tag,:tag2, :tag3,:tag4,:tag5, :tag6,:tag7,:tag8,:tag9,:tag10)";
+		$sql = "INSERT INTO `Chien`(`numPuce`, `nomChien`, `race`, `dateNaissance`, `sexe`, `robe`, `sterilisation`, `dateAccueil`, `nomAncienProprio`, `idFamille`,`description` ) VALUES (:tag,:tag2, :tag3,:tag4,:tag5, :tag6,:tag7,:tag8,:tag9,:tag10,:tag11)";
 		$req_prep = Model::getPDO()->prepare($sql);
 
    		$values = array(
@@ -48,6 +51,7 @@ class ModelChien {
         	"tag8" => $data["dateAccueil"],
         	"tag9" => $data["nomAncienProprio"],
         	"tag10" => $data["idFamille"],
+					"tag11"=>$data["description"],
     );
     	$req_prep->execute($values);
 	}
@@ -140,6 +144,9 @@ class ModelChien {
 
 			public function getIDFamille(){
 				return $this->idFamille;
+			}
+			public function getDescription(){
+				return $this->description;
 			}
 
 }
