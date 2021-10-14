@@ -105,6 +105,7 @@ class ModelChien {
 								die();
 						}
 		}
+		//trier par noms
 		public static function getAllChiensNoms(){
 			try{
 					$PDO = Model::getPDO();
@@ -123,6 +124,641 @@ class ModelChien {
 					}
 
 		}
+		// Trier les chiens par les critères nom, numero puce, nom ancien proprio, race, robe, sexe, sterilisation, date dateNaissance, date dateAccueil
+		// par ordre croissant et decroissant
+	public static function getAllChiensNomsDecroissants(){
+			try{
+					$PDO = Model::getPDO();
+					$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY nomChien DESC");
+					$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+					$chien = $rep->fetchAll();
+					return $chien;
+
+			} catch(PDOException $e) {
+							if (Conf::getDebug()) {
+									echo $e->getMessage(); // affiche un message d'erreur
+							} else {
+									echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+							}
+							die();
+					}
+
+		}
+
+		public static function getAllChiensNumPuces(){
+			try{
+					$PDO = Model::getPDO();
+					$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY numPuce");
+					$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+					$chien = $rep->fetchAll();
+					return $chien;
+
+			} catch(PDOException $e) {
+							if (Conf::getDebug()) {
+									echo $e->getMessage(); // affiche un message d'erreur
+							} else {
+									echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+							}
+							die();
+					}
+
+		}
+
+		public static function getAllChiensNumPucesDecroissants(){
+			try{
+					$PDO = Model::getPDO();
+					$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY numPuce DESC");
+					$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+					$chien = $rep->fetchAll();
+					return $chien;
+
+			} catch(PDOException $e) {
+							if (Conf::getDebug()) {
+									echo $e->getMessage(); // affiche un message d'erreur
+							} else {
+									echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+							}
+							die();
+					}
+
+		}
+
+		public static function getAllChiensRaces(){
+			try{
+					$PDO = Model::getPDO();
+					$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY race");
+					$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+					$chien = $rep->fetchAll();
+					return $chien;
+
+			} catch(PDOException $e) {
+							if (Conf::getDebug()) {
+									echo $e->getMessage(); // affiche un message d'erreur
+							} else {
+									echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+							}
+							die();
+					}
+
+		}
+
+		public static function getAllChiensRacesDecroissants(){
+			try{
+					$PDO = Model::getPDO();
+					$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY race DESC");
+					$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+					$chien = $rep->fetchAll();
+					return $chien;
+
+			} catch(PDOException $e) {
+							if (Conf::getDebug()) {
+									echo $e->getMessage(); // affiche un message d'erreur
+							} else {
+									echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+							}
+							die();
+					}
+
+		}
+
+		public static function getAllChiensDateNaissances(){
+			try{
+					$PDO = Model::getPDO();
+					$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY dateNaissance");
+					$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+					$chien = $rep->fetchAll();
+					return $chien;
+
+			} catch(PDOException $e) {
+							if (Conf::getDebug()) {
+									echo $e->getMessage(); // affiche un message d'erreur
+							} else {
+									echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+							}
+							die();
+					}
+
+		}
+		public static function getAllChiensDateNaissancesDecroissants(){
+			try{
+					$PDO = Model::getPDO();
+					$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY dateNaissance DESC");
+					$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+					$chien = $rep->fetchAll();
+					return $chien;
+
+			} catch(PDOException $e) {
+							if (Conf::getDebug()) {
+									echo $e->getMessage(); // affiche un message d'erreur
+							} else {
+									echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+							}
+							die();
+					}
+
+		}
+
+
+	public static function getAllChiensSexes(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY sexe");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+	public static function getAllChiensSexesDecroissants(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY sexe DESC");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+
+	public static function getAllChiensRobes(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY robe");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+
+	public static function getAllChiensRobesDecroissants(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY robe DESC");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+
+	public static function getAllChiensSterilisations(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY sterilisation ");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+	public static function getAllChiensSterilisationsDecroissants(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY sterilisation DESC ");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+	public static function getAllChiensDateAccueils(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY dateAccueil ");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+	}
+	public static function getAllChiensDateAccueilsDecroissants(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY dateAccueil DESC ");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+	public static function getAllChiensNomAncienProprio(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY nomAncienProp  ");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+	public static function getAllChiensNomAncienProprioDecroissant(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY nomAncienProp DESC ");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+
+	// Trier les chiens non adopté par les critères nom, numero puce, nom ancien proprio, race, robe, sexe, sterilisation, date dateNaissance, date dateAccueil
+	// par ordre croissant et decroissant
+public static function getAllChiensNonAdoptesNomsDecroissants(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY nomChien DESC");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+
+	public static function getAllChiensNonAdoptesNumPuces(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY numPuce");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+
+	public static function getAllChiensNonAdoptesNumPucesDecroissants(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY numPuce DESC");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+
+	public static function getAllChiensNonAdoptesRaces(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY race");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+
+	public static function getAllChiensNonAdoptesRacesDecroissants(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY race DESC");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+
+	public static function getAllChiensNonAdoptesDateNaissances(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY dateNaissance");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+	public static function getAllChiensNonAdoptesDateNaissancesDecroissants(){
+		try{
+				$PDO = Model::getPDO();
+				$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY dateNaissance DESC");
+				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+				$chien = $rep->fetchAll();
+				return $chien;
+
+		} catch(PDOException $e) {
+						if (Conf::getDebug()) {
+								echo $e->getMessage(); // affiche un message d'erreur
+						} else {
+								echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+						}
+						die();
+				}
+
+	}
+
+
+public static function getAllChiensNonAdoptesSexes(){
+	try{
+			$PDO = Model::getPDO();
+			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY sexe");
+			$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+			$chien = $rep->fetchAll();
+			return $chien;
+
+	} catch(PDOException $e) {
+					if (Conf::getDebug()) {
+							echo $e->getMessage(); // affiche un message d'erreur
+					} else {
+							echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+					}
+					die();
+			}
+
+}
+public static function getAllChiensNonAdoptesSexesDecroissants(){
+	try{
+			$PDO = Model::getPDO();
+			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY sexe DESC");
+			$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+			$chien = $rep->fetchAll();
+			return $chien;
+
+	} catch(PDOException $e) {
+					if (Conf::getDebug()) {
+							echo $e->getMessage(); // affiche un message d'erreur
+					} else {
+							echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+					}
+					die();
+			}
+
+}
+
+public static function getAllChiensNonAdoptesRobes(){
+	try{
+			$PDO = Model::getPDO();
+			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY robe");
+			$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+			$chien = $rep->fetchAll();
+			return $chien;
+
+	} catch(PDOException $e) {
+					if (Conf::getDebug()) {
+							echo $e->getMessage(); // affiche un message d'erreur
+					} else {
+							echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+					}
+					die();
+			}
+
+}
+
+public static function getAllChiensNonAdoptesRobesDecroissants(){
+	try{
+			$PDO = Model::getPDO();
+			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY robe DESC");
+			$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+			$chien = $rep->fetchAll();
+			return $chien;
+
+	} catch(PDOException $e) {
+					if (Conf::getDebug()) {
+							echo $e->getMessage(); // affiche un message d'erreur
+					} else {
+							echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+					}
+					die();
+			}
+
+}
+
+public static function getAllChiensNonAdoptesSterilisations(){
+	try{
+			$PDO = Model::getPDO();
+			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY sterilisation ");
+			$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+			$chien = $rep->fetchAll();
+			return $chien;
+
+	} catch(PDOException $e) {
+					if (Conf::getDebug()) {
+							echo $e->getMessage(); // affiche un message d'erreur
+					} else {
+							echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+					}
+					die();
+			}
+
+}
+public static function getAllChiensNonAdoptesSterilisationsDecroissants(){
+	try{
+			$PDO = Model::getPDO();
+			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY sterilisation DESC ");
+			$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+			$chien = $rep->fetchAll();
+			return $chien;
+
+	} catch(PDOException $e) {
+					if (Conf::getDebug()) {
+							echo $e->getMessage(); // affiche un message d'erreur
+					} else {
+							echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+					}
+					die();
+			}
+
+}
+public static function getAllChiensNonAdoptesDateAccueils(){
+	try{
+			$PDO = Model::getPDO();
+			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY dateAccueil ");
+			$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+			$chien = $rep->fetchAll();
+			return $chien;
+
+	} catch(PDOException $e) {
+					if (Conf::getDebug()) {
+							echo $e->getMessage(); // affiche un message d'erreur
+					} else {
+							echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+					}
+					die();
+			}
+}
+public static function getAllChiensNonAdoptesDateAccueilsDecroissants(){
+	try{
+			$PDO = Model::getPDO();
+			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY dateAccueil DESC ");
+			$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+			$chien = $rep->fetchAll();
+			return $chien;
+
+	} catch(PDOException $e) {
+					if (Conf::getDebug()) {
+							echo $e->getMessage(); // affiche un message d'erreur
+					} else {
+							echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+					}
+					die();
+			}
+
+}
+public static function getAllChiensNonAdoptesNomAncienProprio(){
+	try{
+			$PDO = Model::getPDO();
+			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY nomAncienProp  ");
+			$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+			$chien = $rep->fetchAll();
+			return $chien;
+
+	} catch(PDOException $e) {
+					if (Conf::getDebug()) {
+							echo $e->getMessage(); // affiche un message d'erreur
+					} else {
+							echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+					}
+					die();
+			}
+
+}
+public static function getAllChiensNonAdoptesNomAncienProprioDecroissant(){
+	try{
+			$PDO = Model::getPDO();
+			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY nomAncienProp DESC ");
+			$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+			$chien = $rep->fetchAll();
+			return $chien;
+
+	} catch(PDOException $e) {
+					if (Conf::getDebug()) {
+							echo $e->getMessage(); // affiche un message d'erreur
+					} else {
+							echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+					}
+					die();
+			}
+
+}
 
 		//Getter
 			public function getNumpuce(){
