@@ -67,5 +67,11 @@ class ControllerUtilisateur {
       require(File::build_path(array("view","Adopter.php")));
     }
 
+    public static function trierNom(){
+      $chien = ModelChien::getAllChiensNoms();
+      require(File::build_path(array("view","Protege.php")));
+
+    }
+
 }
 ?>

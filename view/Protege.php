@@ -7,6 +7,7 @@
     <link href="css/commun.css" rel="stylesheet" type="text/css">
     <link href="css/Protege.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.rtl.css" type="text/css">
 
 </head>
 <body>
@@ -49,7 +50,7 @@
           </div>
           </article>
           <article class="col-10">
-
+          
               <?php
               foreach ($chien as $c){
                 echo "<ul><li> Nom du chien : ".$c->getNomchien()." </li>";

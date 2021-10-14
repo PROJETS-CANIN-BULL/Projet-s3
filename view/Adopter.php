@@ -46,7 +46,7 @@
               </div>
               </article>
               <article class="col-10">
-
+              
                 <?php
                 foreach ($chien as $c){
                   echo "<ul><li> Nom du chien : ".$c->getNomchien()." </li>";
