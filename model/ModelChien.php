@@ -408,7 +408,7 @@ class ModelChien {
 	public static function getAllChiensNomAncienProprio(){
 		try{
 				$PDO = Model::getPDO();
-				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY nomAncienProp  ");
+				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY nomAncienProprio  ");
 				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
 				$chien = $rep->fetchAll();
 				return $chien;
@@ -426,7 +426,7 @@ class ModelChien {
 	public static function getAllChiensNomAncienProprioDecroissant(){
 		try{
 				$PDO = Model::getPDO();
-				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY nomAncienProp DESC ");
+				$rep = $PDO->query("SELECT * FROM `Chien` ORDER BY nomAncienProprio DESC ");
 				$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
 				$chien = $rep->fetchAll();
 				return $chien;
@@ -444,6 +444,24 @@ class ModelChien {
 
 	// Trier les chiens non adopté par les critères nom, numero puce, nom ancien proprio, race, robe, sexe, sterilisation, date dateNaissance, date dateAccueil
 	// par ordre croissant et decroissant
+	public static function getAllChiensNonAdoptesNoms(){
+			try{
+					$PDO = Model::getPDO();
+					$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY nomChien ");
+					$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+					$chien = $rep->fetchAll();
+					return $chien;
+
+			} catch(PDOException $e) {
+							if (Conf::getDebug()) {
+									echo $e->getMessage(); // affiche un message d'erreur
+							} else {
+									echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+							}
+							die();
+					}
+
+		}
 public static function getAllChiensNonAdoptesNomsDecroissants(){
 		try{
 				$PDO = Model::getPDO();
@@ -726,7 +744,7 @@ public static function getAllChiensNonAdoptesDateAccueilsDecroissants(){
 public static function getAllChiensNonAdoptesNomAncienProprio(){
 	try{
 			$PDO = Model::getPDO();
-			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY nomAncienProp  ");
+			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY nomAncienProprio  ");
 			$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
 			$chien = $rep->fetchAll();
 			return $chien;
@@ -744,7 +762,7 @@ public static function getAllChiensNonAdoptesNomAncienProprio(){
 public static function getAllChiensNonAdoptesNomAncienProprioDecroissant(){
 	try{
 			$PDO = Model::getPDO();
-			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY nomAncienProp DESC ");
+			$rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY nomAncienProprio DESC ");
 			$rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
 			$chien = $rep->fetchAll();
 			return $chien;

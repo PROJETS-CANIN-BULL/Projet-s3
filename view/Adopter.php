@@ -7,6 +7,8 @@
     <link href="css/commun.css" rel="stylesheet" type="text/css">
     <link href="css/Adopter.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.rtl.css" type="text/css">
+    <script type="text/javascript" src="js/bootstrap.bundle.js"></script>
 </head>
 <body>
     <header>
@@ -47,6 +49,62 @@
               </article>
               <article class="col-10">
               
+                  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="#">Trier par</a>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                      <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesNoms" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nom</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNoms">Croissant</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNomsDecroissants">Decroissant</a></li></ul></li>
+                          <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesNumPuces" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Numero Puce</a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNumPuces">Croissant</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNumPucesDecroissants">Decroissant</a></li>  </ul></li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesRaces" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Race</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesRaces">Croissant</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesRacesDecroissants">Decroissant</a></li></ul>  </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesDateNaissances" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Date Naissance</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesDateNaissances">Croissant</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesDateNaissancesDecroissants">Decroissant</a></li></ul>  </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesSexes" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sexe</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesSexes">Croissant</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesSexesDecroissants">Decroissant</a></li>  </ul>  </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesRobes" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Robe</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesRobes">Croissant</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesRobesDecroissants">Decroissant</a></li></ul></li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesSterilisations" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sterelisation</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesSterilisations">Croissant</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesSterilisationDecroissants">Decroissant</a></li></ul></li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesDateAccueils" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Date Accueil</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesDateAccueils">Croissant</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesDateAccueilsDecroissants">Decroissant</a></li></ul></li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesNomAncienProprio" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nom Ancien Proprietaire</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNomAncienProprio">Croissant</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNomAncienProprioDecroissant">Decroissant</a></li>  </ul></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </nav>
+
                 <?php
                 foreach ($chien as $c){
                   echo "<ul><li> Nom du chien : ".$c->getNomchien()." </li>";

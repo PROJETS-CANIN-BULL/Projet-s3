@@ -119,7 +119,7 @@ class ControllerUtilisateur {
       $chien = ModelChien::getAllChiensRobesDecroissants();
       require(File::build_path(array("view","Protege.php")));
     }
-    public static function trierSterilisation(){
+    public static function trierSterilisations(){
       $chien = ModelChien::getAllChiensSterilisations();
       require(File::build_path(array("view","Protege.php")));
     }
@@ -197,7 +197,7 @@ class ControllerUtilisateur {
           $chien = ModelChien::getAllChiensNonAdoptesRobesDecroissants();
           require(File::build_path(array("view","Adopter.php")));
         }
-        public static function trierNonAdoptesSterilisation(){
+        public static function trierNonAdoptesSterilisations(){
           $chien = ModelChien::getAllChiensNonAdoptesSterilisations();
           require(File::build_path(array("view","Adopter.php")));
         }
@@ -227,59 +227,59 @@ class ControllerUtilisateur {
         //Methode pour trier les factures selon numero, numero de puce, type, motif, cout, date, getCrediteur
         // dans l'ordre croissant et Decroissants
         public static function trierFacturesNums(){
-          $chien = ModelChien::getAllFacturesNums();
+          $frais = ModelFacture::getAllFacturesNums();
           require(File::build_path(array("view","Frais.php")));
         }
-        public static function trierFacturesNumsDecrossants(){
-          $chien = ModelChien::getAllFacturesNumsDecroissants();
+        public static function trierFacturesNumsDecroissants(){
+          $frais = ModelFacture::getAllFacturesNumsDecroissants();
           require(File::build_path(array("view","Frais.php")));
         }
         public static function trierFacturesNumPuces(){
-          $chien = ModelChien::getAllFacturesNumPuces();
+          $frais = ModelFacture::getAllFacturesNumPuces();
           require(File::build_path(array("view","Frais.php")));
         }
         public static function trierFacturesNumPucesDecroissants(){
-          $chien = ModelChien::getAllFacturesNumPucesDecroissants();
+          $frais = ModelFacture::getAllFacturesNumPucesDecroissants();
           require(File::build_path(array("view","Frais.php")));
         }
         public static function trierFacturesTypes(){
-          $chien = ModelChien::getAllFacturesTypes();
+          $frais = ModelFacture::getAllFacturesTypes();
           require(File::build_path(array("view","Frais.php")));
         }
         public static function trierFacturesTypesDecroissants(){
-          $chien = ModelChien::getAllFacturesTypesDecroisants();
+          $frais = ModelFacture::getAllFacturesTypesDecroisants();
           require(File::build_path(array("view","Frais.php")));
         }
         public static function trierFacturesMotifs(){
-          $chien = ModelChien::getAllFacturesMotifs();
+          $frais = ModelFacture::getAllFacturesMotifs();
           require(File::build_path(array("view","Frais.php")));
         }
         public static function trierFacturesMotifsDecroissants(){
-          $chien = ModelChien::getAllFacturesMotifsDecroissants();
+          $frais = ModelFacture::getAllFacturesMotifsDecroissants();
           require(File::build_path(array("view","Frais.php")));
         }
         public static function trierFacturesCouts(){
-          $chien = ModelChien::getAllFacturesCouts();
+          $frais = ModelFacture::getAllFacturesCouts();
           require(File::build_path(array("view","Frais.php")));
         }
         public static function trierFacturesCoutsDecroissants(){
-          $chien = ModelChien::getAllFacturesCoutsDecroissants();
+          $frais = ModelFacture::getAllFacturesCoutsDecroissants();
           require(File::build_path(array("view","Frais.php")));
         }
         public static function trierFacturesDateFactures(){
-          $chien = ModelChien::getAllFacturesDateFactures();
+          $frais = ModelFacture::getAllFacturesDateFactures();
           require(File::build_path(array("view","Frais.php")));
         }
         public static function trierFacturesDateFacturesDecroissants(){
-          $chien = ModelChien::getAllFacturesDateFacturesDecroissants();
+          $frais = ModelFacture::getAllFacturesDateFacturesDecroissants();
           require(File::build_path(array("view","Frais.php")));
         }
         public static function trierFacturesCrediteurs(){
-          $chien = ModelChien::getAllFacturesCrediteurs();
+          $frais = ModelFacture::getAllFacturesCrediteurs();
           require(File::build_path(array("view","Frais.php")));
         }
         public static function trierFacturesCrediteursDecroissants(){
-          $chien = ModelChien::getAllFacturesCrediteursDecroisants();
+           $frais = ModelFacture::getAllFacturesCrediteursDecroisants();
           require(File::build_path(array("view","Frais.php")));
         }
 

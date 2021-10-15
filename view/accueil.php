@@ -7,6 +7,8 @@
     <link href="css/commun.css" rel="stylesheet" type="text/css">
     <link href="css/accueil.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.rtl.css" type="text/css">
+
 </head>
 <body>
     <header>
