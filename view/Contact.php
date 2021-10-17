@@ -1,3 +1,7 @@
+<?php include 'model/ModelContact.php'; ?>
+<?//php include 'envoiEmail.php'; ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +10,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="css/commun.css" rel="stylesheet" type="text/css">
     <link href="css/accueil.css" rel="stylesheet" type="text/css">
+    <link href="css/Contact.css" rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 </head>
 <body>
@@ -34,14 +40,61 @@
     </div>
             <div class="container-fluid blue">
               <div class="row">
-                <article class="col-2">
+                  <?php echo $alert; ?>
 
-                  
-                </article>
-                <article class="col-10">
-                  <p>Quam ob rem circumspecta cautela observatum est deinceps et cum edita montium petere coeperint grassatores, loci iniquitati milites cedunt. ubi autem in planitie potuerint reperiri, quod contingit adsidue, nec exsertare lacertos nec crispare permissi tela, quae vehunt bina vel terna, pecudum ritu inertium trucidantur.Quare talis improborum consensio non modo excusatione amicitiae tegenda non est sed potius supplicio omni vindicanda est, ut ne quis concessum putet amicum vel bellum patriae inferentem sequi; quod quidem, ut res ire coepit, haud scio an aliquando futurum sit. Mihi autem non minori curae est, qualis res publica post mortem meam futura, quam qualis hodie sit.Haec igitur Epicuri non probo, inquam. De cetero vellem equidem aut ipse doctrinis fuisset instructior est enim, quod tibi ita videri necesse est, non satis politus iis artibus, quas qui tenent, eruditi appellantur aut ne deterruisset alios a studiis. quamquam te quidem video minime esse deterritum.His cognitis Gallus ut serpens adpetitus telo vel saxo iamque spes extremas opperiens et succurrens saluti suae quavis ratione colligi omnes iussit armatos et cum starent attoniti, districta dentium acie stridens adeste inquit viri fortes mihi periclitanti vobiscum.</p>
-                </article>
 
+                    <form action="" method="post">
+                        <fieldset>
+                            <legend>Informations personnelles</legend>
+                            <div class="input">
+                                <span class="inputItem">Nom *</span>
+                                <input class="inputField" id="surname" name="surname" required type="text">
+                            </div>
+                            <div class="input">
+                                <span class="inputItem">Prénom *</span>
+                                <input class="inputField" id="firstname" name="firstname" required type="text">
+                            </div>
+                            <div class="input">
+                                <span class="inputItem">E-mail *</span>
+                                <input class="inputField" id="email" name="email" placeholder="votremail@domaine.com" required
+                                       tabindex="1" type="email">
+                            </div>
+                            <div class="input">
+                                <span class="inputItem">Téléphone *</span>
+                                <input class="inputField" id="telephone" name="telephone" pattern="[0-9]{10}" required type="text">
+                            </div>
+                            <div class="input">
+                                <span class="inputItem">Pays *</span>
+                                <select class="inputField" id="countryselect" name="pays">
+                                    <option value="Belgique">Belgique</option>
+                                    <option selected value="France">France</option>
+                                </select>
+                            </div>
+                            <div class="input">
+                                <span class="inputItem">Ville *</span>
+                                <input class="inputField" id="ville" name="ville" required type="text">
+                            </div>
+                            <div class="input">
+                                <span class="inputItem">Code postal *</span>
+                                <input class="inputField" id="zip" name="zip" pattern="[0-9]{4-5}" required type="text">
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="input">
+                                <span class="inputItem">Objet *</span>
+                                <input class="inputField" id="objet" name="objet" required type="text">
+                            </div>
+                            <legend>Message *</legend>
+                            <div class="input" id="inputMsg">
+	                        <textarea class="inputField" cols="80" id="message" name="message"
+                                      placeholder="Tapez votre message ici"
+                                      required rows="10"></textarea>
+                            </div>
+                        </fieldset>
+                        <div class="input" id="send">
+                            <input class="inputField" type="submit" name="submit" value="Envoyer">
+                        </div>
+                    </form>
               </div>
             </div>
           </div>
@@ -49,5 +102,10 @@
     <footer>
     </footer>
 
+    <script type="text/javascript">
+        if(window.history.replaceState){
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
 </body>
 </html>

@@ -81,7 +81,10 @@ class ControllerUtilisateur {
      require(File::build_path(array("view","AjoutFactureReussi.php")));
     }
 
-
+    public static function envoiMail(){
+        ModelContact::envoiMail();
+        require (File::build_path(array("view","Contact.php")));
+    }
 
     public static function formulaireChien(){
       require(File::build_path(array("view","formulaireAjoutChien.php")));
