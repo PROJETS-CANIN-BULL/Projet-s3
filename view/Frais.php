@@ -41,13 +41,10 @@
           <div class="container-fluid blue">
           <div class="row">
             <article class="col-2">
-              <div>
-              <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
-              <button class="btn" type="button">Ajouter un Protégé</button>
-            </div>
+
             <div>
               <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
-              <button class="btn" type="button">Ajouter une Facture</button>
+              <button class="btn" type="button" onclick="location.href = 'index.php?action=formulaireFacture';">Ajouter une Facture</button>
             </div>
             </article>
             <article class="col-10">
@@ -99,7 +96,7 @@
                         </div>
                       </nav>
 
-            
+
               <?php
               foreach ($frais as $f){
                 echo "<ul><li> NumFacture : ".$f->getNumFacture()." </li>";
@@ -107,7 +104,7 @@
                 echo "<li> Motif : ".$f->getMotif()."</li>";
                 echo "<li> cout : ".$f->getCout()."</li>";
                 echo "<li> Date : ".$f->getDateFacture()."</li>";
-                echo "<li> Crediteur : ".$f->getCrediteur()."</li>";
+                echo "<li> Crediteur : ".$f->getCrediteur()."</li></ul>";
               }
 
                ?>

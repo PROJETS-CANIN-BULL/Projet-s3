@@ -44,6 +44,51 @@ class ControllerUtilisateur {
         }
     }
 
+    public static function ajouterChien(){
+      $data = array(
+         'numPuce' => $_GET['numPuce'],
+         'nomChien' => $_GET['nomChien'],
+         'race'=> $_GET['race'],
+         'dateNaissance' => $_GET['dateNaissance'],
+         'sexe' => $_GET['sexe'],
+         'robe'=> $_GET['robe'],
+         'sterilisation' => $_GET['sterilisation'],
+         'dateAccueil'=> $_GET['dateAccueil'],
+         'description' => $_GET['description'],
+     );
+     if($_GET['nomAncienProp']!=null){
+       $data['nomAncienProprio'] =$_GET['nomAncienProp'];
+     }
+     else{
+       $data['nomAncienProprio'] ='null';
+     }
+     ModelChien::ajouterChien($data);
+     require(File::build_path(array("view","AjoutChienReussi.php")));
+
+    }
+
+    public static function ajouterFacture(){
+      $data = array(
+         'numPuce' => $_GET['numPuce'],
+         'numFacture' => $_GET['numFacture'],
+         'type'=> $_GET['type'],
+         'motif' => $_GET['motif'],
+         'cout' => $_GET['cout'],
+         'dateFacture' => $_GET['dateFacture'],
+         'crediteur'=> $_GET['crediteur'],
+     );
+     ModelFacture::ajouterFacture($data);
+     require(File::build_path(array("view","AjoutFactureReussi.php")));
+    }
+
+
+
+    public static function formulaireChien(){
+      require(File::build_path(array("view","formulaireAjoutChien.php")));
+    }
+    public static function formulaireFacture(){
+      require(File::build_path(array("view","formulaireAjoutFacture.php")));
+    }
     public static function accueil(){
       require(File::build_path(array("view","accueil.php")));
     }

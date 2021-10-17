@@ -37,7 +37,7 @@ class ModelChien {
 	}
 
 	public static function ajouterChien($data) {
-		$sql = "INSERT INTO `Chien`(`numPuce`, `nomChien`, `race`, `dateNaissance`, `sexe`, `robe`, `sterilisation`, `dateAccueil`, `nomAncienProprio`, `idFamille`,`description` ) VALUES (:tag,:tag2, :tag3,:tag4,:tag5, :tag6,:tag7,:tag8,:tag9,:tag10,:tag11)";
+		$sql = "INSERT INTO `Chien`(`numPuce`, `nomChien`, `race`, `dateNaissance`, `sexe`, `robe`, `sterilisation`, `dateAccueil`, `nomAncienProprio`,`description` ) VALUES (:tag,:tag2, :tag3,:tag4,:tag5, :tag6,:tag7,:tag8,:tag9,:tag10)";
 		$req_prep = Model::getPDO()->prepare($sql);
 
    		$values = array(
@@ -50,8 +50,7 @@ class ModelChien {
         	"tag7" => $data["sterilisation"],
         	"tag8" => $data["dateAccueil"],
         	"tag9" => $data["nomAncienProprio"],
-        	"tag10" => $data["idFamille"],
-					"tag11"=>$data["description"],
+					"tag10"=>$data["description"],
     );
     	$req_prep->execute($values);
 	}

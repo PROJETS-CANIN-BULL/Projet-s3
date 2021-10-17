@@ -41,11 +41,11 @@
               <article class="col-2">
                 <div>
                 <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
-                <button class="btn" type="button">Ajouter un Protégé</button>
+                <button class="btn" type="button" onclick=" location.href = 'index.php?action=formulaireChien';">Ajouter un Protégé</button>
               </div>
               <div>
                 <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
-                <button class="btn" type="button">Ajouter une Facture</button>
+                <button class="btn" type="button"  onclick="location.href = 'index.php?action=formulaireFacture';">Ajouter une Facture</button>
               </div>
 
               </article>

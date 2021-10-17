@@ -34,7 +34,7 @@ class ModelFacture {
 	}
 
 	public static function ajouterFacture($data) {
-		$sql = "INSERT INTO `Frais`(`numFacture`, `numPuce`, `type`, `motif`, `cout`, `dateFacture`, `crediteur`, `numVeto`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6,:tag7,:tag8)";
+		$sql = "INSERT INTO `Frais`(`numFacture`, `numPuce`, `type`, `motif`, `cout`, `dateFacture`, `crediteur`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6,:tag7)";
 		$req_prep = Model::getPDO()->prepare($sql);
 
    		$values = array(
@@ -45,7 +45,6 @@ class ModelFacture {
         	"tag5" => $data["cout"],
         	"tag6" => $data["dateFacture"],
         	"tag7" => $data["crediteur"],
-        	"tag8" => $data["numVeto"],
     );
     	$req_prep->execute($values);
 	}
