@@ -5,7 +5,7 @@
     <title> Bull's Friends Association </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="css/commun.css" rel="stylesheet" type="text/css">
-    <link href="css/Protege.css" rel="stylesheet" type="text/css">
+    <link href="css/Contact.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/bootstrap.rtl.css" type="text/css">
     <script type="text/javascript" src="js/bootstrap.bundle.js"></script>
@@ -49,65 +49,64 @@
 
           </article>
           <article class="col-10">
-          <form method="get" action="index.php">
-              <fieldset>
 
-                  <p>
-                      <label for="numPuce">Numero de Puce</label> :
-                      <input type="text" name="numPuce" id="numPuce" required/>
-                  </p>
-                  <p>
-                      <label for="nomChien">Nom du chien</label> :
-                      <input type="text" name="nomChien" id="nomChien" required>
-                  </p>
-                  <p>
-                      <label for="race">Race</label> :
-                      <input type="text"  name="race" id="race" required>
-                  </p>
-                  <p>
-                      <label for="dateNaissance">Date de Naissance : (Sous la forme AAAA-MM-JJ)</label>
-                      <input type="text"placeholder="AAAA-MM-JJ" name="dateNaissance" id="dateNaissance" required>
-                  </p>
-                  <p> Sexe :
+            <form action="index.php" method="get">
+                <fieldset>
+                    <legend>Ajouter une Facture</legend>
+                    <div class="input">
+                        <span class="inputItem"> Numero de Puce*</span>
+                        <input class="inputField" id="numPuce" name="numPuce" required type="text">
+                    </div>
+                    <div class="input">
+                        <span class="inputItem">Nom du chien *</span>
+                        <input class="inputField" id="nomChien" name="nomChien" required type="text">
+                    </div>
+                    <div class="input">
+                        <span class="inputItem">Race *</span>
+                        <input class="inputField" id="race" name="race" required type="text">
+                    </div>
+                    <div class="input">
+                        <span class="inputItem">Date de Naissance : (Sous la forme AAAA-MM-JJ) *</span>
+                        <input class="inputField" id="dateNaissance" name="dateNaissance" placeholder="AAAA-MM-JJ" required type="text">
+                    </div>
+                    <div class="input">
+                      <span class="inputItem"> Sexe *</span>
+                      <select class="inputField" id="sexe" name="sexe">
+                          <option value="feminin">Feminin</option>
+                          <option selected value="masculin">Masculin</option>
+                      </select>
 
-                      <input type="radio" name="sexe" id="feminin" value="feminin" checked>
-                      <label for="feminin">Feminin</label>
-                      <input type="radio" name="sexe" id="masculin" value="masculin" >
-                      <label for="masculin">Masculin</label>
+                    </div>
+                    <div class="input">
+                        <span class="inputItem">Robe *</span>
+                        <input class="inputField" id="robe" name="robe" required type="text">
+                    </div>
+                    <div class="input">
+                      <span class="inputItem"> Sterelisation *</span>
+                      <select class="inputField" id="sterilisation" name="sterilisation">
+                          <option value="oui">Oui</option>
+                          <option selected value="non">Non</option>
+                      </select>
+                    </div>
 
-                  </p>
-                  <p>
-                      <label for="robe">Robe</label>
-                      <input type="text" name="robe" id="robe" required>
-                  </p>
-                  <p> Sterelisation :
-                      <input type="radio" name="sterilisation" id="oui" value="oui" checked>
-                      <label for="oui">oui</label>
-                      <input type="radio" name="sterilisation" id="non" value="non" >
-                      <label for="non">non</label>
-                  </p>
-                  <p>
-                      <label for="dateAccueil">Date d'accueil : (Sous la forme AAAA-MM-JJ)</label>
-                      <input type="text"placeholder="AAAA-MM-JJ" name="dateAccueil" id="dateAccueil" required>
-                  </p>
-                  <p>
-                      <label for="nomAncienProp">Nom de l'ancien Proprietaire</label> :
-                      <input type="text"  name="nomAncienProp" id="nomAncienProp">
-                  </p>
-                  <p>
-                      <label for="description">Description de l'animal</label> :
-                      <input type="text"placeholder="description de 500 caractères" name="description" id="description" required>
-                  </p>
-
-                  <p>
-                      <input type="submit" value="Envoyer" />
-                      <input type='hidden' name='action' value='ajouterChien'>
-
-                  </p>
-              </fieldset>
-          </form>
-
-
+                    <div class="input">
+                        <span class="inputItem">Date d'accueil : (Sous la forme AAAA-MM-JJ) *</span>
+                        <input class="inputField" id="dateAccueil" name="dateAccueil"  placeholder="AAAA-MM-JJ" required type="text">
+                    </div>
+                    <div class="input">
+                        <span class="inputItem">Nom de l'ancien Proprietaire</span>
+                        <input class="inputField" id="nomAncienProp" name="conomAncienProput"  type="text">
+                    </div>
+                    <div class="input">
+                        <span class="inputItem">Description de l'animal *</span>
+                        <input class="inputField" id="description"  placeholder="description de 500 caractères"  name="description" required type="text">
+                    </div>
+                </fieldset>
+                <div class="input" id="send">
+                  <input type="submit" value="Envoyer" />
+                  <input type='hidden' name='action' value='ajouterChien'>
+                </div>
+            </form>
           </article>
 
         </div>
