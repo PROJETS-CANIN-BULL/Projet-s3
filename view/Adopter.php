@@ -43,7 +43,7 @@
                 <button class="btn" type="button" onclick="location.href = 'index.php?action=formulaireChien';">Ajouter un Protégé</button>
               </div>
 
-            
+
               </article>
               <article class="col-10">
 
