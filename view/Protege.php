@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html>
+
 <head>
-    <meta charset="utf-8" />
-    <title> Bull's Friends Association </title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="css/commun.css" rel="stylesheet" type="text/css">
     <link href="css/Protege.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/bootstrap.rtl.css" type="text/css">
-    <script type="text/javascript" src="js/bootstrap.bundle.js"></script>
-
-
 </head>
 <body>
     <header>
@@ -123,8 +113,3 @@
     </div>
 
     </main>
-    <footer>
-    </footer>
-
-</body>
-</html>

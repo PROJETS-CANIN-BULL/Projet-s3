@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title> Bull's Friends Association </title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="css/commun.css" rel="stylesheet" type="text/css">
-    <link href="css/accueil.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/bootstrap.rtl.css" type="text/css">
 
+<head>
+    <link href="css/accueil.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <header>
