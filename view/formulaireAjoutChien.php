@@ -50,7 +50,7 @@
           </article>
           <article class="col-10">
 
-            <form action="index.php" method="get">
+            <form action="index.php" method="post">
                 <fieldset>
                     <legend>Ajouter une Facture</legend>
                     <div class="input">

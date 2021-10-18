@@ -50,7 +50,7 @@
           </article>
           <article class="col-10">
 
-            <form action="index.php" method="get">
+            <form action="index.php" method="post">
                 <fieldset>
                     <legend>Ajouter une Facture</legend>
                     <div class="input">
@@ -91,13 +91,13 @@
                 <fieldset>
                     <div class="input">
                         <span class="inputItem">Ajouter un pdf *</span>
-                        <input class="inputField" id="description" name="description" required type="text">
+                        <input type="file" class="inputField" id="description" name="description" required type="text">
                     </div>
 
                 </fieldset>
                 <div class="input" id="send">
                   <input type="submit" value="Envoyer" >
-                  <input type='hidden' name='action' value='ajouterFacture'>
+                  <input type='hidden' accept="pdf" name='action' value='ajouterFacture'>
                 </div>
             </form>
           </article>
