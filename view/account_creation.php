@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/formulaire.css">
 </head>
 <body>
-<form id="formulaire" method="get" action="index.php">
+<form id="formulaire" method="post" action="index.php">
 <!--<form method="post" action="created.php"> -->
 <fieldset>
     <legend>Création de compte</legend>
