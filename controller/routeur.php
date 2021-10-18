@@ -4,7 +4,7 @@
 
 require_once File::build_path(array("controller","ControllerUtilisateur.php"));
 // On recupère l'action passée dans l'URL
-$action = $_GET['action'];
+$action = $_POST['action'];
 // Appel de la méthode statique $action de ControllerVoiture
 ControllerUtilisateur::$action();
 ?>
