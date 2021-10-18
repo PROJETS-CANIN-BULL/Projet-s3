@@ -14,8 +14,8 @@ class ControllerUtilisateur {
 
     public static function connexion() {
         $data = array(
-            'id' => $_GET['id'],
-            'password' => $_GET['password']
+            'id' => $_POST['id'],
+            'password' => $_POST['password']
         );
         if(ModelUtilisateur::verfierUtilisateur($data)==NULL){
             require (File::build_path(array("view","error.php")));
@@ -30,9 +30,9 @@ class ControllerUtilisateur {
     }
     public static function creationCompte(){
          $data = array(
-            'id' => $_GET['id'],
-            'password' => $_GET['password'],
-            'mail'=> $_GET['mail']
+            'id' => $_POST['id'],
+            'password' => $_POST['password'],
+            'mail'=> $_POST['mail']
         );
         if(ModelUtilisateur::verfierUtilisateur($data)!=NULL){
             require (File::build_path(array("view","accueil.php")));
@@ -46,18 +46,18 @@ class ControllerUtilisateur {
 
     public static function ajouterChien(){
       $data = array(
-         'numPuce' => $_GET['numPuce'],
-         'nomChien' => $_GET['nomChien'],
-         'race'=> $_GET['race'],
-         'dateNaissance' => $_GET['dateNaissance'],
-         'sexe' => $_GET['sexe'],
-         'robe'=> $_GET['robe'],
-         'sterilisation' => $_GET['sterilisation'],
-         'dateAccueil'=> $_GET['dateAccueil'],
-         'description' => $_GET['description'],
+         'numPuce' => $_POST['numPuce'],
+         'nomChien' => $_POST['nomChien'],
+         'race'=> $_POST['race'],
+         'dateNaissance' => $_POST['dateNaissance'],
+         'sexe' => $_POST['sexe'],
+         'robe'=> $_POST['robe'],
+         'sterilisation' => $_POST['sterilisation'],
+         'dateAccueil'=> $_POST['dateAccueil'],
+         'description' => $_POST['description'],
      );
-     if($_GET['nomAncienProp']!=null){
-       $data['nomAncienProprio'] =$_GET['nomAncienProp'];
+     if($_POST['nomAncienProp']!=null){
+       $data['nomAncienProprio'] =$_POST['nomAncienProp'];
      }
      else{
        $data['nomAncienProprio'] ='null';
@@ -69,13 +69,13 @@ class ControllerUtilisateur {
 
     public static function ajouterFacture(){
       $data = array(
-         'numPuce' => $_GET['numPuce'],
-         'numFacture' => $_GET['numFacture'],
-         'type'=> $_GET['type'],
-         'motif' => $_GET['motif'],
-         'cout' => $_GET['cout'],
-         'dateFacture' => $_GET['dateFacture'],
-         'crediteur'=> $_GET['crediteur'],
+         'numPuce' => $_POST['numPuce'],
+         'numFacture' => $_POST['numFacture'],
+         'type'=> $_POST['type'],
+         'motif' => $_POST['motif'],
+         'cout' => $_POST['cout'],
+         'dateFacture' => $_POST['dateFacture'],
+         'crediteur'=> $_POST['crediteur'],
      );
      ModelFacture::ajouterFacture($data);
      require(File::build_path(array("view","AjoutFactureReussi.php")));
