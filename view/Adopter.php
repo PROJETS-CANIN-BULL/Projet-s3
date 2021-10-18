@@ -2,26 +2,7 @@
 <head>
     <link href="css/Adopter.css" rel="stylesheet" type="text/css">
 </head>
-<body>
-    <header>
-      <div class ="row">
-        <div class="container text-center">
-          <h2>Bull's Friends</h2>
-        </div>
-        <div class="container">
-        <nav>
-        <ul id="menu">
-          <li><a href="index.php?action=accueil"><img src="insérer l'emplacement de l'image ici" title="logo" alt="logo"></a></li>
-          <li><a href="index.php?action=Adopter">A Adopter</a></li>
-          <li><a href="index.php?action=Protege">Les protégés</a></li>
-          <li><a href="index.php?action=Frais">Frais</a></li>
-          <li><a href="index.php?action=FAQ">FAQ</a></li>
-          <li><a href="index.php?action=Contact">Contact</a></li>
-          <li><a href="">Rechercher</a></li>
-        </ul>
-    </nav>
 
-    </header>
     <main>
       <div class="container-fluid red">
           <div class="container text-center">

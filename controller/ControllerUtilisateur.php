@@ -53,8 +53,7 @@ class ControllerUtilisateur {
       $data = array(
          'numPuce' => $_POST['numPuce'],
          'nomChien' => $_POST['nomChien'],
-         'race'=> $_POST['race'],<!DOCTYPE html>
-<html>
+         'race'=> $_POST['race'],
          'dateNaissance' => $_POST['dateNaissance'],
          'sexe' => $_POST['sexe'],
          'robe'=> $_POST['robe'],
@@ -83,7 +82,7 @@ class ControllerUtilisateur {
          'motif' => $_POST['motif'],
          'cout' => $_POST['cout'],
          'dateFacture' => $_POST['dateFacture'],
-         'crediteur'=> $_GET['crediteur'],
+         'crediteur'=> $_POST['crediteur'],
      );
      ModelFacture::ajouterFacture($data);
      $view='AjoutFactureReussi';
@@ -175,8 +174,7 @@ class ControllerUtilisateur {
       $chien = ModelChien::getAllChiensRaces();
       $view='Protege';
       $pagetitle='Les Protégés';
-      require (File::build_path(array("view","view.php")<!DOCTYPE html>
-<html>));
+      require (File::build_path(array("view","view.php")));
     }
     public static function trierRacesDecroissants(){
       $chien = ModelChien::getAllChiensRacesDecroissants();
@@ -284,8 +282,7 @@ class ControllerUtilisateur {
         public static function trierNonAdoptesNumPucesDecroissants(){
           $chien = ModelChien::getAllChiensNonAdoptesNumPucesDecroissants();
           $view='Adopter';
-          $pagetitle='Les Adoptés';<!DOCTYPE html>
-<html>
+          $pagetitle='Les Adoptés';
           require (File::build_path(array("view","view.php")));
         }
         public static function trierNonAdoptesRaces(){
@@ -326,8 +323,7 @@ class ControllerUtilisateur {
         }
         public static function trierNonAdoptesRobes(){
           $chien = ModelChien::getAllChiensNonAdoptesRobes();
-          $view='Adopter';<!DOCTYPE html>
-<html>
+          $view='Adopter';
           $pagetitle='Les Adoptés';
           require (File::build_path(array("view","view.php")));
         }
