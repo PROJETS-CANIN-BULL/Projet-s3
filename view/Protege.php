@@ -58,8 +58,8 @@
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="index.php?action=trierNoms" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nom</a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="index.php?action=trierNoms">Croissant</a></li>
-                        <li><a class="dropdown-item" href="index.php?action=trierNomsDecroissants">Decroissant</a></li></ul></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierNoms">A-Z</a></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierNomsDecroissants">Z-A</a></li></ul></li>
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="index.php?action=trierNumPuces" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Numero Puce</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -68,8 +68,8 @@
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="index.php?action=trierRaces" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Race</a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="index.php?action=trierRaces">Croissant</a></li>
-                        <li><a class="dropdown-item" href="index.php?action=trierRacesDecroissants">Decroissant</a></li></ul>  </li>
+                        <li><a class="dropdown-item" href="index.php?action=trierRaces">A-Z</a></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierRacesDecroissants">Z-A</a></li></ul>  </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="index.php?action=trierDateNaissances" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Date Naissance</a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -83,8 +83,8 @@
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="index.php?action=trierRobes" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Robe</a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="index.php?action=trierRobes">Croissant</a></li>
-                        <li><a class="dropdown-item" href="index.php?action=trierRobesDecroissants">Decroissant</a></li></ul></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierRobes">A-Z</a></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierRobesDecroissants">Z-A</a></li></ul></li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="index.php?action=trierSterilisations" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sterelisation</a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -98,8 +98,8 @@
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="index.php?action=trierNomAncienProprio" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nom Ancien Proprietaire</a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="index.php?action=trierNomAncienProprio">Croissant</a></li>
-                        <li><a class="dropdown-item" href="index.php?action=trierNomAncienProprioDecroissant">Decroissant</a></li>  </ul></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierNomAncienProprio">A-Z</a></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierNomAncienProprioDecroissant">Z-A</a></li>  </ul></li>
                       </ul>
                     </div>
                   </div>

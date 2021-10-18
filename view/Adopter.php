@@ -56,8 +56,8 @@
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesNoms" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nom</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNoms">Croissant</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNomsDecroissants">Decroissant</a></li></ul></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNoms">A-Z</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNomsDecroissants">Z-A</a></li></ul></li>
                           <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesNumPuces" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Numero Puce</a>
                           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -66,8 +66,8 @@
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesRaces" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Race</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesRaces">Croissant</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesRacesDecroissants">Decroissant</a></li></ul>  </li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesRaces">A-Z</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesRacesDecroissants">Z-A</a></li></ul>  </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesDateNaissances" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Date Naissance</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -76,13 +76,13 @@
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesSexes" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sexe</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesSexes">Croissant</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesSexesDecroissants">Decroissant</a></li>  </ul>  </li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesSexes">A-Z</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesSexesDecroissants">Z-A</a></li>  </ul>  </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesRobes" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Robe</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesRobes">Croissant</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesRobesDecroissants">Decroissant</a></li></ul></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesRobes">A-Z</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesRobesDecroissants">Z-A</a></li></ul></li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesSterilisations" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sterelisation</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -96,8 +96,8 @@
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="index.php?action=trierNonAdoptesNomAncienProprio" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nom Ancien Proprietaire</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNomAncienProprio">Croissant</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNomAncienProprioDecroissant">Decroissant</a></li>  </ul></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNomAncienProprio">A-Z</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesNomAncienProprioDecroissant">Z-A</a></li>  </ul></li>
                             </ul>
                           </div>
                         </div>

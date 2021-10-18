@@ -72,8 +72,10 @@
                     <div class="input">
                       <span class="inputItem"> Sexe *</span>
                       <select class="inputField" id="sexe" name="sexe">
-                          <option value="feminin">Feminin</option>
-                          <option selected value="masculin">Masculin</option>
+                          <option value="femelle">Femelle</option>
+                          <option selected value="male">Male</option>
+                          <option  value="inconne">inconnu</option>
+
                       </select>
 
                     </div>
@@ -86,6 +88,8 @@
                       <select class="inputField" id="sterilisation" name="sterilisation">
                           <option value="oui">Oui</option>
                           <option selected value="non">Non</option>
+                          <option value="inconnu">Ne sait pas</option>
+
                       </select>
                     </div>
 

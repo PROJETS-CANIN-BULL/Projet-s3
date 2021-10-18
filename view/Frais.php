@@ -64,13 +64,13 @@
                           <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesTypes" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Type Facture</a>
                           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesTypes">Croissant</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesTypesDecroissants">Decroissant</a></li>  </ul></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierFacturesTypes">A-Z</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierFacturesTypesDecroissants">Z-A</a></li>  </ul></li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesMotifs" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Motif</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesMotifs">Croissant</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesMotifsDecroissants">Decroissant</a></li></ul>  </li>
+                              <li><a class="dropdown-item" href="index.php?action=trierFacturesMotifs">A-Z</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierFacturesMotifsDecroissants">Z-A</a></li></ul>  </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesCouts" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cout</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -84,8 +84,8 @@
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesCrediteurs" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Crediteur</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesCrediteurs">Croissant</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesCrediteursDecroissants">Decroissant</a></li></ul></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierFacturesCrediteurs">A-Z</a></li>
+                              <li><a class="dropdown-item" href="index.php?action=trierFacturesCrediteursDecroissants">Z-A</a></li></ul></li>
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesNumPuces" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Numero Puce</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
