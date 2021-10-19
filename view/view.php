@@ -24,7 +24,8 @@
               <li><a href="index.php?action=accueil"><img src="insérer l'emplacement de l'image ici" title="logo" alt="logo"></a></li>
               <li><a href="index.php?action=Adopter">A Adopter</a></li>
               <li><a href="index.php?action=Protege">Les protégés</a></li>
-              <li><a href="index.php?action=Frais">Frais</a></li>
+                <li><a href="index.php?action=Frais">Frais</a></li>
+                <li><a href="index.php?action=totaliserFactures">Total Frais</a></li>
               <li><a href="index.php?action=FAQ">FAQ</a></li>
               <li><a href="index.php?action=Contact">Contact</a></li>
               <li><a href="">Rechercher</a></li>

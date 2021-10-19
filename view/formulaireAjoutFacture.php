@@ -1,38 +1,6 @@
-<!DOCTYPE html>
-<html>
 <head>
-    <meta charset="utf-8" />
-    <title> Bull's Friends Association </title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link href="css/commun.css" rel="stylesheet" type="text/css">
     <link href="css/Contact.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/bootstrap.rtl.css" type="text/css">
-    <script type="text/javascript" src="js/bootstrap.bundle.js"></script>
-
-
 </head>
-<body>
-    <header>
-      <div class ="row">
-  <div class="container text-center">
-    <h2>Bull's Friends</h2>
-  </div>
-  <div class="container">
-    <nav>
-        <ul id="menu">
-          <li><a href="index.php?action=accueil"><img src="insérer l'emplacement de l'image ici" title="logo" alt="logo"></a></li>
-          <li><a href="index.php?action=Adopter">A Adopter</a></li>
-          <li><a href="index.php?action=Protege">Les protégés</a></li>
-          <li><a href="index.php?action=Frais">Frais</a></li>
-          <li><a href="index.php?action=FAQ">FAQ</a></li>
-          <li><a href="index.php?action=Contact">Contact</a></li>
-          <li><a href="">Rechercher</a></li>
-        </ul>
-    </nav>
-
-
-    </header>
     <main>
       <div class="container-fluid red">
     <div class="container text-center">
@@ -50,7 +18,7 @@
           </article>
           <article class="col-10">
 
-            <form action="index.php" method="post">
+            <form action="index.php" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend>Ajouter une Facture</legend>
                     <div class="input">
@@ -91,13 +59,13 @@
                 <fieldset>
                     <div class="input">
                         <span class="inputItem">Ajouter un pdf *</span>
-                        <input type="file" class="inputField" id="description" name="description" required type="text">
+                        <input type="file" class="inputField" id="description" name="description" required >
                     </div>
 
                 </fieldset>
                 <div class="input" id="send">
                   <input type="submit" value="Envoyer" >
-                  <input type='hidden' accept="pdf" name='action' value='ajouterFacture'>
+                  <input type='hidden' accept='pdf' name='action' value='ajouterFacture'>
                 </div>
             </form>
           </article>

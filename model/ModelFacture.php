@@ -73,8 +73,108 @@ class ModelFacture {
 	public static function modifierDate($data) {
 	}
 
+  public static function totaliserFactures(){
+    try{
+        $PDO = Model::getPDO();
+        $rep = $PDO->query("SELECT sum(cout) AS couts FROM Frais" );
+        $row = $rep->fetch();
+        return $row['couts'];
+
+    } catch(PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage(); // affiche un message d'erreur
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+
+  public static function totaliserFacturesNumPuces(){
+    try{
+      $PDO = Model::getPDO();
+      $rep = $PDO->query("SELECT numPuce AS bd ,sum(cout) AS cout FROM Frais GROUP BY numPuce" );
+      $rep->setFetchMode(PDO::FETCH_ASSOC);
+      $row= $rep->fetchAll();
+      return $row;
+    } catch(PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+      }
+        die();
+      }
+    }
+  public static function totaliserFacturesTypes(){
+    try{
+      $PDO = Model::getPDO();
+      $rep = $PDO->query("SELECT type AS bd ,sum(cout) AS cout FROM Frais GROUP BY type" );
+      $rep->setFetchMode(PDO::FETCH_ASSOC);
+      $row= $rep->fetchAll();
+      return $row;
+    } catch(PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+      }
+      die();
+      }
+    }
+  public static function totaliserFacturesMotifs(){
+    try{
+      $PDO = Model::getPDO();
+      $rep = $PDO->query("SELECT motif AS bd ,sum(cout) AS cout FROM Frais GROUP BY motif" );
+      $rep->setFetchMode(PDO::FETCH_ASSOC);
+      $row= $rep->fetchAll();
+      return $row;
+    } catch(PDOException $e) {
+      if (Conf::getDebug()) {
+        echo $e->getMessage(); // affiche un message d'erreur
+      } else {
+        echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+      }
+      die();
+    }
+    }
+
+    public static function totaliserFacturesDates(){
+      try{
+        $PDO = Model::getPDO();
+        $rep = $PDO->query("SELECT dateFacture AS bd ,sum(cout) AS cout FROM Frais GROUP BY dateFacture" );
+        $rep->setFetchMode(PDO::FETCH_ASSOC);
+        $row= $rep->fetchAll();
+        return $row;
+        } catch(PDOException $e) {
+          if (Conf::getDebug()) {
+            echo $e->getMessage(); // affiche un message d'erreur
+          } else {
+            echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+          }
+          die();
+        }
+      }
+    public static function totaliserFacturesCrediteurs(){
+        try{
+          $PDO = Model::getPDO();
+          $rep = $PDO->query("SELECT crediteur AS bd ,sum(cout) AS cout FROM Frais GROUP BY crediteur" );
+          $rep->setFetchMode(PDO::FETCH_ASSOC);
+          $row= $rep->fetchAll();
+          return $row;
+          } catch(PDOException $e) {
+            if (Conf::getDebug()) {
+              echo $e->getMessage(); // affiche un message d'erreur
+            } else {
+              echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+          }
+        }
+
+
   //Methode pour trier les factures selon numero, numero de puce, type, motif, cout, date, getCrediteur
-  // dans l'ordre croissant et Decroissants
+  //dans l'ordre croissant et Decroissants
   public static function getAllFacturesNums(){
     try{
         $PDO = Model::getPDO();

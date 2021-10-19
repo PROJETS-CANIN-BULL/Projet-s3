@@ -19,53 +19,51 @@
             </div>
             </article>
             <article class="col-10">
-
-
-                  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                      <a class="navbar-brand" href="#">Trier par</a>
-                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                      <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesNums" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Numero de Facture</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesNums">Croissant</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesNumsDecroissants">Decroissant</a></li></ul></li>
-                          <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesTypes" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Type Facture</a>
-                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesTypes">A-Z</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesTypesDecroissants">Z-A</a></li>  </ul></li>
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesMotifs" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Motif</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesMotifs">A-Z</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesMotifsDecroissants">Z-A</a></li></ul>  </li>
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesCouts" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cout</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesCouts">Croissant</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesCoutsDecroissants">Decroissant</a></li></ul>  </li>
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesDateFactures" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Date</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesDateFactures">Croissant</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesDateFacturesDecroissants">Decroissant</a></li>  </ul>  </li>
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesCrediteurs" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Crediteur</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesCrediteurs">A-Z</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesCrediteursDecroissants">Z-A</a></li></ul></li>
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesNumPuces" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Numero Puce</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesNumPuces">Croissant</a></li>
-                              <li><a class="dropdown-item" href="index.php?action=trierFacturesNumPucesDecroissants">Decroissant</a></li></ul></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </nav>
+              <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#">Trier par</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                      <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesNums" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Numero de Facture</a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesNums">Croissant</a></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesNumsDecroissants">Decroissant</a></li></ul></li>
+                      <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesTypes" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Type Facture</a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesTypes">A-Z</a></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesTypesDecroissants">Z-A</a></li>  </ul></li>
+                      <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesMotifs" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Motif</a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesMotifs">A-Z</a></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesMotifsDecroissants">Z-A</a></li></ul>  </li>
+                      <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesCouts" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cout</a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesCouts">Croissant</a></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesCoutsDecroissants">Decroissant</a></li></ul>  </li>
+                      <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesDateFactures" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Date</a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesDateFactures">Croissant</a></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesDateFacturesDecroissants">Decroissant</a></li>  </ul>  </li>
+                      <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesCrediteurs" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Crediteur</a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesCrediteurs">A-Z</a></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesCrediteursDecroissants">Z-A</a></li></ul></li>
+                      <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesNumPuces" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Numero Puce</a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesNumPuces">Croissant</a></li>
+                        <li><a class="dropdown-item" href="index.php?action=trierFacturesNumPucesDecroissants">Decroissant</a></li></ul></li>
+                      </ul>
+                    </div>
+                  </div>
+                </nav>
 
 
               <?php

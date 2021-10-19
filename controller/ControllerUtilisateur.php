@@ -87,6 +87,7 @@ class ControllerUtilisateur {
      ModelFacture::ajouterFacture($data);
      $view='AjoutFactureReussi';
      $pagetitle='Facture Ajoutée';
+
      require (File::build_path(array("view","view.php")));
     }
 
@@ -140,6 +141,43 @@ class ControllerUtilisateur {
       $view='Adopter';
       $pagetitle='Les Adoptés';
       require (File::build_path(array("view","view.php")));
+    }
+
+    public static function totaliserFactures(){
+      $couts = ModelFacture::totaliserFactures();
+      $view='totalFactures';
+      $pagetitle='Factures';
+      require (File::build_path(array("view","view.php")));
+    }
+
+    public static function totaliserFacturesNumPuces(){
+      $couts = ModelFacture::totaliserFacturesNumPuces();
+      $view='totalFactures';
+      $pagetitle='Factures';
+      require (File::build_path(array("view","view.php")));
+    }
+    public static function totaliserFacturesTypes(){
+      $couts = ModelFacture::totaliserFacturesTypes();
+      $view='totalFactures';
+      $pagetitle='Factures';
+      require (File::build_path(array("view","view.php")));
+    }
+    public static function totaliserFacturesMotifs(){
+      $couts = ModelFacture::totaliserFacturesMotifs();
+      $view='totalFactures';
+      $pagetitle='Factures';
+      require (File::build_path(array("view","view.php")));
+    }
+    public static function totaliserFacturesCrediteurs(){
+      $couts = ModelFacture::totaliserFacturesCrediteurs();
+      $view='totalFactures';
+      $pagetitle='Factures';
+      require (File::build_path(array("view","view.php")));
+    }
+
+
+    public static function total(){
+      $couts = ModelFacture::totaliserFactures();
     }
 
 // Trier les chiens par les critères nom, numero puce, nom ancien proprio, race, robe, sexe, sterilisation, date dateNaissance, date dateAccueil
@@ -331,7 +369,7 @@ class ControllerUtilisateur {
           $chien = ModelChien::getAllChiensNonAdoptesRobesDecroissants();
           $view='Adopter';
           $pagetitle='Les Adoptés';
-          require (File::build_path(array("view","view.php")));
+          require (File::build_path(array("vieatement lisible (un objet PDOStatement).w","view.php")));
         }
         public static function trierNonAdoptesSterilisations(){
           $chien = ModelChien::getAllChiensNonAdoptesSterilisations();
