@@ -20,16 +20,23 @@
           </div>
           <div class="container">
         <nav>
-            <ul id="menu">
-              <li><a href="index.php?action=accueil"><img src="insérer l'emplacement de l'image ici" title="logo" alt="logo"></a></li>
-              <li><a href="index.php?action=Adopter">A Adopter</a></li>
-              <li><a href="index.php?action=Protege">Les protégés</a></li>
-                <li><a href="index.php?action=Frais">Frais</a></li>
-                <li><a href="index.php?action=totaliserFactures">Total Frais</a></li>
-              <li><a href="index.php?action=FAQ">FAQ</a></li>
-              <li><a href="index.php?action=Contact">Contact</a></li>
-              <li><a href="">Rechercher</a></li>
+
+          <!-- Example single danger button -->
+        <a class="btn btn-primary" href="index.php?action=accueil" role="button">Accueil</a>
+        <a class="btn btn-primary" href="index.php?action=Adopter" role="button">A Adopter</a>
+        <a class="btn btn-primary" href="index.php?action=Protege" role="button">Les Protégés</a>
+        <div class="btn-group">
+          <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Frais
+          </button>
+          <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="index.php?action=Frais">Frais</a></li>
+              <li><a class="dropdown-item" href="index.php?action=totaliserFactures">Totalisateurs Factures</a></li>
             </ul>
+          </div>
+          <!-- Example single danger button -->
+          <a class="btn btn-primary" href="index.php?action=FAQ" role="button">FAQ</a>
+          <a class="btn btn-primary"  href="index.php?action=Contact" role="button">Contact</a>
         </nav>
 
 

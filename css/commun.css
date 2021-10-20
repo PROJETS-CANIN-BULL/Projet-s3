@@ -26,34 +26,42 @@ header {
 }
 
 nav{
-	background-color: #a8ccac;
+	background-color: #2b344b;
 	display: block;
   padding: 10px 10px;
-
 }
 
 article{
 	padding: 50px, 50px, 50px,50px !important;
 }
+
 .btn {
 text-decoration: none;
 padding: 10px;
 font-family: arial;
 font-size: 1em;
 color: #000000;
-background-color: #a8ccac;
+background-color: black;
 border-radius: 32px;
--webkit-border-radius: 32px;
 -moz-border-radius: 32px;
 border: 4px solid #000000;
-box-shadow: 3px 3px 12px #a8ccac;
--webkit-box-shadow: 3px 3px 12px #a8ccac;
 -moz-box-shadow: 3px 3px 12px #a8ccac;
 }
-
 
 .btn:hover {
 
 -webkit-box-shadow: 3px 3px 12px #777777;
 
+}
+.btn-primary{
+	background-color: #2b344b !important;
+	border-color:#2b344b !important;
+}
+.btn-danger{
+	background-color: #2b344b !important;
+	border-color:#2b344b !important;
+
+}
+.navbar{
+	display: :block;
 }
