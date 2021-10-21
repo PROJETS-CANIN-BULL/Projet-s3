@@ -8,6 +8,7 @@ require_once (File::build_path(array("model","ModelVeto.php")));
 
 
 class ControllerUtilisateur {
+    private $typeUtilisateur;
     public static function seConnecter(){
       require(File::build_path(array("view","Connexion.php")));
     }
@@ -17,10 +18,11 @@ class ControllerUtilisateur {
             'id' => $_GET['id'],
             'password' => $_GET['password']
         );
-        if(ModelUtilisateur::verfierUtilisateur($data)==NULL){
+        $U=ModelUtilisateur::verfierUtilisateur($data);
+        if($U==NULL){
             require (File::build_path(array("view","error.php")));
-
         }else{
+          $typeUtilisateur=$U->getType();
           $view='accueil';
           $pagetitle='Page Accueil';
           require (File::build_path(array("view","view.php")));

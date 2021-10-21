@@ -75,18 +75,19 @@
                           </div>
                         </div>
                       </nav>
+                      <div>
 
                 <?php
                 foreach ($chien as $c){
-                  echo "<ul><li> Nom du chien : ".$c->getNomchien()." </li>";
-                  echo "<li> Date de Naissance : ".$c->getDateNaissance()." </li> ";
-                  echo "<li> Race : ".$c->getRace()."</li>";
-                  echo "<li> Sexe : ".$c->getSexe()."</li>";
-                  echo "<li> Robe : ".$c->getRobe()."</li>";
-                  echo "<li> Sterelisation : ".$c->getSterilisation()."</li>";
-                  echo "<li> Date début accueil : ".$c->getDateAccueil()."</li></ul>";}
+                  echo '<h3 class="container text-center">'.htmlspecialchars($c->getNomchien()).'</h3><div class="row description">';
+                  echo '<div class="col-4"><p> Race : '.$c->getRace().'</p><p> Robe : ' .$c->getRobe().'</p></div>';
+                  echo '<div class="col-4"><p> Date de Naissance  : '.$c->getDateNaissance().'</p><p> Date début accueil : '.$c->getDateAccueil().'</p></div>';
+                  echo '<div class="col-4"><p> Sexe  : '.$c->getSexe().'</p><p> Sterelisation : '.$c->getSterilisation().'</p></div>';
+                  echo '<div><p>'.$c->getDescription().'</p></div></div>';
+                }
 
                  ?>
+               </div>
               </article>
 
             </div>

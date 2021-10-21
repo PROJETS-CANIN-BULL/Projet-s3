@@ -97,6 +97,9 @@ ul, ol {
     padding: 0;
     margin: 0;
 }
+h2, h3{
+  padding: 30px 10px 30px 10px;
+}
 
 .social-inner {
     display: flex;
@@ -122,4 +125,10 @@ ul, ol {
     opacity: 0;
     visibility: hidden;
     transition: .22s ease;
+}
+
+.head{
+	max-width: 1608px;
+	max-height: 200px;
+
 }

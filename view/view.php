@@ -13,10 +13,13 @@
     </head>
     <body>
         <header>
-          <div class ="row">
-          <div class="container text-center">
-            <h2>Bull's Friends</h2>
+          <div >
+            <img class="head" src='image/header.jpg' class="rounded mx-auto d-block" alt="...">
           </div>
+
+
+          <div class ="row">
+
           <div class="container">
         <nav>
 

@@ -6,7 +6,7 @@
 
         <div class="container-fluid red">
           <div class="container text-center">
-              <h2> Page accueil</h2>
+              <h2> Bull's Association</h2>
           </div>
           <div class="container-fluid blue">
             <div class="row">

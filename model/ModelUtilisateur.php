@@ -21,7 +21,7 @@ class ModelUtilisateur {
 	public static function verfierUtilisateur($data) {
 	$sql = "SELECT * from Utilisateur WHERE pseudo=:nom_tag AND motDePasse=:nom_tag2";
     // Préparation de la requête
-    $req_prep = Model::getPDO()->prepare($sql);
+    $req_prep = Model::getPDO()->prepareiew='accueil'($sql);
 
     $values = array(
         "nom_tag" => $data["id"],
@@ -50,7 +50,6 @@ class ModelUtilisateur {
 				"tag4" => "visiteur",
     );
     $req_prep->execute($values);
-
     }
 		public function getId(){
 			return $this->id;
