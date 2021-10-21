@@ -13,7 +13,7 @@
           <article class="col-2">
             <div>
             <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
-            <button class="btn" type="button" onclick="location.href = 'index.php?action=formulaireChien';">Ajouter un Protégé</button>
+            <button class="btn left" type="button" onclick="location.href = 'index.php?action=formulaireChien';">Ajouter un Protégé</button>
           </div>
 
           </article>

@@ -16,7 +16,7 @@
 
             <div>
               <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
-              <button class="btn" type="button" onclick="location.href = 'index.php?action=formulaireFacture';">Ajouter une Facture</button>
+              <button class="btn left" type="button" onclick="location.href = 'index.php?action=formulaireFacture';">Ajouter une Facture</button>
             </div>
             </article>
             <article class="col-10">

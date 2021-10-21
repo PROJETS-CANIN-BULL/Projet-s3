@@ -84,6 +84,15 @@ class ControllerUtilisateur {
          'dateFacture' => $_POST['dateFacture'],
          'crediteur'=> $_POST['crediteur'],
      );
+     if ($_FILES['description']['error'] > 0) $erreur = "Erreur lors du transfert";
+     if ($_FILES['description']['size'] > $maxsize) $erreur = "Le fichier est trop gros";
+     $extensions_valides = array( 'pdf' );
+     $extension_upload = strtolower( substr( strrchr($_FILES['description']['name'], '.') ,1) );
+     if ( in_array($extension_upload,$extensions_valides) ) echo "Extension correcte";
+     $nom = 'File::build_path(array("pdf","'.$data['numFacture'].'-'.$data['crediteur'].'"))';
+     $resultat = move_uploaded_file($_FILES['description']['tmp_name'],$nom);
+    if ($resultat) echo "Transfert réussi";
+
      ModelFacture::ajouterFacture($data);
      $view='AjoutFactureReussi';
      $pagetitle='Facture Ajoutée';

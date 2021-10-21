@@ -13,7 +13,7 @@
 
           <div>
             <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
-            <button class="btn" type="button"  onclick="location.href ='index.php?action=formulaireFacture';">Ajouter une Facture</button>
+            <button class="btn left" type="button"  onclick="location.href ='index.php?action=formulaireFacture';">Ajouter une Facture</button>
           </div>
           </article>
           <article class="col-10">
@@ -59,6 +59,7 @@
                 <fieldset>
                     <div class="input">
                         <span class="inputItem">Ajouter un pdf *</span>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
                         <input type="file" class="inputField" id="description" name="description" required >
                     </div>
 
