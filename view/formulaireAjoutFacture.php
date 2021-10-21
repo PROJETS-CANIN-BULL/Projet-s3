@@ -18,7 +18,7 @@
           </article>
           <article class="col-10">
 
-            <form action="index.php" method="post" enctype="multipart/form-data">
+            <form class="centrer" action="index.php" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend>Ajouter une Facture</legend>
                     <div class="input">
@@ -55,8 +55,7 @@
                         <span class="inputItem">Nom du Créditeur *</span>
                         <input class="inputField" id="crediteur" name="crediteur" required type="text">
                     </div>
-                </fieldset>
-                <fieldset>
+
                     <div class="input">
                         <span class="inputItem">Ajouter un pdf *</span>
                         <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />

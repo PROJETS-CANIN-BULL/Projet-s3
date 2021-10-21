@@ -1,78 +1,82 @@
 
 header {
-	align-items: left;
-	width: 100%;
-	position: left;
-	max-height: 100vh;
-	min-height: 50px;
-	height: auto;
-	font-family: MonsteratSB, serif;
-	font-weight: 600;
-	z-index: 1000;
+    align-items: left;
+    width: 100%;
+    position: left;
+    max-height: 100vh;
+    min-height: 50px;
+    height: auto;
+    font-family: MonsteratSB, serif;
+    font-weight: 600;
+    z-index: 1000;
 }
 
 #menu li {
-	display: inline-block;
-	background-color: #a8ccac;
+    display: inline-block;
+    background-color: #a8ccac;
 }
 
 #menu a {
-	padding: 10px 20px;
-	color: #0e1f2b;
+    padding: 10px 20px;
+    color: #0e1f2b;
 }
 
 #menu li:hover {
-	background-color: #b3bec3;
+    background-color: #b3bec3;
 }
 
-nav{
-	background-color: #2b344b;
-	display: block;
-	color: white;
+nav {
+    background-color: #2b344b;
+    display: block;
+    color: white;
 
-  padding: 10px 10px;
+    padding: 10px 10px;
 }
 
-article{
-	padding: 50px, 50px, 50px,50px !important;
+article {
+    padding: 50px, 50px, 50px, 50px !important;
 }
 
 nav .btn {
-text-decoration: none;
-padding: 10px;
-font-family: arial;
-font-size: 1em;
-color: white;
-background-color: black;
-border-radius: 32px;
--moz-border-radius: 32px;
-transition: none;
+    text-decoration: none;
+    padding: 10px;
+    font-family: arial;
+    font-size: 1em;
+    color: white;
+    background-color: black;
+    border-radius: 32px;
+    -moz-border-radius: 32px;
+    transition: none;
 }
 
 nav .btn:hover {
-	color: grey;
-}
-nav .btn-primary{
-	background-color: transparent !important;
-	border-color:#2b344b !important;
-}
-nav .btn-danger{
-	background-color: transparent !important;
-	border-color:#2b344b !important;
-
-}
-.navbar{
-	display: :block;
+    color: grey;
 }
 
-button.btn.left  {
-  border-color:  #2b344b !important ;
-  border :1px solid !important;
-  background-color: #dfcc9b;
-  box-shadow: 3px 3px 12px #2b344b !important;
-  -webkit-box-shadow: 3px 3px 12px #2b344b !important;
-  -moz-box-shadow: 3px 3px 12px #2b344b !important;
+nav .btn-primary {
+    background-color: transparent !important;
+    border-color: #2b344b !important;
 }
+
+nav .btn-danger {
+    background-color: transparent !important;
+    border-color: #2b344b !important;
+
+}
+
+.navbar {
+    display: block;
+}
+
+button.btn.left {
+    border-color: #2b344b !important;
+    border: 1px solid !important;
+    background-color: #dfcc9b;
+    box-shadow: 3px 3px 12px #2b344b !important;
+    -webkit-box-shadow: 3px 3px 12px #2b344b !important;
+    -moz-box-shadow: 3px 3px 12px #2b344b !important;
+}
+
 .context-dark, .bg-gray-dark, .bg-primary {
     color: rgba(255, 255, 255, 0.8);
 }
@@ -80,10 +84,11 @@ button.btn.left  {
 .footer-classic a, .footer-classic a:focus, .footer-classic a:active {
     color: #ffffff;
 }
+
 .nav-list li {
     padding-top: 5px;
     padding-bottom: 5px;
-		text-decoration: none;
+    text-decoration: none;
 }
 
 .nav-list li a:hover:before {
@@ -97,8 +102,9 @@ ul, ol {
     padding: 0;
     margin: 0;
 }
-h2, h3{
-  padding: 30px 10px 30px 10px;
+
+h2, h3 {
+    padding: 30px 10px 30px 10px;
 }
 
 .social-inner {
@@ -111,9 +117,11 @@ h2, h3{
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.5);
 }
+
 .social-container .col {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .nav-list li a:before {
     content: "\f14f";
     font: 400 21px/1 "Material Design Icons";
@@ -127,8 +135,18 @@ h2, h3{
     transition: .22s ease;
 }
 
-.head{
-	max-width: 1608px;
-	max-height: 200px;
+.head {
+    max-width: 1608px;
+    max-height: 200px;
 
+}
+
+.pull-right {
+    float: right;
+    text-align: right;
+    display: flex;
+
+}
+
+form {
 }

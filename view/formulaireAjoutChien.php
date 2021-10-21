@@ -18,7 +18,7 @@
           </article>
           <article class="col-10">
 
-            <form action="index.php" method="post">
+            <form class="centrer" action="index.php" method="post">
                 <fieldset>
                     <legend>Ajouter une Facture</legend>
                     <div class="input">
@@ -75,7 +75,7 @@
                     </div>
                 </fieldset>
                 <div class="input" id="send">
-                  <input type="submit" value="Envoyer" />
+                  <input class="inputField" type="submit" value="Envoyer" />
                   <input type='hidden' name='action' value='ajouterChien'>
                 </div>
             </form>

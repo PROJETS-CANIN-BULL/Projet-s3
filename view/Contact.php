@@ -13,7 +13,7 @@
                   <?php echo $alert; ?>
 
 
-                    <form action="" method="post">
+                    <form class="centrer" action="" method="post">
                         <fieldset>
                             <legend>Informations personnelles</legend>
                             <div class="input">
@@ -48,8 +48,7 @@
                                 <span class="inputItem">Code postal *</span>
                                 <input class="inputField" id="zip" name="zip" pattern="[0-9]{4-5}" required type="text">
                             </div>
-                        </fieldset>
-                        <fieldset>
+
                             <div class="input">
                                 <span class="inputItem">Objet *</span>
                                 <input class="inputField" id="objet" name="objet" required type="text">
