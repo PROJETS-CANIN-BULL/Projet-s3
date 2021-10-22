@@ -3,17 +3,17 @@ require_once (File::build_path(array("model","Model.php")));
 
 
 class ModelUtilisateur {
-		private $id;
+    private $id;
     private $mail;
     private $password;
-		private $type;
+	private $type;
 
     public function __construct($i = NULL, $c = NULL, $p = NULL, $type=NULL) {
   		if (!is_null($i) && !is_null($c) && !is_null($p)&& !is_null($type)) {
    			$this->id = $i;
     		$this->mail = $c;
     		$this->password = $p;
-				$this->type = $type;
+		    $this->type = $type;
 
   		}
 	}
@@ -21,7 +21,7 @@ class ModelUtilisateur {
 	public static function verfierUtilisateur($data) {
 	$sql = "SELECT * from Utilisateur WHERE pseudo=:nom_tag AND motDePasse=:nom_tag2";
     // Préparation de la requête
-    $req_prep = Model::getPDO()->prepareiew='accueil'($sql);
+    $req_prep = Model::getPDO()->prepare($sql);
 
     $values = array(
         "nom_tag" => $data["id"],
@@ -61,6 +61,23 @@ class ModelUtilisateur {
 		public function getType(){
 			return $this->type;
 		}
+		public static function getTypeID($id){
+			$sql = "SELECT type FROM Utilisateur WHERE pseudo=:tag";
+
+    	$req_prep = Model::getPDO()->prepare($sql);
+
+  	$value= array (
+			'tag' =>$id);
+
+    $req_prep->execute($value);
+
+    $req_prep->setFetchMode(PDO::FETCH_COLUMN,0);
+		$frais = $req_prep->fetchAll();
+
+		return $frais[0];
+}
+
+
 
 
 }

@@ -16,8 +16,16 @@
                 <button class="btn left" type="button" onclick=" location.href = 'index.php?action=formulaireChien';">Ajouter un Protégé</button>
               </div>
               <div>
-                <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
-                <button class="btn left" type="button"  onclick="location.href = 'index.php?action=formulaireFacture';">Ajouter une Facture</button>
+
+                <?php
+                echo ControllerUtilisateur::util();
+              
+                  ?>
+                  <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>;
+                  <button class="btn left" type="button"  onclick=" location.href = 'index.php?action=formulaireFacture'">Ajouter une Facture</button>';
+                <?php
+                                 ?>
+
               </div>
 
               </article>

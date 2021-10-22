@@ -8,21 +8,26 @@ require_once (File::build_path(array("model","ModelVeto.php")));
 
 
 class ControllerUtilisateur {
-    private $typeUtilisateur;
+    public static $typeUtilisateur;
+    public $id ;
+
     public static function seConnecter(){
       require(File::build_path(array("view","Connexion.php")));
     }
 
+// des la connexion, variables sont instanciees
     public static function connexion() {
         $data = array(
             'id' => $_GET['id'],
             'password' => $_GET['password']
         );
         $U=ModelUtilisateur::verfierUtilisateur($data);
+
         if($U==NULL){
             require (File::build_path(array("view","error.php")));
         }else{
-          $typeUtilisateur=$U->getType();
+          $id=$data['id'];
+          self::$typeUtilisateur =ModelUtilisateur::getTypeID($id);
           $view='accueil';
           $pagetitle='Page Accueil';
           require (File::build_path(array("view","view.php")));
@@ -55,7 +60,7 @@ class ControllerUtilisateur {
       $data = array(
          'numPuce' => $_POST['numPuce'],
          'nomChien' => $_POST['nomChien'],
-         'race'=> $_POST['race'],
+         'racestatic'=> $_POST['race'],
          'dateNaissance' => $_POST['dateNaissance'],
          'sexe' => $_POST['sexe'],
          'robe'=> $_POST['robe'],
