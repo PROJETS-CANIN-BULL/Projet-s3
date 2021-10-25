@@ -1,5 +1,5 @@
 <?php
-require_once (File::build_path(array("model","Model.php")));
+require_once(File::build_path(array("model", "Model.php")));
 
 class ModelRecherche
 {
@@ -22,7 +22,7 @@ class ModelRecherche
                 $rep = $PDO->query('SELECT nomChien FROM Chien WHERE CONCAT(nomChien, description) LIKE "%' . $q . '%" ORDER BY numPuce DESC');
             }
         }
-        $args = array("0" =>$q, "1"=> $rep);
+        $args = array("0" => $q, "1" => $rep);
         return $args;
     }
 }

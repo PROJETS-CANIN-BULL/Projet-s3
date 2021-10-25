@@ -18,7 +18,7 @@ class ModelUtilisateur {
   		}
 	}
 
-	public static function verfierUtilisateur($data) {
+	public static function verifierUtilisateur($data) {
 	$sql = "SELECT * from Utilisateur WHERE pseudo=:nom_tag AND motDePasse=:nom_tag2";
     // Préparation de la requête
     $req_prep = Model::getPDO()->prepare($sql);
@@ -30,11 +30,12 @@ class ModelUtilisateur {
 
     $req_prep->execute($values);
 
-    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'Utilisateur');
+    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
     $utilisateur = $req_prep->fetchAll();
     // Attention, si il n'y a pas de résultats, on renvoie false
-    if (empty($utilisateur))
+    if (empty($utilisateur)){
         return false;
+    }
     return $utilisateur[0];
     }
 
@@ -51,20 +52,23 @@ class ModelUtilisateur {
     );
     $req_prep->execute($values);
     }
-		public function getId(){
-			return $this->id;
-		}
 
-		public function getMail(){
-			return $this->mail;
-		}
-		public function getType(){
-			return $this->type;
-		}
-		public static function getTypeID($id){
-			$sql = "SELECT type FROM Utilisateur WHERE pseudo=:tag";
+	public function getId(){
+		return $this->id;
+	}
 
-    	$req_prep = Model::getPDO()->prepare($sql);
+
+	public function getMail(){
+		return $this->mail;
+	}
+	public function getType(){
+		return $this->type;
+	}
+
+	public static function getTypeID($id){
+	$sql = "SELECT type FROM Utilisateur WHERE pseudo=:tag";
+
+    $req_prep = Model::getPDO()->prepare($sql);
 
   	$value= array (
 			'tag' =>$id);

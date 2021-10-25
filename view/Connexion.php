@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title> Bull's Friends Association </title>
     <link rel="stylesheet" href="css/formulaire.css">
 </head>
@@ -19,10 +19,10 @@
         </p>
         <p>
             <label for="password">Mot de Passe</label>
-            <input type="password"placeholder="Mot de passe" name="password" id="password" required>
+            <input type="password" placeholder="Mot de passe" name="password" id="password" required>
         </p>
         <p>
-            <input type="submit" value="Envoyer" />
+            <input type="submit" value="Envoyer"/>
             <input type='hidden' name='action' value='connexion'>
 
         </p>

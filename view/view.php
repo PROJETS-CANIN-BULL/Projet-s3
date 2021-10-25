@@ -8,7 +8,6 @@
     <link href="css/accueil.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/bootstrap.rtl.css" type="text/css">
     <script type="text/javascript" src="js/bootstrap.bundle.js"></script>
-    
 
 
 </head>

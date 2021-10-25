@@ -54,12 +54,13 @@ fieldset {
     align-self: center;
 }
 
-.centrer{
+.centrer {
     display: flex;
-    flex-direction: column ;
+    flex-direction: column;
     align-items: center;
 
 }
+
 @media (max-width: 1020px) {
     main {
         width: 95%;
@@ -69,6 +70,7 @@ fieldset {
         width: 85%
     }
 }
+
 @media (max-width: 1020px) {
     main {
         width: 95%;
