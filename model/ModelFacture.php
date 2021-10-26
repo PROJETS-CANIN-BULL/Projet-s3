@@ -33,6 +33,7 @@ class ModelFacture
 
     public static function ajouterFacture($data)
     {
+        $veto = ModelFacture::ajoutVeto($data);
         $sql = "INSERT INTO `Frais`(`numFacture`, `numPuce`, `type`, `motif`, `cout`, `dateFacture`, `crediteur`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6,:tag7)";
         $req_prep = Model::getPDO()->prepare($sql);
 
@@ -47,6 +48,7 @@ class ModelFacture
         );
         $req_prep->execute($values);
     }
+
 
     public static function getAllFacture()
     {

@@ -125,10 +125,10 @@
 
                     <?php
                     foreach ($frais as $f) {
-                        echo "<ul><li> NumFacture : " . htmlspecialchars($f->getNumFacture()) . " </li>";
+                        echo '<h3 class="container text-center">' . htmlspecialchars($f->getNumFacture()) . '</h3><div class="row description">';
                         echo "<li> Type : " . htmlspecialchars($f->getType()) . " </li> ";
                         echo "<li> Motif : " . htmlspecialchars($f->getMotif()) . "</li>";
-                        echo "<li> cout : " . htmlspecialchars($f->getCout()) . "</li>";
+                        echo "<li> cout : " . htmlspecialchars($f->getCout()) . " euros </li>";
                         echo "<li> Date : " . htmlspecialchars($f->getDateFacture()) . "</li>";
                         echo "<li> Crediteur : " . htmlspecialchars($f->getCrediteur()) . "</li></ul>";
                     }
