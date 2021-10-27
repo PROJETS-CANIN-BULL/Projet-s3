@@ -55,7 +55,7 @@
                             </div>
                             <div class="input">
                                 <span class="inputItem">Numéro de Téléphone *</span>
-                                <input class="inputField" id="numTelephone" name="numTelephone" required type="tel">
+                                <input class="inputField" id="numTelephone" name="numTelephone"  type="test" pattern="[0-9]{10}" required>
                             </div>
                             <div class="input">
                                 <span class="inputItem">Adresse Postale *</span>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="input">
                                 <span class="inputItem">Code Postal *</span>
-                                <input class="inputField" id="codePostalFamilleAccueil" name="codePostalFamilleAccueil" pattern="[0-9]{4-5}" required type="text">
+                                <input class="inputField" id="codePostalFamilleAccueil" name="codePostalFamilleAccueil" type="text" pattern="[0-9]{4,5}" required >
                             </div>
                             <div class="input">
                                 <span class="inputItem">Ville *</span>

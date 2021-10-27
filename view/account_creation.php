@@ -20,7 +20,7 @@
         </p>
         <p>
             <label for="password">Mot de Passe</label>
-            <input type="text" placeholder="Mot de passe" name="password" id="password" required>
+            <input type="password" placeholder="Mot de passe" name="password" id="password" required>
         </p>
         <p>
             <input type="submit" value="Envoyer"/>
