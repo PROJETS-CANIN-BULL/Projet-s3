@@ -7,8 +7,7 @@
 </head>
 <body>
 
-<form id="formulaire" method="get" action="index.php">
-    <!--<form method="get" action="created.php"> -->
+<form id="formulaire" method="post" action="index.php">
     <fieldset>
         <legend>Se connecter</legend>
         <p>

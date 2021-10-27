@@ -23,13 +23,14 @@ class ControllerUtilisateur
         require(File::build_path(array("view", "Connexion.php")));
     }
 
-// des la connexion, variables sont instanciees
     public static function connexion()
     {
         $data = array(
-            'id' => $_GET['id'],
-            'password' => $_GET['password']
+            'id' => $_POST['id'],
         );
+        $passwordHache = Security::hacher($_POST['password']);
+        $data['password'] = $passwordHache;
+
         $U = ModelUtilisateur::verifierUtilisateur($data);
 
         if ($U == NULL) {
@@ -51,10 +52,12 @@ class ControllerUtilisateur
     public static function creationCompte()
     {
         $data = array(
-            'id' => $_GET['id'],
-            'password' => $_GET['password'],
-            'mail' => $_GET['mail']
+            'id' => $_POST['id'],
+            'mail' => $_POST['mail']
         );
+        $passwordHache = Security::hacher($_POST['password']);
+        $data['password'] = $passwordHache;
+
         if (ModelUtilisateur::verifierUtilisateur($data) != NULL) {
             $view = 'accueil';
             $pagetitle = 'Page Accueil';
@@ -71,6 +74,7 @@ class ControllerUtilisateur
 
     public static function ajouterChien()
     {
+
         $data = array(
             'numPuce' => $_POST['numPuce'],
             'nomChien' => $_POST['nomChien'],
@@ -81,12 +85,9 @@ class ControllerUtilisateur
             'sterilisation' => $_POST['sterilisation'],
             'dateAccueil' => $_POST['dateAccueil'],
             'description' => $_POST['description'],
+            'nomAncienProprio'=>$_POST['nomAncienProp'],
         );
-        if ($_POST['nomAncienProp'] != null) {
-            $data['nomAncienProprio'] = $_POST['nomAncienProp'];
-        } else {
-            $data['nomAncienProprio'] = 'null';
-        }
+
         ModelChien::ajouterChien($data);
         $view = 'AjoutChienReussi';
         $pagetitle = 'Chien Ajouté';

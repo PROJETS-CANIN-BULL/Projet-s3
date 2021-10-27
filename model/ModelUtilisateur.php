@@ -6,80 +6,80 @@ class ModelUtilisateur {
     private $id;
     private $mail;
     private $password;
-	private $type;
+    private $type;
 
     public function __construct($i = NULL, $c = NULL, $p = NULL, $type=NULL) {
-  		if (!is_null($i) && !is_null($c) && !is_null($p)&& !is_null($type)) {
-   			$this->id = $i;
-    		$this->mail = $c;
-    		$this->password = $p;
-		    $this->type = $type;
+        if (!is_null($i) && !is_null($c) && !is_null($p)&& !is_null($type)) {
+            $this->id = $i;
+            $this->mail = $c;
+            $this->password = $p;
+            $this->type = $type;
 
-  		}
-	}
-
-	public static function verifierUtilisateur($data) {
-	$sql = "SELECT * from Utilisateur WHERE pseudo=:nom_tag AND motDePasse=:nom_tag2";
-    // Préparation de la requête
-    $req_prep = Model::getPDO()->prepare($sql);
-
-    $values = array(
-        "nom_tag" => $data["id"],
-        "nom_tag2" => $data["password"]
-    );
-
-    $req_prep->execute($values);
-
-    $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
-    $utilisateur = $req_prep->fetchAll();
-    // Attention, si il n'y a pas de résultats, on renvoie false
-    if (empty($utilisateur)){
-        return false;
+        }
     }
-    return $utilisateur[0];
+
+    public static function verifierUtilisateur($data) {
+        $sql = "SELECT * from Utilisateur WHERE pseudo=:nom_tag AND motDePasse=:nom_tag2";
+        // Préparation de la requête
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "nom_tag" => $data["id"],
+            "nom_tag2" => $data["password"]
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+        $utilisateur = $req_prep->fetchAll();
+        // Attention, si il n'y a pas de résultats, on renvoie false
+        if (empty($utilisateur)){
+            return false;
+        }
+        return $utilisateur[0];
     }
 
     public static function creerUtilisateur($data)
     {
         $sql = "INSERT INTO `Utilisateur`(`pseudo`, `motDePasse`, `mail`,`type` ) VALUES (:tag,:tag2,:tag3,:tag4) ";
-    $req_prep = Model::getPDO()->prepare($sql);
+        $req_prep = Model::getPDO()->prepare($sql);
 
-    $values = array(
-        "tag" => $data["id"],
-        "tag2" => $data["password"],
-        "tag3"=> $data["mail"],
-				"tag4" => "visiteur",
-    );
-    $req_prep->execute($values);
+        $values = array(
+            "tag" => $data["id"],
+            "tag2" => $data["password"],
+            "tag3"=> $data["mail"],
+            "tag4" => "visiteur",
+        );
+        $req_prep->execute($values);
     }
 
-	public function getId(){
-		return $this->id;
-	}
+    public function getId(){
+        return $this->id;
+    }
 
 
-	public function getMail(){
-		return $this->mail;
-	}
-	public function getType(){
-		return $this->type;
-	}
+    public function getMail(){
+        return $this->mail;
+    }
+    public function getType(){
+        return $this->type;
+    }
 
-	public static function getTypeID($id){
-	$sql = "SELECT type FROM Utilisateur WHERE pseudo=:tag";
+    public static function getTypeID($id){
+        $sql = "SELECT type FROM Utilisateur WHERE pseudo=:tag";
 
-    $req_prep = Model::getPDO()->prepare($sql);
+        $req_prep = Model::getPDO()->prepare($sql);
 
-  	$value= array (
-			'tag' =>$id);
+        $value= array (
+            'tag' =>$id);
 
-    $req_prep->execute($value);
+        $req_prep->execute($value);
 
-    $req_prep->setFetchMode(PDO::FETCH_COLUMN,0);
-		$frais = $req_prep->fetchAll();
+        $req_prep->setFetchMode(PDO::FETCH_COLUMN,0);
+        $frais = $req_prep->fetchAll();
 
-		return $frais[0];
-}
+        return $frais[0];
+    }
 
 
 

@@ -76,12 +76,13 @@
                                        required type="text">
                             </div>
                             <div class="input">
-                                <span class="inputItem">Nom de l'ancien Proprietaire</span>
-                                <input class="inputField" id="nomAncienProp" name="conomAncienProput" type="text">
+                                <span class="inputItem">Nom de l'ancien Proprietaire *</span>
+                                <input class="inputField" id="nomAncienProp" name="conomAncienProput" type="text" required>
                             </div>
+                            <p> Si vous ne connaissez pas le nom de l'ancien propriétaire, entrez 'Inconnu'</p>
                             <div class="input">
                                 <span class="inputItem">Description de l'animal *</span>
-                                <textarea class="inputField" placeholder="description de 500 caractères" name="description"></textarea>
+                                <textarea class="inputField" placeholder="description de 500 caractères" name="description" required></textarea>
                             </div>
                         </fieldset>
                         <div class="input" id="send">

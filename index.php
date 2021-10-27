@@ -4,6 +4,8 @@ $ROOT_FOLDER = __DIR__ . $DS . "..";
 
 
 require 'lib/File.php';
+require 'lib/Security.php';
+
 
 
 

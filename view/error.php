@@ -6,7 +6,7 @@
 </head>
 <body>
 <?php
-echo 'L\'utilisateur ' . htmlspecialchars($_GET['id']) . ' n\' existe pas ou le mot de passe est incorrect</p>';
+echo 'L\'utilisateur ' . htmlspecialchars($_POST['id']) . ' n\' existe pas ou le mot de passe est incorrect</p>';
 ?>
 </body>
 </html>
