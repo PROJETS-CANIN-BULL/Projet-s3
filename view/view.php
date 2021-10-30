@@ -33,7 +33,7 @@
                         Frais
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="index.php?action=Frais">Frais</a></li>
+                        <li><a class="dropdown-item" href="index.php?action=Facture">Factures</a></li>
                         <li><a class="dropdown-item" href="index.php?action=totaliserFactures">Totalisateurs
                                 Factures</a></li>
                     </ul>

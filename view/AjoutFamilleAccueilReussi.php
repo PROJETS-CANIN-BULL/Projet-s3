@@ -17,7 +17,7 @@
                 <article class="col-10">
                     <p>Votre Famille a bien été ajoutée</p>
                     <div>
-                        <p> Pour retourner sur la page de Facture: <a href="index.php?action=Frais"> Facture </a></p>
+                        <p> Pour retourner sur la page de Facture: <a href="index.php?action=Facture"> Facture </a></p>
                     </div>
                     <p> Pour retourner sur la page d'accueil: <a href="index.php?action=accueil"> Accueil </a></p>
 

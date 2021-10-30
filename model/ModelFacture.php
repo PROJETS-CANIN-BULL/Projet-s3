@@ -34,7 +34,7 @@ class ModelFacture
     public static function ajouterFacture($data)
     {
         $veto = ModelFacture::ajoutVeto($data);
-        $sql = "INSERT INTO `Frais`(`numFacture`, `numPuce`, `type`, `motif`, `cout`, `dateFacture`, `crediteur`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6,:tag7)";
+        $sql = "INSERT INTO `Facture`(`numFacture`, `numPuce`, `type`, `motif`, `cout`, `dateFacture`, `crediteur`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6,:tag7)";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -54,7 +54,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais");
+            $rep = $PDO->query("SELECT * FROM Facture");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;
@@ -81,7 +81,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT sum(cout) AS couts FROM Frais");
+            $rep = $PDO->query("SELECT sum(cout) AS couts FROM Facture");
             $row = $rep->fetch();
             return $row['couts'];
 
@@ -99,7 +99,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT numPuce AS bd ,sum(cout) AS cout FROM Frais GROUP BY numPuce");
+            $rep = $PDO->query("SELECT numPuce AS bd ,sum(cout) AS cout FROM Facture GROUP BY numPuce");
             $rep->setFetchMode(PDO::FETCH_ASSOC);
             $row = $rep->fetchAll();
             return $row;
@@ -117,7 +117,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT type AS bd ,sum(cout) AS cout FROM Frais GROUP BY type");
+            $rep = $PDO->query("SELECT type AS bd ,sum(cout) AS cout FROM Facture GROUP BY type");
             $rep->setFetchMode(PDO::FETCH_ASSOC);
             $row = $rep->fetchAll();
             return $row;
@@ -135,7 +135,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT motif AS bd ,sum(cout) AS cout FROM Frais GROUP BY motif");
+            $rep = $PDO->query("SELECT motif AS bd ,sum(cout) AS cout FROM Facture GROUP BY motif");
             $rep->setFetchMode(PDO::FETCH_ASSOC);
             $row = $rep->fetchAll();
             return $row;
@@ -153,7 +153,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT dateFacture AS bd ,sum(cout) AS cout FROM Frais GROUP BY dateFacture");
+            $rep = $PDO->query("SELECT dateFacture AS bd ,sum(cout) AS cout FROM Facture GROUP BY dateFacture");
             $rep->setFetchMode(PDO::FETCH_ASSOC);
             $row = $rep->fetchAll();
             return $row;
@@ -171,7 +171,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT crediteur AS bd ,sum(cout) AS cout FROM Frais GROUP BY crediteur");
+            $rep = $PDO->query("SELECT crediteur AS bd ,sum(cout) AS cout FROM Facture GROUP BY crediteur");
             $rep->setFetchMode(PDO::FETCH_ASSOC);
             $row = $rep->fetchAll();
             return $row;
@@ -192,7 +192,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY numFacture");
+            $rep = $PDO->query("SELECT * FROM Facture ORDER BY numFacture");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;
@@ -211,7 +211,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY numFacture DESC");
+            $rep = $PDO->query("SELECT * FROM Facture ORDER BY numFacture DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;
@@ -226,11 +226,32 @@ class ModelFacture
         }
     }
 
+    public static function getFacture($num)
+    {
+
+        $sql = "SELECT * FROM Facture WHERE numFacture=:num1";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "num1" => $num,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFacture');
+        $facture = $req_prep->fetchAll();
+        if (empty($facture)) {
+            return false;
+        }
+        return $facture;
+
+    }
+
     public static function getAllFacturesNumPuces()
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY numPuce");
+            $rep = $PDO->query("SELECT * FROM Facture ORDER BY numPuce");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;
@@ -249,7 +270,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY numPuce DESC");
+            $rep = $PDO->query("SELECT * FROM Facture ORDER BY numPuce DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;
@@ -264,30 +285,52 @@ class ModelFacture
         }
     }
 
-    public static function getAllFacturesTypes()
+    public static function getFacturesNumPuces($num)
     {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY type");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
-            $frais = $rep->fetchAll();
-            return $frais;
 
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
+        $sql = "SELECT * FROM Facture WHERE numPuce=:num1";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "num1" => $num,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFacture');
+        $facture = $req_prep->fetchAll();
+        if (empty($facture)) {
+            return false;
         }
+        return $facture;
+
+    }
+
+    public static function getAllFacturesTypes($type)
+    {
+        $sql = "SELECT * FROM Facture WHERE type=:type1";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "type1" => $type,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFacture');
+        $typeFacture = $req_prep->fetchAll();
+        if (empty($typeFacture)) {
+            return false;
+        }
+        return $typeFacture;
+
     }
 
     public static function getAllFacturesTypesDecroisants()
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY type DESC");
+            $rep = $PDO->query("SELECT * FROM Facture ORDER BY type DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;
@@ -306,7 +349,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY motif");
+            $rep = $PDO->query("SELECT * FROM Facture ORDER BY motif");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;
@@ -325,7 +368,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY motif DESC");
+            $rep = $PDO->query("SELECT * FROM Facture ORDER BY motif DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;
@@ -344,7 +387,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY cout");
+            $rep = $PDO->query("SELECT * FROM Facture ORDER BY cout");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;
@@ -363,7 +406,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY cout DESC");
+            $rep = $PDO->query("SELECT * FROM Facture ORDER BY cout DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;
@@ -378,49 +421,56 @@ class ModelFacture
         }
     }
 
-    public static function getAllFacturesDateFactures()
+    public static function getFacturesCouts($couts)
     {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY dateFacture");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
-            $frais = $rep->fetchAll();
-            return $frais;
+        $sql = "SELECT * FROM Facture WHERE cout BETWEEN :min AND :max";
+        // Préparation de la requête
+        $req_prep = Model::getPDO()->prepare($sql);
 
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
+        $values = array(
+            "min" => $couts['min'],
+            "max" => $couts['max']
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFacture');
+        $factures = $req_prep->fetchAll();
+        // Attention, si il n'y a pas de résultats, on renvoie false
+        if (empty($factures)) {
+            return false;
         }
+        return $factures;
     }
 
-    public static function getAllFacturesDateFacturesDecroissants()
+    public static function getAllFacturesDateFactures($data)
     {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY dateFacture DESC");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
-            $frais = $rep->fetchAll();
-            return $frais;
+        $sql = "SELECT * FROM Facture WHERE dateFacture>=:datemin AND dateFacture<=:datemax";
+        // Préparation de la requête
+        $req_prep = Model::getPDO()->prepare($sql);
 
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
+        $values = array(
+            "datemin" => $data["min"],
+            "datemax" => $data["max"]
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFacture');
+        $factures = $req_prep->fetchAll();
+        // Attention, si il n'y a pas de résultats, on renvoie false
+        if (empty($factures)) {
+            return false;
         }
+        return $factures;
+
     }
 
     public static function getAllFacturesCrediteurs()
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY crediteur");
+            $rep = $PDO->query("SELECT * FROM Facture ORDER BY crediteur");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;
@@ -439,7 +489,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Frais ORDER BY crediteur DESC");
+            $rep = $PDO->query("SELECT * FROM Facture ORDER BY crediteur DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;

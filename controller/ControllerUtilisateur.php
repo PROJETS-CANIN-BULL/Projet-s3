@@ -85,7 +85,7 @@ class ControllerUtilisateur
             'sterilisation' => $_POST['sterilisation'],
             'dateAccueil' => $_POST['dateAccueil'],
             'description' => $_POST['description'],
-            'nomAncienProprio'=>$_POST['nomAncienProp'],
+            'nomAncienProprio' => $_POST['nomAncienProp'],
         );
 
         ModelChien::ajouterChien($data);
@@ -187,10 +187,10 @@ class ControllerUtilisateur
         require(File::build_path(array("view", "view.php")));
     }
 
-    public static function Frais()
+    public static function Facture()
     {
         $frais = ModelFacture::getAllFacture();
-        $view = 'Frais';
+        $view = 'Facture';
         $pagetitle = 'Factures';
         require(File::build_path(array("view", "view.php")));
 
@@ -564,7 +564,7 @@ class ControllerUtilisateur
     public static function trierFacturesNums()
     {
         $frais = ModelFacture::getAllFacturesNums();
-        $view = 'Frais';
+        $view = 'Facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -572,15 +572,26 @@ class ControllerUtilisateur
     public static function trierFacturesNumsDecroissants()
     {
         $frais = ModelFacture::getAllFacturesNumsDecroissants();
-        $view = 'Frais';
+        $view = 'Facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
+    }
+
+    public static function trouverFacture()
+    {
+
+        $num = $_POST['numFacture'];
+        $frais = ModelFacture::getFacture($num);
+        $view = 'Facture';
+        $pagetitle = 'Les Factures';
+        require(File::build_path(array("view", "view.php")));
+
     }
 
     public static function trierFacturesNumPuces()
     {
         $frais = ModelFacture::getAllFacturesNumPuces();
-        $view = 'Frais';
+        $view = 'Facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -588,23 +599,27 @@ class ControllerUtilisateur
     public static function trierFacturesNumPucesDecroissants()
     {
         $frais = ModelFacture::getAllFacturesNumPucesDecroissants();
-        $view = 'Frais';
+        $view = 'Facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
+    }
+
+    public static function trouverFacturesNumPuces()
+    {
+
+        $num = $_POST['numPuce'];
+        $frais = ModelFacture::getFacturesNumPuces($num);
+        $view = 'Facture';
+        $pagetitle = 'Les Factures';
+        require(File::build_path(array("view", "view.php")));
+
     }
 
     public static function trierFacturesTypes()
     {
-        $frais = ModelFacture::getAllFacturesTypes();
-        $view = 'Frais';
-        $pagetitle = 'Les Factures';
-        require(File::build_path(array("view", "view.php")));
-    }
-
-    public static function trierFacturesTypesDecroissants()
-    {
-        $frais = ModelFacture::getAllFacturesTypesDecroisants();
-        $view = 'Frais';
+        $types = $_GET['type'];
+        $frais = ModelFacture::getAllFacturesTypes($types);
+        $view = 'Facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -612,7 +627,7 @@ class ControllerUtilisateur
     public static function trierFacturesMotifs()
     {
         $frais = ModelFacture::getAllFacturesMotifs();
-        $view = 'Frais';
+        $view = 'Facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -620,7 +635,7 @@ class ControllerUtilisateur
     public static function trierFacturesMotifsDecroissants()
     {
         $frais = ModelFacture::getAllFacturesMotifsDecroissants();
-        $view = 'Frais';
+        $view = 'Facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -628,7 +643,7 @@ class ControllerUtilisateur
     public static function trierFacturesCouts()
     {
         $frais = ModelFacture::getAllFacturesCouts();
-        $view = 'Frais';
+        $view = 'Facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -636,31 +651,40 @@ class ControllerUtilisateur
     public static function trierFacturesCoutsDecroissants()
     {
         $frais = ModelFacture::getAllFacturesCoutsDecroissants();
-        $view = 'Frais';
+        $view = 'Facture';
+        $pagetitle = 'Les Factures';
+        require(File::build_path(array("view", "view.php")));
+    }
+
+    public static function trouverFacturesCouts()
+    {
+        $couts = array(
+            'min' => $_POST['min'],
+            'max' => $_POST['max']
+        );
+        $frais = ModelFacture::getFacturesCouts($couts);
+        $view = 'Facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
 
     public static function trierFacturesDateFactures()
     {
-        $frais = ModelFacture::getAllFacturesDateFactures();
-        $view = 'Frais';
+        $data = array(
+            'min' => $_POST['datemin'],
+            'max' => $_POST['datemax']
+        );
+        $frais = ModelFacture::getAllFacturesDateFactures($data);
+        $view = 'Facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
 
-    public static function trierFacturesDateFacturesDecroissants()
-    {
-        $frais = ModelFacture::getAllFacturesDateFacturesDecroissants();
-        $view = 'Frais';
-        $pagetitle = 'Les Factures';
-        require(File::build_path(array("view", "view.php")));
-    }
 
     public static function trierFacturesCrediteurs()
     {
         $frais = ModelFacture::getAllFacturesCrediteurs();
-        $view = 'Frais';
+        $view = 'Facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -668,7 +692,7 @@ class ControllerUtilisateur
     public static function trierFacturesCrediteursDecroissants()
     {
         $frais = ModelFacture::getAllFacturesCrediteursDecroisants();
-        $view = 'Frais';
+        $view = 'Facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }

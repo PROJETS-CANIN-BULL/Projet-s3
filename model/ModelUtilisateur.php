@@ -76,9 +76,9 @@ class ModelUtilisateur {
         $req_prep->execute($value);
 
         $req_prep->setFetchMode(PDO::FETCH_COLUMN,0);
-        $frais = $req_prep->fetchAll();
+        $pdo = $req_prep->fetchAll();
 
-        return $frais[0];
+        return $pdo[0];
     }
 
 
