@@ -6,7 +6,7 @@ class ModelFamilleAccueil
 {
     private $civilite;
     private $nomFamilleAccueil;
-    private $prenomFamilleAccuiel;
+    private $prenomFamilleAccueil;
     private $mail;
     private $numTelephone;
     private $adresseFamilleAccueil;
@@ -20,7 +20,7 @@ class ModelFamilleAccueil
         if (!is_null($civilite) && !is_null($nom) && !is_null($prenom) && !is_null($mail) && !is_null($num) && !is_null($adresseFamilleAccueil) && !is_null($codePostalFamilleAccueil) && !is_null($villeFamilleAccueil) && !is_null($paysFamilleAccueil)) {
             $this->civilite = $civilite;
             $this->nomFamilleAccueil = $nom;
-            $this->prenomFamilleAccuiel = $prenom;
+            $this->prenomFamilleAccueil = $prenom;
             $this->mail = $mail;
             $this->numTelephone = $num;
             $this->adresseFamilleAccueil = $adresseFamilleAccueil;

@@ -4,7 +4,7 @@
 <main>
     <div class="container-fluid red">
         <div class="container text-center">
-            <h2> Ajouter une Facture </h2>
+            <h2> Devenez une famille d' Accueil</h2>
 
         </div>
         <div class="container-fluid blue">
@@ -28,7 +28,6 @@
 
                     <form class="centrer" action="index.php" method="post" enctype="multipart/form-data">
                         <fieldset>
-                            <legend>Devenez une famille d' Accueil</legend>
                             <div class="input">
                                 <span class="inputItem"> Civilite *</span>
                                 <select class="inputField" id="civilite" name="civilite">

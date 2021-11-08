@@ -28,14 +28,18 @@
 
                     <form class="centrer" action="index.php" method="post" enctype="multipart/form-data">
                         <fieldset>
-                            <legend>Ajouter une Facture</legend>
                             <div class="input">
                                 <span class="inputItem">Numero de Facture *</span>
                                 <input class="inputField" id="numFacture" name="numFacture" required type="text">
                             </div>
                             <div class="input">
                                 <span class="inputItem">Numero de Puce de l'animal Concerné *</span>
-                                <input class="inputField" id="numPuce" name="numPuce" required type="text">
+                                <select class="inputField" id="numPuce" name="numPuce">
+                                    <?php foreach ($chiens as $c ) {
+                                        echo '<option value="'.htmlspecialchars($c->getNumPuce()).'">'.htmlspecialchars($c->getNumPuce()).'</option>';
+                                    }
+                                    ?>
+                                </select>
                             </div>
                             <div class="input">
                                 <span class="inputItem"> Type de Facture *</span>
@@ -66,16 +70,19 @@
                                 <input class="inputField" id="crediteur" name="crediteur" required type="text">
                             </div>
 
+                            <p>Le fichier doit être un pdf dont le nom est sous la forme :
+                                numeroFacture-crediteur  <br>
+                                Si le nom n'est pas comme demandé, il ne sera pas accepté</p>
                             <div class="input">
                                 <span class="inputItem">Ajouter un pdf *</span>
                                 <input type="hidden" name="MAX_FILE_SIZE" value="10000000"/>
-                                <input type="file" class="inputField" id="description" name="description" required>
+                                <input type="file" accept='pdf' class="inputField" id="description" name="description" required>
                             </div>
 
                         </fieldset>
                         <div class="input" id="send">
                             <input type="submit" value="Envoyer">
-                            <input type='hidden' accept='pdf' name='action' value='ajouterFacture'>
+                            <input type='hidden'  name='action' value='ajouterFacture'>
                         </div>
                     </form>
                 </article>

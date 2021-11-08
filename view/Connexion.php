@@ -23,7 +23,6 @@
         <p>
             <input type="submit" value="Envoyer"/>
             <input type='hidden' name='action' value='connexion'>
-
         </p>
 
         <p>

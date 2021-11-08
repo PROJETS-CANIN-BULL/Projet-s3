@@ -44,6 +44,19 @@
                                                    href="index.php?action=trierNonAdoptesNoms">A-Z</a></li>
                                             <li><a class="dropdown-item"
                                                    href="index.php?action=trierNonAdoptesNomsDecroissants">Z-A</a></li>
+                                            <div>Ou</div>
+                                            <form method="post" name="" action="index.php">
+                                                <fieldset>
+                                                    <li><span class="inputItem">Nom</span>
+                                                        <input class="inputField" id="nomChien" name="nomChien"
+                                                               type="text" required></li>
+                                                </fieldset>
+                                                <div class="input" id="send">
+                                                    <input type="submit" value="Trier">
+                                                    <input type='hidden' name='action'
+                                                           value='trouverChiensNonAdoptesNoms'>
+                                                </div>
+                                            </form>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -56,6 +69,19 @@
                                             <li><a class="dropdown-item"
                                                    href="index.php?action=trierNonAdoptesNumPucesDecroissants">Decroissant</a>
                                             </li>
+                                            <div>Ou</div>
+                                            <form method="post" name="" action="index.php">
+                                                <fieldset>
+                                                    <li><span class="inputItem">Numero Puce</span>
+                                                        <input class="inputField" id="numPuce" name="numPuce"
+                                                               type="text" required></li>
+                                                </fieldset>
+                                                <div class="input" id="send">
+                                                    <input type="submit" value="Trier">
+                                                    <input type='hidden' name='action'
+                                                           value='trouverChiensNonAdoptesNumPuces'>
+                                                </div>
+                                            </form>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -67,6 +93,19 @@
                                             </li>
                                             <li><a class="dropdown-item"
                                                    href="index.php?action=trierNonAdoptesRacesDecroissants">Z-A</a></li>
+                                            <div>Ou</div>
+                                            <form method="post" name="" action="index.php">
+                                                <fieldset>
+                                                    <li><span class="inputItem">Race</span>
+                                                        <input class="inputField" id="race" name="race" type="text"
+                                                               required></li>
+                                                </fieldset>
+                                                <div class="input" id="send">
+                                                    <input type="submit" value="Trier">
+                                                    <input type='hidden' name='action'
+                                                           value='trouverChiensNonAdoptesRaces'>
+                                                </div>
+                                            </form>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -75,12 +114,25 @@
                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">Date
                                             Naissance</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?action=trierNonAdoptesDateNaissances">Croissant</a>
-                                            </li>
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?action=trierNonAdoptesDateNaissancesDecroissants">Decroissant</a>
-                                            </li>
+                                            <form method="post" name="" action="index.php">
+                                                <fieldset>
+                                                    <li><span class="inputItem">Date min</span>
+                                                        <input class="inputField" id="datemin" name="datemin"
+                                                               type="text" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+                                                               placeholder="AAAA-MM-JJ" required>
+                                                    </li>
+                                                    <li><span class="inputItem">Date max</span>
+                                                        <input class="inputField" id="datemax" name="datemax"
+                                                               type="text" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+                                                               placeholder="AAAA-MM-JJ" required></li>
+
+                                                </fieldset>
+                                                <div class="input" id="send">
+                                                    <input type="submit" value="Trier">
+                                                    <input type='hidden' name='action'
+                                                           value='trierNonAdoptesDateNaissances'>
+                                                </div>
+                                            </form>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -88,10 +140,12 @@
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Sexe</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="index.php?action=trierNonAdoptesSexes">A-Z</a>
+                                            <li><a class="dropdown-item"
+                                                   href="index.php?action=trierNonAdoptesSexes&sexe=femelle">Femelle</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierNonAdoptesSexesDecroissants">Z-A</a></li>
+                                                   href="index.php?action=trierNonAdoptesSexes&sexe=male">Male</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -103,6 +157,19 @@
                                             </li>
                                             <li><a class="dropdown-item"
                                                    href="index.php?action=trierNonAdoptesRobesDecroissants">Z-A</a></li>
+                                            <div>Ou</div>
+                                            <form method="post" name="" action="index.php">
+                                                <fieldset>
+                                                    <li><span class="inputItem">Robe</span>
+                                                        <input class="inputField" id="robe" name="robe" type="text"
+                                                               required></li>
+                                                </fieldset>
+                                                <div class="input" id="send">
+                                                    <input type="submit" value="Trier">
+                                                    <input type='hidden' name='action'
+                                                           value='trouverChiensNonAdoptesRobes'>
+                                                </div>
+                                            </form>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -112,10 +179,10 @@
                                            aria-expanded="false">Sterelisation</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierNonAdoptesSterilisations">Croissant</a>
+                                                   href="index.php?action=trierNonAdoptesSterilisations&avis=oui">Oui</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierNonAdoptesSterilisationDecroissants">Decroissant</a>
+                                                   href="index.php?action=trierNonAdoptesSterilisations&avis=non">Non</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -125,12 +192,25 @@
                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">Date
                                             Accueil</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?action=trierNonAdoptesDateAccueils">Croissant</a>
-                                            </li>
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?action=trierNonAdoptesDateAccueilsDecroissants">Decroissant</a>
-                                            </li>
+                                            <form method="post" name="" action="index.php">
+                                                <fieldset>
+                                                    <li><span class="inputItem">Date min</span>
+                                                        <input class="inputField" id="datemin" name="datemin"
+                                                               type="text" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+                                                               placeholder="AAAA-MM-JJ" required>
+                                                    </li>
+                                                    <li><span class="inputItem">Date max</span>
+                                                        <input class="inputField" id="datemax" name="datemax"
+                                                               type="text" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+                                                               placeholder="AAAA-MM-JJ" required></li>
+
+                                                </fieldset>
+                                                <div class="input" id="send">
+                                                    <input type="submit" value="Trier">
+                                                    <input type='hidden' name='action'
+                                                           value='trierNonAdoptesDateAccueils'>
+                                                </div>
+                                            </form>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -144,6 +224,19 @@
                                             <li><a class="dropdown-item"
                                                    href="index.php?action=trierNonAdoptesNomAncienProprioDecroissant">Z-A</a>
                                             </li>
+                                            <div>Ou</div>
+                                            <form method="post" name="" action="index.php">
+                                                <fieldset>
+                                                    <li><span class="inputItem">Nom </span>
+                                                        <input class="inputField" id="nomAncienProp"
+                                                               name="nomAncienProp" type="text" required></li>
+                                                </fieldset>
+                                                <div class="input" id="send">
+                                                    <input type="submit" value="Trier">
+                                                    <input type='hidden' name='action'
+                                                           value='trouverChiensNonAdoptesAncienProprios'>
+                                                </div>
+                                            </form>
                                         </ul>
                                     </li>
                                 </ul>
@@ -153,12 +246,16 @@
                     <div>
 
                         <?php
-                        foreach ($chien as $c) {
-                            echo '<h3 class="container text-center">' . htmlspecialchars($c->getNomchien()) . '</h3><div class="row description">';
-                            echo '<div class="col-4"><p> Race : ' . $c->getRace() . '</p><p> Robe : ' . $c->getRobe() . '</p></div>';
-                            echo '<div class="col-4"><p> Date de Naissance  : ' . $c->getDateNaissance() . '</p><p> Date début accueil : ' . $c->getDateAccueil() . '</p></div>';
-                            echo '<div class="col-4"><p> Sexe  : ' . $c->getSexe() . '</p><p> Sterelisation : ' . $c->getSterilisation() . '</p></div>';
-                            echo '<div><p>' . $c->getDescription() . '</p></div></div>';
+                        if ($chien == NULL) {
+                            echo "<div>Aucun protégé n'existe</div>";
+                        } else {
+                            foreach ($chien as $c) {
+                                echo '<h3 class="container text-center">' . htmlspecialchars($c->getNomchien()) . '</h3><div class="row description">';
+                                echo '<div class="col-4"><p> Race : ' . $c->getRace() . '</p><p> Robe : ' . $c->getRobe() . '</p></div>';
+                                echo '<div class="col-4"><p> Date de Naissance  : ' . $c->getDateNaissance() . '</p><p> Date début accueil : ' . $c->getDateAccueil() . '</p></div>';
+                                echo '<div class="col-4"><p> Sexe  : ' . $c->getSexe() . '</p><p> Sterelisation : ' . $c->getSterilisation() . '</p></div>';
+                                echo '<div><p>' . $c->getDescription() . '</p></div></div>';
+                            }
                         }
 
                         ?>

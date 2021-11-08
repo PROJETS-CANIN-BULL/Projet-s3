@@ -26,9 +26,8 @@
                 </article>
                 <article class="col-10">
 
-                    <form class="centrer" action="index.php" method="post">
+                    <form enctype="multipart/form-data" class="centrer" action="index.php" method="post">
                         <fieldset>
-                            <legend>Ajouter une Facture</legend>
                             <div class="input">
                                 <span class="inputItem"> Numero de Puce*</span>
                                 <input class="inputField" id="numPuce" name="numPuce" required type="text">
@@ -77,13 +76,25 @@
                             </div>
                             <div class="input">
                                 <span class="inputItem">Nom de l'ancien Proprietaire *</span>
-                                <input class="inputField" id="nomAncienProp" name="conomAncienProput" type="text" required>
+                                <input class="inputField" id="nomAncienProp" name="nomAncienProp" type="text" required>
                             </div>
                             <p> Si vous ne connaissez pas le nom de l'ancien propriétaire, entrez 'Inconnu'</p>
                             <div class="input">
                                 <span class="inputItem">Description de l'animal *</span>
-                                <textarea class="inputField" placeholder="description de 500 caractères" name="description" required></textarea>
+                                <textarea class="inputField" placeholder="description de 500 caractères"
+                                          name="description" required></textarea>
                             </div>
+
+                            <div class="input">
+                                <span class="inputItem">Ajouter une photo *</span>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="10000000000000"/>
+                                <input type="file" class="inputField" accept='pdf' id='photo' name='photo'
+                                       required>
+                            </div>
+
+                            <p>Le fichier doit être une photo en .png, .jpeg ou .jpg dont le nom est sous la forme :
+                                numeroPuce <br>
+                                Si le nom n'est pas comme demandé, il ne sera pas accepté</p>
                         </fieldset>
                         <div class="input" id="send">
                             <input class="inputField" type="submit" value="Envoyer"/>

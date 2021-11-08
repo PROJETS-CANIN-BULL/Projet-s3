@@ -14,7 +14,6 @@ class ModelFacture
     private $dateFacture;
     private $crediteur;
     private $numVeto;
-    private $nomchien;
 
 
     public function __construct($num = NULL, $numPuce = NULL, $type = NULL, $motif = NULL, $cout = NULL, $dateFacture = NULL, $crediteur = NULL, $numVeto = NULL)
@@ -33,7 +32,7 @@ class ModelFacture
 
     public static function ajouterFacture($data)
     {
-        $veto = ModelFacture::ajoutVeto($data);
+        //$veto = ModelFacture::ajoutVeto($data);
         $sql = "INSERT INTO `Facture`(`numFacture`, `numPuce`, `type`, `motif`, `cout`, `dateFacture`, `crediteur`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6,:tag7)";
         $req_prep = Model::getPDO()->prepare($sql);
 
@@ -54,7 +53,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Facture");
+            $rep = $PDO->query("SELECT * FROM mysql.Facture");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;

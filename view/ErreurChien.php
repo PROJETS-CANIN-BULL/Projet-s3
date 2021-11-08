@@ -1,7 +1,7 @@
 <main>
     <div class="container-fluid red">
         <div class="container text-center">
-            <h2> L'ajout du chien Réussi </h2>
+            <h2> Erreur Chien </h2>
 
         </div>
         <div class="container-fluid blue">
@@ -22,15 +22,14 @@
                     </div>
                 </article>
                 <article class="col-10">
-                    <p>Le Chien a bien été enregistrée</p>
-                    <div>
+                    <p><?php echo $erreur?> Faites retour pour retourner à la page d'ajout du protégé</p>
+                   <div>
                         <p> Pour retourner sur la page des Chiens A Adopter: <a href="index.php?action=Adopter"> A
                                 Adopter </a></p>
                     </div>
                     <div>
-                        <p> Pour retourner sur la page de tous les Protégés: <a href="index.php?action=Protege"> Les
-                                Protégés </a></p>
-                    </div>
+                    <p> Pour retourner sur la page d'accueil: <a href="index.php?action=accueil"> Accueil </a></p>
+                </div>
 
 
                 </article>

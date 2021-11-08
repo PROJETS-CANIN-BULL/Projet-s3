@@ -13,13 +13,13 @@ class ModelChien
     private $sterilisation;
     private $dateAccueil;
     private $nomAncienProprio;
-    private $idFamille;
     private $description;
+    private $nomPhoto;
 
 
-    public function __construct($num = NULL, $nom = NULL, $race = NULL, $dateNaiss = NULL, $sexe = NULL, $robe = NULL, $sterilisation = NULL, $dateAccueil = NULL, $nomAncienProp = NULL, $id = NULL, $description = NULL)
+    public function __construct($num = NULL, $nom = NULL, $race = NULL, $dateNaiss = NULL, $sexe = NULL, $robe = NULL, $sterilisation = NULL, $dateAccueil = NULL, $nomAncienProp = NULL, $description = NULL)
     {
-        if (!is_null($num) && !is_null($nom) && !is_null($race) && !is_null($dateNaiss) && !is_null($sexe) && !is_null($robe) && !is_null($sterilisation) && !is_null($dateAccueil) && !is_null($nomAncienProp) && !is_null($id) && !is_null($description)) {
+        if (!is_null($num) && !is_null($nom) && !is_null($race) && !is_null($dateNaiss) && !is_null($sexe) && !is_null($robe) && !is_null($sterilisation) && !is_null($dateAccueil) && !is_null($nomAncienProp) && !is_null($description)) {
             $this->numPuce = $num;
             $this->nomChien = $nom;
             $this->race = $race;
@@ -29,16 +29,15 @@ class ModelChien
             $this->sterilisation = $sterilisation;
             $this->dateAccueil = $dateAccueil;
             $this->nomAncienProprio = $nomAncienProp;
-            $this->idFamille = $id;
             $this->description = $description;
 
 
         }
     }
 
-    public static function ajouterChien($data)
+    public static function addChien($data)
     {
-        $sql = "INSERT INTO `Chien`(`numPuce`, `nomChien`, `race`, `dateNaissance`, `sexe`, `robe`, `sterilisation`, `dateAccueil`, `nomAncienProprio`,`description` ) VALUES (:tag,:tag2, :tag3,:tag4,:tag5, :tag6,:tag7,:tag8,:tag9,:tag10)";
+        $sql = "INSERT INTO `Chien`(`numPuce`, `nomChien`, `race`, `dateNaissance`, `sexe`, `robe`, `sterilisation`, `dateAccueil`, `nomAncienProprio`,`description`,`nomPhoto` ) VALUES (:tag,:tag2, :tag3,:tag4,:tag5, :tag6,:tag7,:tag8,:tag9,:tag10,:tag11)";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -52,8 +51,15 @@ class ModelChien
             "tag8" => $data["dateAccueil"],
             "tag9" => $data["nomAncienProprio"],
             "tag10" => $data["description"],
+            "tag11" => $data["nomPhoto"],
+
         );
         $req_prep->execute($values);
+    }
+
+    public static function getChienByNumPuce($numPuce)
+    {
+
     }
 
 
@@ -62,7 +68,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Chien WHERE idFamille IS NULL");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -75,12 +81,6 @@ class ModelChien
             }
             die();
         }
-
-    }
-
-//Savoir si un chien est adopte
-    public static function adopterChien($data)
-    {
 
     }
 
@@ -146,6 +146,26 @@ class ModelChien
 
     }
 
+    public static function getChiensNoms($nom)
+    {
+
+        $sql = "SELECT * FROM Chien WHERE nomChien=:nom1";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "nom1" => $nom,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
+        }
+        return $chiens;
+    }
+
     public static function getAllChiensNumPuces()
     {
         try {
@@ -184,6 +204,26 @@ class ModelChien
             die();
         }
 
+    }
+
+    public static function getChiensNumPuces($numPuce)
+    {
+
+        $sql = "SELECT * FROM Chien WHERE numPuce=:num1";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "num1" => $numPuce,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
+        }
+        return $chiens;
     }
 
     public static function getAllChiensRaces()
@@ -226,86 +266,71 @@ class ModelChien
 
     }
 
-    public static function getAllChiensDateNaissances()
-    {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY dateNaissance");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
 
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
+    public static function getChiensRaces($race)
+    {
+
+        $sql = "SELECT * FROM Chien WHERE race=:race1";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "race1" => $race,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
         }
+        return $chiens;
+    }
+
+    public static function getAllChiensDateNaissances($data)
+    {
+        $sql = "SELECT * FROM Chien WHERE dateNaissance>=:datemin AND dateNaissance<=:datemax";
+        // Préparation de la requête
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "datemin" => $data["min"],
+            "datemax" => $data["max"]
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
+        }
+        return $chiens;
+
 
     }
 
-    public static function getAllChiensDateNaissancesDecroissants()
-    {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY dateNaissance DESC");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
 
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
+    public static function getAllChiensSexes($sexe)
+    {
+        $sql = "SELECT * FROM Chien WHERE sexe=:sexe1";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "sexe1" => $sexe,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
         }
+        return $chiens;
 
     }
 
-
-    public static function getAllChiensSexes()
-    {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY sexe");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
-
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
-        }
-
-    }
-
-    public static function getAllChiensSexesDecroissants()
-    {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY sexe DESC");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
-
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
-        }
-
-    }
 
     public static function getAllChiensRobes()
     {
@@ -347,84 +372,71 @@ class ModelChien
 
     }
 
-    public static function getAllChiensSterilisations()
-    {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY sterilisation ");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
 
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
+    public static function getChiensRobes($robe)
+    {
+
+        $sql = "SELECT * FROM Chien WHERE robe=:robe1";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "robe1" => $robe,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
         }
+        return $chiens;
+    }
+
+    public static function getAllChiensSterilisations($avis)
+    {
+
+        $sql = "SELECT * FROM Chien WHERE sterilisation=:avis1";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "avis1" => $avis,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
+        }
+        return $chiens;
+
 
     }
 
-    public static function getAllChiensSterilisationsDecroissants()
-    {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY sterilisation DESC ");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
 
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
+    public static function getAllChiensDateAccueils($data)
+    {
+        $sql = "SELECT * FROM Chien WHERE dateAccueil>=:datemin AND dateAccueil<=:datemax";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "datemin" => $data["min"],
+            "datemax" => $data["max"]
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
         }
+        return $chiens;
 
     }
 
-    public static function getAllChiensDateAccueils()
-    {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY dateAccueil ");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
-
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
-        }
-    }
-
-    public static function getAllChiensDateAccueilsDecroissants()
-    {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY dateAccueil DESC ");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
-
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
-        }
-
-    }
 
     public static function getAllChiensNomAncienProprio()
     {
@@ -466,13 +478,34 @@ class ModelChien
 
     }
 
+    public static function getChiensAncienProprio($nomAncienProp)
+    {
+
+        $sql = "SELECT * FROM Chien WHERE nomAncienProprio=:nom1";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "nom1" => $nomAncienProp,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
+        }
+        return $chiens;
+    }
+
+
     // Trier les chiens non adopté par les critères nom, numero puce, nom ancien proprio, race, robe, sexe, sterilisation, date dateNaissance, date dateAccueil
     // par ordre croissant et decroissant
     public static function getAllChiensNonAdoptesNoms()
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY nomChien ");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY nomChien ");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -492,7 +525,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY nomChien DESC");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY nomChien DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -508,11 +541,33 @@ class ModelChien
 
     }
 
+
+    public static function getChiensNonAdoptesNoms($nom)
+    {
+
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND nomChien=:nom1";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "nom1" => $nom,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
+        }
+        return $chiens;
+    }
+
+
     public static function getAllChiensNonAdoptesNumPuces()
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY numPuce");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY numPuce");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -532,7 +587,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY numPuce DESC");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY numPuce DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -548,11 +603,31 @@ class ModelChien
 
     }
 
+    public static function getChiensNonAdoptesNumPuces($numPuce)
+    {
+
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND numPuce=:num1";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "num1" => $numPuce,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
+        }
+        return $chiens;
+    }
+
     public static function getAllChiensNonAdoptesRaces()
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY race");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY race");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -572,7 +647,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY race DESC");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY race DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -588,92 +663,76 @@ class ModelChien
 
     }
 
-    public static function getAllChiensNonAdoptesDateNaissances()
+    public static function getChiensNonAdoptesRaces($race)
     {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY dateNaissance");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
 
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND race=:race1";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "race1" => $race,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
         }
-
+        return $chiens;
     }
 
-    public static function getAllChiensNonAdoptesDateNaissancesDecroissants()
+
+    public static function getAllChiensNonAdoptesDateNaissances($data)
     {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY dateNaissance DESC");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND dateNaissance>=:datemin AND dateNaissance<=:datemax ";
+        // Préparation de la requête
+        $req_prep = Model::getPDO()->prepare($sql);
 
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
+        $values = array(
+            "datemin" => $data["min"],
+            "datemax" => $data["max"]
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
         }
+        return $chiens;
+
 
     }
 
-
-    public static function getAllChiensNonAdoptesSexes()
+    public static function getAllChiensNonAdoptesSexes($sexe)
     {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY sexe");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND sexe=:sexe1 ";
+        $req_prep = Model::getPDO()->prepare($sql);
 
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
+        $values = array(
+            "sexe1" => $sexe,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
         }
+        return $chiens;
 
     }
 
-    public static function getAllChiensNonAdoptesSexesDecroissants()
-    {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY sexe DESC");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
-
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
-        }
-
-    }
 
     public static function getAllChiensNonAdoptesRobes()
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY robe");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY robe");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -693,7 +752,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY robe DESC");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY robe DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -709,90 +768,75 @@ class ModelChien
 
     }
 
-    public static function getAllChiensNonAdoptesSterilisations()
+    public static function getChiensNonAdoptesRobes($robe)
     {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY sterilisation ");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
 
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND robe=:robe1 ";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "robe1" => $robe,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
         }
-
+        return $chiens;
     }
 
-    public static function getAllChiensNonAdoptesSterilisationsDecroissants()
+    public static function getAllChiensNonAdoptesSterilisations($avis)
     {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY sterilisation DESC ");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
 
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND sterilisation=:avis1 ";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "avis1" => $avis,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
         }
+        return $chiens;
+
 
     }
 
-    public static function getAllChiensNonAdoptesDateAccueils()
+    public static function getAllChiensNonAdoptesDateAccueils($data)
     {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY dateAccueil ");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND dateAccueil>=:datemin AND dateAccueil<=:datemax";
+        $req_prep = Model::getPDO()->prepare($sql);
 
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
+        $values = array(
+            "datemin" => $data["min"],
+            "datemax" => $data["max"]
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
         }
+        return $chiens;
+
     }
 
-    public static function getAllChiensNonAdoptesDateAccueilsDecroissants()
-    {
-        try {
-            $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY dateAccueil DESC ");
-            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
-            $chien = $rep->fetchAll();
-            return $chien;
-
-        } catch (PDOException $e) {
-            if (Conf::getDebug()) {
-                echo $e->getMessage(); // affiche un message d'erreur
-            } else {
-                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
-            }
-            die();
-        }
-
-    }
 
     public static function getAllChiensNonAdoptesNomAncienProprio()
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY nomAncienProprio  ");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY nomAncienProprio  ");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -812,7 +856,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` WHERE idFamille IS NULL ORDER BY nomAncienProprio DESC ");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )ORDER BY nomAncienProprio DESC ");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -825,8 +869,29 @@ class ModelChien
             }
             die();
         }
-
     }
+
+
+    public static function getChiensNonAdoptesAncienProprio($nomAncienProp)
+    {
+
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND nomAncienProprio=:nom1 ";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "nom1" => $nomAncienProp,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $chiens = $req_prep->fetchAll();
+        if (empty($chiens)) {
+            return false;
+        }
+        return $chiens;
+    }
+
 
     //Getter
     public function getNumpuce()
@@ -882,6 +947,9 @@ class ModelChien
     public function getDescription()
     {
         return $this->description;
+    }
+    public function getNomPhoto(){
+        return $this->nomPhoto;
     }
 
 }
