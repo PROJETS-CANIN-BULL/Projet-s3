@@ -250,8 +250,9 @@
                             echo "<div>Aucun protégé n'existe</div>";
                         } else {
                             foreach ($chien as $c) {
-                                echo '<h3 class="container text-center">' . htmlspecialchars($c->getNomchien()) . '</h3><div class="row description">';
-                                echo '<div class="col-4"><p> Race : ' . $c->getRace() . '</p><p> Robe : ' . $c->getRobe() . '</p></div>';
+                                echo '<div class="row justify-content-center"><h3 class="text-center">' . htmlspecialchars($c->getNomchien()) . '</h3>';
+                                echo '<div class="col-4"><img class="photoChien" src="image/chien/'.htmlspecialchars($c->getNomPhoto()) .'" alt="'.htmlspecialchars($c->getNomPhoto()).'"></div>';
+                                echo '<div  class="row justify-content-start"> <div class="col-4"><p> Race : ' . $c->getRace() . '</p><p> Robe : ' . $c->getRobe() . '</p></div>';
                                 echo '<div class="col-4"><p> Date de Naissance  : ' . $c->getDateNaissance() . '</p><p> Date début accueil : ' . $c->getDateAccueil() . '</p></div>';
                                 echo '<div class="col-4"><p> Sexe  : ' . $c->getSexe() . '</p><p> Sterelisation : ' . $c->getSterilisation() . '</p></div>';
                                 echo '<div><p>' . $c->getDescription() . '</p></div></div>';
