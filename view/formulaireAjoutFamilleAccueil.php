@@ -4,7 +4,7 @@
 <main>
     <div class="container-fluid red">
         <div class="container text-center">
-            <h2> Devenez une famille d' Accueil</h2>
+            <h2> Ajouter une Facture </h2>
 
         </div>
         <div class="container-fluid blue">
@@ -28,6 +28,7 @@
 
                     <form class="centrer" action="index.php" method="post" enctype="multipart/form-data">
                         <fieldset>
+                            <legend>Devenez une famille d' Accueil</legend>
                             <div class="input">
                                 <span class="inputItem"> Civilite *</span>
                                 <select class="inputField" id="civilite" name="civilite">
@@ -77,8 +78,9 @@
                             </div>
                         </fieldset>
                         <div class="input" id="send">
-                            <input type="submit" value="Envoyer">
+                            <input type="submit" name="submit" value="Envoyer">
                             <input type='hidden' accept='pdf' name='action' value='ajouterFamilleAccueil'>
+                            <input type='hidden' name='action' value='generatePDF'>
                         </div>
                     </form>
                 </article>
@@ -88,8 +90,4 @@
     </div>
 
 </main>
-<footer>
-</footer>
 
-</body>
-</html>
