@@ -54,8 +54,14 @@
                                 <input class="inputField" id="mail" name="mail" required type="email">
                             </div>
                             <div class="input">
-                                <span class="inputItem">Numéro de Téléphone *</span>
-                                <input class="inputField" id="numTelephone" name="numTelephone"  type="test" pattern="[0-9]{10}" required>
+                                <span class="inputItem">Téléphone Fixe </span>
+                                <input class="inputField" id="telephoneFixe" name="telephoneFixe" type="text"
+                                       pattern="[0-9]{10}">
+                            </div>
+                            <div class="input">
+                                <span class="inputItem">Téléphone Mobile *</span>
+                                <input class="inputField" id="telephoneMobile" name="telephoneMobile" type="text"
+                                       pattern="[0-9]{10}" required>
                             </div>
                             <div class="input">
                                 <span class="inputItem">Adresse Postale *</span>
@@ -64,7 +70,8 @@
                             </div>
                             <div class="input">
                                 <span class="inputItem">Code Postal *</span>
-                                <input class="inputField" id="codePostalFamilleAccueil" name="codePostalFamilleAccueil" type="text" pattern="[0-9]{4,5}" required >
+                                <input class="inputField" id="codePostalFamilleAccueil" name="codePostalFamilleAccueil"
+                                       type="text" pattern="[0-9]{4,5}" required>
                             </div>
                             <div class="input">
                                 <span class="inputItem">Ville *</span>
@@ -75,6 +82,30 @@
                                 <span class="inputItem">Pays *</span>
                                 <input class="inputField" id="paysFamilleAccueil" name="paysFamilleAccueil" required
                                        type="text">
+                            </div>
+                            <div class="input">
+                                <span class="inputItem">Formulaire rempli à : *</span>
+                                <input class="inputField" id="lieu" name="lieu" required
+                                       type="text" placeholder="Ville">
+                            </div>
+                            <div class="input">
+                                <span class="inputItem">Le : *</span>
+                                <input class="inputField" id="dateForm" type="text" name="dateForm" placeholder="jj/mm/aaaa" pattern="\d{1,2}/\d{1,2}/\d{4}" required>
+                            </div>
+
+                            <div class="input">
+                                <span class="inputItem"> Chien accueilli *</span>
+                                <select class="inputField" id="chienAccueilli" name="chienAccueilli">
+                                    <?php
+                                    foreach ($chien as $c) {
+                                        ?>
+                                        <option value="<?php echo htmlspecialchars($c->getAllChiensNonAdoptesNoms()); ?>"><?php echo htmlspecialchars($c->getAllChiensNonAdoptesNoms()); ?> </option>
+                                        <?php
+                                    }
+                                    ?>
+
+
+                                </select>
                             </div>
                         </fieldset>
                         <div class="input" id="send">

@@ -198,6 +198,7 @@ class ControllerUtilisateur
 
     public static function formulaireFamilleAccueil()
     {
+        $chien = ModelChien::getChiensNonAdoptes();
         $view = 'formulaireAjoutFamilleAccueil';
         $pagetitle = 'formulaire Famille';
         require(File::build_path(array("view", "view.php")));
