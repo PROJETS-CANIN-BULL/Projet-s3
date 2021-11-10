@@ -183,17 +183,27 @@
                     </nav>
 
 
-                    <?php
+                     <?php
                     if ($frais == NULL) {
                         echo "<div>Aucune facture n'est disponible</div>";
                     } else {
                         foreach ($frais as $f) {
                             echo '<h3 class="container text-center">' . htmlspecialchars($f->getNumFacture()) . '</h3><div class="row description">';
-                            echo "<li> Type : " . htmlspecialchars($f->getType()) . " </li> ";
-                            echo "<li> Motif : " . htmlspecialchars($f->getMotif()) . "</li>";
-                            echo "<li> cout : " . htmlspecialchars($f->getCout()) . " euros </li>";
-                            echo "<li> Date : " . htmlspecialchars($f->getDateFacture()) . "</li>";
-                            echo "<li> Crediteur : " . htmlspecialchars($f->getCrediteur()) . "</li></ul>";
+                            echo '<li> Type : ' . htmlspecialchars($f->getType()) . '</li> ';
+                            echo '<li> Motif : ' . htmlspecialchars($f->getMotif()) . '</li>';
+                            echo '<li> Cout : ' . htmlspecialchars($f->getCout()) . ' euros </li>';
+                            echo '<li> Date : ' . htmlspecialchars($f->getDateFacture()) . '</li>';
+                            echo '<li> Crediteur : ' . htmlspecialchars($f->getCrediteur()) . '</li></ul>';
+                            ?>
+                            <form method="post" name="" action="index.php">
+                                <div class="input" id="send">
+                                    <input type="submit" value="Ouvrir">
+                                    <?php echo '<input type="hidden" name="name" value="' . htmlspecialchars($f->getNumFacture()) . '-' . htmlspecialchars($f->getCrediteur()) . '.pdf">' ?>
+                                    <input type='hidden' name='action' value='ouvrirPDF'>
+                                </div>
+                            </form>
+
+                            <?php
                         }
                     }
 
