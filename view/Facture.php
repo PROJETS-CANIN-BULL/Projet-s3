@@ -49,7 +49,8 @@
                                             <form method="post" name="" action="index.php">
                                                 <fieldset>
                                                     <li><span class="inputItem">Numero Facture</span>
-                                                        <input class="inputField" id="numFacture" name="numFacture" type="text" required></li>
+                                                        <input class="inputField" id="numFacture" name="numFacture"
+                                                               type="text" required></li>
                                                 </fieldset>
                                                 <div class="input" id="send">
                                                     <input type="submit" value="Envoyer">
@@ -183,7 +184,7 @@
                     </nav>
 
 
-                     <?php
+                    <?php
                     if ($frais == NULL) {
                         echo "<div>Aucune facture n'est disponible</div>";
                     } else {

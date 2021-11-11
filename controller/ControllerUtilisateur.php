@@ -95,33 +95,37 @@ class ControllerUtilisateur
 
         $erreur = 'null';
 
-        if (strcmp($_FILES['photo']['name'], $data['numPuce'] . '.png') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.jpeg') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.jpg') != 0) {
-            $erreur = ' Le nom de la facture est faux.';
+        if (strcmp($_FILES['photo']['name'], $data['numPuce'] . '.png') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.jpeg') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.JPG') != 0) {
+            $erreur = ' Le nom de la photo du chien est faux.';
         }
         if ($_FILES['photo']['error'] > 0) $erreur = "Erreur lors du transfert";
         if ($_FILES['photo']['size'] > 10000000000) $erreur = "Le fichier est trop gros";
         $extensions_valides = array('jpeg', 'jpg', 'png');
         $extension_upload = strtolower(substr(strrchr($_FILES['photo']['name'], '.'), 1));
-        $nom = File::build_path(array("pdf", $_FILES['photo']['name']));
+        $nom = File::build_path(array("image","chien", $_FILES['photo']['name']));
         $resultat = move_uploaded_file($_FILES['photo']['tmp_name'], $nom);
 
         if (strcmp($erreur, 'null') != 0) {
-            $view = 'ErreurNomFacture';
-            $pagetitle = 'Nom de Facture faux ';
+            $view = 'ErreurChien';
+            $pagetitle = ' Erreur photo du Chien ';
             require(File::build_path(array("view", "view.php")));
         }
 
+        $data['nomPhoto']=$_FILES['photo']['name'];
 
-        if ($resultat) {
-            ModelChien::addChien($data);
-            $view = 'AjoutChienReussi';
+        if(ModelChien::addChien($data)==false || $resultat==false){
+             $erreur = "une des dates n'est pas dans le bon format";
+
+            if(!$resultat){
+                $erreur = 'Le déplacement des fichiers a connu une erreur';
+            }
+            $view = 'AjoutChienNonReussi';
+            $pagetitle = 'Chien Non Ajouté';
+            require(File::build_path(array("view", "view.php")));
+        }else{
+             $view = 'AjoutChienReussi';
             $pagetitle = 'Chien Ajouté';
             require(File::build_path(array("view", "view.php")));
-        } else {
-            $view = 'AjoutChienNonReussi';
-            $pagetitle = 'Chien Non Ajoutée';
-            require(File::build_path(array("view", "view.php")));
-
         }
 
     }
@@ -152,7 +156,7 @@ class ControllerUtilisateur
         $resultat = move_uploaded_file($_FILES['description']['tmp_name'], $nom);
 
         if ($erreur != null) {
-            $view = 'ErreurNomFacture';
+            $view = 'ErreurFacture';
             $pagetitle = 'Erreur Factures';
             require(File::build_path(array("view", "view.php")));
         }

@@ -22,7 +22,7 @@
                     </div>
                 </article>
                 <article class="col-10">
-                    <p>Le Chien n'a pas pu être ajoutée</p>
+                    <p>Le Chien n'a pas pu être ajoutée car <?php echo  $erreur ?> </p>
                      <div>
                         <p> Pour retourner sur la page des Chiens A Adopter: <a href="index.php?action=Adopter"> A
                                 Adopter </a></p>

@@ -1,5 +1,5 @@
 <head>
-    <link href="css/Facture.css" rel="stylesheet" type="text/css">
+    <link href="css/totalFactures.css" rel="stylesheet" type="text/css">
 </head>
 
 <main>
@@ -61,17 +61,20 @@
                             </div>
                         </div>
                     </nav>
-                    <div>
+                    <div class="total">
                         <p> Totalisateur des Factures : </p>
+
 
                         <?php
                         if ($_GET['action'] == 'totaliserFactures') {
-                            echo $couts;
+                            echo '<p>Le cout total de l\'ensemble des Factures est de : ' . $couts . ' euros </p>';
                         } else {
+                            echo "<ul >";
                             foreach ($couts as $v) {
-                                echo "<li> " . htmlspecialchars($v['bd']) . " :  " . htmlspecialchars($v['cout']) . ' euros</li>';
+                                echo '<li> <p><span class="texte"> ' . htmlspecialchars($v['bd']) . '</span> :  ' . htmlspecialchars($v['cout']) . ' euros </p></li>';
                             }
                             echo '</ul>';
                         }
                         ?>
                     </div>
+                </article>

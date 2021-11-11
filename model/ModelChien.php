@@ -37,24 +37,36 @@ class ModelChien
 
     public static function addChien($data)
     {
-        $sql = "INSERT INTO `Chien`(`numPuce`, `nomChien`, `race`, `dateNaissance`, `sexe`, `robe`, `sterilisation`, `dateAccueil`, `nomAncienProprio`,`description`,`nomPhoto` ) VALUES (:tag,:tag2, :tag3,:tag4,:tag5, :tag6,:tag7,:tag8,:tag9,:tag10,:tag11)";
-        $req_prep = Model::getPDO()->prepare($sql);
+        try {
+            $sql = "INSERT INTO `Chien`(`numPuce`, `nomChien`, `race`, `dateNaissance`, `sexe`, `robe`, `sterilisation`, `dateAccueil`, `nomAncienProprio`,`description`,`nomPhoto` ) VALUES (:tag,:tag2, :tag3,:tag4,:tag5, :tag6,:tag7,:tag8,:tag9,:tag10,:tag11)";
+            $req_prep = Model::getPDO()->prepare($sql);
 
-        $values = array(
-            "tag" => $data["numPuce"],
-            "tag2" => $data["nomChien"],
-            "tag3" => $data["race"],
-            "tag4" => $data["dateNaissance"],
-            "tag5" => $data["sexe"],
-            "tag6" => $data["robe"],
-            "tag7" => $data["sterilisation"],
-            "tag8" => $data["dateAccueil"],
-            "tag9" => $data["nomAncienProprio"],
-            "tag10" => $data["description"],
-            "tag11" => $data["nomPhoto"],
+            $values = array(
+                "tag" => $data["numPuce"],
+                "tag2" => $data["nomChien"],
+                "tag3" => $data["race"],
+                "tag4" => $data["dateNaissance"],
+                "tag5" => $data["sexe"],
+                "tag6" => $data["robe"],
+                "tag7" => $data["sterilisation"],
+                "tag8" => $data["dateAccueil"],
+                "tag9" => $data["nomAncienProprio"],
+                "tag10" => $data["description"],
+                "tag11" => $data["nomPhoto"],
 
-        );
-        $req_prep->execute($values);
+            );
+            $req_prep->execute($values);
+        } catch (PDOException $e) {
+            if ($e->getCode() == 22007) {
+                return false;
+            } else if (Conf::getDebug()) {
+                echo $e->getMessage(); // affiche un message d'erreur
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+
     }
 
     public static function getChienByNumPuce($numPuce)
@@ -948,7 +960,9 @@ class ModelChien
     {
         return $this->description;
     }
-    public function getNomPhoto(){
+
+    public function getNomPhoto()
+    {
         return $this->nomPhoto;
     }
 
