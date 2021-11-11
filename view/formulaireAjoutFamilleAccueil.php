@@ -4,7 +4,7 @@
 <main>
     <div class="container-fluid red">
         <div class="container text-center">
-            <h2> Devenez Famille Accueil </h2>
+            <h2> Ajouter une Facture </h2>
 
         </div>
         <div class="container-fluid blue">
@@ -14,22 +14,23 @@
                     <div>
                         <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
                         <button class="btn left" type="button"
-                                onclick="location.href ='index.php?controller=Facture&action=formulaireFacture';">
-                            Ajouter une Facture
+                                onclick="location.href ='index.php?action=formulaireFacture';">Ajouter une Facture
                         </button>
                     </div>
                     <div>
                         <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
                         <button class="btn left" type="button"
-                                onclick=" location.href = 'index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil'">
-                            Formulaire
+                                onclick=" location.href = 'index.php?action=formulaireFamilleAccueil'">Formulaire
                         </button>
                     </div>
                 </article>
                 <article class="col-10">
 
                     <form class="centrer" action="index.php" method="post" enctype="multipart/form-data">
+                        <input type='hidden' name='action' value='getChienByNumPuce'>
+
                         <fieldset>
+                            <legend>Devenez une famille d' Accueil</legend>
                             <div class="input">
                                 <span class="inputItem"> Civilite *</span>
                                 <select class="inputField" id="civilite" name="civilite">
@@ -97,23 +98,29 @@
 
                             <div class="input">
                                 <span class="inputItem"> Chien accueilli *</span>
-                                <select class="inputField" id="chienAccueilli" name="chienAccueilli">
-                                    <?php
-                                    foreach ($chien as $c) {
-                                        ?>
-                                        <option value="<?php echo htmlspecialchars($c->getNumpuce()); ?>"><?php echo htmlspecialchars($c->getNumpuce()); ?> </option>
-                                        <?php
-                                    }
-                                    ?>
-
-
-                                </select>
+                                <input class="inputField" id="numPuce" name="numPuce" required
+                                       type="text" placeholder="Numero de puce">
                             </div>
                         </fieldset>
                         <div class="input" id="send">
                             <input type="submit" name="submit" value="Envoyer">
                             <input type='hidden' accept='pdf' name='action' value='ajouterFamilleAccueil'>
                             <input type='hidden' name='action' value='generatePDF'>
+
+                            <?php
+                            foreach ($chien as $c){
+                            ?>
+                            <input type='hidden' name='nomChien' value="<?php echo htmlspecialchars($c->getNomChien()); ?>">
+                            <input type='hidden' name='race' value="<?php echo htmlspecialchars($c->getRace()); ?>">
+                            <input type='hidden' name='sexe' value="<?php echo htmlspecialchars($c->getSexe()); ?>">
+                            <input type='hidden' name='dateNaissance' value="<?php echo htmlspecialchars($c->getDateNaissance()); ?>">
+                            <input type='hidden' name='robe' value="<?php echo htmlspecialchars($c->getRobe()); ?>">
+                            <input type='hidden' name='sterilisation' value="<?php echo htmlspecialchars($c->getSterilisation()); ?>">
+                            <input type='hidden' name='dateAccueil' value="<?php echo htmlspecialchars($c->getDateAccueil()); ?>">
+
+                            <?php
+                            }
+                            ?>
                         </div>
                     </form>
                 </article>

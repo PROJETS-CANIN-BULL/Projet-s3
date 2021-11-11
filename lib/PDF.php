@@ -250,6 +250,9 @@ France"
                 $pdf->corpsTexte("Visa du délégué ou membre du Bureau pour Bull's Friends Association");
                 $pdf->SetX(40);
                 $pdf->Cell(135, 5, iconv('UTF-8', 'windows-1252', "Réfèrent : L.O"), 0, 0, 'R');
+
+
+
                 $pdf->Output();
                 ob_end_flush();
             }
@@ -257,6 +260,6 @@ France"
     }
 }
 
-
 ?>
+
 

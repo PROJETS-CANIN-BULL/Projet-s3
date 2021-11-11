@@ -79,7 +79,17 @@ class ControllerChien
         }
 
     }
+    public static function getChienByNumPuce()
+    {
+        $chien=ModelChien::getChienByNumPuce($_POST['numPuce']);
+        $view='formulaireAjoutFamilleAccueil';
+        $pagetitle='formulaire Famille';
+        if ($chien===null)
+            require (File::build_path(array("view", "view.php")));
+        require(File::build_path(array("view", "view.php")));
+        require(File::build_path(array("lib", "PDF.php")));
 
+    }
 
 // Trier les chiens par les critères nom, numero puce, nom ancien proprio, race, robe, sexe, sterilisation, date dateNaissance, date dateAccueil
 // par ordre croissant et decroissant

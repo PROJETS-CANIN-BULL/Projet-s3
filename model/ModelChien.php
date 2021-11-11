@@ -71,7 +71,17 @@ class ModelChien
 
     public static function getChienByNumPuce($numPuce)
     {
-
+        $sql = "SELECT * FROM Chien WHERE numPuce=:nom_tag";
+        $req_prep = Model::getPDO()->prepare($sql);
+        $values = array(
+            "nom_tag" => $numPuce
+        );
+        $req_prep->execute($values);
+        $req_prep->setFetchMode(PDO::FETCH_CLASS,'ModelChien');
+        $tab_chien = $req_prep->fetchAll();
+        if (empty($tab_chien))
+            return false;
+        return $tab_chien[0];
     }
 
 
