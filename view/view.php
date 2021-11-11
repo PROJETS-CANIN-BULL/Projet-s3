@@ -13,10 +13,11 @@
 </head>
 <body>
 <header>
+    <div>
+        <img class="head" src='image/header.jpg' class="rounded mx-auto d-block" alt="...">
+    </div>
     <div class="row">
-        <div class="container text-center">
-            <h2>Bull's Friends</h2>
-        </div>
+
         <div class="container">
             <nav>
 
@@ -39,7 +40,24 @@
                 <!-- Example single danger button -->
                 <a class="btn btn-primary" href="index.php?action=FAQ" role="button">FAQ</a>
                 <a class="btn btn-primary" href="index.php?action=Contact" role="button">Contact</a>
+                <form method="get" class="pull-right">
+                    <input name="q" class="form-control mr-sm-2" type="search" placeholder="Rechercher"
+                           aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0 searchbtn" type="submit">Search</button>
+                </form>
             </nav>
+            <?php
+            require_once(File::build_path(array("model", "ModelRecherche.php")));
+            $args = ModelRecherche::search();
+            if ($args["1"]->rowCount() > 0) { ?>
+                <ul>
+                    <?php while ($a = $args["1"]->fetch()) { ?>
+                mam        <li><?= $a['nomChien'] ?></li>
+                    <?php } ?>
+                </ul>
+            <?php } else { ?>
+                Aucun résultat pour: <?= $args["0"] ?>...
+            <?php } ?>
 
 
 </header>

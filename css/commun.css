@@ -9,6 +9,12 @@ header {
 	z-index: 1000;
 }
 
+.pull-right {
+    float: right;
+    text-align: right;
+    display: flex;
+}
+
 #menu li {
 	display: inline-block;
 	background-color: #a8ccac;
@@ -125,3 +131,5 @@ ul, ol {
     visibility: hidden;
     transition: .22s ease;
 }
+
+
