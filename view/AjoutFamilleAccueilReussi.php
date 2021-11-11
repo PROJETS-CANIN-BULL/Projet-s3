@@ -10,14 +10,16 @@
                     <div>
                         <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
                         <button class="btn left" type="button"
-                                onclick=" location.href = 'index.php?action=formulaireFamilleAccueil'">Formulaire
+                                onclick=" location.href = 'index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil'">
+                            Formulaire
                         </button>
                     </div>
                 </article>
                 <article class="col-10">
                     <p>Votre Famille a bien été ajoutée</p>
                     <div>
-                        <p> Pour retourner sur la page de Facture: <a href="index.php?action=Facture"> Facture </a></p>
+                        <p> Pour retourner sur la page de Facture: <a
+                                    href="index.php?controller=Facture&action=Facture"> Facture </a></p>
                     </div>
                     <p> Pour retourner sur la page d'accueil: <a href="index.php?action=accueil"> Accueil </a></p>
 

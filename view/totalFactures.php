@@ -17,13 +17,15 @@
                     <div>
                         <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
                         <button class="btn left" type="button"
-                                onclick="location.href = 'index.php?action=formulaireFacture';">Ajouter une Facture
+                                onclick="location.href = 'index.php?controller=Facture&action=formulaireFacture';">
+                            Ajouter une Facture
                         </button>
                     </div>
                     <div>
                         <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
                         <button class="btn left" type="button"
-                                onclick=" location.href = 'index.php?action=formulaireFamilleAccueil'">Formulaire
+                                onclick=" location.href = 'index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil'">
+                            Formulaire
                         </button>
                     </div>
                 </article>
@@ -42,20 +44,24 @@
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
                                         <a class="nav-link active" aria-current="page"
-                                           href="index.php?action=totaliserFactures">Total</a>
+                                           href="index.php?controller=Facture&action=totaliserFactures">Total</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="index.php?action=totaliserFacturesNumPuces">Numero
+                                        <a class="nav-link"
+                                           href="index.php?controller=Facture&action=totaliserFacturesNumPuces">Numero
                                             Puce</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="index.php?action=totaliserFacturesTypes">Types</a>
+                                        <a class="nav-link"
+                                           href="index.php?controller=Facture&action=totaliserFacturesTypes">Types</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="index.php?action=totaliserFacturesMotifs">Motifs</a>
+                                        <a class="nav-link"
+                                           href="index.php?controller=Facture&action=totaliserFacturesMotifs">Motifs</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="index.php?action=totaliserFacturesCrediteurs">Crediteurs</a>
+                                        <a class="nav-link"
+                                           href="index.php?controller=Facture&action=totaliserFacturesCrediteurs">Crediteurs</a>
                                     </li>
                                 </ul>
                             </div>

@@ -13,13 +13,15 @@
                     <div>
                         <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
                         <button class="btn left" type="button"
-                                onclick="location.href = 'index.php?action=formulaireChien';">Ajouter un Protégé
+                                onclick="location.href = 'index.php?controller=Chien&action=formulaireChien';">Ajouter
+                            un Protégé
                         </button>
                     </div>
                     <div>
                         <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
                         <button class="btn left" type="button"
-                                onclick=" location.href = 'index.php?action=formulaireFamilleAccueil'">Formulaire
+                                onclick=" location.href = 'index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil'">
+                            Formulaire
                         </button>
                     </div>
 
@@ -98,6 +100,7 @@
                         </fieldset>
                         <div class="input" id="send">
                             <input class="inputField" type="submit" value="Envoyer"/>
+                            <input type='hidden' name='controller' value='Chien'>
                             <input type='hidden' name='action' value='ajouterChien'>
                         </div>
                     </form>

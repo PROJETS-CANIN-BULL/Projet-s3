@@ -4,7 +4,7 @@
 <main>
     <div class="container-fluid red">
         <div class="container text-center">
-            <h2> Ajouter une Facture </h2>
+            <h2> Devenez Famille Accueil </h2>
 
         </div>
         <div class="container-fluid blue">
@@ -14,13 +14,15 @@
                     <div>
                         <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
                         <button class="btn left" type="button"
-                                onclick="location.href ='index.php?action=formulaireFacture';">Ajouter une Facture
+                                onclick="location.href ='index.php?controller=Facture&action=formulaireFacture';">
+                            Ajouter une Facture
                         </button>
                     </div>
                     <div>
                         <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
                         <button class="btn left" type="button"
-                                onclick=" location.href = 'index.php?action=formulaireFamilleAccueil'">Formulaire
+                                onclick=" location.href = 'index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil'">
+                            Formulaire
                         </button>
                     </div>
                 </article>
@@ -28,7 +30,6 @@
 
                     <form class="centrer" action="index.php" method="post" enctype="multipart/form-data">
                         <fieldset>
-                            <legend>Devenez une famille d' Accueil</legend>
                             <div class="input">
                                 <span class="inputItem"> Civilite *</span>
                                 <select class="inputField" id="civilite" name="civilite">
@@ -90,7 +91,8 @@
                             </div>
                             <div class="input">
                                 <span class="inputItem">Le : *</span>
-                                <input class="inputField" id="dateForm" type="text" name="dateForm" placeholder="jj/mm/aaaa" pattern="\d{1,2}/\d{1,2}/\d{4}" required>
+                                <input class="inputField" id="dateForm" type="text" name="dateForm"
+                                       placeholder="jj/mm/aaaa" pattern="\d{1,2}/\d{1,2}/\d{4}" required>
                             </div>
 
                             <div class="input">
@@ -99,7 +101,7 @@
                                     <?php
                                     foreach ($chien as $c) {
                                         ?>
-                                        <option value="<?php echo htmlspecialchars($c->getAllChiensNonAdoptesNoms()); ?>"><?php echo htmlspecialchars($c->getAllChiensNonAdoptesNoms()); ?> </option>
+                                        <option value="<?php echo htmlspecialchars($c->getNumpuce()); ?>"><?php echo htmlspecialchars($c->getNumpuce()); ?> </option>
                                         <?php
                                     }
                                     ?>

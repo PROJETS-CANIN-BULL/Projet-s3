@@ -16,13 +16,15 @@
                     <div>
                         <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
                         <button class="btn left" type="button"
-                                onclick=" location.href = 'index.php?action=formulaireFacture'">Ajouter une Facture
+                                onclick=" location.href = 'index.php?controller=Facture&action=formulaireFacture'">
+                            Ajouter une Facture
                         </button>
                     </div>
                     <div>
                         <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
                         <button class="btn left" type="button"
-                                onclick=" location.href = 'index.php?action=formulaireFamilleAccueil'">Formulaire
+                                onclick=" location.href = 'index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil'">
+                            Formulaire
                         </button>
                     </div>
                 </article>
@@ -36,14 +38,16 @@
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesNums"
+                                        <a class="nav-link dropdown-toggle"
+                                           href="index.php?controller=Facture&action=trierFacturesNums"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Numero de Facture</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="index.php?action=trierFacturesNums">Croissant</a>
+                                            <li><a class="dropdown-item"
+                                                   href="index.php?controller=Facture&action=trierFacturesNums">Croissant</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierFacturesNumsDecroissants">Decroissant</a>
+                                                   href="index.php?controller=Facture&action=trierFacturesNumsDecroissants">Decroissant</a>
                                             </li>
                                             <div>Ou</div>
                                             <form method="post" name="" action="index.php">
@@ -54,49 +58,58 @@
                                                 </fieldset>
                                                 <div class="input" id="send">
                                                     <input type="submit" value="Envoyer">
+                                                    <input type='hidden' name='controller'
+                                                           value='Facture'>
                                                     <input type='hidden' name='action' value='trouverFacture'>
                                                 </div>
                                             </form>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesTypes"
+                                        <a class="nav-link dropdown-toggle"
+                                           href="index.php?controller=Facture&action=trierFacturesTypes"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Type Facture</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierFacturesTypes&type=nourriture">Nourriture</a>
+                                                   href="index.php?controller=Facture&action=trierFacturesTypes&type=nourriture">Nourriture</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierFacturesTypes&type=kilometrique">Kilométrique</a>
+                                                   href="index.php?controller=Facture&action=trierFacturesTypes&type=kilometrique">Kilométrique</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierFacturesTypes&type=veterinaire">Véténiraire</a>
+                                                   href="index.php?controller=Facture&action=trierFacturesTypes&type=veterinaire">Véténiraire</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierFacturesTypes&type=autre">Autres</a></li>
+                                                   href="index.php?controller=Facture&action=trierFacturesTypes&type=autre">Autres</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesMotifs"
+                                        <a class="nav-link dropdown-toggle"
+                                           href="index.php?controller=Facture&action=trierFacturesMotifs"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Motif</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierFacturesMotifs">A-Z</a></li>
+                                                   href="index.php?controller=Facture&action=trierFacturesMotifs">A-Z</a>
+                                            </li>
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierFacturesMotifsDecroissants">Z-A</a></li>
+                                                   href="index.php?controller=Facture&action=trierFacturesMotifsDecroissants">Z-A</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="index.php?action=trierFacturesCouts"
+                                        <a class="nav-link dropdown-toggle"
+                                           href="index.php?controller=Facture&action=trierFacturesCouts"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Cout</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="index.php?action=trierFacturesCouts">Croissant</a>
+                                            <li><a class="dropdown-item"
+                                                   href="index.php?controller=Facture&action=trierFacturesCouts">Croissant</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierFacturesCoutsDecroissants">Decroissant</a>
+                                                   href="index.php?controller=Facture&action=trierFacturesCoutsDecroissants">Decroissant</a>
                                             </li>
                                             <div>Ou</div>
                                             <form method="post" name="" action="index.php">
@@ -111,6 +124,8 @@
                                                 </fieldset>
                                                 <div class="input" id="send">
                                                     <input type="submit" value="Envoyer">
+                                                    <input type='hidden' name='controller'
+                                                           value='Facture'>
                                                     <input type='hidden' name='action' value='trouverFacturesCouts'>
                                                 </div>
                                             </form>
@@ -118,7 +133,8 @@
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle"
-                                           href="index.php?action=trierFacturesDateFactures" id="navbarDropdown"
+                                           href="index.php?controller=Facture&action=trierFacturesDateFactures"
+                                           id="navbarDropdown"
                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">Date</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <form method="post" name="" action="index.php">
@@ -136,6 +152,8 @@
                                                 </fieldset>
                                                 <div class="input" id="send">
                                                     <input type="submit" value="Envoyer">
+                                                    <input type='hidden' name='controller'
+                                                           value='Facture'>
                                                     <input type='hidden' name='action'
                                                            value='trierFacturesDateFactures'>
                                                 </div>
@@ -144,25 +162,29 @@
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle"
-                                           href="index.php?action=trierFacturesCrediteurs" id="navbarDropdown"
+                                           href="index.php?controller=Facture&action=trierFacturesCrediteurs"
+                                           id="navbarDropdown"
                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">Crediteur</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierFacturesCrediteurs">A-Z</a></li>
+                                                   href="index.php?controller=Facture&action=trierFacturesCrediteurs">A-Z</a>
+                                            </li>
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierFacturesCrediteursDecroissants">Z-A</a>
+                                                   href="index.php?controller=Facture&action=trierFacturesCrediteursDecroissants">Z-A</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle"
-                                           href="index.php?action=trierFacturesNumPuces" id="navbarDropdown"
+                                           href="index.php?controller=Facture&action=trierFacturesNumPuces"
+                                           id="navbarDropdown"
                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">Numero Puce</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="index.php?action=trierFacturesNumPuces">Croissant</a>
+                                            <li><a class="dropdown-item"
+                                                   href="index.php?controller=Facture&action=trierFacturesNumPuces">Croissant</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierFacturesNumPucesDecroissants">Decroissant</a>
+                                                   href="index.php?controller=Facture&action=trierFacturesNumPucesDecroissants">Decroissant</a>
                                             </li>
                                             <div>Ou</div>
                                             <form method="post" name="" action="index.php">
@@ -173,6 +195,8 @@
                                                 </fieldset>
                                                 <div class="input" id="send">
                                                     <input type="submit" value="Envoyer">
+                                                    <input type='hidden' name='controller'
+                                                           value='Facture'>
                                                     <input type='hidden' name='action' value='trouverFacturesNumPuces'>
                                                 </div>
                                             </form>

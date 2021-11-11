@@ -11,25 +11,28 @@
                     <div>
                         <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
                         <button class="btn left" type="button"
-                                onclick="location.href = 'index.php?action=formulaireChien';">Ajouter un Protégé
+                                onclick="location.href = 'index.php?controller=Chien&action=formulaireChien';">Ajouter
+                            un Protégé
                         </button>
                     </div>
                     <div>
                         <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
                         <button class="btn left" type="button"
-                                onclick=" location.href = 'index.php?action=formulaireFamilleAccueil'">Formulaire
+                                onclick=" location.href = 'index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil'">
+                            Formulaire
                         </button>
                     </div>
                 </article>
                 <article class="col-10">
-                    <p><?php echo $erreur?> Faites retour pour retourner à la page d'ajout du protégé</p>
-                   <div>
-                        <p> Pour retourner sur la page des Chiens A Adopter: <a href="index.php?action=Adopter"> A
+                    <p><?php echo $erreur ?> Faites retour pour retourner à la page d'ajout du protégé</p>
+                    <div>
+                        <p> Pour retourner sur la page des Chiens A Adopter: <a
+                                    href="index.php?controller=Chien&action=Adopter"> A
                                 Adopter </a></p>
                     </div>
                     <div>
-                    <p> Pour retourner sur la page d'accueil: <a href="index.php?action=accueil"> Accueil </a></p>
-                </div>
+                        <p> Pour retourner sur la page d'accueil: <a href="index.php?action=accueil"> Accueil </a></p>
+                    </div>
 
 
                 </article>

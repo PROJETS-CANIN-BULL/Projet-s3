@@ -13,13 +13,15 @@
                     <div>
                         <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
                         <button class="btn left" type="button"
-                                onclick="location.href = 'index.php?action=formulaireChien';">Ajouter un Protégé
+                                onclick="location.href = 'index.php?controller=Chien&action=formulaireChien';">Ajouter
+                            un Protégé
                         </button>
                     </div>
                     <div>
                         <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
                         <button class="btn left" type="button"
-                                onclick=" location.href = 'index.php?action=formulaireFamilleAccueil'">Formulaire
+                                onclick=" location.href = 'index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil'">
+                            Formulaire
                         </button>
                     </div>
 
@@ -34,12 +36,15 @@
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="index.php?action=trierNoms"
+                                        <a class="nav-link dropdown-toggle"
+                                           href="index.php?controller=Chien&action=trierNoms"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Nom</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="index.php?action=trierNoms">A-Z</a></li>
-                                            <li><a class="dropdown-item" href="index.php?action=trierNomsDecroissants">Z-A</a>
+                                            <li><a class="dropdown-item"
+                                                   href="index.php?controller=Chien&action=trierNoms">A-Z</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="index.php?controller=Chien&action=trierNomsDecroissants">Z-A</a>
                                             </li>
                                             <div>Ou</div>
                                             <form method="post" name="" action="index.php">
@@ -50,20 +55,24 @@
                                                 </fieldset>
                                                 <div class="input" id="send">
                                                     <input type="submit" value="Trier">
+                                                    <input type='hidden' name='controller'
+                                                           value='Chien'>
                                                     <input type='hidden' name='action' value='trouverChiensNoms'>
                                                 </div>
                                             </form>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="index.php?action=trierNumPuces"
+                                        <a class="nav-link dropdown-toggle"
+                                           href="index.php?controller=Chien&action=trierNumPuces"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Numero Puce</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierNumPuces">Croissant</a></li>
+                                                   href="index.php?controller=Chien&action=trierNumPuces">Croissant</a>
+                                            </li>
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierNumPucesDecroissants">Decroissant</a>
+                                                   href="index.php?controller=Chien&action=trierNumPucesDecroissants">Decroissant</a>
                                             </li>
                                             <div>Ou</div>
                                             <form method="post" name="" action="index.php">
@@ -74,18 +83,23 @@
                                                 </fieldset>
                                                 <div class="input" id="send">
                                                     <input type="submit" value="Trier">
+                                                    <input type='hidden' name='controller'
+                                                           value='Chien'>
                                                     <input type='hidden' name='action' value='trouverChiensNumPuces'>
                                                 </div>
                                             </form>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="index.php?action=trierRaces"
+                                        <a class="nav-link dropdown-toggle"
+                                           href="index.php?controller=Chien&action=trierRaces"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Race</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="index.php?action=trierRaces">A-Z</a></li>
-                                            <li><a class="dropdown-item" href="index.php?action=trierRacesDecroissants">Z-A</a>
+                                            <li><a class="dropdown-item"
+                                                   href="index.php?controller=Chien&action=trierRaces">A-Z</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="index.php?controller=Chien&action=trierRacesDecroissants">Z-A</a>
                                             </li>
                                             <div>Ou</div>
                                             <form method="post" name="" action="index.php">
@@ -96,13 +110,16 @@
                                                 </fieldset>
                                                 <div class="input" id="send">
                                                     <input type="submit" value="Trier">
+                                                    <input type='hidden' name='controller'
+                                                           value='Chien'>
                                                     <input type='hidden' name='action' value='trouverChiensRaces'>
                                                 </div>
                                             </form>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="index.php?action=trierDateNaissances"
+                                        <a class="nav-link dropdown-toggle"
+                                           href="index.php?controller=Chien&action=trierDateNaissances"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Date Naissance</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -121,6 +138,8 @@
                                                 </fieldset>
                                                 <div class="input" id="send">
                                                     <input type="submit" value="Trier">
+                                                    <input type='hidden' name='controller'
+                                                           value='Chien'>
                                                     <input type='hidden' name='action'
                                                            value='trierDateNaissances'>
                                                 </div>
@@ -128,23 +147,29 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="index.php?action=trierSexes"
+                                        <a class="nav-link dropdown-toggle"
+                                           href="index.php?controller=Chien&action=trierSexes"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Sexe</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierSexes&sexe=femelle">Femelle</a></li>
-                                            <li><a class="dropdown-item" href="index.php?action=trierSexes&sexe=male">Male</a>
+                                                   href="index.php?controller=Chien&action=trierSexes&sexe=femelle">Femelle</a>
+                                            </li>
+                                            <li><a class="dropdown-item"
+                                                   href="index.php?controller=Chien&action=trierSexes&sexe=male">Male</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="index.php?action=trierRobes"
+                                        <a class="nav-link dropdown-toggle"
+                                           href="index.php?controller=Chien&action=trierRobes"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Robe</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="index.php?action=trierRobes">A-Z</a></li>
-                                            <li><a class="dropdown-item" href="index.php?action=trierRobesDecroissants">Z-A</a>
+                                            <li><a class="dropdown-item"
+                                                   href="index.php?controller=Chien&action=trierRobes">A-Z</a></li>
+                                            <li><a class="dropdown-item"
+                                                   href="index.php?controller=Chien&action=trierRobesDecroissants">Z-A</a>
                                             </li>
                                             <div>Ou</div>
                                             <form method="post" name="" action="index.php">
@@ -155,26 +180,30 @@
                                                 </fieldset>
                                                 <div class="input" id="send">
                                                     <input type="submit" value="Trier">
+                                                    <input type='hidden' name='controller'
+                                                           value='Chien'>
                                                     <input type='hidden' name='action' value='trouverChiensRobes'>
                                                 </div>
                                             </form>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="index.php?action=trierSterilisations"
+                                        <a class="nav-link dropdown-toggle"
+                                           href="index.php?controller=Chien&action=trierSterilisations"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Sterelisation</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierSterilisations&avis=oui">Oui</a>
+                                                   href="index.php?controller=Chien&action=trierSterilisations&avis=oui">Oui</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierSterilisations&avis=non">Non</a>
+                                                   href="index.php?controller=Chien&action=trierSterilisations&avis=non">Non</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="index.php?action=trierDateAccueils"
+                                        <a class="nav-link dropdown-toggle"
+                                           href="index.php?controller=Chien&action=trierDateAccueils"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Date Accueil</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -193,6 +222,8 @@
                                                 </fieldset>
                                                 <div class="input" id="send">
                                                     <input type="submit" value="Trier">
+                                                    <input type='hidden' name='controller'
+                                                           value='Chien'>
                                                     <input type='hidden' name='action'
                                                            value='trierDateAccueils'>
                                                 </div>
@@ -201,14 +232,17 @@
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle"
-                                           href="index.php?action=trierNomAncienProprio" id="navbarDropdown"
+                                           href="index.php?controller=Chien&action=trierNomAncienProprio"
+                                           id="navbarDropdown"
                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">Nom Ancien
                                             Proprietaire</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="index.php?action=trierNomAncienProprio">A-Z</a>
+                                            <li><a class="dropdown-item"
+                                                   href="index.php?controller=Chien&action=trierNomAncienProprio">A-Z</a>
                                             </li>
                                             <li><a class="dropdown-item"
-                                                   href="index.php?action=trierNomAncienProprioDecroissant">Z-A</a></li>
+                                                   href="index.php?controller=Chien&action=trierNomAncienProprioDecroissant">Z-A</a>
+                                            </li>
                                             <div>Ou</div>
                                             <form method="post" name="" action="index.php">
                                                 <fieldset>
@@ -218,6 +252,8 @@
                                                 </fieldset>
                                                 <div class="input" id="send">
                                                     <input type="submit" value="Trier">
+                                                    <input type='hidden' name='controller'
+                                                           value='Chien'>
                                                     <input type='hidden' name='action'
                                                            value='trouverChiensAncienProprios'>
                                                 </div>
@@ -230,20 +266,20 @@
                     </nav>
                     <div class="container">
 
-                    <?php
-                    if ($chien == NULL) {
-                        echo "<div>Aucun protégé n'existe</div>";
-                    } else {
-                        foreach ($chien as $c) {
-                            echo '<div class="row justify-content-center"><h3 class=" text-center">' . htmlspecialchars($c->getNomchien()) . '</h3>';
-                            echo '<div class="col-4"><img class="photoChien" src="image/chien/'.htmlspecialchars($c->getNomPhoto()) .'" alt="'.htmlspecialchars($c->getNomPhoto()).'"></div>';
-                            echo '<div  class="row justify-content-start"><div class="col-4"><p> Race : ' . htmlspecialchars($c->getRace()) . '</p><p> Robe : ' . $c->getRobe() . '</p></div>';
-                            echo '<div class="col-4"><p> Date de Naissance  : ' . htmlspecialchars($c->getDateNaissance()) . '</p><p> Date début accueil : ' . htmlspecialchars($c->getDateAccueil()) . '</p></div>';
-                            echo '<div class="col-4"><p> Sexe  : ' . htmlspecialchars($c->getSexe()) . '</p><p> Sterelisation : ' . htmlspecialchars($c->getSterilisation()) . '</p></div>';
-                            echo '<div><p>' . htmlspecialchars($c->getDescription()) . '</p></div></div>';
+                        <?php
+                        if ($chien == NULL) {
+                            echo "<div>Aucun protégé n'existe</div>";
+                        } else {
+                            foreach ($chien as $c) {
+                                echo '<div class="row justify-content-center"><h3 class=" text-center">' . htmlspecialchars($c->getNomchien()) . '</h3>';
+                                echo '<div class="col-4"><img class="photoChien" src="image/chien/' . htmlspecialchars($c->getNomPhoto()) . '" alt="' . htmlspecialchars($c->getNomPhoto()) . '"></div>';
+                                echo '<div  class="row justify-content-start"><div class="col-4"><p> Race : ' . htmlspecialchars($c->getRace()) . '</p><p> Robe : ' . $c->getRobe() . '</p></div>';
+                                echo '<div class="col-4"><p> Date de Naissance  : ' . htmlspecialchars($c->getDateNaissance()) . '</p><p> Date début accueil : ' . htmlspecialchars($c->getDateAccueil()) . '</p></div>';
+                                echo '<div class="col-4"><p> Sexe  : ' . htmlspecialchars($c->getSexe()) . '</p><p> Sterelisation : ' . htmlspecialchars($c->getSterilisation()) . '</p></div>';
+                                echo '<div><p>' . htmlspecialchars($c->getDescription()) . '</p></div></div>';
+                            }
                         }
-                    }
-                    ?>
+                        ?>
                     </div>
 
                 </article>

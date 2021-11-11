@@ -12,20 +12,23 @@
                 <div>
                     <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
                     <button class="btn left" type="button"
-                            onclick=" location.href = 'index.php?action=formulaireChien';">Ajouter un Protégé
+                            onclick=" location.href = 'index.php?controller=Chien&action=formulaireChien';">Ajouter un
+                        Protégé
                     </button>
                 </div>
                 <div>
 
                     <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
                     <button class="btn left" type="button"
-                            onclick=" location.href = 'index.php?action=formulaireFacture'">Ajouter une Facture
+                            onclick=" location.href = 'index.php?controller=Facture&action=formulaireFacture'">Ajouter
+                        une Facture
                     </button>
                 </div>
                 <div>
                     <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
                     <button class="btn left" type="button"
-                            onclick=" location.href = 'index.php?action=formulaireFamilleAccueil'">Formulaire
+                            onclick=" location.href = 'index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil'">
+                        Formulaire
                     </button>
                 </div>
 
@@ -44,9 +47,12 @@
                         Toutes les aides possibles sont les bienvenues, alors n'hésitez pas à nous contacter via le
                         formulaire contact.Bonne visite en espérant que vous trouverez votre bonheur grâce à nous...</p>
                     <p>
-                        Vous désirez ADOPTER chez nous ? Afin de prendre en compte votre dossier de candidature, merci de remplir le formulaire d'adoption.<br>
-                        Une fois celui-ci reçu par notre bureau, vous serez contacté par un bénévole afin de l’accueillir pour une pré-visite.
-                        Si cette pré-visite est positive et qu'un de nos protégés correspond à votre foyer, un membre du bureau vous contactera pour vous faire part de la décision.
+                        Vous désirez ADOPTER chez nous ? Afin de prendre en compte votre dossier de candidature, merci
+                        de remplir le formulaire d'adoption.<br>
+                        Une fois celui-ci reçu par notre bureau, vous serez contacté par un bénévole afin de
+                        l’accueillir pour une pré-visite.
+                        Si cette pré-visite est positive et qu'un de nos protégés correspond à votre foyer, un membre du
+                        bureau vous contactera pour vous faire part de la décision.
                     </p>
                 </div>
             </article>

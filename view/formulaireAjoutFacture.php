@@ -14,13 +14,15 @@
                     <div>
                         <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
                         <button class="btn left" type="button"
-                                onclick="location.href ='index.php?action=formulaireFacture';">Ajouter une Facture
+                                onclick="location.href ='index.php?controller=Facture&action=formulaireFacture';">
+                            Ajouter une Facture
                         </button>
                     </div>
                     <div>
                         <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
                         <button class="btn left" type="button"
-                                onclick=" location.href = 'index.php?action=formulaireFamilleAccueil'">Formulaire
+                                onclick=" location.href = 'index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil'">
+                            Formulaire
                         </button>
                     </div>
                 </article>
@@ -35,8 +37,8 @@
                             <div class="input">
                                 <span class="inputItem">Numero de Puce de l'animal Concerné *</span>
                                 <select class="inputField" id="numPuce" name="numPuce">
-                                    <?php foreach ($chiens as $c ) {
-                                        echo '<option value="'.htmlspecialchars($c->getNumPuce()).'">'.htmlspecialchars($c->getNumPuce()).'</option>';
+                                    <?php foreach ($chiens as $c) {
+                                        echo '<option value="' . htmlspecialchars($c->getNumPuce()) . '">' . htmlspecialchars($c->getNumPuce()) . '</option>';
                                     }
                                     ?>
                                 </select>
@@ -71,18 +73,21 @@
                             </div>
 
                             <p>Le fichier doit être un pdf dont le nom est sous la forme :
-                                numeroFacture-crediteur  <br>
+                                numeroFacture-crediteur <br>
                                 Si le nom n'est pas comme demandé, il ne sera pas accepté</p>
                             <div class="input">
                                 <span class="inputItem">Ajouter un pdf *</span>
                                 <input type="hidden" name="MAX_FILE_SIZE" value="10000000"/>
-                                <input type="file" accept='pdf' class="inputField" id="description" name="description" required>
+                                <input type="file" accept='pdf' class="inputField" id="description" name="description"
+                                       required>
                             </div>
 
                         </fieldset>
                         <div class="input" id="send">
                             <input type="submit" value="Envoyer">
-                            <input type='hidden'  name='action' value='ajouterFacture'>
+                            <input type='hidden' name='controller' value='Facture'>
+
+                            <input type='hidden' name='action' value='ajouterFacture'>
                         </div>
                     </form>
                 </article>
