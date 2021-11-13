@@ -1,4 +1,6 @@
 <?php
+require_once(File::build_path(array("model", "ModelChien.php")));
+
 
 class ControllerFacture
 {
@@ -58,6 +60,7 @@ class ControllerFacture
 
     public static function formulaireFacture()
     {
+        $chiens = ModelChien::getAllChiens();
         $view = 'formulaireAjoutFacture';
         $pagetitle = 'formulaire Facture';
         require(File::build_path(array("view", "view.php")));
