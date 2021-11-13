@@ -60,6 +60,9 @@ fieldset {
     align-items: center;
 
 }
+.readonly{
+    background-color: rgba(152, 152, 219, 0.44);
+}
 
 @media (max-width: 1020px) {
     main {

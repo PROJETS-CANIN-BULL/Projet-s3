@@ -1,7 +1,7 @@
 <main>
     <div class="container-fluid red">
         <div class="container text-center">
-            <h2> L'ajout du chien Réussi </h2>
+            <h2> <?php echo $titre ?> </h2>
 
         </div>
         <div class="container-fluid blue">
@@ -24,7 +24,7 @@
                     </div>
                 </article>
                 <article class="col-10">
-                    <p>Le Chien a bien été enregistrée</p>
+                    <p>Le Chien a bien été  <?php echo $message ?></p>
                     <div>
                         <p> Pour retourner sur la page des Chiens A Adopter: <a
                                     href="index.php?controller=Chien&action=Adopter"> A

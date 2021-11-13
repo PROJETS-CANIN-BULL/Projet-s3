@@ -24,7 +24,7 @@
                     </div>
                 </article>
                 <article class="col-10">
-                    <p>La Facture n'a pas pu être ajoutée</p>
+                    <p>La Facture n'a pas pu être ajoutée car <?php echo $erreur ?> </p>
                     <div>
                         <p> Pour retourner sur la page de Facture: <a
                                     href="index.php?controller=Facture&action=Facture"> Facture </a></p>

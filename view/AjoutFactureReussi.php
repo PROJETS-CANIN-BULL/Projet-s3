@@ -1,7 +1,7 @@
 <main>
     <div class="container-fluid red">
         <div class="container text-center">
-            <h2> Ajouter une Facture </h2>
+            <h2> <?php echo $titre;?></h2>
 
         </div>
         <div class="container-fluid blue">
@@ -24,7 +24,7 @@
                     </div>
                 </article>
                 <article class="col-10">
-                    <p>La Facture a bien été enregistrée</p>
+                    <p>La Facture a bien été <?php echo $message ?></p>
                     <div>
                         <p> Pour retourner sur la page de Facture: <a
                                     href="index.php?controller=Facture&action=Facture"> Facture </a></p>

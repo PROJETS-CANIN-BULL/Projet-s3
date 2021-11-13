@@ -45,7 +45,7 @@ class ControllerChien
 
         $erreur = 'null';
 
-        if (strcmp($_FILES['photo']['name'], $data['numPuce'] . '.png') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.jpeg') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.JPG') != 0) {
+        if (strcmp($_FILES['photo']['name'], $data['numPuce'] . '.png') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.jpeg') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.JPG') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.jpg') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.PNG') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.JPEG') != 0) {
             $erreur = ' Le nom de la photo du chien est faux.';
         }
         if ($_FILES['photo']['error'] > 0) $erreur = "Erreur lors du transfert";
@@ -73,12 +73,58 @@ class ControllerChien
             $pagetitle = 'Chien Non Ajouté';
             require(File::build_path(array("view", "view.php")));
         } else {
+            $message = 'enregistré';
+            $titre = "Ajouter Chien";
             $view = 'AjoutChienReussi';
             $pagetitle = 'Chien Ajouté';
             require(File::build_path(array("view", "view.php")));
         }
 
     }
+    public static function modificationFormulaire(){
+        $puce = $_GET['numPuce'];
+        $chien = ModelChien::getChienByNumPuce($puce);
+        $view = 'modificationChien';
+        $pagetitle = 'Modification Chien';
+        require(File::build_path(array("view", "view.php")));
+
+    }
+
+    public static function modifierChien(){
+        $info = array(
+            'numPuce' => $_POST['numPuce'],
+            'nomChien' => $_POST['nomChien'],
+            'race' => $_POST['race'],
+            'dateNaissance' => $_POST['dateNaissance'],
+            'sexe' => $_POST['sexe'],
+            'robe' => $_POST['robe'],
+            'sterilisation' => $_POST['sterilisation'],
+            'dateAccueil' => $_POST['dateAccueil'],
+            'description' => $_POST['description'],
+            'nomAncienProprio' => $_POST['nomAncienProp']
+        );
+        ModelChien::modifierChien($info);
+        $message = 'modifié';
+        $titre = "Modifier Chien";
+        $view = 'AjoutChienReussi';
+        $pagetitle = 'Modifier Chien';
+        require(File::build_path(array("view", "view.php")));
+    }
+
+    public static function supprimerChien(){
+        $puce = $_GET['numPuce'];
+        $chien = ModelChien::getChienByNumPuce($puce);
+        $nom =File::build_path(array("image","chien",$chien->getNomPhoto()));
+        unlink($nom);
+        ModelChien::supprimerChien($puce);
+        $message = 'supprimée';
+        $titre = "Supprimer Chien";
+        $view = 'AjoutChienReussi';
+        $pagetitle = 'Supprimer Chien';
+        require(File::build_path(array("view", "view.php")));
+    }
+
+
     public static function getChienByNumPuce()
     {
         $chien=ModelChien::getChienByNumPuce($_POST['numPuce']);

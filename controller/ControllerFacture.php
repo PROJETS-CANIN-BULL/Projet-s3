@@ -1,7 +1,6 @@
 <?php
 require_once(File::build_path(array("model", "ModelChien.php")));
 
-
 class ControllerFacture
 {
     public static function Facture()
@@ -25,6 +24,7 @@ class ControllerFacture
             'crediteur' => $_POST['crediteur'],
         );
 
+        $erreur = 'null';
         $name = $data['numFacture'] . "-" . $data["crediteur"] . '.pdf';
         if (strcmp($_FILES['description']['name'], $name) != 0) {
             $erreur = ' Le nom de la Facture est faux.';
@@ -37,25 +37,31 @@ class ControllerFacture
         $nom = File::build_path(array("pdf", $_FILES['description']['name']));
         $resultat = move_uploaded_file($_FILES['description']['tmp_name'], $nom);
 
-        if ($erreur != null) {
+        if (strcmp($erreur, 'null') != 0) {
             $view = 'ErreurFacture';
             $pagetitle = 'Erreur Factures';
             require(File::build_path(array("view", "view.php")));
         }
 
 
-        if ($resultat) {
-            ModelFacture::ajouterFacture($data);
-            $view = 'AjoutFactureReussi';
-            $pagetitle = 'Facture Ajoutée';
-            require(File::build_path(array("view", "view.php")));
-        } else {
+        if (ModelFacture::ajouterFacture($data) == false || $resultat == false) {
+            $erreur = "une des dates n'est pas dans le bon format";
+
+            if (!$resultat) {
+                $erreur = 'Le déplacement des fichiers a connu une erreur';
+            }else{
+                unlink($nom);
+            }
             $view = 'AjoutFactureNonReussi';
             $pagetitle = 'Facture Non Ajoutée';
             require(File::build_path(array("view", "view.php")));
-
+        } else {
+            $message ='enregistrée';
+            $titre = 'Ajouter Facture';
+            $view = 'AjoutFactureReussi';
+            $pagetitle = 'Facture Ajouté';
+            require(File::build_path(array("view", "view.php")));
         }
-
     }
 
     public static function formulaireFacture()
@@ -63,6 +69,54 @@ class ControllerFacture
         $chiens = ModelChien::getAllChiens();
         $view = 'formulaireAjoutFacture';
         $pagetitle = 'formulaire Facture';
+        require(File::build_path(array("view", "view.php")));
+    }
+
+    public static function modificationFormulaire()
+    {
+        $info = array(
+            "numFacture" => $_GET['numFacture'],
+            "crediteur" => $_GET['crediteur']
+        );
+        $facture = ModelFacture::getFactureByNumFacture($info);
+        $chiens = ModelChien::getAllChiens();
+        $view = 'modificationFacture';
+        $pagetitle = 'Modification Facture';
+        require(File::build_path(array("view", "view.php")));
+
+    }
+
+    public static function modifierFacture()
+    {
+        $infos = array(
+            'numPuce' => $_POST['numPuce'],
+            'numFacture' => $_POST['numFacture'],
+            'type' => $_POST['type'],
+            'motif' => $_POST['motif'],
+            'cout' => $_POST['cout'],
+            'dateFacture' => $_POST['dateFacture'],
+            'crediteur' => $_POST['crediteur'],
+        );
+        ModelFacture::modifierFacture($infos);
+        $message = 'modifiée';
+        $titre = "Modifier Facture";
+        $view = 'AjoutFactureReussi';
+        $pagetitle = 'Modifier Factures';
+        require(File::build_path(array("view", "view.php")));
+    }
+
+    public static function supprimerFacture(){
+        $info = array(
+            "numFacture" => $_GET['numFacture'],
+            "crediteur" => $_GET['crediteur']
+        );
+        ModelFacture::supprimerFacture($info);
+        $nom =File::build_path(array("pdf", $info['numFacture'].'-'.$info['crediteur'].'.pdf'));
+        unlink($nom);
+        $message = 'supprimée';
+        $titre = "Supprimer Facture";
+        $view = 'AjoutFactureReussi';
+        $pagetitle = 'Supprimer Facture';
         require(File::build_path(array("view", "view.php")));
     }
 

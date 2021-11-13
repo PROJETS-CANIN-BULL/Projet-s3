@@ -32,20 +32,100 @@ class ModelFacture
 
     public static function ajouterFacture($data)
     {
-        //$veto = ModelFacture::ajoutVeto($data);
-        $sql = "INSERT INTO `Facture`(`numFacture`, `numPuce`, `type`, `motif`, `cout`, `dateFacture`, `crediteur`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6,:tag7)";
+        try {
+            $sql = "INSERT INTO `Facture`(`numFacture`, `numPuce`, `type`, `motif`, `cout`, `dateFacture`, `crediteur`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6,:tag7)";
+            $req_prep = Model::getPDO()->prepare($sql);
+
+            $values = array(
+                "tag" => $data["numFacture"],
+                "tag2" => $data["numPuce"],
+                "tag3" => $data["type"],
+                "tag4" => $data["motif"],
+                "tag5" => $data["cout"],
+                "tag6" => $data["dateFacture"],
+                "tag7" => $data["crediteur"],
+            );
+            $req_prep->execute($values);
+            return true;
+        } catch (PDOException $e) {
+            if ($e->getCode() == 22007) {
+                return false;
+            } else if (Conf::getDebug()) {
+                echo $e->getMessage();
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+
+    public static function modifierFacture($infos)
+    {
+        try {
+            $sql = "UPDATE Facture SET type=:tag3, motif=:tag4, cout=:tag5, dateFacture=:tag6 ,numPuce=:tag2 WHERE numFacture=:tag AND crediteur=:tag7";
+            $req_prep = Model::getPDO()->prepare($sql);
+
+            $values = array(
+                "tag" => $infos["numFacture"],
+                "tag2" => $infos["numPuce"],
+                "tag3" => $infos["type"],
+                "tag4" => $infos["motif"],
+                "tag5" => $infos["cout"],
+                "tag6" => $infos["dateFacture"],
+                "tag7" => $infos["crediteur"],
+            );
+            $req_prep->execute($values);
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage();
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+
+    }
+    public static function supprimerFacture($infos){
+        try {
+            $sql = "DELETE FROM Facture WHERE numFacture=:tag AND crediteur=:tag2";
+            $req_prep = Model::getPDO()->prepare($sql);
+
+            $values = array(
+                "tag" => $infos["numFacture"],
+                "tag2" => $infos["crediteur"],
+            );
+            $req_prep->execute($values);
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage();
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+
+    }
+
+    public static function getFactureByNumFacture($infosFacture)
+    {
+        $sql = "SELECT * FROM Facture WHERE numFacture=:num1 AND crediteur= :crediteur";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "tag" => $data["numFacture"],
-            "tag2" => $data["numPuce"],
-            "tag3" => $data["type"],
-            "tag4" => $data["motif"],
-            "tag5" => $data["cout"],
-            "tag6" => $data["dateFacture"],
-            "tag7" => $data["crediteur"],
+            "num1" => $infosFacture['numFacture'],
+            "crediteur" => $infosFacture['crediteur'],
         );
+
         $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFacture');
+        $facture = $req_prep->fetchAll();
+        if (empty($facture)) {
+            return false;
+        }
+        return $facture[0];
+
+
     }
 
 
@@ -53,7 +133,7 @@ class ModelFacture
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM mysql.Facture");
+            $rep = $PDO->query("SELECT * FROM Facture");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFacture");
             $frais = $rep->fetchAll();
             return $frais;
@@ -68,13 +148,6 @@ class ModelFacture
         }
     }
 
-    public static function modifierCout($data)
-    {
-    }
-
-    public static function modifierDate($data)
-    {
-    }
 
     public static function totaliserFactures()
     {
@@ -543,11 +616,6 @@ class ModelFacture
     public function getNumVeto()
     {
         return $this->numVeto;
-    }
-
-    public function getNomchien()
-    {
-        return $this->nomchien;
     }
 
 

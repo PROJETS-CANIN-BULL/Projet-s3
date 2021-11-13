@@ -69,6 +69,53 @@ class ModelChien
 
     }
 
+    public static function modifierChien($infos){
+        try {
+            $sql = "UPDATE Chien SET nomChien=:tag2, race=:tag3, dateNaissance=:tag4, sexe=:tag5, robe=:tag6, sterilisation=:tag7, dateAccueil=:tag8, nomAncienProprio=:tag9,description=:tag10 WHERE numPuce=:tag";
+            $req_prep = Model::getPDO()->prepare($sql);
+
+            $values = array(
+                "tag" => $infos["numPuce"],
+                "tag2" => $infos["nomChien"],
+                "tag3" => $infos["race"],
+                "tag4" => $infos["dateNaissance"],
+                "tag5" => $infos["sexe"],
+                "tag6" => $infos["robe"],
+                "tag7" => $infos["sterilisation"],
+                "tag8" => $infos["dateAccueil"],
+                "tag9" => $infos["nomAncienProprio"],
+                "tag10" => $infos["description"],
+            );
+            $req_prep->execute($values);
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage();
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+
+    public static function supprimerChien($numPuce){
+        try {
+            $sql = "DELETE FROM Chien WHERE numPuce=:tag";
+            $req_prep = Model::getPDO()->prepare($sql);
+
+            $values = array(
+                "tag" => $numPuce,
+            );
+            $req_prep->execute($values);
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage();
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+
     public static function getChienByNumPuce($numPuce)
     {
         $sql = "SELECT * FROM Chien WHERE numPuce=:nom_tag";
@@ -83,6 +130,7 @@ class ModelChien
             return false;
         return $tab_chien[0];
     }
+
 
 
 // Renvoie liste chiens non adoptes
@@ -961,10 +1009,6 @@ class ModelChien
         return $this->nomAncienProprio;
     }
 
-    public function getIDFamille()
-    {
-        return $this->idFamille;
-    }
 
     public function getDescription()
     {
