@@ -38,8 +38,12 @@ class ControllerUtilisateur
         if ($U == NULL) {
             require(File::build_path(array("view", "error.php")));
         } else {
-            $id = $data['id'];
-            self::$typeUtilisateur = ModelUtilisateur::getTypeID($id);
+            $_SESSION['login']=$data['id'];
+            if( ModelUtilisateur::getTypeID($_SESSION['login'])==1){
+                $_SESSION['isAdmin']=1;
+            }else{
+                $_SESSION['isAdmin']=0;
+            }
             $view = 'accueil';
             $pagetitle = 'Page Accueil';
             require(File::build_path(array("view", "view.php")));
@@ -61,12 +65,19 @@ class ControllerUtilisateur
         $data['password'] = $passwordHache;
 
         if (ModelUtilisateur::verifierUtilisateur($data) != NULL) {
+            $_SESSION['login']=$data['id'];
+            if(ModelUtilisateur::getTypeID($_SESSION['login'])==1){
+                $_SESSION['isAdmin']=1;
+            }
             $view = 'accueil';
             $pagetitle = 'Page Accueil';
             require(File::build_path(array("view", "view.php")));
 
 
         } else {
+            $_SESSION['login']=$data['id'];
+            $_SESSION['isAdmin']=0;
+            
             ModelUtilisateur::creerUtilisateur($data);
             $view = 'accueil';
             $pagetitle = 'Page Accueil';

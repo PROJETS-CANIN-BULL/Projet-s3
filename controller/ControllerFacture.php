@@ -48,6 +48,11 @@ class ControllerFacture
             $erreur = "une des dates n'est pas dans le bon format";
 
             if (!$resultat) {
+                $info = array(
+                    "numFacture" => $_POST['numFacture'],
+                    "crediteur" => $_POST['crediteur']
+                );
+                ModelFacture::supprimerFacture($info);
                 $erreur = 'Le déplacement des fichiers a connu une erreur';
             }else{
                 unlink($nom);

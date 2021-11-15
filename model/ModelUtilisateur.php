@@ -48,7 +48,7 @@ class ModelUtilisateur {
             "tag" => $data["id"],
             "tag2" => $data["password"],
             "tag3"=> $data["mail"],
-            "tag4" => "visiteur",
+            "tag4" => "0",
         );
         $req_prep->execute($values);
     }
@@ -65,6 +65,8 @@ class ModelUtilisateur {
         return $this->type;
     }
 
+
+
     public static function getTypeID($id){
         $sql = "SELECT type FROM Utilisateur WHERE pseudo=:tag";
 
@@ -77,7 +79,6 @@ class ModelUtilisateur {
 
         $req_prep->setFetchMode(PDO::FETCH_COLUMN,0);
         $pdo = $req_prep->fetchAll();
-
         return $pdo[0];
     }
 

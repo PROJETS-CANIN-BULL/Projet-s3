@@ -11,13 +11,21 @@
             <div class="row">
                 <article class="col-2">
 
-                    <div>
-                        <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
-                        <button class="btn left" type="button"
-                                onclick="location.href ='index.php?controller=Facture&action=formulaireFacture';">
-                            Ajouter une Facture
-                        </button>
-                    </div>
+                    <?php
+
+                    if ($_SESSION['isAdmin'] == 1) {
+                        ?>
+
+                        <div>
+
+                            <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
+                            <button class="btn left" type="button"
+                                    onclick=" location.href = 'index.php?controller=Facture&action=formulaireFacture'">
+                                Ajouter
+                                une Facture
+                            </button>
+                        </div>
+                    <?php } ?>
                     <div>
                         <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
                         <button class="btn left" type="button"
@@ -32,7 +40,9 @@
                         <fieldset>
                             <div class="input">
                                 <span class="inputItem">Numero de Facture *</span>
-                                <input class="inputField readonly" id="numFacture" name="numFacture" value="<?php echo htmlspecialchars($facture->getNumFacture())?>"  readonly type="text" required>
+                                <input class="inputField readonly" id="numFacture" name="numFacture"
+                                       value="<?php echo htmlspecialchars($facture->getNumFacture()) ?>" readonly
+                                       type="text" required>
                             </div>
                             <div class="input">
                                 <span class="inputItem">Numero de Puce de l'animal Concerné *</span>
@@ -55,21 +65,29 @@
                             </div>
                             <div class="input">
                                 <span class="inputItem">Motif *</span>
-                                <input class="inputField" id="motif" name="motif" value="<?php echo htmlspecialchars($facture->getMotif())?>" required type="text">
+                                <input class="inputField" id="motif" name="motif"
+                                       value="<?php echo htmlspecialchars($facture->getMotif()) ?>" required
+                                       type="text">
                             </div>
                             <div class="input">
                                 <span class="inputItem">Cout *</span>
-                                <input class="inputField" id="cout" name="cout" value="<?php echo htmlspecialchars($facture->getCout())?>" placeholder="00,00" required
+                                <input class="inputField" id="cout" name="cout"
+                                       value="<?php echo htmlspecialchars($facture->getCout()) ?>" placeholder="00,00"
+                                       required
                                        type="text">
                             </div>
                             <div class="input">
                                 <span class="inputItem">Date Facture : (Sous la forme AAAA-MM-JJ) *</span>
-                                <input class="inputField" id="dateFacture" name="dateFacture" value="<?php echo htmlspecialchars($facture->getDateFacture())?>" placeholder="AAAA-MM-JJ"
+                                <input class="inputField" id="dateFacture" name="dateFacture"
+                                       value="<?php echo htmlspecialchars($facture->getDateFacture()) ?>"
+                                       placeholder="AAAA-MM-JJ"
                                        required type="text">
                             </div>
                             <div class="input">
                                 <span class="inputItem">Nom du Créditeur *</span>
-                                <input class="inputField readonly" id="crediteur" name="crediteur" value="<?php echo htmlspecialchars($facture->getCrediteur())?>" readonly required type="text">
+                                <input class="inputField readonly" id="crediteur" name="crediteur"
+                                       value="<?php echo htmlspecialchars($facture->getCrediteur()) ?>" readonly
+                                       required type="text">
                             </div>
 
 

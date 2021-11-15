@@ -67,7 +67,10 @@ class ControllerChien
             $erreur = "une des dates n'est pas dans le bon format";
 
             if (!$resultat) {
+                ModelChien::supprimerChien($data['numPuce']);
                 $erreur = 'Le déplacement des fichiers a connu une erreur';
+            }else{
+                unlink($nom);
             }
             $view = 'AjoutChienNonReussi';
             $pagetitle = 'Chien Non Ajouté';
