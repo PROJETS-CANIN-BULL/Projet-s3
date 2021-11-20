@@ -219,14 +219,14 @@ class ModelChien
     public static function getChiensNoms($nom)
     {
 
-        $sql = "SELECT * FROM Chien WHERE nomChien=:nom1";
+        $sql = "SELECT * FROM Chien WHERE nomChien LIKE ? ";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "nom1" => $nom,
+            "nom1" =>  $nom,
         );
 
-        $req_prep->execute($values);
+        $req_prep->execute(array('"%'.$nom.'%"'));
 
         $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
         $chiens = $req_prep->fetchAll();

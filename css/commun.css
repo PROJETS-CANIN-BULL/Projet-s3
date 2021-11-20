@@ -132,4 +132,12 @@ ul, ol {
     transition: .22s ease;
 }
 
+.social-inner > img{
+    max-height: 50px ;
+    max-width: 50px ;
+}
+.containerHead{
+    display: flex;
+    justify-content: center;
+}
 

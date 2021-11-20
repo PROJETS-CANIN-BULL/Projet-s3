@@ -13,8 +13,8 @@
 </head>
 <body>
 <header>
-    <div>
-        <img class="head" src='image/header.jpg' class="rounded mx-auto d-block" alt="...">
+    <div class="containerHead">
+        <img class="head" src='image/headerNew.jpg' class="rounded mx-auto d-block" alt="...">
     </div>
     <div class="row">
 
@@ -70,18 +70,18 @@ require $filepath;
 <footer class="section footer-classic context-dark bg-image" style="background: #2d3246;">
     <div class="container">
         <div class="row row-30">
-            <div class="col-md-4 col-xl-5">
+           <!-- <div class="col-md-4 col-xl-5">
                 <div class="pr-xl-4"><a class="brand" href="index.html"><img class="brand-logo-light"
                                                                              src="images/agency/logo-inverse-140x37.png"
                                                                              alt="" width="140" height="37"
                                                                              srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
                     <p>We are an award-winning creative agency, dedicated to the best result in web design, promotion,
                         business consulting, and marketing.</p>
-                    <!-- Rights-->
+                   
                     <p class="rights"><span>©  </span><span class="copyright-year">2020</span><span> </span><span>Company</span><span> - </span><span>All Rights Reserved.</span>
                     </p>
                 </div>
-            </div>
+            </div>-->
             <div class="col-md-4">
                 <h5>Contacts</h5>
                 <dl class="contact-list">
