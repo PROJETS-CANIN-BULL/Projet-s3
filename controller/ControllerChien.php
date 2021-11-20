@@ -20,6 +20,7 @@ class ControllerChien
         $pagetitle = 'Les Adoptés';
         require(File::build_path(array("view", "view.php")));
     }
+
     public static function formulaireChien()
     {
         $view = 'formulaireAjoutChien';
@@ -69,7 +70,7 @@ class ControllerChien
             if (!$resultat) {
                 ModelChien::supprimerChien($data['numPuce']);
                 $erreur = 'Le déplacement des fichiers a connu une erreur';
-            }else{
+            } else {
                 unlink($nom);
             }
             $view = 'AjoutChienNonReussi';
@@ -92,7 +93,17 @@ class ControllerChien
         require(File::build_path(array("view", "view.php")));
     }
 
-    public static function modificationFormulaire(){
+
+    public static function formulaireAdoptionChien()
+    {
+        $chien = ModelChien::getChiensNonAdoptes();
+        $view = 'formulaireAdoptionChien';
+        $pagetitle = 'formulaire adoption';
+        require(File::build_path(array("view", "view.php")));
+    }
+
+    public static function modificationFormulaire()
+    {
         $puce = $_GET['numPuce'];
         $chien = ModelChien::getChienByNumPuce($puce);
         $view = 'modificationChien';
@@ -101,7 +112,8 @@ class ControllerChien
 
     }
 
-    public static function modifierChien(){
+    public static function modifierChien()
+    {
         $info = array(
             'numPuce' => $_POST['numPuce'],
             'nomChien' => $_POST['nomChien'],
@@ -122,10 +134,11 @@ class ControllerChien
         require(File::build_path(array("view", "view.php")));
     }
 
-    public static function supprimerChien(){
+    public static function supprimerChien()
+    {
         $puce = $_GET['numPuce'];
         $chien = ModelChien::getChienByNumPuce($puce);
-        $nom =File::build_path(array("image","chien",$chien->getNomPhoto()));
+        $nom = File::build_path(array("image", "chien", $chien->getNomPhoto()));
         unlink($nom);
         ModelChien::supprimerChien($puce);
         $message = 'supprimée';
@@ -138,11 +151,11 @@ class ControllerChien
 
     public static function getChienByNumPuce()
     {
-        $chien=ModelChien::getChienByNumPuce($_POST['numPuce']);
-        $view='formulaireAjoutFamilleAccueil';
-        $pagetitle='formulaire Famille';
-        if ($chien===null)
-            require (File::build_path(array("view", "view.php")));
+        $chien = ModelChien::getChienByNumPuce($_POST['numPuce']);
+        $view = 'formulaireAjoutFamilleAccueil';
+        $pagetitle = 'formulaire Famille';
+        if ($chien === null)
+            require(File::build_path(array("view", "view.php")));
         require(File::build_path(array("view", "view.php")));
         require(File::build_path(array("lib", "AccueilPDF.php")));
 

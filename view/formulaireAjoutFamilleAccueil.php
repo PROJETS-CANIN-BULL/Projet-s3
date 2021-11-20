@@ -109,16 +109,16 @@
 
                             <?php
                             foreach ($chien as $c){
-                            ?>
-                            <input type='hidden' name='nomChien' value="<?php echo htmlspecialchars($c->getNomChien()); ?>">
-                            <input type='hidden' name='race' value="<?php echo htmlspecialchars($c->getRace()); ?>">
-                            <input type='hidden' name='sexe' value="<?php echo htmlspecialchars($c->getSexe()); ?>">
-                            <input type='hidden' name='dateNaissance' value="<?php echo htmlspecialchars($c->getDateNaissance()); ?>">
-                            <input type='hidden' name='robe' value="<?php echo htmlspecialchars($c->getRobe()); ?>">
-                            <input type='hidden' name='sterilisation' value="<?php echo htmlspecialchars($c->getSterilisation()); ?>">
-                            <input type='hidden' name='dateAccueil' value="<?php echo htmlspecialchars($c->getDateAccueil()); ?>">
+                                ?>
+                                <input type='hidden' name='nomChien' value="<?php echo htmlspecialchars($c->getNomChien()); ?>">
+                                <input type='hidden' name='race' value="<?php echo htmlspecialchars($c->getRace()); ?>">
+                                <input type='hidden' name='sexe' value="<?php echo htmlspecialchars($c->getSexe()); ?>">
+                                <input type='hidden' name='dateNaissance' value="<?php echo htmlspecialchars($c->getDateNaissance()); ?>">
+                                <input type='hidden' name='robe' value="<?php echo htmlspecialchars($c->getRobe()); ?>">
+                                <input type='hidden' name='sterilisation' value="<?php echo htmlspecialchars($c->getSterilisation()); ?>">
+                                <input type='hidden' name='dateAccueil' value="<?php echo htmlspecialchars($c->getDateAccueil()); ?>">
 
-                            <?php
+                                <?php
                             }
                             ?>
                         </div>
