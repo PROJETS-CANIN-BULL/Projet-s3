@@ -40,6 +40,7 @@
                 <!-- Example single danger button -->
                 <a class="btn btn-primary" href="index.php?action=FAQ" role="button">FAQ</a>
                 <a class="btn btn-primary" href="index.php?action=Contact" role="button">Contact</a>
+                <a class="btn btn-primary" href="index.php?action=deconnexion" role="button">Deconnexion</a>
                 <form method="get" class="pull-right">
                     <input name="q" class="form-control mr-sm-2" type="search" placeholder="Rechercher"
                            aria-label="Search">
