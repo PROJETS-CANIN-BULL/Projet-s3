@@ -1,7 +1,7 @@
 <?php
 require_once(File::build_path(array("fpdf183", "fpdf.php")));
 
-class PDF extends FPDF
+class AccueilPDF extends FPDF
 {
 
     // En-tête
@@ -171,7 +171,7 @@ class PDF extends FPDF
         $this->Ln();
     }
 
-    public static function generatePDF()
+    public static function generateAccueilPDF()
     {
         if (isset($_POST['submit'])) {
             // famille
@@ -211,13 +211,13 @@ class PDF extends FPDF
 
                 ob_end_clean();
                 ob_start();
-                $pdf = new PDF();
+                $pdf = new AccueilPDF();
                 $pdf->AliasNbPages();
                 $pdf->AddPage();
                 $pdf->titreTexte("CONTRAT D'ACCUEIL BÉNÉVOLE");
                 $pdf->corpsTexte("Les conditions d'accueil indiquées ci-dessous devront être celles effectivement réservées à
 l'animal, celles-ci étant en rapport avec son caractère et les motivations de notre œuvre.");
-                $pdf->corpsTexte("Le non-respect de ces conditions entraîne l'annulation du contrat.txt et autorise BULL'S FRIENDS à
+                $pdf->corpsTexte("Le non-respect de ces conditions entraîne l'annulation du contrat et autorise BULL'S FRIENDS à
 reprendre l'animal sans préavis.");
 
                 $pdf->titreTexte("BULL'S FRIENDS ASSOCIATION CONFIE EN ACCUEIL À :");
@@ -227,7 +227,7 @@ reprendre l'animal sans préavis.");
                 $pdf->chienForm($nomChien, $race, $dateNaissance, $sexe, $robe, $sterilisation, $numPuce, $dateAccueil);
                 $pdf->AddPage();
                 $pdf->titreTexte("L'ACCUEILLANT S'ENGAGE ENVERS BULL'S FRIENDS ASSOCIATION :");
-                $pdf->corpsContrat(File::build_path(array("ressources", "contrat.txt")));
+                $pdf->corpsContrat(File::build_path(array("ressources", "clausesContrat.txt")));
                 $pdf->AddPage();
                 $pdf->remarques();
                 $pdf->corpsGras("Le présent contrat est établi en 2 exemplaires dont un est à retourner à");

@@ -56,14 +56,9 @@
                                 <input class="inputField" id="mail" name="mail" required type="email">
                             </div>
                             <div class="input">
-                                <span class="inputItem">Téléphone Fixe </span>
-                                <input class="inputField" id="telephoneFixe" name="telephoneFixe" type="text"
+                                <span class="inputItem">Téléphone *</span>
+                                <input class="inputField" id="telephone" name="telephone" type="text"
                                        pattern="[0-9]{10}">
-                            </div>
-                            <div class="input">
-                                <span class="inputItem">Téléphone Mobile *</span>
-                                <input class="inputField" id="telephoneMobile" name="telephoneMobile" type="text"
-                                       pattern="[0-9]{10}" required>
                             </div>
                             <div class="input">
                                 <span class="inputItem">Adresse Postale *</span>
@@ -86,6 +81,10 @@
                                        type="text">
                             </div>
                             <div class="input">
+                                <span class="inputItem">Numéro document d'identité </span>
+                                <input class="inputField" id="numDocId" name="numDocId" type="text">
+                            </div>
+                            <div class="input">
                                 <span class="inputItem">Formulaire rempli à : *</span>
                                 <input class="inputField" id="lieu" name="lieu" required
                                        type="text" placeholder="Ville">
@@ -95,30 +94,23 @@
                                 <input class="inputField" id="dateForm" type="text" name="dateForm"
                                        placeholder="jj/mm/aaaa" pattern="\d{1,2}/\d{1,2}/\d{4}" required>
                             </div>
-
-                            <div class="input">
-                                <span class="inputItem"> Chien accueilli *</span>
-                                <input class="inputField" id="numPuce" name="numPuce" required
-                                       type="text" placeholder="Numero de puce">
-                            </div>
                         </fieldset>
                         <div class="input" id="send">
                             <input type="submit" name="submit" value="Envoyer">
-                            <input type='hidden' accept='pdf' name='action' value='ajouterFamilleAccueil'>
-                            <input type='hidden' name='action' value='generateAccueilPDF'>
+                            <input type="hidden" name="action" value="generateAdoptionPDF">
 
                             <?php
                             foreach ($chien as $c){
-                            ?>
-                            <input type='hidden' name='nomChien' value="<?php echo htmlspecialchars($c->getNomChien()); ?>">
-                            <input type='hidden' name='race' value="<?php echo htmlspecialchars($c->getRace()); ?>">
-                            <input type='hidden' name='sexe' value="<?php echo htmlspecialchars($c->getSexe()); ?>">
-                            <input type='hidden' name='dateNaissance' value="<?php echo htmlspecialchars($c->getDateNaissance()); ?>">
-                            <input type='hidden' name='robe' value="<?php echo htmlspecialchars($c->getRobe()); ?>">
-                            <input type='hidden' name='sterilisation' value="<?php echo htmlspecialchars($c->getSterilisation()); ?>">
-                            <input type='hidden' name='dateAccueil' value="<?php echo htmlspecialchars($c->getDateAccueil()); ?>">
+                                ?>
+                                <input type='hidden' name='numPuce' value="<?php echo htmlspecialchars($c->getNumpuce()); ?>">
+                                <input type='hidden' name='nomChien' value="<?php echo htmlspecialchars($c->getNomChien()); ?>">
+                                <input type='hidden' name='race' value="<?php echo htmlspecialchars($c->getRace()); ?>">
+                                <input type='hidden' name='sexe' value="<?php echo htmlspecialchars($c->getSexe()); ?>">
+                                <input type='hidden' name='dateNaissance' value="<?php echo htmlspecialchars($c->getDateNaissance()); ?>">
+                                <input type='hidden' name='robe' value="<?php echo htmlspecialchars($c->getRobe()); ?>">
+                                <input type='hidden' name='sterilisation' value="<?php echo htmlspecialchars($c->getSterilisation()); ?>">
 
-                            <?php
+                                <?php
                             }
                             ?>
                         </div>

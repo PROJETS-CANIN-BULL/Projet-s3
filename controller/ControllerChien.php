@@ -84,6 +84,14 @@ class ControllerChien
         }
 
     }
+
+    public static function formulaireAdoptionChien(){
+        $chien = ModelChien::getChiensNonAdoptes();
+        $view = 'formulaireAdoptionChien';
+        $pagetitle = 'formulaire adoption';
+        require(File::build_path(array("view", "view.php")));
+    }
+
     public static function modificationFormulaire(){
         $puce = $_GET['numPuce'];
         $chien = ModelChien::getChienByNumPuce($puce);
@@ -136,7 +144,7 @@ class ControllerChien
         if ($chien===null)
             require (File::build_path(array("view", "view.php")));
         require(File::build_path(array("view", "view.php")));
-        require(File::build_path(array("lib", "PDF.php")));
+        require(File::build_path(array("lib", "AccueilPDF.php")));
 
     }
 
