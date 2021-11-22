@@ -42,7 +42,6 @@ class ControllerChien
             'description' => $_POST['description'],
             'nomAncienProprio' => $_POST['nomAncienProp']
         );
-        var_dump($data);
 
         $erreur = 'null';
 
@@ -63,16 +62,16 @@ class ControllerChien
         }
 
         $data['nomPhoto'] = $_FILES['photo']['name'];
-        if ($resultat == false || ModelChien::addChien($data) == false) {
+
+        if (ModelChien::addChien($data) == false || $resultat == false) {
             $erreur = "une des dates n'est pas dans le bon format";
 
-            if ($resultat ==false) {
+            if (!$resultat) {
+                ModelChien::supprimerChien($data['numPuce']);
                 $erreur = 'Le déplacement des fichiers a connu une erreur';
             }else{
                 unlink($nom);
             }
-            ModelChien::supprimerChien($data['numPuce']);
-
             $view = 'AjoutChienNonReussi';
             $pagetitle = 'Chien Non Ajouté';
             require(File::build_path(array("view", "view.php")));
@@ -85,6 +84,14 @@ class ControllerChien
         }
 
     }
+
+    public static function formulaireAdoptionChien(){
+        $chien = ModelChien::getChiensNonAdoptes();
+        $view = 'formulaireAdoptionChien';
+        $pagetitle = 'formulaire adoption';
+        require(File::build_path(array("view", "view.php")));
+    }
+
     public static function modificationFormulaire(){
         $puce = $_GET['numPuce'];
         $chien = ModelChien::getChienByNumPuce($puce);
@@ -137,7 +144,7 @@ class ControllerChien
         if ($chien===null)
             require (File::build_path(array("view", "view.php")));
         require(File::build_path(array("view", "view.php")));
-        require(File::build_path(array("lib", "PDF.php")));
+        require(File::build_path(array("lib", "AccueilPDF.php")));
 
     }
 
@@ -430,7 +437,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNonAdoptesRobesDecroissants();
         $view = 'Adopter';
         $pagetitle = 'Les Adoptés';
-        require(File::build_path(array("view", "view.php")));
+        require(File::build_path(array("vieatement lisible (un objet PDOStatement).w", "view.php")));
     }
 
     public static function trouverChiensNonAdoptesRobes()
