@@ -6,24 +6,19 @@ require_once(File::build_path(array("model", "ModelFamilleAccueil.php")));
 require_once(File::build_path(array("model", "ModelUtilisateur.php")));
 require_once(File::build_path(array("model", "ModelVeto.php")));
 require_once(File::build_path(array("lib", "ContactLib.php")));
-require_once(File::build_path(array("lib", "AccueilPDF.php")));
-require_once(File::build_path(array("lib", "AdoptionPDF.php")));
+require_once(File::build_path(array("lib", "PDF.php")));
 
 class ControllerUtilisateur
 {
     public static $typeUtilisateur;
     public $id;
 
-    public static function generateAccueilPDF()
+    public static function generatePDF()
     {
-        AccueilPDF::generateAccueilPDF();
-        require(File::build_path(array("lib", "AccueilPDF.php")));
+        PDF::generatePDF();
+        require(File::build_path(array("lib", "PDF.php")));
     }
-    public static function generateAdoptionPDF()
-    {
-        AdoptionPDF::generateAdoptionPDF();
-        require(File::build_path(array("lib", "AdoptionPDF.php")));
-    }
+
 
     public static function seConnecter()
     {
@@ -82,7 +77,7 @@ class ControllerUtilisateur
         } else {
             $_SESSION['login']=$data['id'];
             $_SESSION['isAdmin']=0;
-
+            
             ModelUtilisateur::creerUtilisateur($data);
             $view = 'accueil';
             $pagetitle = 'Page Accueil';
@@ -132,7 +127,7 @@ class ControllerUtilisateur
 
         readfile($file);
     }
-    public static function deconnexion(){
+      public static function deconnexion(){
         session_unset();     // unset $_SESSION variable for the run-time 
         session_destroy();   // destroy session data in storage
         setcookie(session_name(),'',time()-1);

@@ -15,6 +15,7 @@ button .btn {
 }
 
 .photoChien {
+    margin: 10px 10px,10px,10px;
     max-heigth:500px !important;
     max-width: 500px !important;
 
