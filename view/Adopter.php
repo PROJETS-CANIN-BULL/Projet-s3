@@ -285,12 +285,16 @@
                             foreach ($chien as $c) {
 
                                 ?>
-                                <div>
-                                    <button class="btn left" type="button"
-                                            onclick=" location.href = 'index.php?controller=Chien&action=formulaireAdoptionChien'">
-                                        Adopter
-                                    </button>
-                                </div>
+                                <form action="index.php" method="post">
+                                    <div class="input" id="send">
+                                        <input type="submit" name="submit" value="Adoption">
+                                        <input type="hidden" name="action" value="formulaireAdoptionChien">
+                                        <input type="hidden" name="controller" value="chien">
+                                        <input type="hidden" name="numPuce" value="<?php echo htmlspecialchars($c->getNumPuce()) ?>">
+                                    </div>
+                                </form>
+
+                               
                                 <?php
 
                                 echo '<div class="row justify-content-center"><h3 class="text-center">' . htmlspecialchars($c->getNomchien()) . ' : ' . htmlspecialchars($c->getNumPuce()) . '</h3>';

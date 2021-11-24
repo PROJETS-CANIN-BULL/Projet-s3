@@ -4,6 +4,7 @@ require_once(File::build_path(array("model", "Model.php")));
 
 class ModelFamille
 {
+    private $idFamille;
     private $civilite;
     private $nomFamille;
     private $prenomFamille;
@@ -15,9 +16,10 @@ class ModelFamille
     private $pays;
 
 
-    public function __construct($civilite = NULL, $nom = NULL, $prenom = NULL, $mail = NULL, $num = NULL, $adresse = NULL, $codePostal = NULL, $ville = NULL, $pays = NULL)
+    public function __construct($idFamille = NULL, $civilite = NULL, $nom = NULL, $prenom = NULL, $mail = NULL, $num = NULL, $adresse = NULL, $codePostal = NULL, $ville = NULL, $pays = NULL)
     {
-        if (!is_null($civilite) && !is_null($nom) && !is_null($prenom) && !is_null($mail) && !is_null($num) && !is_null($adresse) && !is_null($codePostal) && !is_null($ville) && !is_null($pays)) {
+        if (!is_null($idFamille)&&!is_null($civilite) && !is_null($nom) && !is_null($prenom) && !is_null($mail) && !is_null($num) && !is_null($adresse) && !is_null($codePostal) && !is_null($ville) && !is_null($pays)) {
+            $this->idFamille = $idFamille;
             $this->civilite = $civilite;
             $this->nomFamille = $nom;
             $this->prenomFamille = $prenom;
@@ -34,7 +36,7 @@ class ModelFamille
 
     public static function ajouterFamille($data)
     {
-        $sql = "INSERT INTO `Famille`(`civilite`, `nomFamille`, `prenomFamille`, `mail`, `numTelephone`, `adresse`, `codePostal`, `ville`, `pays`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6;:tag7;:tag8;:tag9)";
+        $sql = "INSERT INTO `Famille`(`civilite`, `nomFamille`, `prenomFamille`, `mail`, `numTelephone`, `adresse`, `codePostal`, `ville`, `pays`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6,:tag7,:tag8,:tag9)";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -50,8 +52,23 @@ class ModelFamille
         );
         $req_prep->execute($values);
     }
+    public static function getFamilleByNom($info){
+        $sql = "SELECT * FROM Famille WHERE nomFamille=:tag AND prenomFamille=:tag2 AND mail=:tag3";
+        $req_prep = Model::getPDO()->prepare($sql);
+        $values = array(
+            "tag" => $info['nomFamille'],
+            "tag2" => $info['prenomFamille'],
+            "tag3" => $info['mail'],
+        );
+        $req_prep->execute($values);
+        $req_prep->setFetchMode(PDO::FETCH_CLASS,'ModelFamille');
+        $tab_famille = $req_prep->fetchAll();
+        if (empty($tab_famille))
+            return false;
+        return $tab_famille[0];
+    }
 
-    public static function modofierNom($data)
+    public static function modifierNom($data)
     {
     }
 
@@ -64,6 +81,10 @@ class ModelFamille
     }
 
     //Getter
+    public function getIdFamille()
+    {
+        return $this->idFamille;
+    }
     public function getCivilite()
     {
         return $this->civilite;

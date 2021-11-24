@@ -4,7 +4,6 @@
 <main>
     <div class="container-fluid red">
         <div class="container text-center">
-            <h2> Ajouter une Facture </h2>
 
         </div>
         <div class="container-fluid blue">
@@ -30,7 +29,7 @@
                         <input type='hidden' name='action' value='getChienByNumPuce'>
 
                         <fieldset>
-                            <legend>Devenez une famille d' Accueil</legend>
+                            <legend>Devenez une famille d' Adoption</legend>
                             <div class="input">
                                 <span class="inputItem"> Civilite *</span>
                                 <select class="inputField" id="civilite" name="civilite">
@@ -99,9 +98,7 @@
                             <input type="submit" name="submit" value="Envoyer">
                             <input type="hidden" name="action" value="generateAdoptionPDF">
 
-                            <?php
-                            foreach ($chien as $c){
-                                ?>
+                           
                                 <input type='hidden' name='numPuce' value="<?php echo htmlspecialchars($c->getNumpuce()); ?>">
                                 <input type='hidden' name='nomChien' value="<?php echo htmlspecialchars($c->getNomChien()); ?>">
                                 <input type='hidden' name='race' value="<?php echo htmlspecialchars($c->getRace()); ?>">
@@ -110,9 +107,7 @@
                                 <input type='hidden' name='robe' value="<?php echo htmlspecialchars($c->getRobe()); ?>">
                                 <input type='hidden' name='sterilisation' value="<?php echo htmlspecialchars($c->getSterilisation()); ?>">
 
-                                <?php
-                            }
-                            ?>
+                            
                         </div>
                     </form>
                 </article>

@@ -1,6 +1,8 @@
 <?php
 require_once(File::build_path(array("model", "ModelChien.php")));
 require_once(File::build_path(array("model", "ModelFacture.php")));
+require_once(File::build_path(array("model", "ModelAdoption.php")));
+
 
 
 class ControllerChien
@@ -20,6 +22,7 @@ class ControllerChien
         $pagetitle = 'Les Adoptés';
         require(File::build_path(array("view", "view.php")));
     }
+
     public static function formulaireChien()
     {
         $view = 'formulaireAjoutChien';
@@ -86,7 +89,7 @@ class ControllerChien
     }
 
     public static function formulaireAdoptionChien(){
-        $chien = ModelChien::getChiensNonAdoptes();
+        $c = ModelChien::getChienByNumPuce($_POST['numPuce']);
         $view = 'formulaireAdoptionChien';
         $pagetitle = 'formulaire adoption';
         require(File::build_path(array("view", "view.php")));
@@ -115,12 +118,23 @@ class ControllerChien
             'nomAncienProprio' => $_POST['nomAncienProp']
         );
         ModelChien::modifierChien($info);
-        $message = 'modifié';
-        $titre = "Modifier Chien";
-        $view = 'AjoutChienReussi';
-        $pagetitle = 'Modifier Chien';
-        require(File::build_path(array("view", "view.php")));
-    }
+        if( $_POST['adoption']=='oui' && ModelAdoption::getAdoptionBynumPuce($info['numPuce'])==false){
+              $chien = ModelChien::getChiensNonAdoptes();
+              $view = 'formulaireAdoptionChien';
+              $pagetitle = 'formulaire adoption';
+              require(File::build_path(array("view", "view.php")));
+        }
+        else if($_POST['adoption)']=='non' && ModelAdoption::getAdoptionBynumPuce($info['numPuce'])!=false){
+                ModelAdoption::supprimerAdoption($info['numPuce']);
+        }
+            $message = 'modifié';
+            $titre = "Modifier Chien";
+            $view = 'AjoutChienReussi';
+            $pagetitle = 'Modifier Chien';
+            require(File::build_path(array("view", "view.php")));
+
+        }
+     
 
     public static function supprimerChien(){
         $puce = $_GET['numPuce'];
@@ -132,6 +146,13 @@ class ControllerChien
         $titre = "Supprimer Chien";
         $view = 'AjoutChienReussi';
         $pagetitle = 'Supprimer Chien';
+        require(File::build_path(array("view", "view.php")));
+    }
+
+    public static function supressionAdoption(){
+        ModelAdoption::supprimerAdoption($_GET['numPuce']);
+        $view = 'Adopter';
+        $pagetitle = 'Adopter';
         require(File::build_path(array("view", "view.php")));
     }
 

@@ -86,6 +86,14 @@
                                 <textarea class="inputField" placeholder="description de 500 caractères"
                                           name="description"  required> <?php echo htmlspecialchars($chien->getDescription())?> </textarea>
                             </div>
+                             <div class="input">
+                            <div class="input">
+                                <span class="inputItem"> La chien est-il adopté ? *</span>
+                                <select class="inputField" id="adoption" name="adoption">
+                                    <option value="oui">Oui</option>
+                                    <option selected value="non">Non</option>
+                                </select>
+                            </div>
 
                         </fieldset>
                         <div class="input" id="send">

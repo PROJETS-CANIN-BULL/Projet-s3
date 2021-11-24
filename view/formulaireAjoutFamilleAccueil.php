@@ -4,7 +4,6 @@
 <main>
     <div class="container-fluid red">
         <div class="container text-center">
-            <h2> Ajouter une Facture </h2>
 
         </div>
         <div class="container-fluid blue">

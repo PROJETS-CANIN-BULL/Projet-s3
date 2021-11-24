@@ -8,6 +8,8 @@ require_once(File::build_path(array("model", "ModelVeto.php")));
 require_once(File::build_path(array("lib", "ContactLib.php")));
 require_once(File::build_path(array("lib", "AccueilPDF.php")));
 require_once(File::build_path(array("lib", "AdoptionPDF.php")));
+require_once(File::build_path(array("model", "ModelAdoption.php")));
+
 
 class ControllerUtilisateur
 {
@@ -21,6 +23,28 @@ class ControllerUtilisateur
     }
     public static function generateAdoptionPDF()
     {
+
+        $infoFamille=array(
+            'civilite'=>$_POST['civilite'],
+            'nomFamille'=>$_POST['nomFamilleAccueil'],
+            'prenomFamille'=>$_POST['prenomFamilleAccueil'],
+            'mail'=>$_POST['mail'],
+            'numTelephone'=>$_POST['telephone'],
+            'adresse'=>$_POST['adresseFamilleAccueil'],
+            'codePostal'=>$_POST['codePostalFamilleAccueil'],
+            'ville'=>$_POST['villeFamilleAccueil'],
+            'pays'=>$_POST['paysFamilleAccueil']
+        );
+        ModelFamille::ajouterFamille($infoFamille);
+        $famille = ModelFamille::getFamilleByNom($infoFamille);
+
+        $data= array(
+            'numPuce'=>$_POST['numPuce'],
+            'idFamille'=>$famille->getIdFamille(),
+        );
+
+        ModelAdoption::ajouterAdoption($data);
+
         AdoptionPDF::generateAdoptionPDF();
         require(File::build_path(array("lib", "AdoptionPDF.php")));
     }
