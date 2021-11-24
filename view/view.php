@@ -40,15 +40,16 @@
                 <!-- Example single danger button -->
                 <a class="btn btn-primary" href="index.php?action=FAQ" role="button">FAQ</a>
                 <a class="btn btn-primary" href="index.php?action=Contact" role="button">Contact</a>
+                <a class="btn btn-primary" href="index.php?action=compte" role="button">Compte</a>
                 <a class="btn btn-primary" href="index.php?action=deconnexion" role="button">Deconnexion</a>
-                <form method="get" class="pull-right">
+               <!-- <form method="get" class="pull-right">
                     <input name="q" class="form-control mr-sm-2" type="search" placeholder="Rechercher"
                            aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0 searchbtn" type="submit">Search</button>
                 </form>
-            </nav>
+            </nav>-->
             <?php
-            require_once(File::build_path(array("model", "ModelRecherche.php")));
+            /*require_once(File::build_path(array("model", "ModelRecherche.php")));
             $args = ModelRecherche::search();
             if ($args["1"]->rowCount() > 0) { ?>
                 <ul>
@@ -58,12 +59,14 @@
                 </ul>
             <?php } else { ?>
                 Aucun résultat pour: <?= $args["0"] ?>...
-            <?php } ?>
+            <?php } */?>
 
 
 </header>
 <?php
-$filepath = File::build_path(array("view", "$view.php"));
+if (isset($controller)) $filepath = File::build_path(array("view", $controller, "$view.php"));
+else $filepath = File::build_path(array("view", "$view.php"));
+
 require $filepath;
 ?>
 

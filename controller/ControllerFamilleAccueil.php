@@ -10,6 +10,7 @@ class ControllerFamilleAccueil
         $chien = ModelChien::getChiensNonAdoptes();
         $view = 'formulaireAjoutFamilleAccueil';
         $pagetitle = 'formulaire Famille';
+        $controller='famille';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -30,7 +31,7 @@ class ControllerFamilleAccueil
         ModelFamilleAccueil::ajouterFamilleAccueil($data);
         $view = 'AjoutFamilleAccueilReussi';
         $pagetitle = 'Famille Ajoutée';
-
+        $controller='famille';
         require(File::build_path(array("view", "view.php")));
     }
 

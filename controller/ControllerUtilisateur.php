@@ -13,8 +13,6 @@ require_once(File::build_path(array("model", "ModelAdoption.php")));
 
 class ControllerUtilisateur
 {
-    public static $typeUtilisateur;
-    public $id;
 
     public static function generateAccueilPDF()
     {
@@ -110,6 +108,42 @@ class ControllerUtilisateur
             ModelUtilisateur::creerUtilisateur($data);
             $view = 'accueil';
             $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php")));
+        }
+    }
+    public static function compte(){
+        $u=ModelUtilisateur::getUtilisateurByPseudo($_SESSION['login']);
+        $view = 'Compte';
+        $controller='utilisateur';
+        $pagetitle = 'Compte';
+        require(File::build_path(array("view", "view.php")));
+    }
+
+    public static function modificationCompte(){
+        $u=ModelUtilisateur::getUtilisateurByPseudo($_SESSION['login']);
+        $view = 'modificationCompte';
+        $controller='utilisateur';
+        $pagetitle = 'Modifier Compte';
+        require(File::build_path(array("view", "view.php")));
+    }
+
+    public static function modifierCompte(){
+        $data=array(
+            'pseudo'=> $_POST['pseudo'],
+            'mail'=> $_POST['mail'],
+        );
+        if($_POST['motDePasse']!=$_POST['motDePasse1']){
+            $view = 'modificationUtilisateurNonReussi';
+            $controller='utilisateur';
+            $pagetitle = 'Compte';
+            require(File::build_path(array("view", "view.php")));
+        }else{
+            $passwordHache = Security::hacher($_POST['motDePasse']);
+            $data['motDePasse'] = $passwordHache;
+            ModelUtilisateur::modifierUtilisateur($data);
+            $view = 'modificationUtilisateurReussi';
+            $controller='utilisateur';
+            $pagetitle = 'Compte';
             require(File::build_path(array("view", "view.php")));
         }
     }

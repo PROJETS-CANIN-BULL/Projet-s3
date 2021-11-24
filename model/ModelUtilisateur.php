@@ -3,16 +3,16 @@ require_once (File::build_path(array("model","Model.php")));
 
 
 class ModelUtilisateur {
-    private $id;
+    private $pseudo;
     private $mail;
-    private $password;
+    private $motDePasse;
     private $type;
 
     public function __construct($i = NULL, $c = NULL, $p = NULL, $type=NULL) {
         if (!is_null($i) && !is_null($c) && !is_null($p)&& !is_null($type)) {
-            $this->id = $i;
+            $this->pseudo = $i;
             $this->mail = $c;
-            $this->password = $p;
+            $this->motDePasse = $p;
             $this->type = $type;
 
         }
@@ -20,7 +20,6 @@ class ModelUtilisateur {
 
     public static function verifierUtilisateur($data) {
         $sql = "SELECT * from Utilisateur WHERE pseudo=:nom_tag AND motDePasse=:nom_tag2";
-        // Préparation de la requête
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -32,7 +31,6 @@ class ModelUtilisateur {
 
         $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
         $utilisateur = $req_prep->fetchAll();
-        // Attention, si il n'y a pas de résultats, on renvoie false
         if (empty($utilisateur)){
             return false;
         }
@@ -52,9 +50,48 @@ class ModelUtilisateur {
         );
         $req_prep->execute($values);
     }
+      public static function modifierUtilisateur($infos)
+    {
+        try {
+            $sql = "UPDATE Utilisateur SET mail=:tag2, motDePasse=:tag3 WHERE pseudo=:tag ";
+            $req_prep = Model::getPDO()->prepare($sql);
+
+            $values = array(
+                "tag" => $infos["pseudo"],
+                "tag2" => $infos["mail"],
+                "tag3" => $infos["motDePasse"],
+            );
+            $req_prep->execute($values);
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage();
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+
+    }
+    public static function getUtilisateurByPseudo($id){
+        $sql = "SELECT * from Utilisateur WHERE pseudo=:nom_tag";
+        $req_prep = Model::getPDO()->prepare($sql);
+
+        $values = array(
+            "nom_tag" => $id,
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelUtilisateur');
+        $utilisateur = $req_prep->fetchAll();
+        if (empty($utilisateur)){
+            return false;
+        }
+        return $utilisateur[0];
+    }
 
     public function getId(){
-        return $this->id;
+        return $this->pseudo;
     }
 
 
