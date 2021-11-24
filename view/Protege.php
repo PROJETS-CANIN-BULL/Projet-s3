@@ -277,8 +277,11 @@
                                 echo '<div class="col-4"><p> Date de Naissance  : ' . htmlspecialchars($c->getDateNaissance()) . '</p><p> Date début accueil : ' . htmlspecialchars($c->getDateAccueil()) . '</p></div>';
                                 echo '<div class="col-4"><p> Sexe  : ' . htmlspecialchars($c->getSexe()) . '</p><p> Sterelisation : ' . htmlspecialchars($c->getSterilisation()) . '</p></div>';
                                 echo '<div><p>' . htmlspecialchars($c->getDescription()) . '</p></div></div>';
-                                echo '<p><a href="index.php?controller=Chien&action=modificationFormulaire&numPuce='.rawurlencode($c->getNumPuce()).'"> Modifier le Chien </a></p>';
-                                echo '<p><a href="index.php?controller=Chien&action=supprimerChien&numPuce='.rawurlencode($c->getNumPuce()).'"> Supprimer le Chien </a></p>';
+
+                                if ($_SESSION['isAdmin'] == 1) {
+                                    echo '<p><a href="index.php?controller=Chien&action=modificationFormulaire&numPuce='.rawurlencode($c->getNumPuce()).'"> Modifier le Chien </a></p>';
+                                    echo '<p><a href="index.php?controller=Chien&action=supprimerChien&numPuce='.rawurlencode($c->getNumPuce()).'"> Supprimer le Chien </a></p>';
+                                }
 
                             }
                         }

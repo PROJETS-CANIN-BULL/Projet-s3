@@ -236,8 +236,11 @@
                             </form>
 
                             <?php
-                            echo '<p><a href="index.php?controller=Facture&action=modificationFormulaire&numFacture=' . rawurlencode($f->getNumFacture()) . '&crediteur=' . rawurlencode($f->getCrediteur()) . '"> Modifier la facture </a></p>';
-                            echo '<p><a href="index.php?controller=Facture&action=supprimerFacture&numFacture=' . rawurlencode($f->getNumFacture()) . '&crediteur=' . rawurlencode($f->getCrediteur()) . '"> Supprimer la facture </a></p>';
+
+                                if ($_SESSION['isAdmin'] == 1) {
+                                    echo '<p><a href="index.php?controller=Facture&action=modificationFormulaire&numFacture=' . rawurlencode($f->getNumFacture()) . '&crediteur=' . rawurlencode($f->getCrediteur()) . '"> Modifier la facture </a></p>';
+                                    echo '<p><a href="index.php?controller=Facture&action=supprimerFacture&numFacture=' . rawurlencode($f->getNumFacture()) . '&crediteur=' . rawurlencode($f->getCrediteur()) . '"> Supprimer la facture </a></p>';
+                                }
 
                         }
                     }
