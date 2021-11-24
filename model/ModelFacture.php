@@ -184,6 +184,23 @@ class ModelFacture
             die();
         }
     }
+     public static function totaliserFacturesRaces()
+    {
+        try {
+            $PDO = Model::getPDO();
+            $rep = $PDO->query("SELECT race AS bd ,sum(cout) AS cout FROM Facture JOIN Chien ON Facture.numpuce=Chien.numpuce GROUP BY race");
+            $rep->setFetchMode(PDO::FETCH_ASSOC);
+            $row = $rep->fetchAll();
+            return $row;
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage(); // affiche un message d'erreur
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
 
     public static function totaliserFacturesTypes()
     {

@@ -61,6 +61,10 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link"
+                                           href="index.php?controller=Facture&action=totaliserFacturesRaces">Race</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"
                                            href="index.php?controller=Facture&action=totaliserFacturesTypes">Types</a>
                                     </li>
                                     <li class="nav-item">

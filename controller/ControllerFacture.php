@@ -141,6 +141,14 @@ class ControllerFacture
         require(File::build_path(array("view", "view.php")));
     }
 
+    public static function totaliserFacturesRaces()
+    {
+        $couts = ModelFacture::totaliserFacturesRaces();
+        $view = 'totalFactures';
+        $pagetitle = 'Factures';
+        require(File::build_path(array("view", "view.php")));
+    }
+
     public static function totaliserFacturesTypes()
     {
         $couts = ModelFacture::totaliserFacturesTypes();
@@ -148,6 +156,7 @@ class ControllerFacture
         $pagetitle = 'Factures';
         require(File::build_path(array("view", "view.php")));
     }
+
 
     public static function totaliserFacturesMotifs()
     {
