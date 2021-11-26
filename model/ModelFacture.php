@@ -318,11 +318,11 @@ class ModelFacture
     public static function getFacture($num)
     {
 
-        $sql = "SELECT * FROM Facture WHERE numFacture=:num1";
+        $sql = "SELECT * FROM Facture WHERE numFacture LIKE :num1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "num1" => $num,
+            "num1" => '%'.$num.'%',
         );
 
         $req_prep->execute($values);
@@ -377,11 +377,11 @@ class ModelFacture
     public static function getFacturesNumPuces($num)
     {
 
-        $sql = "SELECT * FROM Facture WHERE numPuce=:num1";
+        $sql = "SELECT * FROM Facture WHERE numPuce LIKE :num1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "num1" => $num,
+            "num1" => '%'.$num.'%',
         );
 
         $req_prep->execute($values);

@@ -218,15 +218,14 @@ class ModelChien
 
     public static function getChiensNoms($nom)
     {
-
-        $sql = "SELECT * FROM Chien WHERE nomChien LIKE ? ";
+        $sql = 'SELECT * FROM Chien WHERE nomChien LIKE :nom';
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "nom1" =>  $nom,
+            "nom" =>  '%'.$nom.'%',
         );
 
-        $req_prep->execute(array('"%'.$nom.'%"'));
+        $req_prep->execute($values);
 
         $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
         $chiens = $req_prep->fetchAll();
@@ -279,11 +278,11 @@ class ModelChien
     public static function getChiensNumPuces($numPuce)
     {
 
-        $sql = "SELECT * FROM Chien WHERE numPuce=:num1";
+        $sql = "SELECT * FROM Chien WHERE numPuce LIKE :num1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "num1" => $numPuce,
+            "num1" => '%'.$numPuce.'%',
         );
 
         $req_prep->execute($values);
@@ -340,11 +339,11 @@ class ModelChien
     public static function getChiensRaces($race)
     {
 
-        $sql = "SELECT * FROM Chien WHERE race=:race1";
+        $sql = "SELECT * FROM Chien WHERE race LIKE:race1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "race1" => $race,
+            "race1" => '%'.$race.'%',
         );
 
         $req_prep->execute($values);
@@ -446,11 +445,11 @@ class ModelChien
     public static function getChiensRobes($robe)
     {
 
-        $sql = "SELECT * FROM Chien WHERE robe=:robe1";
+        $sql = "SELECT * FROM Chien WHERE robe LIKE:robe1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "robe1" => $robe,
+            "robe1" => '%'.$robe.'%',
         );
 
         $req_prep->execute($values);
@@ -551,11 +550,11 @@ class ModelChien
     public static function getChiensAncienProprio($nomAncienProp)
     {
 
-        $sql = "SELECT * FROM Chien WHERE nomAncienProprio=:nom1";
+        $sql = "SELECT * FROM Chien WHERE nomAncienProprio LIKE :nom1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "nom1" => $nomAncienProp,
+            "nom1" => '%'.nomAncienProp.'%',
         );
 
         $req_prep->execute($values);
@@ -615,11 +614,11 @@ class ModelChien
     public static function getChiensNonAdoptesNoms($nom)
     {
 
-        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND nomChien=:nom1";
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND nomChien LIKE :nom1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "nom1" => $nom,
+            "nom1" => '%'.$nom.'%',
         );
 
         $req_prep->execute($values);
@@ -676,11 +675,11 @@ class ModelChien
     public static function getChiensNonAdoptesNumPuces($numPuce)
     {
 
-        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND numPuce=:num1";
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND numPuce LIKE :num1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "num1" => $numPuce,
+            "num1" => '%'.$numPuce.'%',
         );
 
         $req_prep->execute($values);
@@ -841,11 +840,11 @@ class ModelChien
     public static function getChiensNonAdoptesRobes($robe)
     {
 
-        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND robe=:robe1 ";
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND robe LIKE :robe1 ";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "robe1" => $robe,
+            "robe1" => '%'.$robe.'%',
         );
 
         $req_prep->execute($values);
@@ -945,11 +944,11 @@ class ModelChien
     public static function getChiensNonAdoptesAncienProprio($nomAncienProp)
     {
 
-        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND nomAncienProprio=:nom1 ";
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND nomAncienProprio LIKE :nom1 ";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "nom1" => $nomAncienProp,
+            "nom1" => '%'.$nomAncienProp.'%',
         );
 
         $req_prep->execute($values);

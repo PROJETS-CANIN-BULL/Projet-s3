@@ -396,7 +396,7 @@ class ControllerChien
 
     public static function trouverChiensNonAdoptesNoms()
     {
-        $nom = $_POST['nomPuce'];
+        $nom = $_POST['nomChien'];
         $chien = ModelChien::getChiensNonAdoptesNoms($nom);
         $view = 'Adopter';
         $pagetitle = 'A Adopter';

@@ -267,6 +267,8 @@
                     <div class="container">
 
                         <?php
+                        echo "SELECT * FROM Chien WHERE nomChien LIKE \"% :nom1 %\" ";
+
                         if ($chien == NULL) {
                             echo "<div>Aucun protégé n'existe</div>";
                         } else {
