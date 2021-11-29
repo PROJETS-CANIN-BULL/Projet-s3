@@ -4,6 +4,7 @@ require_once(File::build_path(array("model", "Model.php")));
 
 class ModelFamilleAccueil
 {
+    private $idFamilleAccueil;
     private $civilite;
     private $nomFamilleAccueil;
     private $prenomFamilleAccueil;
@@ -15,9 +16,10 @@ class ModelFamilleAccueil
     private $paysFamilleAccueil;
 
 
-    public function __construct($civilite = NULL, $nom = NULL, $prenom = NULL, $mail = NULL, $num = NULL, $adresseFamilleAccueil = NULL, $codePostalFamilleAccueil = NULL, $villeFamilleAccueil = NULL, $paysFamilleAccueil = NULL)
+    public function __construct($idFamilleAccueil = NULL, $civilite = NULL, $nom = NULL, $prenom = NULL, $mail = NULL, $num = NULL, $adresseFamilleAccueil = NULL, $codePostalFamilleAccueil = NULL, $villeFamilleAccueil = NULL, $paysFamilleAccueil = NULL)
     {
-        if (!is_null($civilite) && !is_null($nom) && !is_null($prenom) && !is_null($mail) && !is_null($num) && !is_null($adresseFamilleAccueil) && !is_null($codePostalFamilleAccueil) && !is_null($villeFamilleAccueil) && !is_null($paysFamilleAccueil)) {
+        if (!is_null($idFamilleAccueil) && !is_null($civilite) && !is_null($nom) && !is_null($prenom) && !is_null($mail) && !is_null($num) && !is_null($adresseFamilleAccueil) && !is_null($codePostalFamilleAccueil) && !is_null($villeFamilleAccueil) && !is_null($paysFamilleAccueil)) {
+            $this->idFamilleAccueil = $idFamilleAccueil;
             $this->civilite = $civilite;
             $this->nomFamilleAccueil = $nom;
             $this->prenomFamilleAccueil = $prenom;
@@ -52,6 +54,21 @@ class ModelFamilleAccueil
 
 
     }
+    public static function getFamilleAccueilByNom($info){
+        $sql = "SELECT * FROM FamilleAccueil WHERE nomFamilleAccueil=:tag AND prenomFamilleAccueil=:tag2 AND mail=:tag3";
+        $req_prep = Model::getPDO()->prepare($sql);
+        $values = array(
+            "tag" => $info['nomFamilleAccueil'],
+            "tag2" => $info['prenomFamilleAccueil'],
+            "tag3" => $info['mail'],
+        );
+        $req_prep->execute($values);
+        $req_prep->setFetchMode(PDO::FETCH_CLASS,'ModelFamille');
+        $tab_famille = $req_prep->fetchAll();
+        if (empty($tab_famille))
+            return false;
+        return $tab_famille[0];
+    }
 
     public static function modofierNomAccueil($data)
     {
@@ -65,7 +82,13 @@ class ModelFamilleAccueil
     {
     }
 
+
     //Getter
+    public function getIdFamilleAccueil()
+    {
+        return $this->idFamilleAccueil;
+    }
+
     public function getCivilite()
     {
         return $this->civilite;
