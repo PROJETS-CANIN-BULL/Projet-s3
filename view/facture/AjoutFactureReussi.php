@@ -1,7 +1,7 @@
 <main>
     <div class="container-fluid red">
         <div class="container text-center">
-            <h2> <?php echo $titre;?></h2>
+            <h2> <?php echo $titre; ?></h2>
 
         </div>
         <div class="container-fluid blue">

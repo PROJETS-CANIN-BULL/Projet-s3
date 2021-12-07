@@ -83,4 +83,14 @@ fieldset {
         width: 85%
     }
 }
+#myDIV{
+    display: none;
+}
+#listeVeto{
+    display: none;
+}
 
+.photoChien{
+    max-heigth:500px !important;
+    max-width: 500px !important;
+}

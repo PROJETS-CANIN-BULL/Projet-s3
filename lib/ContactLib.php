@@ -9,7 +9,8 @@ require_once(File::build_path(array("phpmailer", "SMTP.php")));
 
 class ContactLib
 {
-    public static function sendEmail(){
+    public static function sendEmail()
+    {
         $mail = new PHPMailer(true);
         if (isset($_POST['submit'])) {
             $surname = $_POST['surname'];

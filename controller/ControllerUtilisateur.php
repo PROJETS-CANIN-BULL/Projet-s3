@@ -12,7 +12,6 @@ require_once(File::build_path(array("model", "ModelAdoption.php")));
 require_once(File::build_path(array("model", "ModelAccueil.php")));
 
 
-
 class ControllerUtilisateur
 {
 
@@ -23,28 +22,30 @@ class ControllerUtilisateur
             'nomFamilleAccueil' => $_POST['nomFamilleAccueil'],
             'prenomFamilleAccueil' => $_POST['prenomFamilleAccueil'],
             'mail' => $_POST['mail'],
-            'numTelephone' => $_POST['telephoneMobile'],
+            'telephoneMobile' => $_POST['telephoneMobile'],
+            'telephoneFixe' => $_POST['telephoneFixe'],
             'adresseFamilleAccueil' => $_POST['adresseFamilleAccueil'],
             'codePostalFamilleAccueil' => $_POST['codePostalFamilleAccueil'],
             'villeFamilleAccueil' => $_POST['villeFamilleAccueil'],
             'paysFamilleAccueil' => $_POST['paysFamilleAccueil']
         );
+
+
         ModelFamilleAccueil::ajouterFamilleAccueil($infoFamille);
-        $famille = ModelFamilleAccueil::getFamilleAccueilByNom($infoFamille);
+        $famille = ModelFamilleAccueil::getFamilleAccueilByNom($_POST['nomFamilleAccueil']);
 
         $data = array(
             'numPuce' => $_POST['numPuce'],
-            'idFamille' => $famille->getIdFamille(),
+            'idFamille' => $famille->getIdFamilleAccueil()
         );
         ModelAccueil::ajouterAccueil($data);
 
         AccueilPDF::generateAccueilPDF();
-        require(File::build_path(array("lib", "AccueilPDF.php")));
+        require_once(File::build_path(array("lib", "AccueilPDF.php")));
     }
 
     public static function generateAdoptionPDF()
     {
-
         $infoFamille = array(
             'civilite' => $_POST['civilite'],
             'nomFamille' => $_POST['nomFamilleAccueil'],
@@ -57,17 +58,16 @@ class ControllerUtilisateur
             'pays' => $_POST['paysFamilleAccueil']
         );
         ModelFamille::ajouterFamille($infoFamille);
-        $famille = ModelFamille::getFamilleByNom($infoFamille);
 
         $data = array(
             'numPuce' => $_POST['numPuce'],
-            'idFamille' => $famille->getIdFamille(),
+            'idFamille' => ModelFamille::getFamilleByNom($infoFamille)->getIdFamille()
         );
 
         ModelAdoption::ajouterAdoption($data);
 
         AdoptionPDF::generateAdoptionPDF();
-        require(File::build_path(array("lib", "AdoptionPDF.php")));
+        require_once(File::build_path(array("lib", "AdoptionPDF.php")));
     }
 
     public static function seConnecter()
@@ -114,24 +114,32 @@ class ControllerUtilisateur
         $passwordHache = Security::hacher($_POST['password']);
         $data['password'] = $passwordHache;
 
-        if (ModelUtilisateur::verifierUtilisateur($data) != NULL) {
-            $_SESSION['login'] = $data['id'];
-            if (ModelUtilisateur::getTypeID($_SESSION['login']) == 1) {
-                $_SESSION['isAdmin'] = 1;
+        if ($_POST['password'] == $_POST['verifMdp']) {
+
+            if (ModelUtilisateur::verifierUtilisateur($data) != NULL) {
+                $_SESSION['login'] = $data['id'];
+                if (ModelUtilisateur::getTypeID($_SESSION['login']) == 1) {
+                    $_SESSION['isAdmin'] = 1;
+                }
+                $view = 'accueil';
+                $pagetitle = 'Page Accueil';
+                require(File::build_path(array("view", "view.php")));
+
+
+            } else {
+                $_SESSION['login'] = $data['id'];
+                $_SESSION['isAdmin'] = 0;
+
+                ModelUtilisateur::creerUtilisateur($data);
+                $view = 'accueil';
+                $pagetitle = 'Page Accueil';
+                require(File::build_path(array("view", "view.php")));
             }
-            $view = 'accueil';
-            $pagetitle = 'Page Accueil';
-            require(File::build_path(array("view", "view.php")));
-
-
         } else {
-            $_SESSION['login'] = $data['id'];
-            $_SESSION['isAdmin'] = 0;
+            $error = "Mot de passe non identique";
+            require(File::build_path(array("view", "account_creation.php")));
 
-            ModelUtilisateur::creerUtilisateur($data);
-            $view = 'accueil';
-            $pagetitle = 'Page Accueil';
-            require(File::build_path(array("view", "view.php")));
+
         }
     }
 
@@ -220,7 +228,7 @@ class ControllerUtilisateur
 
     public static function deconnexion()
     {
-        session_unset();     // unset $_SESSION variable for the run-time 
+        session_unset();     // unset $_SESSION variable for the run-time
         session_destroy();   // destroy session data in storage
         setcookie(session_name(), '', time() - 1);
         require(File::build_path(array("view", "Connexion.php")));

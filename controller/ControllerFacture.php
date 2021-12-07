@@ -7,7 +7,7 @@ class ControllerFacture
     {
         $frais = ModelFacture::getAllFacture();
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Factures';
         require(File::build_path(array("view", "view.php")));
 
@@ -25,6 +25,35 @@ class ControllerFacture
             'crediteur' => $_POST['crediteur'],
         );
 
+        if (isset($_POST['idVeto'])) {
+            $factureVeto['idVeto'] = $_POST['idVeto'];
+            $infosFacture = array(
+                'numFacture' => $_POST['numFacture'],
+                'crediteur' => $_POST['crediteur'],
+            );
+        }
+        if (isset($_POST['nomVeto'])) {
+            $infosVeto = array(
+                'nomVeto' => $_POST['nomVeto'],
+                'numVeto' => $_POST['numVeto'],
+                'adresseVeto' => $_POST['adresseVeto'],
+                'codePostalVeto' => $_POST['codePostalVeto'],
+                'villeVeto' => $_POST['villeVeto'],
+                'paysVeto' => $_POST['paysVeto'],
+            );
+            ModelVeto::ajouterVeto($infosVeto);
+            $infos = array(
+                'nomVeto' => $_POST['nomVeto'],
+                'numTelephoneVeto' => $_POST['numVeto'],
+            );
+            $veto = ModelVeto::getVeterinaireByNom($infos);
+            $factureVeto['idVeto'] = $veto->getIdVeto();
+            $infosFacture = array(
+                'numFacture' => $_POST['numFacture'],
+                'crediteur' => $_POST['crediteur'],
+            );
+        }
+
         $erreur = 'null';
         $name = $data['numFacture'] . "-" . $data["crediteur"] . '.pdf';
         if (strcmp($_FILES['description']['name'], $name) != 0) {
@@ -40,7 +69,7 @@ class ControllerFacture
 
         if (strcmp($erreur, 'null') != 0) {
             $view = 'ErreurFacture';
-            $controller='facture';
+            $controller = 'facture';
             $pagetitle = 'Erreur Factures';
             require(File::build_path(array("view", "view.php")));
         }
@@ -56,17 +85,22 @@ class ControllerFacture
                 );
                 ModelFacture::supprimerFacture($info);
                 $erreur = 'Le déplacement des fichiers a connu une erreur';
-            }else{
+            } else {
                 unlink($nom);
             }
             $view = 'AjoutFactureNonReussi';
-            $controller='facture';
+            $controller = 'facture';
             $pagetitle = 'Facture Non Ajoutée';
             require(File::build_path(array("view", "view.php")));
         } else {
-            $message ='enregistrée';
+            if (isset($factureVeto)) {
+                $f = ModelFacture::getFactureByNumFacture($infosFacture);
+                $factureVeto['idFacture'] = $f->getIdFacture();
+                ModelFactureVeto::ajouterFacture();
+            }
+            $message = 'enregistrée';
             $titre = 'Ajouter Facture';
-            $controller='facture';
+            $controller = 'facture';
             $view = 'AjoutFactureReussi';
             $pagetitle = 'Facture Ajouté';
             require(File::build_path(array("view", "view.php")));
@@ -75,9 +109,16 @@ class ControllerFacture
 
     public static function formulaireFacture()
     {
-        $chiens = ModelChien::getAllChiens();
+        if (isset($_GET['numPuce'])) {
+            $chien = ModelChien::getChienByNumPuce($_GET['numPuce']);
+        } else {
+            $chiens = ModelChien::getAllChiens();
+
+        }
+        $veto = ModelVeto::getAllVeto();
+
         $view = 'formulaireAjoutFacture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'formulaire Facture';
         require(File::build_path(array("view", "view.php")));
     }
@@ -91,7 +132,7 @@ class ControllerFacture
         $facture = ModelFacture::getFactureByNumFacture($info);
         $chiens = ModelChien::getAllChiens();
         $view = 'modificationFacture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Modification Facture';
         require(File::build_path(array("view", "view.php")));
 
@@ -112,22 +153,23 @@ class ControllerFacture
         $message = 'modifiée';
         $titre = "Modifier Facture";
         $view = 'AjoutFactureReussi';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Modifier Factures';
         require(File::build_path(array("view", "view.php")));
     }
 
-    public static function supprimerFacture(){
+    public static function supprimerFacture()
+    {
         $info = array(
             "numFacture" => $_GET['numFacture'],
             "crediteur" => $_GET['crediteur']
         );
         ModelFacture::supprimerFacture($info);
-        $nom =File::build_path(array("pdf", $info['numFacture'].'-'.$info['crediteur'].'.pdf'));
+        $nom = File::build_path(array("pdf", $info['numFacture'] . '-' . $info['crediteur'] . '.pdf'));
         unlink($nom);
         $message = 'supprimée';
         $titre = "Supprimer Facture";
-        $controller='facture';
+        $controller = 'facture';
         $view = 'AjoutFactureReussi';
         $pagetitle = 'Supprimer Facture';
         require(File::build_path(array("view", "view.php")));
@@ -137,7 +179,7 @@ class ControllerFacture
     {
         $couts = ModelFacture::totaliserFactures();
         $view = 'totalFactures';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -147,7 +189,7 @@ class ControllerFacture
         $couts = ModelFacture::totaliserFacturesNumPuces();
         $view = 'totalFactures';
         $pagetitle = 'Factures';
-        $controller='facture';
+        $controller = 'facture';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -156,7 +198,7 @@ class ControllerFacture
         $couts = ModelFacture::totaliserFacturesRaces();
         $view = 'totalFactures';
         $pagetitle = 'Factures';
-        $controller='facture';
+        $controller = 'facture';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -164,7 +206,7 @@ class ControllerFacture
     {
         $couts = ModelFacture::totaliserFacturesTypes();
         $view = 'totalFactures';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -174,7 +216,7 @@ class ControllerFacture
     {
         $couts = ModelFacture::totaliserFacturesMotifs();
         $view = 'totalFactures';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -184,7 +226,7 @@ class ControllerFacture
         $couts = ModelFacture::totaliserFacturesCrediteurs();
         $view = 'totalFactures';
         $pagetitle = 'Factures';
-        $controller='facture';
+        $controller = 'facture';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -200,7 +242,7 @@ class ControllerFacture
     {
         $frais = ModelFacture::getAllFacturesNums();
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -209,7 +251,7 @@ class ControllerFacture
     {
         $frais = ModelFacture::getAllFacturesNumsDecroissants();
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -221,7 +263,7 @@ class ControllerFacture
         $num = $_POST['numFacture'];
         $frais = ModelFacture::getFacture($num);
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
 
@@ -231,7 +273,7 @@ class ControllerFacture
     {
         $frais = ModelFacture::getAllFacturesNumPuces();
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -240,7 +282,7 @@ class ControllerFacture
     {
         $frais = ModelFacture::getAllFacturesNumPucesDecroissants();
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -250,7 +292,7 @@ class ControllerFacture
         $num = $_POST['numPuce'];
         $frais = ModelFacture::getFacturesNumPuces($num);
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
 
@@ -261,7 +303,7 @@ class ControllerFacture
         $types = $_GET['type'];
         $frais = ModelFacture::getAllFacturesTypes($types);
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -271,7 +313,7 @@ class ControllerFacture
     {
         $frais = ModelFacture::getAllFacturesMotifs();
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -280,7 +322,7 @@ class ControllerFacture
     {
         $frais = ModelFacture::getAllFacturesMotifsDecroissants();
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -289,7 +331,7 @@ class ControllerFacture
     {
         $frais = ModelFacture::getAllFacturesCouts();
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -298,7 +340,7 @@ class ControllerFacture
     {
         $frais = ModelFacture::getAllFacturesCoutsDecroissants();
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -312,7 +354,7 @@ class ControllerFacture
         );
         $frais = ModelFacture::getFacturesCouts($couts);
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -325,7 +367,7 @@ class ControllerFacture
         );
         $frais = ModelFacture::getAllFacturesDateFactures($data);
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -335,7 +377,7 @@ class ControllerFacture
     {
         $frais = ModelFacture::getAllFacturesCrediteurs();
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }
@@ -344,7 +386,7 @@ class ControllerFacture
     {
         $frais = ModelFacture::getAllFacturesCrediteursDecroisants();
         $view = 'Facture';
-        $controller='facture';
+        $controller = 'facture';
         $pagetitle = 'Les Factures';
         require(File::build_path(array("view", "view.php")));
     }

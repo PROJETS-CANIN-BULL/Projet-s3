@@ -5,12 +5,26 @@ require_once(File::build_path(array("model", "ModelChien.php")));
 
 class ControllerFamilleAccueil
 {
+    /* public static function formulaireFamilleAccueil()
+     {
+         $chien = ModelChien::getChiensNonAdoptes();
+         $view = 'formulaireAjoutFamilleAccueil';
+         $pagetitle = 'formulaire Famille';
+         $controller='famille';
+         require(File::build_path(array("view", "view.php")));
+     }*/
     public static function formulaireFamilleAccueil()
     {
-        $chien = ModelChien::getChiensNonAdoptes();
+        if (isset($_GET['numPuce'])) {
+            $c = ModelChien::getChienByNumPuce($_GET['numPuce']);
+        } else {
+            $c = ModelChien::getAllChiens();
+        }
+        $f = ModelFamilleAccueil::getAllFamilleAccueil();
+
         $view = 'formulaireAjoutFamilleAccueil';
         $pagetitle = 'formulaire Famille';
-        $controller='famille';
+        $controller = 'famille';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -29,10 +43,14 @@ class ControllerFamilleAccueil
         );
 
         ModelFamilleAccueil::ajouterFamilleAccueil($data);
-        $view = 'AjoutFamilleAccueilReussi';
-        $pagetitle = 'Famille Ajoutée';
-        $controller='famille';
-        require(File::build_path(array("view", "view.php")));
+        if (ModelFamilleAccueil::ajouterFamilleAccueil($data) == false) {
+
+            $view = 'AjoutFamilleAccueilNonReussi';
+            $pagetitle = 'Famille non ajoutée';
+            $controller = 'famille';
+            require(File::build_path(array("view", "view.php")));
+        }
     }
+
 
 }

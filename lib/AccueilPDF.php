@@ -1,5 +1,6 @@
 <?php
 require_once(File::build_path(array("fpdf183", "fpdf.php")));
+require_once(File::build_path(array("model", "ModelFamilleAccueil.php")));
 
 class AccueilPDF extends FPDF
 {
@@ -11,7 +12,7 @@ class AccueilPDF extends FPDF
         $this->Image('image/logo.png', 10, 6, 30);
         // Police Arial gras 15
         $this->SetFont('Arial', 'B', 15);
-        $this->SetTextColor(14,78,116);
+        $this->SetTextColor(14, 78, 116);
         // Décalage à droite
         $this->Cell(50);
         // Titre
@@ -36,7 +37,7 @@ class AccueilPDF extends FPDF
         $this->SetX(25);
 
         $this->SetFont('Arial', 'B', 9);
-        $this->SetTextColor(14,78,116);
+        $this->SetTextColor(14, 78, 116);
         $this->Cell(42, 6, iconv('UTF-8', 'windows-1252', 'Bull\'s Friends Association'));
         $this->SetFont('Arial', '', 8);
         $this->SetTextColor(0);
@@ -49,7 +50,7 @@ class AccueilPDF extends FPDF
     {
         // Police Arial 13
         $this->SetFont('Arial', 'B', 13);
-        $this->SetTextColor(14,78,116);
+        $this->SetTextColor(14, 78, 116);
 
         // Décalage à droite
         $this->Cell(45);
@@ -99,8 +100,8 @@ class AccueilPDF extends FPDF
     {
         $this->MultiCell(200, 20, '');
         $this->SetFont('Arial', '', 12);
-        $this->SetTextColor(14,78,116);
-        $this->SetDrawColor(14,78,116);
+        $this->SetTextColor(14, 78, 116);
+        $this->SetDrawColor(14, 78, 116);
         $this->Cell(10);
         $this->MultiCell(50, 2, iconv('UTF-8', 'windows-1252', '   Remarques :'));
         $this->Line(20, 50, 190, 50);
@@ -175,30 +176,55 @@ class AccueilPDF extends FPDF
     {
         if (isset($_POST['submit'])) {
             // famille
-            $civilite = $_POST['civilite'];
-            $nomFamilleAccueil = $_POST['nomFamilleAccueil'];
-            $prenomFamilleAccueil = $_POST['prenomFamilleAccueil'];
-            $mail = $_POST['mail'];
-            $telephoneFixe = $_POST['telephoneFixe'];
-            $telephoneMobile = $_POST['telephoneMobile'];
-            $adresseFamilleAccueil = $_POST['adresseFamilleAccueil'];
-            $codePostalFamilleAccueil = $_POST['codePostalFamilleAccueil'];
-            $villeFamilleAccueil = $_POST['villeFamilleAccueil'];
-            $paysFamilleAccueil = $_POST['paysFamilleAccueil'];
+            $f = ModelFamilleAccueil::getFamilleAccueilByNom($_POST['nomFamilleAccueil']);
+            $civilite = $f->getCivilite();
+            $nomFamilleAccueil = $f->getNomFamilleAccueil();
+            $prenomFamilleAccueil = $f->getPrenomFamilleAccueil();
+            $mail = $f->getMail();
+            $telephoneFixe = $f->getTelephoneFixe();
+            $telephoneMobile = $f->getTelephoneMobile();
+            $adresseFamilleAccueil = $f->getAdresseFamilleAccueil();
+            $codePostalFamilleAccueil = $f->getCodePostalFamilleAccueil();
+            $villeFamilleAccueil = $f->getVilleFamilleAccueil();
+            $paysFamilleAccueil = $f->getPaysFamilleAccueil();
             $lieu = $_POST['lieu'];
             $dateForm = $_POST['dateForm'];
 
 
+            /* $civilite = $_POST['civilite'];
+             $nomFamilleAccueil = $_POST['nomFamilleAccueil'];
+             $prenomFamilleAccueil = $_POST['prenomFamilleAccueil'];
+             $mail = $_POST['mail'];
+             $telephoneFixe = $_POST['telephoneFixe'];
+             $telephoneMobile = $_POST['telephoneMobile'];
+             $adresseFamilleAccueil = $_POST['adresseFamilleAccueil'];
+             $codePostalFamilleAccueil = $_POST['codePostalFamilleAccueil'];
+             $villeFamilleAccueil = $_POST['villeFamilleAccueil'];
+             $paysFamilleAccueil = $_POST['paysFamilleAccueil'];
+             $lieu = $_POST['lieu'];
+             $dateForm = $_POST['dateForm'];*/
+
+
+            /*     // chien
+                 $c = ModelChien::getChienByNumPuce($_POST['numPuce']);
+                 $numPuce = $c->getNumpuce();
+                 $nomChien = $c->getNomChien();
+                 $race = $c->getRace();
+                 $sexe = $c->getSexe();
+                 $dateNaissance = $c->getDateNaissance();
+                 $robe = $c->getRobe();
+                 $sterilisation = $c->getSterilisation();
+                 $dateAccueil = $c->getDateAccueil();*/
+
             // chien
+            $numPuce = $_POST['numPuce'];
             $nomChien = $_POST['nomChien'];
             $race = $_POST['race'];
             $dateNaissance = $_POST['dateNaissance'];
             $sexe = $_POST['sexe'];
             $robe = $_POST['robe'];
             $sterilisation = $_POST['sterilisation'];
-            $numPuce = $_POST['numPuce'];
             $dateAccueil = $_POST['dateAccueil'];
-
 
             // ajouter data chien accueilli
 
@@ -231,7 +257,7 @@ reprendre l'animal sans préavis.");
                 $pdf->AddPage();
                 $pdf->remarques();
                 $pdf->corpsGras("Le présent contrat est établi en 2 exemplaires dont un est à retourner à");
-                $pdf->SetTextColor(14,78,116);
+                $pdf->SetTextColor(14, 78, 116);
                 $pdf->corpsGras("Bull's Friends Association");
                 $pdf->corpsGras(
                     "Monsieur Jean-Clément Aubrun
@@ -240,7 +266,7 @@ Bâtiment F16
 FR-91390 Morsang sur Orge
 France"
                 );
-                $pdf->SetXY(40,180);
+                $pdf->SetXY(40, 180);
                 $pdf->dateLieu($lieu, $dateForm);
                 $pdf->SetX(40);
 
@@ -250,7 +276,6 @@ France"
                 $pdf->corpsTexte("Visa du délégué ou membre du Bureau pour Bull's Friends Association");
                 $pdf->SetX(40);
                 $pdf->Cell(135, 5, iconv('UTF-8', 'windows-1252', "Réfèrent : L.O"), 0, 0, 'R');
-
 
 
                 $pdf->Output();

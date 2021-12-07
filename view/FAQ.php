@@ -40,7 +40,10 @@
                                 </div>
                                 <div class="reponse">
                                     <p>
-                                        Pour adopter un chien, vous pouvez remplir le <strong>formulaire</strong> du protégé que vous souhaitez adopter sur la page <strong><a href="index.php?controller=Chien&action=Adopter">'À adopter'</a></strong>
+                                        Pour adopter un chien, vous pouvez remplir le <strong>formulaire</strong> du
+                                        protégé que vous souhaitez adopter sur la page <strong><a
+                                                    href="index.php?controller=Chien&action=Adopter">'À
+                                                adopter'</a></strong>
                                         afin de candidater. Nous évaluerons votre demande et prendrons contact avec vous
                                         ensuite.
                                     </p>
@@ -54,7 +57,9 @@
                                 </div>
                                 <div class="reponse">
                                     <p>
-                                        Vous pouvez remplir le <strong><a href="index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil">formulaire d'accueil</a></strong> afin de candidater en tant que
+                                        Vous pouvez remplir le <strong><a
+                                                    href="index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil">formulaire
+                                                d'accueil</a></strong> afin de candidater en tant que
                                         famille d'accueil bénévole en attendant que le protégé trouve une famille.
                                         Vous retrouverez toutes les modalités sur le document généré par le formulaire.
                                     </p>
@@ -80,7 +85,9 @@
                                 </div>
                                 <div class="reponse">
                                     <p>
-                                        Vous pouvez nous contacter via la <strong><a href="index.php?action=Contact">page contact</a></strong>, ou nous contacter sur <strong><a href="https://www.facebook.com/Bullsfriendsassociation/">Facebook</a></strong>.
+                                        Vous pouvez nous contacter via la <strong><a href="index.php?action=Contact">page
+                                                contact</a></strong>, ou nous contacter sur <strong><a
+                                                    href="https://www.facebook.com/Bullsfriendsassociation/">Facebook</a></strong>.
                                     </p>
                                 </div>
                             </li>

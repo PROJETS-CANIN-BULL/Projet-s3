@@ -35,21 +35,34 @@
                     </div>
                 </article>
                 <article class="col-10">
+                    <?php if (isset($chien)) { ?>
+                        <div>
+                            <p> La Facture que vous souhaitez ajouté est pour le chien
+                                :<?php echo htmlspecialchars($chien->getNomChien()) ?>
+                                ayant comme race <?php echo htmlspecialchars($chien->getRace()) ?> et comme numéro de
+                                puce <?php echo htmlspecialchars($chien->getNumpuce());
+                                echo '<div class="col-4"><img class="photoChien" src="image/chien/' . htmlspecialchars($chien->getNomPhoto()) . '" alt="' . htmlspecialchars($chien->getNomPhoto()) . '"></div>';
+                                ?>
+
+                        </div>
+                    <?php } ?>
 
                     <form class="centrer" action="index.php" method="post" enctype="multipart/form-data">
                         <fieldset>
+                            <?php if (isset($chiens)) { ?>
+                                <div class="input">
+                                    <span class="inputItem">Numero de Puce de l'animal Concerné *</span>
+                                    <select class="inputField" id="numPuce" name="numPuce">
+                                        <?php foreach ($chiens as $c) {
+                                            echo '<option value="' . htmlspecialchars($c->getNumPuce()) . '">' . htmlspecialchars($c->getNumPuce()) . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            <?php } ?>
                             <div class="input">
                                 <span class="inputItem">Numero de Facture *</span>
                                 <input class="inputField" id="numFacture" name="numFacture" required type="text">
-                            </div>
-                            <div class="input">
-                                <span class="inputItem">Numero de Puce de l'animal Concerné *</span>
-                                <select class="inputField" id="numPuce" name="numPuce">
-                                    <?php foreach ($chiens as $c) {
-                                        echo '<option value="' . htmlspecialchars($c->getNumPuce()) . '">' . htmlspecialchars($c->getNumPuce()) . '</option>';
-                                    }
-                                    ?>
-                                </select>
                             </div>
                             <div class="input">
                                 <span class="inputItem"> Type de Facture *</span>
@@ -79,6 +92,74 @@
                                 <span class="inputItem">Nom du Créditeur *</span>
                                 <input class="inputField" id="crediteur" name="crediteur" required type="text">
                             </div>
+                            <div>
+                                <p> Si le créditeur est un vérérinaire, cliquez sur le bouton vétérinaire pour choisir
+                                    le vétérinaire concerné. Si il n'existe pas, vous pouvez le créé en appyant sur le
+                                    +</p></div>
+                            <button onclick="functionVeto()">Veterinaire</button>
+                            <div id="listeVeto">
+                                <div class="input">
+                                    <span class="inputItem">Veterinaire*</span>
+                                    <select class="inputField" id="idVeto" name="idVeto">
+                                        <?php foreach ($veto as $v) {
+                                            echo '<option value="' . htmlspecialchars($v->getIdVeto()) . '">' . htmlspecialchars($v->getNomVeto()) . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <button onclick="myFunction()">+</button>
+
+
+                            <div id="myDIV">
+                                <div class="input">
+                                    <span class="inputItem">Nom Vétérinaire *</span>
+                                    <input class="inputField" id="nomVeto" name="nomVeto" type="text">
+                                </div>
+                                <div class="input">
+                                    <span class="inputItem">Numero Telephone *</span>
+                                    <input class="inputField" id="numVeto" name="numVeto" type="text">
+                                </div>
+                                <div class="input">
+                                    <span class="inputItem">Adresse *</span>
+                                    <input class="inputField" id="adresseVeto" name="adresseVeto" type="text">
+                                </div>
+                                <div class="input">
+                                    <span class="inputItem">Code Postal  *</span>
+                                    <input class="inputField" id="codePostalVeto" name="codePostalVeto" type="text">
+                                </div>
+                                <div class="input">
+                                    <span class="inputItem">Ville *</span>
+                                    <input class="inputField" id="villeVeto" name="villeVeto" type="text">
+                                </div>
+                                <div class="input">
+                                    <span class="inputItem">Pays *</span>
+                                    <input class="inputField" id="paysVeto" name="paysVeto" type="text">
+                                </div>
+
+                            </div>
+                            <script type="text/javascript">
+                                function functionVeto() {
+                                    var x = document.getElementById("listeVeto");
+                                    if (x.style.display === "block") {
+                                        x.style.display = "none";
+                                    } else {
+                                        x.style.display = "block";
+                                    }
+
+                                }
+
+                                function myFunction() {
+                                    var x = document.getElementById("myDIV");
+                                    if (x.style.display === "block") {
+                                        x.style.display = "none";
+                                    } else {
+                                        x.style.display = "block";
+                                    }
+                                }
+                            </script>
 
                             <p>Le fichier doit être un pdf dont le nom est sous la forme :
                                 numeroFacture-crediteur <br>
@@ -90,11 +171,15 @@
                                        required>
                             </div>
 
+
                         </fieldset>
                         <div class="input" id="send">
                             <input type="submit" value="Envoyer">
+                            <?php if (isset($chien)) { ?>
+                                <input type='hidden' name='numPuce'
+                                       value="<?php echo htmlspecialchars($chien->getNumPuce()) ?>">
+                            <?php } ?>
                             <input type='hidden' name='controller' value='Facture'>
-
                             <input type='hidden' name='action' value='ajouterFacture'>
                         </div>
                     </form>
@@ -105,8 +190,3 @@
     </div>
 
 </main>
-<footer>
-</footer>
-
-</body>
-</html>

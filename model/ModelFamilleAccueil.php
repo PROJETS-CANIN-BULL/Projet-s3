@@ -9,22 +9,24 @@ class ModelFamilleAccueil
     private $nomFamilleAccueil;
     private $prenomFamilleAccueil;
     private $mail;
-    private $numTelephone;
+    private $telephoneMobile;
+    private $telephoneFixe;
     private $adresseFamilleAccueil;
     private $codePostalFamilleAccueil;
     private $villeFamilleAccueil;
     private $paysFamilleAccueil;
 
 
-    public function __construct($idFamilleAccueil = NULL, $civilite = NULL, $nom = NULL, $prenom = NULL, $mail = NULL, $num = NULL, $adresseFamilleAccueil = NULL, $codePostalFamilleAccueil = NULL, $villeFamilleAccueil = NULL, $paysFamilleAccueil = NULL)
+    public function __construct($idFamilleAccueil = NULL, $civilite = NULL, $nom = NULL, $prenom = NULL, $mail = NULL, $telephoneMobile = NULL, $telephoneFixe = NULL, $adresseFamilleAccueil = NULL, $codePostalFamilleAccueil = NULL, $villeFamilleAccueil = NULL, $paysFamilleAccueil = NULL)
     {
-        if (!is_null($idFamilleAccueil) && !is_null($civilite) && !is_null($nom) && !is_null($prenom) && !is_null($mail) && !is_null($num) && !is_null($adresseFamilleAccueil) && !is_null($codePostalFamilleAccueil) && !is_null($villeFamilleAccueil) && !is_null($paysFamilleAccueil)) {
+        if (!is_null($idFamilleAccueil) && !is_null($civilite) && !is_null($nom) && !is_null($prenom) && !is_null($mail) && !is_null($telephoneMobile) && !is_null($telephoneFixe) && !is_null($adresseFamilleAccueil) && !is_null($codePostalFamilleAccueil) && !is_null($villeFamilleAccueil) && !is_null($paysFamilleAccueil)) {
             $this->idFamilleAccueil = $idFamilleAccueil;
             $this->civilite = $civilite;
             $this->nomFamilleAccueil = $nom;
             $this->prenomFamilleAccueil = $prenom;
             $this->mail = $mail;
-            $this->numTelephone = $num;
+            $this->telephoneMobile = $telephoneMobile;
+            $this->telephoneFixe = $telephoneFixe;
             $this->adresseFamilleAccueil = $adresseFamilleAccueil;
             $this->codePostalFamilleAccueil = $codePostalFamilleAccueil;
             $this->villeFamilleAccueil = $villeFamilleAccueil;
@@ -36,38 +38,64 @@ class ModelFamilleAccueil
 
     public static function ajouterFamilleAccueil($data)
     {
-        $sql = "INSERT INTO FamilleAccueil( `civilite`, `nomFamilleAccueil`, `prenomFamilleAccueil`, `mail`, `numTelephone`, `adresseFamilleAccueil`, `codePostalFamilleAccueil`, `villeFamilleAccueil`, `paysFamilleAccueil`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6,:tag7,:tag8,:tag9)";
-        $req_prep = Model::getPDO()->prepare($sql);
-
-        $values = array(
-            "tag" => $data["civilite"],
-            "tag2" => $data["nomFamilleAccueil"],
-            "tag3" => $data["prenomFamilleAccueil"],
-            "tag4" => $data["mail"],
-            "tag5" => $data["numTelephone"],
-            "tag6" => $data["adresseFamilleAccueil"],
-            "tag7" => $data["codePostalFamilleAccueil"],
-            "tag8" => $data["villeFamilleAccueil"],
-            "tag9" => $data["paysFamilleAccueil"],
-        );
-        $req_prep->execute($values);
+        try {
 
 
+            $sql = "INSERT INTO FamilleAccueil( `civilite`, `nomFamilleAccueil`, `prenomFamilleAccueil`, `mail`, `telephoneMobile`,`telephoneFixe`, `adresseFamilleAccueil`, `codePostalFamilleAccueil`, `villeFamilleAccueil`, `paysFamilleAccueil`) VALUES (:tag,:tag2,:tag3,:tag4,:tag5,:tag6,:tag7,:tag8,:tag9,:tag10)";
+            $req_prep = Model::getPDO()->prepare($sql);
+
+            $values = array(
+                "tag" => $data["civilite"],
+                "tag2" => $data["nomFamilleAccueil"],
+                "tag3" => $data["prenomFamilleAccueil"],
+                "tag4" => $data["mail"],
+                "tag5" => $data["telephoneMobile"],
+                "tag6" => $data["telephoneFixe"],
+                "tag7" => $data["adresseFamilleAccueil"],
+                "tag8" => $data["codePostalFamilleAccueil"],
+                "tag9" => $data["villeFamilleAccueil"],
+                "tag10" => $data["paysFamilleAccueil"]
+            );
+            $req_prep->execute($values);
+        } catch (PDOException $e) {
+            if ($e->getCode() == 22007) {
+                return false;
+            } else if (Conf::getDebug()) {
+                echo $e->getMessage(); // affiche un message d'erreur
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
     }
-    public static function getFamilleAccueilByNom($info){
-        $sql = "SELECT * FROM FamilleAccueil WHERE nomFamilleAccueil=:tag AND prenomFamilleAccueil=:tag2 AND mail=:tag3";
+
+    public static function getFamilleAccueilByNom($info)
+    {
+        $sql = "SELECT * FROM FamilleAccueil WHERE nomFamilleAccueil=:tag";
         $req_prep = Model::getPDO()->prepare($sql);
         $values = array(
-            "tag" => $info['nomFamilleAccueil'],
-            "tag2" => $info['prenomFamilleAccueil'],
-            "tag3" => $info['mail'],
+            "tag" => $info
         );
         $req_prep->execute($values);
-        $req_prep->setFetchMode(PDO::FETCH_CLASS,'ModelFamille');
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelFamilleAccueil');
         $tab_famille = $req_prep->fetchAll();
         if (empty($tab_famille))
             return false;
         return $tab_famille[0];
+    }
+
+    public static function getAllFamilleAccueil()
+    {
+
+        $PDO = Model::getPDO();
+        $rep = $PDO->query("SELECT * FROM FamilleAccueil");
+        $rep->setFetchMode(PDO::FETCH_CLASS, "ModelFamilleAccueil");
+        $famille = $rep->fetchAll();
+
+        if (empty($famille))
+            return false;
+        return $famille;
+
     }
 
     public static function modofierNomAccueil($data)
@@ -94,14 +122,14 @@ class ModelFamilleAccueil
         return $this->civilite;
     }
 
-    public function getNomFamille()
+    public function getNomFamilleAccueil()
     {
-        return $this->nomFamille;
+        return $this->nomFamilleAccueil;
     }
 
-    public function getPrenomFamille()
+    public function getPrenomFamilleAccueil()
     {
-        return $this->prenomFamille;
+        return $this->prenomFamilleAccueil;
     }
 
     public function getMail()
@@ -109,10 +137,17 @@ class ModelFamilleAccueil
         return $this->mail;
     }
 
-    public function getNumTelephone()
+    public function getTelephoneMobile()
     {
-        return $this->numTelephone;
+        return $this->telephoneMobile;
     }
+
+
+    public function getTelephoneFixe()
+    {
+        return $this->telephoneFixe;
+    }
+
 
     public function getAdresseFamilleAccueil()
     {

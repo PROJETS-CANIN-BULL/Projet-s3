@@ -4,13 +4,12 @@ require_once(File::build_path(array("model", "ModelFacture.php")));
 require_once(File::build_path(array("model", "ModelAdoption.php")));
 
 
-
 class ControllerChien
 {
     public static function Protege()
     {
         $chien = ModelChien::getAllChiens();
-        $controller='chien';
+        $controller = 'chien';
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
         require(File::build_path(array("view", "view.php")));
@@ -20,14 +19,14 @@ class ControllerChien
     {
         $chien = ModelChien::getChiensNonAdoptes();
         $view = 'Adopter';
-        $controller='chien';        
+        $controller = 'chien';
         $pagetitle = 'Les Adoptés';
         require(File::build_path(array("view", "view.php")));
     }
 
     public static function formulaireChien()
     {
-        $controller='chien';
+        $controller = 'chien';
         $view = 'formulaireAjoutChien';
         $pagetitle = 'formulaire Chien';
         require(File::build_path(array("view", "view.php")));
@@ -62,7 +61,7 @@ class ControllerChien
         $resultat = move_uploaded_file($_FILES['photo']['tmp_name'], $nom);
 
         if (strcmp($erreur, 'null') != 0) {
-            $controller='chien';
+            $controller = 'chien';
             $view = 'ErreurChien';
             $pagetitle = ' Erreur photo du Chien ';
             require(File::build_path(array("view", "view.php")));
@@ -70,22 +69,28 @@ class ControllerChien
 
         $data['nomPhoto'] = $_FILES['photo']['name'];
 
-        if (ModelChien::addChien($data) == false || $resultat == false) {
-            $erreur = "une des dates n'est pas dans le bon format";
+        $etat = ModelChien::addChien($data);
+        if ($etat == 1 || $etat == 0 || $resultat == false) {
+            if ($etat == 0) {
+                $erreur = "une des dates n'est pas dans le bon format";
+            } else if ($etat == 1) {
+                $erreur = "le chien est déjà existant";
+
+            }
 
             if (!$resultat) {
                 ModelChien::supprimerChien($data['numPuce']);
-                $erreur = 'Le déplacement des fichiers a connu une erreur';
-            }else{
+                $erreur = 'le déplacement des fichiers a connu une erreur';
+            } else {
                 unlink($nom);
             }
-            $controller='chien';
+            $controller = 'chien';
             $view = 'AjoutChienNonReussi';
             $pagetitle = 'Chien Non Ajouté';
             require(File::build_path(array("view", "view.php")));
         } else {
             $message = 'enregistré';
-            $controller='chien';
+            $controller = 'chien';
             $titre = "Ajouter Chien";
             $view = 'AjoutChienReussi';
             $pagetitle = 'Chien Ajouté';
@@ -94,25 +99,28 @@ class ControllerChien
 
     }
 
-    public static function formulaireAdoptionChien(){
+    public static function formulaireAdoptionChien()
+    {
         $c = ModelChien::getChienByNumPuce($_POST['numPuce']);
         $view = 'formulaireAdoptionChien';
         $pagetitle = 'formulaire adoption';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
-    public static function modificationFormulaire(){
+    public static function modificationFormulaire()
+    {
         $puce = $_GET['numPuce'];
         $chien = ModelChien::getChienByNumPuce($puce);
         $view = 'modificationChien';
         $pagetitle = 'Modification Chien';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
 
     }
 
-    public static function modifierChien(){
+    public static function modifierChien()
+    {
         $info = array(
             'numPuce' => $_POST['numPuce'],
             'nomChien' => $_POST['nomChien'],
@@ -126,56 +134,57 @@ class ControllerChien
             'nomAncienProprio' => $_POST['nomAncienProp']
         );
         ModelChien::modifierChien($info);
-        if( $_POST['adoption']=='oui' && ModelAdoption::getAdoptionBynumPuce($info['numPuce'])==false){
-              $chien = ModelChien::getChiensNonAdoptes();
-              $view = 'formulaireAdoptionChien';
-              $pagetitle = 'formulaire adoption';
-              $controller='chien';
-              require(File::build_path(array("view", "view.php")));
-        }
-        else if($_POST['adoption)']=='non' && ModelAdoption::getAdoptionBynumPuce($info['numPuce'])!=false){
-                ModelAdoption::supprimerAdoption($info['numPuce']);
-        }
-            $message = 'modifié';
-            $titre = "Modifier Chien";
-            $view = 'AjoutChienReussi';
-            $pagetitle = 'Modifier Chien';
-            $controller='chien';
+        if ($_POST['adoption'] == 'oui' && ModelAdoption::getAdoptionBynumPuce($info['numPuce']) == false) {
+            $chien = ModelChien::getChiensNonAdoptes();
+            $view = 'formulaireAdoptionChien';
+            $pagetitle = 'formulaire adoption';
+            $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
-
+        } else if ($_POST['adoption'] == 'non' && ModelAdoption::getAdoptionBynumPuce($info['numPuce']) != false) {
+            ModelAdoption::supprimerAdoption($info['numPuce']);
         }
-     
+        $message = 'modifié';
+        $titre = "Modifier Chien";
+        $view = 'AjoutChienReussi';
+        $pagetitle = 'Modifier Chien';
+        $controller = 'chien';
+        require(File::build_path(array("view", "view.php")));
 
-    public static function supprimerChien(){
+    }
+
+
+    public static function supprimerChien()
+    {
         $puce = $_GET['numPuce'];
         $chien = ModelChien::getChienByNumPuce($puce);
-        $nom =File::build_path(array("image","chien",$chien->getNomPhoto()));
+        $nom = File::build_path(array("image", "chien", $chien->getNomPhoto()));
         unlink($nom);
         ModelChien::supprimerChien($puce);
         $message = 'supprimée';
         $titre = "Supprimer Chien";
         $view = 'AjoutChienReussi';
         $pagetitle = 'Supprimer Chien';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
-    public static function supressionAdoption(){
+    public static function supressionAdoption()
+    {
         ModelAdoption::supprimerAdoption($_GET['numPuce']);
         $view = 'Adopter';
         $pagetitle = 'Adopter';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
 
     public static function getChienByNumPuce()
     {
-        $chien=ModelChien::getChienByNumPuce($_POST['numPuce']);
-        $view='formulaireAjoutFamilleAccueil';
-        $pagetitle='formulaire Famille';
-        if ($chien===null)
-            require (File::build_path(array("view", "view.php")));
+        $chien = ModelChien::getChienByNumPuce($_POST['numPuce']);
+        $view = 'formulaireAjoutFamilleAccueil';
+        $pagetitle = 'formulaire Famille';
+        if ($chien === null)
+            require(File::build_path(array("view", "view.php")));
         require(File::build_path(array("view", "view.php")));
         require(File::build_path(array("lib", "AccueilPDF.php")));
 
@@ -189,7 +198,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNoms();
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -198,7 +207,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNomsDecroissants();
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -208,7 +217,7 @@ class ControllerChien
         $chien = ModelChien::getChiensNoms($nom);
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -217,7 +226,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNumPuces();
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -226,7 +235,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNumPucesDecroissants();
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -236,7 +245,7 @@ class ControllerChien
         $chien = ModelChien::getChiensNumPuces($num);
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -246,7 +255,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensRaces();
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -255,7 +264,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensRacesDecroissants();
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -265,7 +274,7 @@ class ControllerChien
         $chien = ModelChien::getChiensRaces($race);
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -279,7 +288,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensDateNaissances($data);
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -288,7 +297,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensSexes($_GET['sexe']);
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -297,7 +306,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensRobes();
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -306,7 +315,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensRobesDecroissants();
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -316,7 +325,7 @@ class ControllerChien
         $chien = ModelChien::getChiensRobes($robe);
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -326,7 +335,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensSterilisations($avis);
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -339,7 +348,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensDateAccueils($data);
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -349,7 +358,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNomAncienProprio();
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -358,7 +367,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNomAncienProprioDecroissant();
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
 
     }
@@ -369,7 +378,7 @@ class ControllerChien
         $chien = ModelChien::getChiensAncienProprio($nomAncienProp);
         $view = 'Protege';
         $pagetitle = 'Les Protégés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -381,7 +390,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNonAdoptesNoms();
         $view = 'Adopter';
         $pagetitle = 'Les Adoptés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -390,7 +399,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNonAdoptesNomsDecroissants();
         $view = 'Adopter';
         $pagetitle = 'Les Adoptés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -400,7 +409,7 @@ class ControllerChien
         $chien = ModelChien::getChiensNonAdoptesNoms($nom);
         $view = 'Adopter';
         $pagetitle = 'A Adopter';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -410,7 +419,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNonAdoptesNumPuces();
         $view = 'Adopter';
         $pagetitle = 'Les Adoptés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -420,7 +429,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNonAdoptesNumPucesDecroissants();
         $view = 'Adopter';
         $pagetitle = 'Les Adoptés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -430,7 +439,7 @@ class ControllerChien
         $num = $_POST['numPuce'];
         $chien = ModelChien::getChiensNonAdoptesNumPuces($num);
         $view = 'Adopter';
-        $controller='chien';
+        $controller = 'chien';
         $pagetitle = 'A Adopter';
         require(File::build_path(array("view", "view.php")));
     }
@@ -440,7 +449,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNonAdoptesRaces();
         $view = 'Adopter';
         $pagetitle = 'Les Adoptés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -448,7 +457,7 @@ class ControllerChien
     {
         $chien = ModelChien::getAllChiensNonAdoptesRacesDecroissants();
         $view = 'Adopter';
-        $controller='chien';
+        $controller = 'chien';
         $pagetitle = 'Les Adoptés';
         require(File::build_path(array("view", "view.php")));
     }
@@ -459,7 +468,7 @@ class ControllerChien
         $chien = ModelChien::getChiensNonAdoptesRaces($race);
         $view = 'Adopter';
         $pagetitle = 'A Adopter';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -472,7 +481,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNonAdoptesDateNaissances($data);
         $view = 'Adopter';
         $pagetitle = 'A Adopter';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -481,7 +490,7 @@ class ControllerChien
         $sexe = $_GET['sexe'];
         $chien = ModelChien::getAllChiensNonAdoptesSexes($sexe);
         $view = 'Adopter';
-        $controller='chien';
+        $controller = 'chien';
         $pagetitle = 'A Adopter';
         require(File::build_path(array("view", "view.php")));
     }
@@ -491,7 +500,7 @@ class ControllerChien
     {
         $chien = ModelChien::getAllChiensNonAdoptesRobes();
         $view = 'Adopter';
-        $controller='chien';
+        $controller = 'chien';
         $pagetitle = 'Les Adoptés';
         require(File::build_path(array("view", "view.php")));
     }
@@ -501,7 +510,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNonAdoptesRobesDecroissants();
         $view = 'Adopter';
         $pagetitle = 'Les Adoptés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -511,7 +520,7 @@ class ControllerChien
         $chien = ModelChien::getChiensNonAdoptesRobes($robe);
         $view = 'Adopter';
         $pagetitle = 'A Adopter';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -522,7 +531,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNonAdoptesSterilisations($avis);
         $view = 'Adopter';
         $pagetitle = 'A Adopter';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -535,7 +544,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNonAdoptesDateAccueils($data);
         $view = 'Adopter';
         $pagetitle = 'A Adopter';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -545,7 +554,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNonAdoptesNomAncienProprio();
         $view = 'Adopter';
         $pagetitle = 'Les Adoptés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -554,7 +563,7 @@ class ControllerChien
         $chien = ModelChien::getAllChiensNonAdoptesNomAncienProprioDecroissant();
         $view = 'Adopter';
         $pagetitle = 'Les Adoptés';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 
@@ -564,7 +573,7 @@ class ControllerChien
         $chien = ModelChien::getChiensNonAdoptesAncienProprio($nomAncienProp);
         $view = 'Adopter';
         $pagetitle = 'A Adopter';
-        $controller='chien';
+        $controller = 'chien';
         require(File::build_path(array("view", "view.php")));
     }
 

@@ -30,7 +30,7 @@
                             </div>
                             <div class="input">
                                 <span class="inputItem">Mail *</span>
-                               <input class="inputField" id="mail" name="mail"
+                                <input class="inputField" id="mail" name="mail"
                                        value="<?php echo htmlspecialchars($u->getMail()) ?>"
                                        required
                                        type="text">
@@ -38,7 +38,7 @@
                             <div class="input">
                                 <span class="inputItem">Mot de passe *</span>
                                 <input class="inputField" id="motDePasse" name="motDePasse"
-                                        required
+                                       required
                                        type="password">
                             </div>
                             <div class="input">

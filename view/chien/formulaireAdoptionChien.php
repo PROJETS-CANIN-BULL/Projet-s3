@@ -98,13 +98,17 @@
                             <input type="submit" name="submit" value="Envoyer">
                             <input type="hidden" name="action" value="generateAdoptionPDF">
 
-                            <input type='hidden' name='numPuce' value="<?php echo htmlspecialchars($c->getNumpuce()); ?>">
-                            <input type='hidden' name='nomChien' value="<?php echo htmlspecialchars($c->getNomChien()); ?>">
+                            <input type='hidden' name='numPuce'
+                                   value="<?php echo htmlspecialchars($c->getNumpuce()); ?>">
+                            <input type='hidden' name='nomChien'
+                                   value="<?php echo htmlspecialchars($c->getNomChien()); ?>">
                             <input type='hidden' name='race' value="<?php echo htmlspecialchars($c->getRace()); ?>">
                             <input type='hidden' name='sexe' value="<?php echo htmlspecialchars($c->getSexe()); ?>">
-                            <input type='hidden' name='dateNaissance' value="<?php echo htmlspecialchars($c->getDateNaissance()); ?>">
+                            <input type='hidden' name='dateNaissance'
+                                   value="<?php echo htmlspecialchars($c->getDateNaissance()); ?>">
                             <input type='hidden' name='robe' value="<?php echo htmlspecialchars($c->getRobe()); ?>">
-                            <input type='hidden' name='sterilisation' value="<?php echo htmlspecialchars($c->getSterilisation()); ?>">
+                            <input type='hidden' name='sterilisation'
+                                   value="<?php echo htmlspecialchars($c->getSterilisation()); ?>">
 
 
                         </div>

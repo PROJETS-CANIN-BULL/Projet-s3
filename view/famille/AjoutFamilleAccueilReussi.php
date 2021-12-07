@@ -1,7 +1,7 @@
 <main>
     <div class="container-fluid red">
         <div class="container text-center">
-            <h2> Votre Famille</h2>
+            <h2> Échec </h2>
 
         </div>
         <div class="container-fluid blue">
@@ -16,13 +16,12 @@
                     </div>
                 </article>
                 <article class="col-10">
-                    <p>Votre Famille a bien été ajoutée</p>
+
                     <div>
-                        <p> Pour retourner sur la page de Facture: <a
-                                    href="index.php?controller=Facture&action=Facture"> Facture </a></p>
+                        <p> Pour retourner sur la page des protégés : <a
+                                    href="index.php?controller=Chien&action=Proteges"> Facture </a></p>
                     </div>
                     <p> Pour retourner sur la page d'accueil: <a href="index.php?action=accueil"> Accueil </a></p>
-
 
                 </article>
 

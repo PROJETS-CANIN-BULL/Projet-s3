@@ -14,11 +14,13 @@ class ModelFacture
     private $dateFacture;
     private $crediteur;
     private $numVeto;
+    private $idFacture;
 
 
-    public function __construct($num = NULL, $numPuce = NULL, $type = NULL, $motif = NULL, $cout = NULL, $dateFacture = NULL, $crediteur = NULL, $numVeto = NULL)
+    public function __construct($idFacture = NULL, $num = NULL, $numPuce = NULL, $type = NULL, $motif = NULL, $cout = NULL, $dateFacture = NULL, $crediteur = NULL, $numVeto = NULL)
     {
-        if (!is_null($num) && !is_null($numPuce) && !is_null($type) && !is_null($motif) && !is_null($cout) && !is_null($dateFacture) && !is_null($crediteur) && !is_null($numVeto)) {
+        if (!is_null($idFacture) && !is_null($num) && !is_null($numPuce) && !is_null($type) && !is_null($motif) && !is_null($cout) && !is_null($dateFacture) && !is_null($crediteur) && !is_null($numVeto)) {
+            $this->idFacture = $idFacture;
             $this->numFacture = $num;
             $this->numPuce = $numPuce;
             $this->type = $type;
@@ -29,6 +31,7 @@ class ModelFacture
             $this->numVeto = $numVeto;
         }
     }
+
 
     public static function ajouterFacture($data)
     {
@@ -85,7 +88,9 @@ class ModelFacture
         }
 
     }
-    public static function supprimerFacture($infos){
+
+    public static function supprimerFacture($infos)
+    {
         try {
             $sql = "DELETE FROM Facture WHERE numFacture=:tag AND crediteur=:tag2";
             $req_prep = Model::getPDO()->prepare($sql);
@@ -184,7 +189,8 @@ class ModelFacture
             die();
         }
     }
-     public static function totaliserFacturesRaces()
+
+    public static function totaliserFacturesRaces()
     {
         try {
             $PDO = Model::getPDO();
@@ -322,7 +328,7 @@ class ModelFacture
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "num1" => '%'.$num.'%',
+            "num1" => '%' . $num . '%',
         );
 
         $req_prep->execute($values);
@@ -381,7 +387,7 @@ class ModelFacture
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "num1" => '%'.$num.'%',
+            "num1" => '%' . $num . '%',
         );
 
         $req_prep->execute($values);

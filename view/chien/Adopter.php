@@ -285,8 +285,6 @@
                             foreach ($chien as $c) {
 
 
-                            
-
                                 echo '<div class="row justify-content-center"><h3 class="text-center">' . htmlspecialchars($c->getNomchien()) . ' : ' . htmlspecialchars($c->getNumPuce()) . '</h3>';
                                 echo '<div class="col-4"><img class="photoChien" src="image/chien/' . htmlspecialchars($c->getNomPhoto()) . '" alt="' . htmlspecialchars($c->getNomPhoto()) . '"></div>';
                                 echo '<div  class="row justify-content-start"> <div class="col-4"><p> Race : ' . $c->getRace() . '</p><p> Robe : ' . $c->getRobe() . '</p></div>';
@@ -294,16 +292,18 @@
                                 echo '<div class="col-4"><p> Sexe  : ' . $c->getSexe() . '</p><p> Sterelisation : ' . $c->getSterilisation() . '</p></div>';
                                 echo '<div><p>' . $c->getDescription() . '</p></div></div>';
                                 ?>
-                                  <form action="index.php" method="post">
+                                <form action="index.php" method="post">
                                     <div class="input" id="send">
                                         <input type="submit" name="submit" value="Adoption">
                                         <input type="hidden" name="action" value="formulaireAdoptionChien">
                                         <input type="hidden" name="controller" value="chien">
-                                        <input type="hidden" name="numPuce" value="<?php echo htmlspecialchars($c->getNumPuce()) ?>">
+                                        <input type="hidden" name="numPuce"
+                                               value="<?php echo htmlspecialchars($c->getNumPuce()) ?>">
                                     </div>
                                 </form>
 
                                 <?php
+                                echo '<p><a href="index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil&numPuce=' . rawurlencode($c->getNumPuce()) . '"> Accueillir le chien </a></p>';
 
                             }
                         }

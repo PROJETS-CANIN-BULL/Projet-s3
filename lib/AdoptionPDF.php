@@ -94,6 +94,7 @@ class AdoptionPDF extends FPDF
         $this->Ln();
 
     }
+
     function corpsGrasSouligne($corps)
     {
         $this->SetFont('Arial', 'bu', 12);
@@ -101,6 +102,7 @@ class AdoptionPDF extends FPDF
         $this->Ln();
 
     }
+
     function corpsCentre($corps)
     {
         $this->SetFont('Arial', '', 12);
@@ -112,8 +114,8 @@ class AdoptionPDF extends FPDF
     function corpsImportant($corps)
     {
         $this->SetFont('Arial', 'bi', 12);
-        $this->SetTextColor(255,0,0);
-        $this->MultiCell(0, 5, iconv('UTF-8', 'windows-1252', $corps), 0,'C');
+        $this->SetTextColor(255, 0, 0);
+        $this->MultiCell(0, 5, iconv('UTF-8', 'windows-1252', $corps), 0, 'C');
         $this->SetTextColor(0);
 
         $this->Ln();
@@ -124,7 +126,7 @@ class AdoptionPDF extends FPDF
     function checkBox($corps)
     {
         $this->SetFont('Arial', '', 12);
-        $this->Cell(3.5 ,3.5,'',1);
+        $this->Cell(3.5, 3.5, '', 1);
         $this->Cell(10);
         $this->MultiCell(0, 5, iconv('UTF-8', 'windows-1252', $corps));
         $this->Ln(2);
@@ -185,6 +187,7 @@ class AdoptionPDF extends FPDF
         $this->Cell($w, 15, iconv('UTF-8', 'windows-1252', "Numéro de tatouage/puce électronique : $numPuce"));
         $this->Ln();
     }
+
     function chienForm2($nomChien, $race, $dateNaissance, $sexe, $numPuce)
     {
         $this->SetFont('Arial', '', 12);
@@ -213,11 +216,11 @@ class AdoptionPDF extends FPDF
         $this->Ln();
     }
 
-    function carteMembre($nomFamilleAccueil,$prenomFamilleAccueil,$dateForm)
+    function carteMembre($nomFamilleAccueil, $prenomFamilleAccueil, $dateForm)
     {
         $this->SetFont('Times', '', 12);
 
-        $this->SetXY(95,65);
+        $this->SetXY(95, 65);
         $this->Cell(0, 15, iconv('UTF-8', 'windows-1252', "Nom prénom : $nomFamilleAccueil $prenomFamilleAccueil"));
         $this->Ln();
         $this->SetXY(113, 80);
@@ -382,8 +385,8 @@ entre l'adoptant et BULL'S FRIENDS Association »");
                 $pdf->corpsTexte("Cachet et signature :");
                 $pdf->AddPage();
 
-                $pdf->Image('image/carteMembre.png',10 , 50, 190);
-                $pdf->carteMembre($nomFamilleAccueil,$prenomFamilleAccueil,$dateForm);
+                $pdf->Image('image/carteMembre.png', 10, 50, 190);
+                $pdf->carteMembre($nomFamilleAccueil, $prenomFamilleAccueil, $dateForm);
 
                 $pdf->Output();
                 ob_end_flush();

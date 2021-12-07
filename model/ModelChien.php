@@ -58,7 +58,9 @@ class ModelChien
             $req_prep->execute($values);
         } catch (PDOException $e) {
             if ($e->getCode() == 22007) {
-                return false;
+                return 0;
+            } else if ($e->getCode() == 23000) {
+                return 1;
             } else if (Conf::getDebug()) {
                 echo $e->getMessage(); // affiche un message d'erreur
             } else {
@@ -69,7 +71,8 @@ class ModelChien
 
     }
 
-    public static function modifierChien($infos){
+    public static function modifierChien($infos)
+    {
         try {
             $sql = "UPDATE Chien SET nomChien=:tag2, race=:tag3, dateNaissance=:tag4, sexe=:tag5, robe=:tag6, sterilisation=:tag7, dateAccueil=:tag8, nomAncienProprio=:tag9,description=:tag10 WHERE numPuce=:tag";
             $req_prep = Model::getPDO()->prepare($sql);
@@ -97,7 +100,8 @@ class ModelChien
         }
     }
 
-    public static function supprimerChien($numPuce){
+    public static function supprimerChien($numPuce)
+    {
         try {
             $sql = "DELETE FROM Chien WHERE numPuce=:tag";
             $req_prep = Model::getPDO()->prepare($sql);
@@ -124,13 +128,12 @@ class ModelChien
             "nom_tag" => $numPuce
         );
         $req_prep->execute($values);
-        $req_prep->setFetchMode(PDO::FETCH_CLASS,'ModelChien');
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
         $tab_chien = $req_prep->fetchAll();
         if (empty($tab_chien))
             return false;
         return $tab_chien[0];
     }
-
 
 
 // Renvoie liste chiens non adoptes
@@ -222,7 +225,7 @@ class ModelChien
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "nom" =>  '%'.$nom.'%',
+            "nom" => '%' . $nom . '%',
         );
 
         $req_prep->execute($values);
@@ -282,7 +285,7 @@ class ModelChien
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "num1" => '%'.$numPuce.'%',
+            "num1" => '%' . $numPuce . '%',
         );
 
         $req_prep->execute($values);
@@ -343,7 +346,7 @@ class ModelChien
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "race1" => '%'.$race.'%',
+            "race1" => '%' . $race . '%',
         );
 
         $req_prep->execute($values);
@@ -449,7 +452,7 @@ class ModelChien
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "robe1" => '%'.$robe.'%',
+            "robe1" => '%' . $robe . '%',
         );
 
         $req_prep->execute($values);
@@ -554,7 +557,7 @@ class ModelChien
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "nom1" => '%'.nomAncienProp.'%',
+            "nom1" => '%' . nomAncienProp . '%',
         );
 
         $req_prep->execute($values);
@@ -618,7 +621,7 @@ class ModelChien
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "nom1" => '%'.$nom.'%',
+            "nom1" => '%' . $nom . '%',
         );
 
         $req_prep->execute($values);
@@ -679,7 +682,7 @@ class ModelChien
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "num1" => '%'.$numPuce.'%',
+            "num1" => '%' . $numPuce . '%',
         );
 
         $req_prep->execute($values);
@@ -844,7 +847,7 @@ class ModelChien
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "robe1" => '%'.$robe.'%',
+            "robe1" => '%' . $robe . '%',
         );
 
         $req_prep->execute($values);
@@ -948,7 +951,7 @@ class ModelChien
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "nom1" => '%'.$nomAncienProp.'%',
+            "nom1" => '%' . $nomAncienProp . '%',
         );
 
         $req_prep->execute($values);

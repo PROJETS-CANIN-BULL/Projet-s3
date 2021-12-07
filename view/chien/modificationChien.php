@@ -32,19 +32,25 @@
                         <fieldset>
                             <div class="input">
                                 <span class="inputItem"> Numero de Puce*</span>
-                                <input class="inputField readonly" id="numPuce" name="numPuce"  value="<?php echo htmlspecialchars($chien->getNumPuce())?>"  type="text" readonly required>
+                                <input class="inputField readonly" id="numPuce" name="numPuce"
+                                       value="<?php echo htmlspecialchars($chien->getNumPuce()) ?>" type="text" readonly
+                                       required>
                             </div>
                             <div class="input">
                                 <span class="inputItem">Nom du chien *</span>
-                                <input class="inputField" id="nomChien" name="nomChien" value="<?php echo htmlspecialchars($chien->getNomChien())?>" required type="text">
+                                <input class="inputField" id="nomChien" name="nomChien"
+                                       value="<?php echo htmlspecialchars($chien->getNomChien()) ?>" required
+                                       type="text">
                             </div>
                             <div class="input">
                                 <span class="inputItem">Race *</span>
-                                <input class="inputField" id="race" name="race" value="<?php echo htmlspecialchars($chien->getRace())?>" required type="text">
+                                <input class="inputField" id="race" name="race"
+                                       value="<?php echo htmlspecialchars($chien->getRace()) ?>" required type="text">
                             </div>
                             <div class="input">
                                 <span class="inputItem">Date de Naissance : (Sous la forme AAAA-MM-JJ) *</span>
-                                <input class="inputField" id="dateNaissance" name="dateNaissance" value="<?php echo htmlspecialchars($chien->getDateNaissance())?>
+                                <input class="inputField" id="dateNaissance" name="dateNaissance"
+                                       value="<?php echo htmlspecialchars($chien->getDateNaissance()) ?>
                                        " placeholder="AAAA-MM-JJ" required type="text">
                             </div>
                             <div class="input">
@@ -59,7 +65,8 @@
                             </div>
                             <div class="input">
                                 <span class="inputItem">Robe *</span>
-                                <input class="inputField" id="robe" name="robe" value="<?php echo htmlspecialchars($chien->getRobe())?>" required type="text">
+                                <input class="inputField" id="robe" name="robe"
+                                       value="<?php echo htmlspecialchars($chien->getRobe()) ?>" required type="text">
                             </div>
                             <div class="input">
                                 <span class="inputItem"> Sterelisation *</span>
@@ -73,27 +80,32 @@
 
                             <div class="input">
                                 <span class="inputItem">Date d'accueil : (Sous la forme AAAA-MM-JJ) *</span>
-                                <input class="inputField" id="dateAccueil" name="dateAccueil"value="<?php echo htmlspecialchars($chien->getDateAccueil())?>"  placeholder="AAAA-MM-JJ"
+                                <input class="inputField" id="dateAccueil" name="dateAccueil"
+                                       value="<?php echo htmlspecialchars($chien->getDateAccueil()) ?>"
+                                       placeholder="AAAA-MM-JJ"
                                        required type="text">
                             </div>
                             <div class="input">
                                 <span class="inputItem">Nom de l'ancien Proprietaire *</span>
-                                <input class="inputField" id="nomAncienProp" name="nomAncienProp" value="<?php echo htmlspecialchars($chien->getNomAncienProprio())?>" type="text" required>
+                                <input class="inputField" id="nomAncienProp" name="nomAncienProp"
+                                       value="<?php echo htmlspecialchars($chien->getNomAncienProprio()) ?>" type="text"
+                                       required>
                             </div>
                             <p> Si vous ne connaissez pas le nom de l'ancien propriétaire, entrez 'Inconnu'</p>
                             <div class="input">
                                 <span class="inputItem">Description de l'animal *</span>
                                 <textarea class="inputField" placeholder="description de 500 caractères"
-                                          name="description"  required> <?php echo htmlspecialchars($chien->getDescription())?> </textarea>
+                                          name="description"
+                                          required> <?php echo htmlspecialchars($chien->getDescription()) ?> </textarea>
                             </div>
-                             <div class="input">
                             <div class="input">
-                                <span class="inputItem"> La chien est-il adopté ? *</span>
-                                <select class="inputField" id="adoption" name="adoption">
-                                    <option value="oui">Oui</option>
-                                    <option selected value="non">Non</option>
-                                </select>
-                            </div>
+                                <div class="input">
+                                    <span class="inputItem"> La chien est-il adopté ? *</span>
+                                    <select class="inputField" id="adoption" name="adoption">
+                                        <option value="oui">Oui</option>
+                                        <option selected value="non">Non</option>
+                                    </select>
+                                </div>
 
                         </fieldset>
                         <div class="input" id="send">

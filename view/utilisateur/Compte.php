@@ -43,13 +43,13 @@
             <article class="col-10">
                 <div class="accueil">
                     <h2> Compte </h2>
-                        <p>Votre pseudo est :  <?php echo htmlspecialchars($u->getId()) ?></p>
-                        <p>Votre mail est :    <?php echo htmlspecialchars($u->getMail()) ?></p>                   
-                      <button class="btn left" type="button"
+                    <p>Votre pseudo est : <?php echo htmlspecialchars($u->getId()) ?></p>
+                    <p>Votre mail est : <?php echo htmlspecialchars($u->getMail()) ?></p>
+                    <button class="btn left" type="button"
                             onclick=" location.href = 'index.php?controller=Utilisateur&action=modificationCompte'">
                         Formulaire
                     </button>
-                   
+
             </article>
 
         </div>
