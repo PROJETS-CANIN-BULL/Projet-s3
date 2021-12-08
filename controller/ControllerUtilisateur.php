@@ -14,7 +14,6 @@ require_once(File::build_path(array("model", "ModelAccueil.php")));
 
 class ControllerUtilisateur
 {
-
     public static function generateAccueilPDF()
     {
         $infoFamille = array(
@@ -232,9 +231,7 @@ class ControllerUtilisateur
         session_destroy();   // destroy session data in storage
         setcookie(session_name(), '', time() - 1);
         require(File::build_path(array("view", "Connexion.php")));
-
     }
-
 
 }
 

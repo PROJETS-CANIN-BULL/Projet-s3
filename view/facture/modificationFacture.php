@@ -36,7 +36,7 @@
                 </article>
                 <article class="col-10">
 
-                    <form class="centrer" action="index.php" method="post" enctype="multipart/form-data">
+                    <form class="centrer" action="index.php" method="post">
                         <fieldset>
                             <div class="input">
                                 <span class="inputItem">Numero de Facture *</span>
