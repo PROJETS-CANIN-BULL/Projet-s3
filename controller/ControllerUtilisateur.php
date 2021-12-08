@@ -41,7 +41,7 @@ class ControllerUtilisateur
 
         }
 
-        $famille = ModelFamilleAccueil::getFamilleAccueilByNom($_POST['mail']);
+        $famille = ModelFamilleAccueil::getFamilleAccueilByNom($mail['mail']);
         $data = array(
             'numPuce' => $_POST['numPuce'],
             'idFamille' => $famille->getIdFamilleAccueil()
