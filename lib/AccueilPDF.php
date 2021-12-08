@@ -172,116 +172,87 @@ class AccueilPDF extends FPDF
         $this->Ln();
     }
 
-    public static function generateAccueilPDF()
+    public static function generateAccueilPDF($famille)
     {
-        if (isset($_POST['submit'])) {
-            // famille
-            $f = ModelFamilleAccueil::getFamilleAccueilByNom($_POST['nomFamilleAccueil']);
-            $civilite = $f->getCivilite();
-            $nomFamilleAccueil = $f->getNomFamilleAccueil();
-            $prenomFamilleAccueil = $f->getPrenomFamilleAccueil();
-            $mail = $f->getMail();
-            $telephoneFixe = $f->getTelephoneFixe();
-            $telephoneMobile = $f->getTelephoneMobile();
-            $adresseFamilleAccueil = $f->getAdresseFamilleAccueil();
-            $codePostalFamilleAccueil = $f->getCodePostalFamilleAccueil();
-            $villeFamilleAccueil = $f->getVilleFamilleAccueil();
-            $paysFamilleAccueil = $f->getPaysFamilleAccueil();
-            $lieu = $_POST['lieu'];
-            $dateForm = $_POST['dateForm'];
+
+        // famille
+        $f = ModelFamilleAccueil::getFamilleAccueilByNom($famille['mail']);
+        $civilite = $f->getCivilite();
+        $nomFamilleAccueil = $f->getNomFamilleAccueil();
+        $prenomFamilleAccueil = $f->getPrenomFamilleAccueil();
+        $mail = $f->getMail();
+        $telephoneFixe = $f->getTelephoneFixe();
+        $telephoneMobile = $f->getTelephoneMobile();
+        $adresseFamilleAccueil = $f->getAdresseFamilleAccueil();
+        $codePostalFamilleAccueil = $f->getCodePostalFamilleAccueil();
+        $villeFamilleAccueil = $f->getVilleFamilleAccueil();
+        $paysFamilleAccueil = $f->getPaysFamilleAccueil();
+        $lieu = $famille['lieu'];
+        $dateForm = $famille['dateForm'];
+
+        // chien
+        $numPuce = $_POST['numPuce'];
+        $nomChien = $_POST['nomChien'];
+        $race = $_POST['race'];
+        $dateNaissance = $_POST['dateNaissance'];
+        $sexe = $_POST['sexe'];
+        $robe = $_POST['robe'];
+        $sterilisation = $_POST['sterilisation'];
+        $dateAccueil = $_POST['dateAccueil'];
+
+        // ajouter data chien accueilli
 
 
-            /* $civilite = $_POST['civilite'];
-             $nomFamilleAccueil = $_POST['nomFamilleAccueil'];
-             $prenomFamilleAccueil = $_POST['prenomFamilleAccueil'];
-             $mail = $_POST['mail'];
-             $telephoneFixe = $_POST['telephoneFixe'];
-             $telephoneMobile = $_POST['telephoneMobile'];
-             $adresseFamilleAccueil = $_POST['adresseFamilleAccueil'];
-             $codePostalFamilleAccueil = $_POST['codePostalFamilleAccueil'];
-             $villeFamilleAccueil = $_POST['villeFamilleAccueil'];
-             $paysFamilleAccueil = $_POST['paysFamilleAccueil'];
-             $lieu = $_POST['lieu'];
-             $dateForm = $_POST['dateForm'];*/
+        //si pas d'erreur continuer
+        if (!isset($error)) {
 
-
-            /*     // chien
-                 $c = ModelChien::getChienByNumPuce($_POST['numPuce']);
-                 $numPuce = $c->getNumpuce();
-                 $nomChien = $c->getNomChien();
-                 $race = $c->getRace();
-                 $sexe = $c->getSexe();
-                 $dateNaissance = $c->getDateNaissance();
-                 $robe = $c->getRobe();
-                 $sterilisation = $c->getSterilisation();
-                 $dateAccueil = $c->getDateAccueil();*/
-
-            // chien
-            $numPuce = $_POST['numPuce'];
-            $nomChien = $_POST['nomChien'];
-            $race = $_POST['race'];
-            $dateNaissance = $_POST['dateNaissance'];
-            $sexe = $_POST['sexe'];
-            $robe = $_POST['robe'];
-            $sterilisation = $_POST['sterilisation'];
-            $dateAccueil = $_POST['dateAccueil'];
-
-            // ajouter data chien accueilli
-
-            if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                $error = 'Entrez une adresse email valide';
-                echo $error;
-            }
-            //si pas d'erreur continuer
-            if (!isset($error)) {
-
-                ob_end_clean();
-                ob_start();
-                $pdf = new AccueilPDF();
-                $pdf->AliasNbPages();
-                $pdf->AddPage();
-                $pdf->titreTexte("CONTRAT D'ACCUEIL BÉNÉVOLE");
-                $pdf->corpsTexte("Les conditions d'accueil indiquées ci-dessous devront être celles effectivement réservées à
+            ob_end_clean();
+            ob_start();
+            $pdf = new AccueilPDF();
+            $pdf->AliasNbPages();
+            $pdf->AddPage();
+            $pdf->titreTexte("CONTRAT D'ACCUEIL BÉNÉVOLE");
+            $pdf->corpsTexte("Les conditions d'accueil indiquées ci-dessous devront être celles effectivement réservées à
 l'animal, celles-ci étant en rapport avec son caractère et les motivations de notre œuvre.");
-                $pdf->corpsTexte("Le non-respect de ces conditions entraîne l'annulation du contrat et autorise BULL'S FRIENDS à
+            $pdf->corpsTexte("Le non-respect de ces conditions entraîne l'annulation du contrat et autorise BULL'S FRIENDS à
 reprendre l'animal sans préavis.");
 
-                $pdf->titreTexte("BULL'S FRIENDS ASSOCIATION CONFIE EN ACCUEIL À :");
-                $pdf->familleForm($civilite, $nomFamilleAccueil, $prenomFamilleAccueil, $adresseFamilleAccueil, $codePostalFamilleAccueil,
-                    $villeFamilleAccueil, $paysFamilleAccueil, $mail, $telephoneFixe, $telephoneMobile);
-                $pdf->titreTexte("BULL'S FRIENDS ASSOCIATION CONFIE EN ACCUEIL L'ANIMAL CI-APRÈS DÉSIGNÉ :");
-                $pdf->chienForm($nomChien, $race, $dateNaissance, $sexe, $robe, $sterilisation, $numPuce, $dateAccueil);
-                $pdf->AddPage();
-                $pdf->titreTexte("L'ACCUEILLANT S'ENGAGE ENVERS BULL'S FRIENDS ASSOCIATION :");
-                $pdf->corpsContrat(File::build_path(array("ressources", "clausesContrat.txt")));
-                $pdf->AddPage();
-                $pdf->remarques();
-                $pdf->corpsGras("Le présent contrat est établi en 2 exemplaires dont un est à retourner à");
-                $pdf->SetTextColor(14, 78, 116);
-                $pdf->corpsGras("Bull's Friends Association");
-                $pdf->corpsGras(
-                    "Monsieur Jean-Clément Aubrun
+            $pdf->titreTexte("BULL'S FRIENDS ASSOCIATION CONFIE EN ACCUEIL À :");
+            $pdf->familleForm($civilite, $nomFamilleAccueil, $prenomFamilleAccueil, $adresseFamilleAccueil, $codePostalFamilleAccueil,
+                $villeFamilleAccueil, $paysFamilleAccueil, $mail, $telephoneFixe, $telephoneMobile);
+            $pdf->titreTexte("BULL'S FRIENDS ASSOCIATION CONFIE EN ACCUEIL L'ANIMAL CI-APRÈS DÉSIGNÉ :");
+            $pdf->chienForm($nomChien, $race, $dateNaissance, $sexe, $robe, $sterilisation, $numPuce, $dateAccueil);
+            $pdf->AddPage();
+            $pdf->titreTexte("L'ACCUEILLANT S'ENGAGE ENVERS BULL'S FRIENDS ASSOCIATION :");
+            $pdf->corpsContrat(File::build_path(array("ressources", "clausesContrat.txt")));
+            $pdf->AddPage();
+            $pdf->remarques();
+            $pdf->corpsGras("Le présent contrat est établi en 2 exemplaires dont un est à retourner à");
+            $pdf->SetTextColor(14, 78, 116);
+            $pdf->corpsGras("Bull's Friends Association");
+            $pdf->corpsGras(
+                "Monsieur Jean-Clément Aubrun
 Bâtiment F16
 28 rue de Savigny
 FR-91390 Morsang sur Orge
 France"
-                );
-                $pdf->SetXY(40, 180);
-                $pdf->dateLieu($lieu, $dateForm);
-                $pdf->SetX(40);
+            );
+            $pdf->SetXY(40, 180);
+            $pdf->dateLieu($lieu, $dateForm);
+            $pdf->SetX(40);
 
-                $pdf->corpsTexte("L'accueillant (signature précédée de la mention « lu et approuvé »)");
-                $pdf->MultiCell(200, 20, '');
-                $pdf->SetX(40);
-                $pdf->corpsTexte("Visa du délégué ou membre du Bureau pour Bull's Friends Association");
-                $pdf->SetX(40);
-                $pdf->Cell(135, 5, iconv('UTF-8', 'windows-1252', "Réfèrent : L.O"), 0, 0, 'R');
+            $pdf->corpsTexte("L'accueillant (signature précédée de la mention « lu et approuvé »)");
+            $pdf->MultiCell(200, 20, '');
+            $pdf->SetX(40);
+            $pdf->corpsTexte("Visa du délégué ou membre du Bureau pour Bull's Friends Association");
+            $pdf->SetX(40);
+            $pdf->Cell(135, 5, iconv('UTF-8', 'windows-1252', "Réfèrent : L.O"), 0, 0, 'R');
 
 
-                $pdf->Output();
-                ob_end_flush();
-            }
+            $pdf->Output();
+            ob_end_flush();
         }
+
     }
 }
 

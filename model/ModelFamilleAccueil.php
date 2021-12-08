@@ -71,7 +71,7 @@ class ModelFamilleAccueil
 
     public static function getFamilleAccueilByNom($info)
     {
-        $sql = "SELECT * FROM FamilleAccueil WHERE nomFamilleAccueil=:tag";
+        $sql = "SELECT * FROM FamilleAccueil WHERE mail=:tag";
         $req_prep = Model::getPDO()->prepare($sql);
         $values = array(
             "tag" => $info

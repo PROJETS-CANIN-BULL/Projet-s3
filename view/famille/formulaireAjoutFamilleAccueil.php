@@ -32,12 +32,30 @@
                             <legend> Vous êtes déjà famille d'accueil ?</legend>
                             <div class="input">
                                 <span class="inputItem">Famille *</span>
-                                <select class="inputField" name="nomFamilleAccueil">
+                                <select class="inputField" name="mailA">
+                                    <option value="autre" selected>...</option>
                                     <?php foreach ($f as $famille) {
-                                        echo '<option value="' . htmlspecialchars($famille->getNomFamilleAccueil()) . '">' . htmlspecialchars($famille->getNomFamilleAccueil()) . '</option>';
+                                        echo '<option value="' . htmlspecialchars($famille->getMail()) . '">' . htmlspecialchars($famille->getNomFamilleAccueil())  . '('. htmlspecialchars($famille->getMail()) . ')</option>';
+
                                     }
                                     ?>
                                 </select>
+                            </div>
+                            <div class="input">
+                                <span class="inputItem">Formulaire rempli à : *</span>
+                                <input class="inputField" id="lieuA" name="lieuA"
+                                       type="text" placeholder="Ville">
+                            </div>
+                            <div class="input">
+                                <span class="inputItem">Le : *</span>
+                                <input class="inputField" id="dateForm" type="text" name="dateFormA"
+                                       placeholder="jj/mm/aaaa" pattern="\d{1,2}/\d{1,2}/\d{4}">
+                            </div>
+                            <div class="input" id="send">
+                                <input type="submit" name="submitA" value="Envoyer">
+                                <input type='hidden' accept='pdf' name='action' value='ajouterFamilleAccueil'>
+                                <input type='hidden' name='action' value='generateAccueilPDF'>
+
                             </div>
 
                             <legend>Devenez une famille d' Accueil</legend>
@@ -48,9 +66,7 @@
                                     <option selected value="madame">Mme</option>
                                     <option value="autre">Autre</option>
                                 </select>
-
                             </div>
-
                             <div class="input">
                                 <span class="inputItem">Nom *</span>
                                 <input class="inputField" id="nomFamilleAccueil" name="nomFamilleAccueil"

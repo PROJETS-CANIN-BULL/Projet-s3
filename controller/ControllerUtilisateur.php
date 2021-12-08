@@ -16,31 +16,42 @@ class ControllerUtilisateur
 {
     public static function generateAccueilPDF()
     {
-        $infoFamille = array(
-            'civilite' => $_POST['civilite'],
-            'nomFamilleAccueil' => $_POST['nomFamilleAccueil'],
-            'prenomFamilleAccueil' => $_POST['prenomFamilleAccueil'],
-            'mail' => $_POST['mail'],
-            'telephoneMobile' => $_POST['telephoneMobile'],
-            'telephoneFixe' => $_POST['telephoneFixe'],
-            'adresseFamilleAccueil' => $_POST['adresseFamilleAccueil'],
-            'codePostalFamilleAccueil' => $_POST['codePostalFamilleAccueil'],
-            'villeFamilleAccueil' => $_POST['villeFamilleAccueil'],
-            'paysFamilleAccueil' => $_POST['paysFamilleAccueil']
-        );
 
+        if (($_POST['mailA']) == "autre") {
+            $infoFamille = array(
+                'civilite' => $_POST['civilite'],
+                'nomFamilleAccueil' => $_POST['nomFamilleAccueil'],
+                'prenomFamilleAccueil' => $_POST['prenomFamilleAccueil'],
+                'mail' => $_POST['mail'],
+                'telephoneMobile' => $_POST['telephoneMobile'],
+                'telephoneFixe' => $_POST['telephoneFixe'],
+                'adresseFamilleAccueil' => $_POST['adresseFamilleAccueil'],
+                'codePostalFamilleAccueil' => $_POST['codePostalFamilleAccueil'],
+                'villeFamilleAccueil' => $_POST['villeFamilleAccueil'],
+                'paysFamilleAccueil' => $_POST['paysFamilleAccueil']
+            );
+            ModelFamilleAccueil::ajouterFamilleAccueil($infoFamille);
+            $mail['mail'] = $_POST['mail'];
+            $mail['lieu'] = $_POST['lieu'];
+            $mail['dateForm'] = $_POST['dateForm'];
+        } else {
+            $mail['mail'] = $_POST['mailA'];
+            $mail['lieu'] = $_POST['lieuA'];
+            $mail['dateForm'] = $_POST['dateFormA'];
 
-        ModelFamilleAccueil::ajouterFamilleAccueil($infoFamille);
-        $famille = ModelFamilleAccueil::getFamilleAccueilByNom($_POST['nomFamilleAccueil']);
+        }
 
+        $famille = ModelFamilleAccueil::getFamilleAccueilByNom($_POST['mail']);
         $data = array(
             'numPuce' => $_POST['numPuce'],
             'idFamille' => $famille->getIdFamilleAccueil()
         );
-        ModelAccueil::ajouterAccueil($data);
 
-        AccueilPDF::generateAccueilPDF();
+
+        ModelAccueil::ajouterAccueil($data);
+        AccueilPDF::generateAccueilPDF($mail);
         require_once(File::build_path(array("lib", "AccueilPDF.php")));
+
     }
 
     public static function generateAdoptionPDF()
