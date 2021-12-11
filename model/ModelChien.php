@@ -35,6 +35,95 @@ class ModelChien
         }
     }
 
+
+    public static function getChienByNumPuceAttente($numPuce)
+    {
+        $sql = "SELECT * FROM ChienAttente WHERE numPuce=:nom_tag";
+        $req_prep = Model::getPDO()->prepare($sql);
+        $values = array(
+            "nom_tag" => $numPuce
+        );
+        $req_prep->execute($values);
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelChien');
+        $tab_chien = $req_prep->fetchAll();
+        if (empty($tab_chien))
+            return false;
+        return $tab_chien[0];
+    }
+
+    public static function getAllChiensAttente()
+    {
+        try {
+            $PDO = Model::getPDO();
+            $rep = $PDO->query("SELECT * FROM ChienAttente");
+            $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
+            $chien = $rep->fetchAll();
+            return $chien;
+
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage(); // affiche un message d'erreur
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+
+    public static function supprimerChienAttente($numPuce)
+    {
+        try {
+            $sql = "DELETE FROM ChienAttente WHERE numPuce=:tag";
+            $req_prep = Model::getPDO()->prepare($sql);
+
+            $values = array(
+                "tag" => $numPuce,
+            );
+            $req_prep->execute($values);
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage();
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+    public static function addChienAttente($data)
+    {
+        try {
+            $sql = "INSERT INTO `ChienAttente`(`numPuce`, `nomChien`, `race`, `dateNaissance`, `sexe`, `robe`, `sterilisation`, `dateAccueil`, `nomAncienProprio`,`description`,`nomPhoto` ) VALUES (:tag,:tag2, :tag3,:tag4,:tag5, :tag6,:tag7,:tag8,:tag9,:tag10,:tag11)";
+            $req_prep = Model::getPDO()->prepare($sql);
+
+            $values = array(
+                "tag" => $data["numPuce"],
+                "tag2" => $data["nomChien"],
+                "tag3" => $data["race"],
+                "tag4" => $data["dateNaissance"],
+                "tag5" => $data["sexe"],
+                "tag6" => $data["robe"],
+                "tag7" => $data["sterilisation"],
+                "tag8" => $data["dateAccueil"],
+                "tag9" => $data["nomAncienProprio"],
+                "tag10" => $data["description"],
+                "tag11" => $data["nomPhoto"],
+
+            );
+            $req_prep->execute($values);
+        } catch (PDOException $e) {
+             if ($e->getCode() == 23000) {
+                return 12;
+            } else if (Conf::getDebug()) {
+                echo $e->getMessage(); // affiche un message d'erreur
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+
+    }
+    
+
     public static function addChien($data)
     {
         try {
@@ -57,10 +146,8 @@ class ModelChien
             );
             $req_prep->execute($values);
         } catch (PDOException $e) {
-            if ($e->getCode() == 22007) {
-                return 0;
-            } else if ($e->getCode() == 23000) {
-                return 1;
+             if ($e->getCode() == 23000) {
+                return 12;
             } else if (Conf::getDebug()) {
                 echo $e->getMessage(); // affiche un message d'erreur
             } else {

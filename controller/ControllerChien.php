@@ -6,6 +6,43 @@ require_once(File::build_path(array("model", "ModelAdoption.php")));
 
 class ControllerChien
 {
+    public static function validation(){
+        $chien =  ModelChien::getAllChiensAttente();
+        $controller = 'chien';
+        $view = 'Validation';
+        $pagetitle = 'Les Animaux en Attente';
+        require(File::build_path(array("view", "view.php")));
+
+    }
+
+    public static function Valider()
+    {
+        $c= ModelChien::getChienByNumPuceAttente($_GET['numPuce']);
+        $data = array(
+            'numPuce' => $c->getNumPuce(),
+            'nomChien' => $c->getNomchien(),
+            'race' => $c->getRace(),
+            'dateNaissance' => $c->getDateNaissance(),
+            'sexe' => $c->getSexe(),
+            'robe' => $c->getRobe(),
+            'sterilisation' => $c->getSterilisation(),
+            'dateAccueil' =>$c->getDateAccueil(),
+            'description' => $c->getDescription(),
+            'nomAncienProprio' => $c->getNomAncienProprio(),
+            'nomPhoto' => $c->getNomPhoto()
+        );
+        ModelChien::addChien($data);
+
+        ModelChien::supprimerChienAttente($_GET['numPuce']);
+        ControllerChien::validation();
+    }
+
+     public static function Refuser()
+    {
+        ModelChien::supprimerChienAttente($_GET['numPuce']);
+        ControllerChien::validation();
+    }
+
     public static function Protege()
     {
         $chien = ModelChien::getAllChiens();
@@ -30,6 +67,69 @@ class ControllerChien
         $view = 'formulaireAjoutChien';
         $pagetitle = 'formulaire Chien';
         require(File::build_path(array("view", "view.php")));
+    }
+
+    public static function attenteValidation(){
+        $data = array(
+            'numPuce' => $_POST['numPuce'],
+            'nomChien' => $_POST['nomChien'],
+            'race' => $_POST['race'],
+            'dateNaissance' => $_POST['dateNaissance'],
+            'sexe' => $_POST['sexe'],
+            'robe' => $_POST['robe'],
+            'sterilisation' => $_POST['sterilisation'],
+            'dateAccueil' => $_POST['dateAccueil'],
+            'description' => $_POST['description'],
+            'nomAncienProprio' => $_POST['nomAncienProp']
+        );
+
+        $erreur = 'null';
+
+        if (strcmp($_FILES['photo']['name'], $data['numPuce'] . '.png') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.jpeg') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.JPG') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.jpg') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.PNG') != 0 && strcmp($_FILES['photo']['name'], $data['numPuce'] . '.JPEG') != 0) {
+            $erreur = ' Le nom de la photo du chien est faux.';
+        }
+        if ($_FILES['photo']['error'] > 0) $erreur = "Erreur lors du transfert";
+        if ($_FILES['photo']['size'] > 10000000000) $erreur = "Le fichier est trop gros";
+        $extensions_valides = array('jpeg', 'jpg', 'png');
+        $extension_upload = strtolower(substr(strrchr($_FILES['photo']['name'], '.'), 1));
+        $nom = File::build_path(array("image", "chien", $_FILES['photo']['name']));
+        $resultat = move_uploaded_file($_FILES['photo']['tmp_name'], $nom);
+
+        if (strcmp($erreur, 'null') != 0) {
+            $controller = 'chien';
+            $view = 'ErreurChien';
+            $pagetitle = ' Erreur photo du Chien ';
+            require(File::build_path(array("view", "view.php")));
+        }
+
+        $data['nomPhoto'] = $_FILES['photo']['name'];
+        $existe= ModelChien::getChienByNumPuce($data['numPuce']);
+        $etat = ModelChien::addChienAttente($data);
+        if ($etat == 12 || $existe!=NULL || $resultat == false) {
+            if ($etat == 12|| $existe!=NULL) {
+                $erreur = "le chien est déjà existant";
+            }
+
+            if (!$resultat) {
+                $erreur = 'le déplacement des fichiers a connu une erreur';
+            } else {
+                unlink($nom);
+            }
+            ModelChien::supprimerChienAttente($data['numPuce']);
+
+            $controller = 'chien';
+            $view = 'AjoutChienNonReussi';
+            $pagetitle = 'Chien Non Ajouté';
+            require(File::build_path(array("view", "view.php")));
+        } else {
+            $message = 'enregistré';
+            $mess=' Il faut maintenant qu\'un administrateur vérifie les informations rentrées. Si elles sont correctes vous trouverez votre animal sur notre site d\'ici quelques jours';
+            $controller = 'chien';
+            $titre = "Ajouter Chien";
+            $view = 'AjoutChienReussi';
+            $pagetitle = 'Chien Ajouté';
+            require(File::build_path(array("view", "view.php")));
+        }
     }
 
 
@@ -70,13 +170,11 @@ class ControllerChien
         $data['nomPhoto'] = $_FILES['photo']['name'];
 
         $etat = ModelChien::addChien($data);
-        if ($etat == 1 || $etat == 0 || $resultat == false) {
-            if ($etat == 0) {
-                $erreur = "une des dates n'est pas dans le bon format";
-            } else if ($etat == 1) {
+         if ($etat == 12 || $resultat == false) {
+            if ($etat == 12) {
                 $erreur = "le chien est déjà existant";
-
             }
+
 
             if (!$resultat) {
                 ModelChien::supprimerChien($data['numPuce']);

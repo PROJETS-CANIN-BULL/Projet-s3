@@ -84,9 +84,9 @@
                                        type="text">
                             </div>
                             <div class="input">
-                                <span class="inputItem">Date Facture : (Sous la forme AAAA-MM-JJ) *</span>
-                                <input class="inputField" id="dateFacture" name="dateFacture" placeholder="AAAA-MM-JJ"
-                                       required type="text">
+                                <span class="inputItem">Date Facture :*</span>
+                                <input class="inputField" id="dateFacture" name="dateFacture" 
+                                       required type="date">
                             </div>
                             <div class="input">
                                 <span class="inputItem">Nom du Créditeur *</span>
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="input">
                                     <span class="inputItem">Numero Telephone *</span>
-                                    <input class="inputField" id="numVeto" name="numVeto" type="text">
+                                    <input class="inputField" id="numVeto" name="numVeto" pattern="[0-9]{10}" type="text">
                                 </div>
                                 <div class="input">
                                     <span class="inputItem">Adresse *</span>
@@ -128,7 +128,7 @@
                                 </div>
                                 <div class="input">
                                     <span class="inputItem">Code Postal  *</span>
-                                    <input class="inputField" id="codePostalVeto" name="codePostalVeto" type="text">
+                                    <input class="inputField" id="codePostalVeto" name="codePostalVeto" pattern="[0-9]{4,5}" type="text">
                                 </div>
                                 <div class="input">
                                     <span class="inputItem">Ville *</span>

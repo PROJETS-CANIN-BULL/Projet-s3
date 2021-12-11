@@ -37,7 +37,13 @@
                                 Factures</a></li>
                     </ul>
                 </div>
-                <!-- Example single danger button -->
+                <?php
+                    if ($_SESSION['isAdmin'] == 1) {
+                ?>    
+                <a class="btn btn-primary" href="index.php?controller=Chien&action=validation" role="button">Chien en Attente</a>
+                 <?php
+                   }
+                ?> 
                 <a class="btn btn-primary" href="index.php?action=FAQ" role="button">FAQ</a>
                 <a class="btn btn-primary" href="index.php?action=Contact" role="button">Contact</a>
                 <a class="btn btn-primary" href="index.php?action=compte" role="button">Compte</a>

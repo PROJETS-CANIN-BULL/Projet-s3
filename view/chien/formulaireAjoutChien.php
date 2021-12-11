@@ -43,9 +43,9 @@
                                 <input class="inputField" id="race" name="race" required type="text">
                             </div>
                             <div class="input">
-                                <span class="inputItem">Date de Naissance : (Sous la forme AAAA-MM-JJ) *</span>
+                                <span class="inputItem">Date de Naissance : *</span>
                                 <input class="inputField" id="dateNaissance" name="dateNaissance"
-                                       placeholder="AAAA-MM-JJ" required type="text">
+                                       required type="date">
                             </div>
                             <div class="input">
                                 <span class="inputItem"> Sexe *</span>
@@ -72,9 +72,8 @@
                             </div>
 
                             <div class="input">
-                                <span class="inputItem">Date d'accueil : (Sous la forme AAAA-MM-JJ) *</span>
-                                <input class="inputField" id="dateAccueil" name="dateAccueil" placeholder="AAAA-MM-JJ"
-                                       required type="text">
+                                <span class="inputItem">Date d'accueil :  *</span>
+                                <input class="inputField" id="dateAccueil" name="dateAccueil"  type="date" required>
                             </div>
                             <div class="input">
                                 <span class="inputItem">Nom de l'ancien Proprietaire *</span>
@@ -101,7 +100,14 @@
                         <div class="input" id="send">
                             <input class="inputField" type="submit" value="Envoyer"/>
                             <input type='hidden' name='controller' value='Chien'>
+                             <?php
+                                if ($_SESSION['isAdmin'] == 1) {
+                            ?>
                             <input type='hidden' name='action' value='ajouterChien'>
+                        <?php }else{?>
+                            <input type='hidden' name='action' value='attenteValidation'>
+                        <?php }?>
+
                         </div>
                     </form>
                 </article>

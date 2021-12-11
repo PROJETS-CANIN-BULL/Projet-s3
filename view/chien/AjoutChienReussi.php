@@ -25,6 +25,7 @@
                 </article>
                 <article class="col-10">
                     <p>Le Chien a bien été <?php echo $message ?></p>
+                    <?php if(isset($mess)){ echo '<p>'.$mess.'</p>';}?>
                     <div>
                         <p> Pour retourner sur la page des Chiens A Adopter: <a
                                     href="index.php?controller=Chien&action=Adopter"> A
