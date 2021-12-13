@@ -15,147 +15,173 @@ class ControllerFacture
 
     public static function ajouterFacture()
     {
-        $data = array(
-            'numPuce' => $_POST['numPuce'],
-            'numFacture' => $_POST['numFacture'],
-            'type' => $_POST['type'],
-            'motif' => $_POST['motif'],
-            'cout' => $_POST['cout'],
-            'dateFacture' => $_POST['dateFacture'],
-            'crediteur' => $_POST['crediteur'],
-        );
-
-        if (isset($_POST['idVeto'])) {
-            $factureVeto['idVeto'] = $_POST['idVeto'];
-            $infosFacture = array(
+         if (ModelUtilisateur::getTypeID($_SESSION['login']) == 1) {
+            $data = array(
+                'numPuce' => $_POST['numPuce'],
                 'numFacture' => $_POST['numFacture'],
+                'type' => $_POST['type'],
+                'motif' => $_POST['motif'],
+                'cout' => $_POST['cout'],
+                'dateFacture' => $_POST['dateFacture'],
                 'crediteur' => $_POST['crediteur'],
             );
-        }
-        if (isset($_POST['nomVeto'])) {
-            $infosVeto = array(
-                'nomVeto' => $_POST['nomVeto'],
-                'numVeto' => $_POST['numVeto'],
-                'adresseVeto' => $_POST['adresseVeto'],
-                'codePostalVeto' => $_POST['codePostalVeto'],
-                'villeVeto' => $_POST['villeVeto'],
-                'paysVeto' => $_POST['paysVeto'],
-            );
-            ModelVeto::ajouterVeto($infosVeto);
-            $infos = array(
-                'nomVeto' => $_POST['nomVeto'],
-                'numTelephoneVeto' => $_POST['numVeto'],
-            );
-            $veto = ModelVeto::getVeterinaireByNom($infos);
-            $factureVeto['idVeto'] = $veto->getIdVeto();
-            $infosFacture = array(
-                'numFacture' => $_POST['numFacture'],
-                'crediteur' => $_POST['crediteur'],
-            );
-        }
 
-        $erreur = 'null';
-        $name = $data['numFacture'] . "-" . $data["crediteur"] . '.pdf';
-        if (strcmp($_FILES['description']['name'], $name) != 0) {
-            $erreur = ' Le nom de la Facture est faux.';
-
-        }
-        if ($_FILES['description']['error'] > 0) $erreur = "Erreur lors du transfert";
-        if ($_FILES['description']['size'] > 1000000) $erreur = "Le fichier est trop gros";
-        $extensions_valides = array('pdf');
-        $extension_upload = strtolower(substr(strrchr($_FILES['description']['name'], '.'), 1));
-        $nom = File::build_path(array("pdf", $_FILES['description']['name']));
-        $resultat = move_uploaded_file($_FILES['description']['tmp_name'], $nom);
-
-        if (strcmp($erreur, 'null') != 0) {
-            $view = 'ErreurFacture';
-            $controller = 'facture';
-            $pagetitle = 'Erreur Factures';
-            require(File::build_path(array("view", "view.php")));
-        }
-
-
-        if (ModelFacture::ajouterFacture($data) == false || $resultat == false) {
-            $erreur = "une des dates n'est pas dans le bon format";
-
-            if (!$resultat) {
-                $info = array(
-                    "numFacture" => $_POST['numFacture'],
-                    "crediteur" => $_POST['crediteur']
+            if (isset($_POST['idVeto'])) {
+                $factureVeto['idVeto'] = $_POST['idVeto'];
+                $infosFacture = array(
+                    'numFacture' => $_POST['numFacture'],
+                    'crediteur' => $_POST['crediteur'],
                 );
-                ModelFacture::supprimerFacture($info);
-                $erreur = 'Le déplacement des fichiers a connu une erreur';
+            }
+            if (isset($_POST['nomVeto'])) {
+                $infosVeto = array(
+                    'nomVeto' => $_POST['nomVeto'],
+                    'numVeto' => $_POST['numVeto'],
+                    'adresseVeto' => $_POST['adresseVeto'],
+                    'codePostalVeto' => $_POST['codePostalVeto'],
+                    'villeVeto' => $_POST['villeVeto'],
+                    'paysVeto' => $_POST['paysVeto'],
+                );
+                ModelVeto::ajouterVeto($infosVeto);
+                $infos = array(
+                    'nomVeto' => $_POST['nomVeto'],
+                    'numTelephoneVeto' => $_POST['numVeto'],
+                );
+                $veto = ModelVeto::getVeterinaireByNom($infos);
+                $factureVeto['idVeto'] = $veto->getIdVeto();
+                $infosFacture = array(
+                    'numFacture' => $_POST['numFacture'],
+                    'crediteur' => $_POST['crediteur'],
+                );
+            }
+
+            $erreur = 'null';
+            $name = $data['numFacture'] . "-" . $data["crediteur"] . '.pdf';
+            if (strcmp($_FILES['description']['name'], $name) != 0) {
+                $erreur = ' Le nom de la Facture est faux.';
+
+            }
+            if ($_FILES['description']['error'] > 0) $erreur = "Erreur lors du transfert";
+            if ($_FILES['description']['size'] > 1000000) $erreur = "Le fichier est trop gros";
+            $extensions_valides = array('pdf');
+            $extension_upload = strtolower(substr(strrchr($_FILES['description']['name'], '.'), 1));
+            $nom = File::build_path(array("pdf", $_FILES['description']['name']));
+            $resultat = move_uploaded_file($_FILES['description']['tmp_name'], $nom);
+
+            if (strcmp($erreur, 'null') != 0) {
+                $view = 'ErreurFacture';
+                $controller = 'facture';
+                $pagetitle = 'Erreur Factures';
+                require(File::build_path(array("view", "view.php")));
+            }
+
+
+            if (ModelFacture::ajouterFacture($data) == false || $resultat == false) {
+                $erreur = "une des dates n'est pas dans le bon format";
+
+                if (!$resultat) {
+                    $info = array(
+                        "numFacture" => $_POST['numFacture'],
+                        "crediteur" => $_POST['crediteur']
+                    );
+                    ModelFacture::supprimerFacture($info);
+                    $erreur = 'Le déplacement des fichiers a connu une erreur';
+                } else {
+                    unlink($nom);
+                }
+                $view = 'AjoutFactureNonReussi';
+                $controller = 'facture';
+                $pagetitle = 'Facture Non Ajoutée';
+                require(File::build_path(array("view", "view.php")));
             } else {
-                unlink($nom);
+                if (isset($factureVeto)) {
+                    $f = ModelFacture::getFactureByNumFacture($infosFacture);
+                    $factureVeto['idFacture'] = $f->getIdFacture();
+                    ModelFactureVeto::ajouterFacture();
+                }
+                $message = 'enregistrée';
+                $titre = 'Ajouter Facture';
+                $controller = 'facture';
+                $view = 'AjoutFactureReussi';
+                $pagetitle = 'Facture Ajouté';
+                require(File::build_path(array("view", "view.php")));
             }
-            $view = 'AjoutFactureNonReussi';
-            $controller = 'facture';
-            $pagetitle = 'Facture Non Ajoutée';
-            require(File::build_path(array("view", "view.php")));
-        } else {
-            if (isset($factureVeto)) {
-                $f = ModelFacture::getFactureByNumFacture($infosFacture);
-                $factureVeto['idFacture'] = $f->getIdFacture();
-                ModelFactureVeto::ajouterFacture();
-            }
-            $message = 'enregistrée';
-            $titre = 'Ajouter Facture';
-            $controller = 'facture';
-            $view = 'AjoutFactureReussi';
-            $pagetitle = 'Facture Ajouté';
-            require(File::build_path(array("view", "view.php")));
-        }
+         }     
+        $view = 'accueil';
+        $pagetitle = 'Page Accueil';
+        require(File::build_path(array("view", "view.php")));
     }
 
     public static function formulaireFacture()
     {
-        if (isset($_GET['numPuce'])) {
-            $chien = ModelChien::getChienByNumPuce($_GET['numPuce']);
-        } else {
-            $chiens = ModelChien::getAllChiens();
+        if (ModelUtilisateur::getTypeID($_SESSION['login']) == 1) {
 
-        }
-        $veto = ModelVeto::getAllVeto();
+            if (isset($_GET['numPuce'])) {
+                $chien = ModelChien::getChienByNumPuce($_GET['numPuce']);
+            } else {
+                $chiens = ModelChien::getAllChiens();
 
-        $view = 'formulaireAjoutFacture';
-        $controller = 'facture';
-        $pagetitle = 'formulaire Facture';
+            }
+            $veto = ModelVeto::getAllVeto();
+
+            $view = 'formulaireAjoutFacture';
+            $controller = 'facture';
+            $pagetitle = 'formulaire Facture';
+            require(File::build_path(array("view", "view.php")));
+        }     
+        $view = 'accueil';
+        $pagetitle = 'Page Accueil';
         require(File::build_path(array("view", "view.php")));
+
     }
 
     public static function modificationFormulaire()
-    {
-        $info = array(
-            "numFacture" => $_GET['numFacture'],
-            "crediteur" => $_GET['crediteur']
-        );
-        $facture = ModelFacture::getFactureByNumFacture($info);
-        $chiens = ModelChien::getAllChiens();
-        $view = 'modificationFacture';
-        $controller = 'facture';
-        $pagetitle = 'Modification Facture';
+    {        
+        if (ModelUtilisateur::getTypeID($_SESSION['login']) == 1) {
+
+            $info = array(
+                "numFacture" => $_GET['numFacture'],
+                "crediteur" => $_GET['crediteur']
+            );
+            $facture = ModelFacture::getFactureByNumFacture($info);
+            $chiens = ModelChien::getAllChiens();
+            $view = 'modificationFacture';
+            $controller = 'facture';
+            $pagetitle = 'Modification Facture';
+            require(File::build_path(array("view", "view.php")));
+       
+        }     
+        $view = 'accueil';
+        $pagetitle = 'Page Accueil';
         require(File::build_path(array("view", "view.php")));
 
     }
 
     public static function modifierFacture()
     {
-        $infos = array(
-            'numPuce' => $_POST['numPuce'],
-            'numFacture' => $_POST['numFacture'],
-            'type' => $_POST['type'],
-            'motif' => $_POST['motif'],
-            'cout' => $_POST['cout'],
-            'dateFacture' => $_POST['dateFacture'],
-            'crediteur' => $_POST['crediteur'],
-        );
-        ModelFacture::modifierFacture($infos);
-        $message = 'modifiée';
-        $titre = "Modifier Facture";
-        $view = 'AjoutFactureReussi';
-        $controller = 'facture';
-        $pagetitle = 'Modifier Factures';
+        if (ModelUtilisateur::getTypeID($_SESSION['login']) == 1) {
+
+            $infos = array(
+                'numPuce' => $_POST['numPuce'],
+                'numFacture' => $_POST['numFacture'],
+                'type' => $_POST['type'],
+                'motif' => $_POST['motif'],
+                'cout' => $_POST['cout'],
+                'dateFacture' => $_POST['dateFacture'],
+                'crediteur' => $_POST['crediteur'],
+            );
+            ModelFacture::modifierFacture($infos);
+            $message = 'modifiée';
+            $titre = "Modifier Facture";
+            $view = 'AjoutFactureReussi';
+            $controller = 'facture';
+            $pagetitle = 'Modifier Factures';
+            require(File::build_path(array("view", "view.php")));
+         }     
+        $view = 'accueil';
+        $pagetitle = 'Page Accueil';
         require(File::build_path(array("view", "view.php")));
+
     }
 
     public static function supprimerFacture()
