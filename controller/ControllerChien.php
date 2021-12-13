@@ -17,29 +17,15 @@ class ControllerChien
 
     public static function Valider()
     {
-        $c= ModelChien::getChienByNumPuceAttente($_GET['numPuce']);
-        $data = array(
-            'numPuce' => $c->getNumPuce(),
-            'nomChien' => $c->getNomchien(),
-            'race' => $c->getRace(),
-            'dateNaissance' => $c->getDateNaissance(),
-            'sexe' => $c->getSexe(),
-            'robe' => $c->getRobe(),
-            'sterilisation' => $c->getSterilisation(),
-            'dateAccueil' =>$c->getDateAccueil(),
-            'description' => $c->getDescription(),
-            'nomAncienProprio' => $c->getNomAncienProprio(),
-            'nomPhoto' => $c->getNomPhoto()
-        );
-        ModelChien::addChien($data);
+        
 
-        ModelChien::supprimerChienAttente($_GET['numPuce']);
+        ModelChien::modifierChienAttente($_GET['numPuce']);
         ControllerChien::validation();
     }
 
      public static function Refuser()
     {
-        ModelChien::supprimerChienAttente($_GET['numPuce']);
+        ModelChien::supprimerChien($_GET['numPuce']);
         ControllerChien::validation();
     }
 
@@ -80,7 +66,9 @@ class ControllerChien
             'sterilisation' => $_POST['sterilisation'],
             'dateAccueil' => $_POST['dateAccueil'],
             'description' => $_POST['description'],
-            'nomAncienProprio' => $_POST['nomAncienProp']
+            'nomAncienProprio' => $_POST['nomAncienProp'],
+            'enAttente' => '1',
+
         );
 
         $erreur = 'null';

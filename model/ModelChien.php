@@ -15,11 +15,12 @@ class ModelChien
     private $nomAncienProprio;
     private $description;
     private $nomPhoto;
+    private $enAttente;
 
 
-    public function __construct($num = NULL, $nom = NULL, $race = NULL, $dateNaiss = NULL, $sexe = NULL, $robe = NULL, $sterilisation = NULL, $dateAccueil = NULL, $nomAncienProp = NULL, $description = NULL)
+    public function __construct($num = NULL, $nom = NULL, $race = NULL, $dateNaiss = NULL, $sexe = NULL, $robe = NULL, $sterilisation = NULL, $dateAccueil = NULL, $nomAncienProp = NULL, $description = NULL,$enAttente = NULL)
     {
-        if (!is_null($num) && !is_null($nom) && !is_null($race) && !is_null($dateNaiss) && !is_null($sexe) && !is_null($robe) && !is_null($sterilisation) && !is_null($dateAccueil) && !is_null($nomAncienProp) && !is_null($description)) {
+        if (!is_null($num) && !is_null($nom) && !is_null($race) && !is_null($dateNaiss) && !is_null($sexe) && !is_null($robe) && !is_null($sterilisation) && !is_null($dateAccueil) && !is_null($nomAncienProp) && !is_null($description)&& !is_null($enAttente)) {
             $this->numPuce = $num;
             $this->nomChien = $nom;
             $this->race = $race;
@@ -30,6 +31,7 @@ class ModelChien
             $this->dateAccueil = $dateAccueil;
             $this->nomAncienProprio = $nomAncienProp;
             $this->description = $description;
+            $this->enAttente = $enAttente;
 
 
         }
@@ -38,7 +40,7 @@ class ModelChien
 
     public static function getChienByNumPuceAttente($numPuce)
     {
-        $sql = "SELECT * FROM ChienAttente WHERE numPuce=:nom_tag";
+        $sql = "SELECT * FROM Chien WHERE numPuce=:nom_tag AND enAttente IS NOT NULL";
         $req_prep = Model::getPDO()->prepare($sql);
         $values = array(
             "nom_tag" => $numPuce
@@ -55,7 +57,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM ChienAttente");
+            $rep = $PDO->query("SELECT * FROM Chien WHERE enAttente IS NOT NULL");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -70,14 +72,14 @@ class ModelChien
         }
     }
 
-    public static function supprimerChienAttente($numPuce)
+    public static function modifierChienAttente($numPuce)
     {
         try {
-            $sql = "DELETE FROM ChienAttente WHERE numPuce=:tag";
+            $sql = "UPDATE Chien SET enAttente=NULL WHERE numPuce=:nom_tag";
             $req_prep = Model::getPDO()->prepare($sql);
 
             $values = array(
-                "tag" => $numPuce,
+                "nom_tag" => $numPuce,
             );
             $req_prep->execute($values);
         } catch (PDOException $e) {
@@ -89,10 +91,12 @@ class ModelChien
             die();
         }
     }
+
+
     public static function addChienAttente($data)
     {
         try {
-            $sql = "INSERT INTO `ChienAttente`(`numPuce`, `nomChien`, `race`, `dateNaissance`, `sexe`, `robe`, `sterilisation`, `dateAccueil`, `nomAncienProprio`,`description`,`nomPhoto` ) VALUES (:tag,:tag2, :tag3,:tag4,:tag5, :tag6,:tag7,:tag8,:tag9,:tag10,:tag11)";
+            $sql = "INSERT INTO `Chien`(`numPuce`, `nomChien`, `race`, `dateNaissance`, `sexe`, `robe`, `sterilisation`, `dateAccueil`, `nomAncienProprio`,`description`,`nomPhoto`, `enAttente`) VALUES (:tag,:tag2, :tag3,:tag4,:tag5, :tag6,:tag7,:tag8,:tag9,:tag10,:tag11,:tag12)";
             $req_prep = Model::getPDO()->prepare($sql);
 
             $values = array(
@@ -107,6 +111,8 @@ class ModelChien
                 "tag9" => $data["nomAncienProprio"],
                 "tag10" => $data["description"],
                 "tag11" => $data["nomPhoto"],
+                "tag12" => $data["enAttente"],
+
 
             );
             $req_prep->execute($values);
@@ -228,7 +234,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND enAttente IS NULL ");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -249,7 +255,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Chien");
+            $rep = $PDO->query("SELECT * FROM Chien WHERE enAttente IS NULL");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -269,7 +275,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY nomChien");
+            $rep = $PDO->query("SELECT * FROM `Chien`  WHERE enAttente IS NULL ORDER BY nomChien");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -290,7 +296,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY nomChien DESC");
+            $rep = $PDO->query("SELECT * FROM `Chien`  WHERE enAttente IS NULL ORDER BY nomChien DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -308,7 +314,7 @@ class ModelChien
 
     public static function getChiensNoms($nom)
     {
-        $sql = 'SELECT * FROM Chien WHERE nomChien LIKE :nom';
+        $sql = 'SELECT * FROM Chien WHERE enAttente IS NULL AND nomChien LIKE :nom';
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -329,7 +335,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY numPuce");
+            $rep = $PDO->query("SELECT * FROM `Chien` WHERE enAttente IS NULL ORDER BY numPuce");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -349,7 +355,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY numPuce DESC");
+            $rep = $PDO->query("SELECT * FROM `Chien`  WHERE enAttente IS NULL ORDER BY numPuce DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -368,7 +374,7 @@ class ModelChien
     public static function getChiensNumPuces($numPuce)
     {
 
-        $sql = "SELECT * FROM Chien WHERE numPuce LIKE :num1";
+        $sql = "SELECT * FROM Chien WHERE enAttente IS NULL AND numPuce LIKE :num1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -389,7 +395,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY race");
+            $rep = $PDO->query("SELECT * FROM `Chien`  WHERE enAttente IS NULL ORDER BY race");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -409,7 +415,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY race DESC");
+            $rep = $PDO->query("SELECT * FROM `Chien`  WHERE enAttente IS NULL ORDER BY race DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -429,7 +435,7 @@ class ModelChien
     public static function getChiensRaces($race)
     {
 
-        $sql = "SELECT * FROM Chien WHERE race LIKE:race1";
+        $sql = "SELECT * FROM Chien WHERE   enAttente IS NULL AND race LIKE:race1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -448,7 +454,7 @@ class ModelChien
 
     public static function getAllChiensDateNaissances($data)
     {
-        $sql = "SELECT * FROM Chien WHERE dateNaissance>=:datemin AND dateNaissance<=:datemax";
+        $sql = "SELECT * FROM Chien WHERE enAttente IS NULL AND dateNaissance>=:datemin AND dateNaissance<=:datemax";
         // Préparation de la requête
         $req_prep = Model::getPDO()->prepare($sql);
 
@@ -472,7 +478,7 @@ class ModelChien
 
     public static function getAllChiensSexes($sexe)
     {
-        $sql = "SELECT * FROM Chien WHERE sexe=:sexe1";
+        $sql = "SELECT * FROM Chien WHERE enAttente IS NULL AND sexe=:sexe1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -495,7 +501,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY robe");
+            $rep = $PDO->query("SELECT * FROM `Chien` WHERE enAttente IS NULL ORDER BY robe");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -515,7 +521,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY robe DESC");
+            $rep = $PDO->query("SELECT * FROM `Chien`  WHERE enAttente IS NULL ORDER BY robe DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -535,7 +541,7 @@ class ModelChien
     public static function getChiensRobes($robe)
     {
 
-        $sql = "SELECT * FROM Chien WHERE robe LIKE:robe1";
+        $sql = "SELECT * FROM Chien WHERE enAttente IS NULL AND robe LIKE:robe1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -555,7 +561,7 @@ class ModelChien
     public static function getAllChiensSterilisations($avis)
     {
 
-        $sql = "SELECT * FROM Chien WHERE sterilisation=:avis1";
+        $sql = "SELECT * FROM Chien WHERE  enAttente IS NULL AND sterilisation=:avis1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -577,7 +583,7 @@ class ModelChien
 
     public static function getAllChiensDateAccueils($data)
     {
-        $sql = "SELECT * FROM Chien WHERE dateAccueil>=:datemin AND dateAccueil<=:datemax";
+        $sql = "SELECT * FROM Chien WHERE enAttente IS NULL AND dateAccueil>=:datemin AND dateAccueil<=:datemax";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -601,7 +607,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY nomAncienProprio  ");
+            $rep = $PDO->query("SELECT * FROM `Chien` WHERE enAttente IS NULL ORDER BY nomAncienProprio  ");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -621,7 +627,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM `Chien` ORDER BY nomAncienProprio DESC ");
+            $rep = $PDO->query("SELECT * FROM `Chien`  WHERE enAttente IS NULL ORDER BY nomAncienProprio DESC ");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -640,7 +646,7 @@ class ModelChien
     public static function getChiensAncienProprio($nomAncienProp)
     {
 
-        $sql = "SELECT * FROM Chien WHERE nomAncienProprio LIKE :nom1";
+        $sql = "SELECT * FROM Chien WHERE enAttente IS NULL AND nomAncienProprio LIKE :nom1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -664,7 +670,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY nomChien ");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND enAttente IS NULL ORDER BY nomChien ");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -684,7 +690,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY nomChien DESC");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND enAttente IS NULL ORDER BY nomChien DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -704,7 +710,7 @@ class ModelChien
     public static function getChiensNonAdoptesNoms($nom)
     {
 
-        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND nomChien LIKE :nom1";
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND enAttente IS NULL AND nomChien LIKE :nom1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -726,7 +732,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY numPuce");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND enAttente IS NULL ORDER BY numPuce");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -746,7 +752,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY numPuce DESC");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND enAttente IS NULL ORDER BY numPuce DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -765,7 +771,7 @@ class ModelChien
     public static function getChiensNonAdoptesNumPuces($numPuce)
     {
 
-        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND numPuce LIKE :num1";
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND enAttente IS NULL AND numPuce LIKE :num1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -786,7 +792,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY race");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND enAttente IS NULL ORDER BY race");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -806,7 +812,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY race DESC");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND enAttente IS NULL ORDER BY race DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -825,7 +831,7 @@ class ModelChien
     public static function getChiensNonAdoptesRaces($race)
     {
 
-        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND race=:race1";
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND enAttente IS NULL AND race=:race1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -845,7 +851,7 @@ class ModelChien
 
     public static function getAllChiensNonAdoptesDateNaissances($data)
     {
-        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND dateNaissance>=:datemin AND dateNaissance<=:datemax ";
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND enAttente IS NULL AND dateNaissance>=:datemin AND dateNaissance<=:datemax ";
         // Préparation de la requête
         $req_prep = Model::getPDO()->prepare($sql);
 
@@ -868,7 +874,7 @@ class ModelChien
 
     public static function getAllChiensNonAdoptesSexes($sexe)
     {
-        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND sexe=:sexe1 ";
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND enAttente IS NULL AND sexe=:sexe1 ";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -891,7 +897,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY robe");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND enAttente IS NULL ORDER BY robe");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -911,7 +917,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY robe DESC");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND enAttente IS NULL ORDER BY robe DESC");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -930,7 +936,7 @@ class ModelChien
     public static function getChiensNonAdoptesRobes($robe)
     {
 
-        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND robe LIKE :robe1 ";
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND enAttente IS NULL AND robe LIKE :robe1 ";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -950,7 +956,7 @@ class ModelChien
     public static function getAllChiensNonAdoptesSterilisations($avis)
     {
 
-        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND sterilisation=:avis1 ";
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND enAttente IS NULL AND sterilisation=:avis1 ";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -971,7 +977,7 @@ class ModelChien
 
     public static function getAllChiensNonAdoptesDateAccueils($data)
     {
-        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND dateAccueil>=:datemin AND dateAccueil<=:datemax";
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND enAttente IS NULL AND dateAccueil>=:datemin AND dateAccueil<=:datemax";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -995,7 +1001,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) ORDER BY nomAncienProprio  ");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND enAttente IS NULL ORDER BY nomAncienProprio  ");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -1015,7 +1021,7 @@ class ModelChien
     {
         try {
             $PDO = Model::getPDO();
-            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )ORDER BY nomAncienProprio DESC ");
+            $rep = $PDO->query("SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND enAttente IS NULL ORDER BY nomAncienProprio DESC ");
             $rep->setFetchMode(PDO::FETCH_CLASS, "ModelChien");
             $chien = $rep->fetchAll();
             return $chien;
@@ -1034,7 +1040,7 @@ class ModelChien
     public static function getChiensNonAdoptesAncienProprio($nomAncienProp)
     {
 
-        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce ) AND nomAncienProprio LIKE :nom1 ";
+        $sql = "SELECT * FROM Chien c WHERE NOT EXISTS ( SELECT * FROM Adoption WHERE Adoption.numPuce=c.numPuce )AND enAttente IS NULL AND nomAncienProprio LIKE :nom1 ";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
