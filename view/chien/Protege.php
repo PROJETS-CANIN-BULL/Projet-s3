@@ -2,14 +2,13 @@
     <link href="css/Protege.css" rel="stylesheet" type="text/css">
 </head>
 <main>
-    <div class="container-fluid red">
-        <div class="container text-center">
+    <div class="main-body">
+        <div class="texte-centrer">
             <h2> Les protégés</h2>
 
         </div>
-        <div class="container-fluid blue">
-            <div class="row">
-                <article class="col-2">
+        <div class="articles">
+                <article class="col-1">
                     <div>
                         <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
                         <button class="btn left" type="button"
@@ -19,8 +18,8 @@
                     </div>
 
                 </article>
-                <article class="col-10">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <article class="col-2">
+                    <nav class="barre-menu">
                         <div class="container-fluid">
                             <a class="navbar-brand" href="#">Trier par</a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

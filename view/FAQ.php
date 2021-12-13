@@ -2,15 +2,14 @@
     <link href="css/FAQ.css" rel="stylesheet" type="text/css">
 </head>
 <main>
-    <div class="container-fluid red">
-        <div class="container text-center">
+    <div class="main-body">
+        <div class="texte-centrer">
             <h2> FAQ</h2>
         </div>
-        <div class="container-fluid blue">
-            <div class="row">
-                <article class="col-2">
+        <div class="articles">
+                <article class="col-1">
                 </article>
-                <article class="col-10">
+                <article class="col-2">
                     <div id="content">
                         <ul>
                             <li>

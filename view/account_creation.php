@@ -21,7 +21,7 @@
             } ?>" placeholder="Identifiant" name="id" id="id" required/>
         </p>
         <p>
-            <label for="mail">Mail</label>
+            <label for="mail">Mail <br></label>
             <input placeholder="Email" value="<?php if (isset($data['mail'])) {
                 echo $data['mail'];
             } ?>" name="mail" id="mail" type="email" required>

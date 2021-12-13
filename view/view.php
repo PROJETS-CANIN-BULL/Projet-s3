@@ -16,39 +16,30 @@
     <div class="containerHead">
         <img class="head" src='image/headerNew.jpg' class="rounded mx-auto d-block" alt="...">
     </div>
-    <div class="row">
-
-        <div class="container">
-            <nav>
+    <div class="barre-menu">
+            <nav class="menu">
 
                 <!-- Example single danger button -->
-                <a class="btn btn-primary" href="index.php?action=accueil" role="button">Accueil</a>
-                <a class="btn btn-primary" href="index.php?controller=Chien&action=Adopter" role="button">A Adopter</a>
-                <a class="btn btn-primary" href="index.php?controller=Chien&action=Protege" role="button">Les
-                    Protégés</a>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        Frais
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="index.php?controller=Facture&action=Facture">Frais</a></li>
-                        <li><a class="dropdown-item" href="index.php?controller=Facture&action=totaliserFactures">Totalisateurs
-                                Factures</a></li>
-                    </ul>
-                </div>
+                <a class="btn-simple" href="index.php?action=accueil" role="button">Accueil</a>
+                <a class="btn-simple" href="index.php?controller=Chien&action=Adopter" role="button">A Adopter</a>
+                <a class="btn-simple" href="index.php?controller=Chien&action=Protege" role="button">Les Protégés</a>
+                <li class="menu-déroulant"><a class="menu-déroulant" href="#" role="button"> Frais ▼</a>
+                    <ul class="sous-menu">
+                        <li class="drop-menu"><a class="btn-drop" href="index.php?controller=Facture&action=Facture">Frais</a></li>
+                        <li class="drop-menu"><a class="btn-drop" href="index.php?controller=Facture&action=totaliserFactures">Totalisateurs Factures</a></li>
+                    </ul></li>
                 <?php
                     if ($_SESSION['isAdmin'] == 1) {
-                ?>    
-                <a class="btn btn-primary" href="index.php?controller=Chien&action=validation" role="button">Chien en Attente</a>
+                ?>
+                <a class="btn-simple" href="index.php?controller=Chien&action=validation" role="button">Chien en Attente</a>
                  <?php
                    }
-                ?> 
-                <a class="btn btn-primary" href="index.php?action=FAQ" role="button">FAQ</a>
-                <a class="btn btn-primary" href="index.php?action=Contact" role="button">Contact</a>
-                <a class="btn btn-primary" href="index.php?action=compte" role="button">Compte</a>
-                <a class="btn btn-primary" href="index.php?action=deconnexion" role="button">Deconnexion</a>
-               
+                ?>
+                <a class="btn-simple" href="index.php?action=FAQ" role="button">FAQ</a>
+                <a class="btn-simple" href="index.php?action=Contact" role="button">Contact</a>
+                <a class="btn-simple" href="index.php?action=compte" role="button">Compte</a>
+                <a class="btn-simple" href="index.php?action=deconnexion" role="button">Deconnexion</a>
+
 
 
 </header>
@@ -63,6 +54,18 @@ require $filepath;
 <footer class="section footer-classic context-dark bg-image" style="background: #2d3246;">
     <div class="container">
         <div class="row row-30">
+           <!-- <div class="col-md-4 col-xl-5">
+                <div class="pr-xl-4"><a class="brand" href="index.html"><img class="brand-logo-light"
+                                                                             src="images/agency/logo-inverse-140x37.png"
+                                                                             alt="" width="140" height="37"
+                                                                             srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
+                    <p>We are an award-winning creative agency, dedicated to the best result in web design, promotion,
+                        business consulting, and marketing.</p>
+                   
+                    <p class="rights"><span>©  </span><span class="copyright-year">2020</span><span> </span><span>Company</span><span> - </span><span>All Rights Reserved.</span>
+                    </p>
+                </div>
+            </div>-->
             <div class="col-md-4">
                 <h5>Contacts</h5>
                 <dl class="contact-list">
@@ -75,8 +78,8 @@ require $filepath;
                 <h5>Links</h5>
                 <ul class="nav-list">
                     <li><a href="index.php?controller=Chien&action=Adopter">Adoption</a></li>
-                    <li><a href="index.php?action=FAQ">Contacts</a></li>
-                    <li><a href="index.php?action=Contact">FAQ</a></li>
+                    <li><a href="index.php?action=Contact">Contacts</a></li>
+                    <li><a href="index.php?action=FAQ">FAQ</a></li>
                 </ul>
             </div>
         </div>
@@ -84,6 +87,10 @@ require $filepath;
     <div class="row no-gutters social-container">
         <div class="col"><a class="social-inner" href="https://m.facebook.com/Bullsfriendsassociation?fref=ts"><img
                         src="image/fb.png" ))></a></div>
+        <div class="col"><a class="social-inner" href="http://twitter.com/share?text=Bull%27s%20Friends%20Association&url=https%3A%2F%2Fwww.bullsfriends.com%2F"><img
+                        src="image/twt.png" ))></a></div>
+        <div class="col"><a class="social-inner" href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.bullsfriends.com/&title=Bull%27s%20Friends%20Association"><img
+                        src="image/lkdin.png" ))></a></div>
     </div>
 </footer>
 

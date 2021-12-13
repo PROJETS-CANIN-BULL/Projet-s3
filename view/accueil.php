@@ -2,13 +2,12 @@
     <link href="css/accueil.css" rel="stylesheet" type="text/css">
 </head>
 
-<div class="container-fluid red">
-    <div class="container text-center">
+<div class="main-body">
+    <div class="texte-centrer">
         <h2> Bull's Association</h2>
     </div>
-    <div class="container-fluid blue">
-        <div class="row">
-            <article class="col-2">
+    <div class="articles">
+            <article class="col-1">
                 <div>
                     <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
                     <button class="btn left" type="button"
@@ -33,7 +32,7 @@
                 <?php } ?>
 
             </article>
-            <article class="col-10">
+            <article class="col-2">
                 <div class="accueil">
                     <h2> Notre Association </h2>
                     <div class="a">
