@@ -9,17 +9,10 @@
         <div class="container-fluid blue">
             <div class="row">
                 <article class="col-2">
-
                     <div>
                         <p>Cliquez sur le bouton ci-dessous pour ajouter une Facture : </p>
                         <button class="btn left" type="button"
                                 onclick="location.href ='index.php?action=formulaireFacture';">Ajouter une Facture
-                        </button>
-                    </div>
-                    <div>
-                        <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
-                        <button class="btn left" type="button"
-                                onclick=" location.href = 'index.php?action=formulaireFamilleAccueil'">Formulaire
                         </button>
                     </div>
                 </article>

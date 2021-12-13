@@ -7,13 +7,6 @@
         <div class="container-fluid blue">
             <div class="row">
                 <article class="col-2">
-                    <div>
-                        <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
-                        <button class="btn left" type="button"
-                                onclick=" location.href = 'index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil'">
-                            Formulaire
-                        </button>
-                    </div>
                 </article>
                 <article class="col-10">
                     <div>

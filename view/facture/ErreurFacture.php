@@ -15,13 +15,6 @@
                             Ajouter une Facture
                         </button>
                     </div>
-                    <div>
-                        <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
-                        <button class="btn left" type="button"
-                                onclick=" location.href = 'index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil'">
-                            Formulaire
-                        </button>
-                    </div>
                 </article>
                 <article class="col-10">
                     <p><?php echo $erreur ?> Faites retour pour retourner à la page d'ajout de la facture</p>

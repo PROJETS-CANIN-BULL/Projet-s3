@@ -31,15 +31,7 @@
                         </button>
                     </div>
                 <?php } ?>
-                <div>
-                    <p><br>Vous désirez être FAMILLE D'ACCUEIL ? cliquez ci-dessous</p>
-                    <button class="btn left" type="button"
-                            onclick=" location.href = 'index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil'">
-                        Formulaire
-                    </button>
-                </div>
-
-            </article>
+               </article>
             <article class="col-10">
                 <div class="accueil">
                     <h2> Compte </h2>
