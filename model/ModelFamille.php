@@ -83,17 +83,7 @@ class ModelFamille
         return $tab_famille[0];
     }
 
-    public static function modifierNom($data)
-    {
-    }
 
-    public static function modifierPrenom($data)
-    {
-    }
-
-    public static function modifierNumTelephone($data)
-    {
-    }
 
     //Getter
     public function getIdFamille()

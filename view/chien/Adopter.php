@@ -297,7 +297,10 @@
                                 </form>
 
                                 <?php
-                                echo '<p><a href="index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil&numPuce=' . rawurlencode($c->getNumPuce()) . '"> Accueillir le chien </a></p>';
+                                if(!isset($data[$c->getNumPuce()])){
+                                    echo '<p><a href="index.php?controller=FamilleAccueil&action=formulaireFamilleAccueil&numPuce=' . rawurlencode($c->getNumPuce()) . '"> Accueillir le chien </a></p>';
+                                }
+                                
 
                             }
                         }

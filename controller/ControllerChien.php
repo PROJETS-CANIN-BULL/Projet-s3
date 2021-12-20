@@ -53,6 +53,13 @@ class ControllerChien
 
     public static function Adopter()
     {
+        $accueil = ModelAccueil::getAllAccueil();
+        if($accueil!=NULL){
+           foreach($accueil as $a){
+                $data[$a->getNumPuce()]=1;
+            } 
+        }
+        
         $chien = ModelChien::getChiensNonAdoptes();
         $view = 'Adopter';
         $controller = 'chien';

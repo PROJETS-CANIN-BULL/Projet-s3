@@ -98,18 +98,6 @@ class ModelFamilleAccueil
 
     }
 
-    public static function modofierNomAccueil($data)
-    {
-    }
-
-    public static function modifierPrenomAccueil($data)
-    {
-    }
-
-    public static function modifierNumTelephone($data)
-    {
-    }
-
 
     //Getter
     public function getIdFamilleAccueil()

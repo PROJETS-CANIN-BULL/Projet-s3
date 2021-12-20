@@ -91,6 +91,7 @@ class ModelChien
             die();
         }
     }
+    
 
 
     public static function addChienAttente($data)

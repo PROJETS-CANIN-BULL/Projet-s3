@@ -273,10 +273,14 @@
                                 if ($_SESSION['isAdmin'] == 1) {
                                     echo '<p><a href="index.php?controller=Chien&action=modificationFormulaire&numPuce=' . rawurlencode($c->getNumPuce()) . '"> Modifier le Chien </a></p>';
                                     echo '<p><a href="index.php?controller=Chien&action=supprimerChien&numPuce=' . rawurlencode($c->getNumPuce()) . '"> Supprimer le Chien </a></p>';
-                                }
-                                echo '<p><a href="index.php?controller=Facture&action=formulaireFacture&numPuce=' . rawurlencode($c->getNumPuce()) . '"> Ajouter une facture </a></p>';
+                                    echo '<p><a href="index.php?controller=Facture&action=formulaireFacture&numPuce=' . rawurlencode($c->getNumPuce()) . '"> Ajouter une facture </a></p>';
+                                }                  
+                                 
+                                 
+                             }
+                             
+                               
 
-                            }
                         }
                         ?>
                     </div>
