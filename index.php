@@ -19,7 +19,7 @@ require (File::build_path(array("controller","routeur.php")));
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > (session_get_cookie_params()))) {
     session_unset();    
     session_destroy();
-    header ('location:  Connexion.php');  
+    header ('location: '.index.php);  
     
 } else {
     $_SESSION['LAST_ACTIVITY'] = time(); 

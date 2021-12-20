@@ -186,18 +186,24 @@ class ControllerFacture
 
     public static function supprimerFacture()
     {
-        $info = array(
-            "numFacture" => $_GET['numFacture'],
-            "crediteur" => $_GET['crediteur']
-        );
-        ModelFacture::supprimerFacture($info);
-        $nom = File::build_path(array("pdf", $info['numFacture'] . '-' . $info['crediteur'] . '.pdf'));
-        unlink($nom);
-        $message = 'supprimée';
-        $titre = "Supprimer Facture";
-        $controller = 'facture';
-        $view = 'AjoutFactureReussi';
-        $pagetitle = 'Supprimer Facture';
+        if (ModelUtilisateur::getTypeID($_SESSION['login']) == 1) {
+
+            $info = array(
+                "numFacture" => $_GET['numFacture'],
+                "crediteur" => $_GET['crediteur']
+            );
+            ModelFacture::supprimerFacture($info);
+            $nom = File::build_path(array("pdf", $info['numFacture'] . '-' . $info['crediteur'] . '.pdf'));
+            unlink($nom);
+            $message = 'supprimée';
+            $titre = "Supprimer Facture";
+            $controller = 'facture';
+            $view = 'AjoutFactureReussi';
+            $pagetitle = 'Supprimer Facture';
+            require(File::build_path(array("view", "view.php")));
+           }     
+        $view = 'accueil';
+        $pagetitle = 'Page Accueil';
         require(File::build_path(array("view", "view.php")));
     }
 
