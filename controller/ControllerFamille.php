@@ -12,7 +12,7 @@ class ControllerFamille
         } else {
             $c = ModelChien::getAllChiens();
         }
-        $f = ModelFamille::getAllFamilleAccueil();
+        $f = ModelFamille::getAllFamille();
 
         $view = 'formulaireAjoutFamilleAccueil';
         $pagetitle = 'formulaire Famille';

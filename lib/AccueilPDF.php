@@ -1,6 +1,6 @@
 <?php
 require_once(File::build_path(array("fpdf183", "fpdf.php")));
-require_once(File::build_path(array("model", "ModelFamilleAccueil.php")));
+require_once(File::build_path(array("model", "ModelFamille.php")));
 
 class AccueilPDF extends FPDF
 {
