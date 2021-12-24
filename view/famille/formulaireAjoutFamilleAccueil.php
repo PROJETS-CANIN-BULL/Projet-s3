@@ -28,7 +28,7 @@
                                 <select class="inputField" name="mailA">
                                     <option value="autre" selected>...</option>
                                     <?php foreach ($f as $famille) {
-                                        echo '<option value="' . htmlspecialchars($famille->getMail()) . '">' . htmlspecialchars($famille->getNomFamilleAccueil())  . '('. htmlspecialchars($famille->getMail()) . ')</option>';
+                                        echo '<option value="' . htmlspecialchars($famille->getMail()) . '">' . htmlspecialchars($famille->getNomFamille())  . '('. htmlspecialchars($famille->getMail()) . ')</option>';
 
                                     }
                                     ?>

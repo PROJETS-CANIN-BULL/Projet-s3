@@ -4,7 +4,6 @@
 require_once File::build_path(array("controller", "ControllerUtilisateur.php"));
 require_once File::build_path(array("controller", "ControllerChien.php"));
 require_once File::build_path(array("controller", "ControllerFacture.php"));
-require_once File::build_path(array("controller", "ControllerFamilleAccueil.php"));
 require_once File::build_path(array("controller", "ControllerFamille.php"));
 
 

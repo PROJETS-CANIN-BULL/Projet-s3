@@ -257,10 +257,6 @@ class AdoptionPDF extends FPDF
 
             // ajouter data chien accueilli
 
-            if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                $error = 'Entrez une adresse email valide';
-                echo $error;
-            }
             //si pas d'erreur continuer
             if (!isset($error)) {
 

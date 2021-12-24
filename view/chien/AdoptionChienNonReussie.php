@@ -10,6 +10,8 @@
                 </article>
                 <article class="col-10">
                     <div>
+                        <p>Le Chien n'a pas pu être adopté car <?php echo $error ?> </p>
+
                         <p> Pour retourner sur la page des Chiens A Adopter: <a
                                     href="index.php?controller=Chien&action=Adopter"> A
                                 Adopter </a></p>

@@ -5,6 +5,20 @@ require_once(File::build_path(array("model", "ModelChien.php")));
 
 class ControllerFamille
 {
+    public static function formulaireFamilleAccueil()
+    {
+        if (isset($_GET['numPuce'])) {
+            $c = ModelChien::getChienByNumPuce($_GET['numPuce']);
+        } else {
+            $c = ModelChien::getAllChiens();
+        }
+        $f = ModelFamille::getAllFamilleAccueil();
+
+        $view = 'formulaireAjoutFamilleAccueil';
+        $pagetitle = 'formulaire Famille';
+        $controller = 'famille';
+        require(File::build_path(array("view", "view.php")));
+    }
     public static function ajouterFamille()
     {
         $data = array(
@@ -19,8 +33,8 @@ class ControllerFamille
             'pays' => $_POST['paysFamilleAccueil'],
         );
 
-        ModelFamille::ajouterFamille($data);
-        if (ModelFamille::ajouterFamille($data) == false) {
+        $res = ModelFamille::ajouterFamille($data);
+        if ($res == false) {
 
             $view = 'AdoptionChienNonReussie';
             $pagetitle = 'Chien non adopté';

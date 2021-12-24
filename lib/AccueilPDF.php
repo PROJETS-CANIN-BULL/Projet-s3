@@ -176,17 +176,17 @@ class AccueilPDF extends FPDF
     {
 
         // famille
-        $f = ModelFamilleAccueil::getFamilleAccueilByNom($famille['mail']);
+        $f = ModelFamille::getFamilleByNom($famille['mail']);
         $civilite = $f->getCivilite();
-        $nomFamilleAccueil = $f->getNomFamilleAccueil();
-        $prenomFamilleAccueil = $f->getPrenomFamilleAccueil();
+        $nomFamilleAccueil = $f->getNomFamille();
+        $prenomFamilleAccueil = $f->getPrenomFamille();
         $mail = $f->getMail();
-        $telephoneFixe = $f->getTelephoneFixe();
-        $telephoneMobile = $f->getTelephoneMobile();
-        $adresseFamilleAccueil = $f->getAdresseFamilleAccueil();
-        $codePostalFamilleAccueil = $f->getCodePostalFamilleAccueil();
-        $villeFamilleAccueil = $f->getVilleFamilleAccueil();
-        $paysFamilleAccueil = $f->getPaysFamilleAccueil();
+        $telephoneFixe = $f->getNumTelephoneFixe();
+        $telephoneMobile = $f->getNumTelephone();
+        $adresseFamilleAccueil = $f->getAdresse();
+        $codePostalFamilleAccueil = $f->getCodePostal();
+        $villeFamilleAccueil = $f->getVille();
+        $paysFamilleAccueil = $f->getPays();
         $lieu = $famille['lieu'];
         $dateForm = $famille['dateForm'];
 

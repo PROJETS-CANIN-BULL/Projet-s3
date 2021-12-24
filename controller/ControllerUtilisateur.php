@@ -2,7 +2,6 @@
 require_once(File::build_path(array("model", "ModelChien.php")));
 require_once(File::build_path(array("model", "ModelFacture.php")));
 require_once(File::build_path(array("model", "ModelFamille.php")));
-require_once(File::build_path(array("model", "ModelFamilleAccueil.php")));
 require_once(File::build_path(array("model", "ModelUtilisateur.php")));
 require_once(File::build_path(array("model", "ModelVeto.php")));
 require_once(File::build_path(array("lib", "ContactLib.php")));
@@ -20,17 +19,19 @@ class ControllerUtilisateur
         if (($_POST['mailA']) == "autre") {
             $infoFamille = array(
                 'civilite' => $_POST['civilite'],
-                'nomFamilleAccueil' => $_POST['nomFamilleAccueil'],
-                'prenomFamilleAccueil' => $_POST['prenomFamilleAccueil'],
+                'nomFamille' => $_POST['nomFamilleAccueil'],
+                'prenomFamille' => $_POST['prenomFamilleAccueil'],
                 'mail' => $_POST['mail'],
-                'telephoneMobile' => $_POST['telephoneMobile'],
-                'telephoneFixe' => $_POST['telephoneFixe'],
-                'adresseFamilleAccueil' => $_POST['adresseFamilleAccueil'],
-                'codePostalFamilleAccueil' => $_POST['codePostalFamilleAccueil'],
-                'villeFamilleAccueil' => $_POST['villeFamilleAccueil'],
-                'paysFamilleAccueil' => $_POST['paysFamilleAccueil']
+                'numTelephone' => $_POST['telephoneMobile'],
+                'numTelephoneFixe' => $_POST['telephoneFixe'],
+                'adresse' => $_POST['adresseFamilleAccueil'],
+                'codePostal'=> $_POST['codePostalFamilleAccueil'],
+                'ville' => $_POST['villeFamilleAccueil'],
+                'pays' => $_POST['paysFamilleAccueil']
             );
-            ModelFamilleAccueil::ajouterFamilleAccueil($infoFamille);
+            if(ModelFamille::getFamilleByNom($infoFamille['mail'])==NULL){
+                ModelFamille::ajouterFamille2($infoFamille);
+            }
             $mail['mail'] = $_POST['mail'];
             $mail['lieu'] = $_POST['lieu'];
             $mail['dateForm'] = $_POST['dateForm'];
@@ -41,10 +42,10 @@ class ControllerUtilisateur
 
         }
 
-        $famille = ModelFamilleAccueil::getFamilleAccueilByNom($mail['mail']);
+        $famille = ModelFamille::getFamilleByNom($mail['mail']);
         $data = array(
             'numPuce' => $_POST['numPuce'],
-            'idFamille' => $famille->getIdFamilleAccueil()
+            'idFamille' => $famille->getIdFamille()
         );
 
 
@@ -67,17 +68,37 @@ class ControllerUtilisateur
             'ville' => $_POST['villeFamilleAccueil'],
             'pays' => $_POST['paysFamilleAccueil']
         );
-        ModelFamille::ajouterFamille($infoFamille);
+        if (!filter_var($infoFamille['mail'], FILTER_VALIDATE_EMAIL)) {
+            $error = 'l\'adresse mail n\'est pas valide';
+            $view = 'AdoptionChienNonReussie';
+            $pagetitle = 'Erreur';
+            $controller='chien';
+            require(File::build_path(array("view", "view.php")));
+        }else{
+            if(ModelFamille::getFamilleByNom($infoFamille['mail'])==NULL){
+                ModelFamille::ajouterFamille($infoFamille);
+            }
 
-        $data = array(
-            'numPuce' => $_POST['numPuce'],
-            'idFamille' => ModelFamille::getFamilleByNom($infoFamille)->getIdFamille()
-        );
+          
 
-        ModelAdoption::ajouterAdoption($data);
+            $data = array(
+                'numPuce' => $_POST['numPuce'],
+                'idFamille' => ModelFamille::getFamilleByNom($infoFamille['mail'])->getIdFamille()
+            );
 
-        AdoptionPDF::generateAdoptionPDF();
-        require_once(File::build_path(array("lib", "AdoptionPDF.php")));
+            if(ModelAdoption::ajouterAdoption($data)!=NULL){
+                $error='il y a un problème à l\'ajout du chien';
+                $view = 'AdoptionChienNonReussie';
+                $pagetitle = 'Erreur';
+                $controller='chien';
+                require(File::build_path(array("view", "view.php")));
+            }else{
+                AdoptionPDF::generateAdoptionPDF();
+                require_once(File::build_path(array("lib", "AdoptionPDF.php")));
+            }
+
+        }
+       
     }
 
     public static function seConnecter()
