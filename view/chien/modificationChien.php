@@ -40,10 +40,9 @@
                                        value="<?php echo htmlspecialchars($chien->getRace()) ?>" required type="text">
                             </div>
                             <div class="input">
-                                <span class="inputItem">Date de Naissance : (Sous la forme AAAA-MM-JJ) *</span>
+                                <span class="inputItem">Date de Naissance *</span>
                                 <input class="inputField" id="dateNaissance" name="dateNaissance"
-                                       value="<?php echo htmlspecialchars($chien->getDateNaissance()) ?>
-                                       " placeholder="AAAA-MM-JJ" required type="text">
+                                       value="<?php echo htmlspecialchars($chien->getDateNaissance()) ?>" required type="date">
                             </div>
                             <div class="input">
                                 <span class="inputItem"> Sexe *</span>
@@ -71,11 +70,9 @@
                             </div>
 
                             <div class="input">
-                                <span class="inputItem">Date d'accueil : (Sous la forme AAAA-MM-JJ) *</span>
+                                <span class="inputItem">Date d'accueil  *</span>
                                 <input class="inputField" id="dateAccueil" name="dateAccueil"
-                                       value="<?php echo htmlspecialchars($chien->getDateAccueil()) ?>"
-                                       placeholder="AAAA-MM-JJ"
-                                       required type="text">
+                                       value="<?php echo htmlspecialchars($chien->getDateAccueil()) ?>" required type="date">
                             </div>
                             <div class="input">
                                 <span class="inputItem">Nom de l'ancien Proprietaire *</span>

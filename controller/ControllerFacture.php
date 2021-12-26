@@ -73,39 +73,38 @@ class ControllerFacture
                 $controller = 'facture';
                 $pagetitle = 'Erreur Factures';
                 require(File::build_path(array("view", "view.php")));
-            }
+            }else{
+                if (ModelFacture::ajouterFacture($data) == false || $resultat == false) {
+                    $erreur = "une des dates n'est pas dans le bon format";
 
-
-            if (ModelFacture::ajouterFacture($data) == false || $resultat == false) {
-                $erreur = "une des dates n'est pas dans le bon format";
-
-                if (!$resultat) {
-                    $info = array(
-                        "numFacture" => $_POST['numFacture'],
-                        "crediteur" => $_POST['crediteur']
-                    );
-                    ModelFacture::supprimerFacture($info);
-                    $erreur = 'Le déplacement des fichiers a connu une erreur';
+                    if (!$resultat) {
+                        $info = array(
+                            "numFacture" => $_POST['numFacture'],
+                            "crediteur" => $_POST['crediteur']
+                        );
+                        ModelFacture::supprimerFacture($info);
+                        $erreur = 'Le déplacement des fichiers a connu une erreur';
+                    } else {
+                        unlink($nom);
+                    }
+                    $view = 'AjoutFactureNonReussi';
+                    $controller = 'facture';
+                    $pagetitle = 'Facture Non Ajoutée';
+                    require(File::build_path(array("view", "view.php")));
                 } else {
-                    unlink($nom);
+                    if (isset($factureVeto)) {
+                        $f = ModelFacture::getFactureByNumFacture($infosFacture);
+                        $factureVeto['idFacture'] = $f->getIdFacture();
+                        ModelFactureVeto::ajouterFacture();
+                    }
+                    $message = 'enregistrée';
+                    $titre = 'Ajouter Facture';
+                    $controller = 'facture';
+                    $view = 'AjoutFactureReussi';
+                    $pagetitle = 'Facture Ajouté';
+                    require(File::build_path(array("view", "view.php")));
                 }
-                $view = 'AjoutFactureNonReussi';
-                $controller = 'facture';
-                $pagetitle = 'Facture Non Ajoutée';
-                require(File::build_path(array("view", "view.php")));
-            } else {
-                if (isset($factureVeto)) {
-                    $f = ModelFacture::getFactureByNumFacture($infosFacture);
-                    $factureVeto['idFacture'] = $f->getIdFacture();
-                    ModelFactureVeto::ajouterFacture();
-                }
-                $message = 'enregistrée';
-                $titre = 'Ajouter Facture';
-                $controller = 'facture';
-                $view = 'AjoutFactureReussi';
-                $pagetitle = 'Facture Ajouté';
-                require(File::build_path(array("view", "view.php")));
-            }
+            } 
          }     
         $view = 'accueil';
         $pagetitle = 'Page Accueil';
