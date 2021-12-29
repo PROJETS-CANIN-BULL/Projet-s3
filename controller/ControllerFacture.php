@@ -1,11 +1,26 @@
 <?php
 require_once(File::build_path(array("model", "ModelChien.php")));
+require_once(File::build_path(array("model", "ModelFacture.php")));
+require_once(File::build_path(array("model", "ModelVeto.php")));
+require_once(File::build_path(array("model", "ModelFactureVeto.php")));
+
+
 
 class ControllerFacture
 {
+    public static function veterinaire(){
+        $veto = ModelVeto::getVeterinaireById($_GET['idVeto']);
+        $view = 'veterinaire';
+        $pagetitle = 'veterinaire';
+        require(File::build_path(array("view", "view.php")));
+    }
     public static function Facture()
     {
         $frais = ModelFacture::getAllFacture();
+        $veto = ModelFactureVeto::getAllFactures();
+        foreach($veto as $v){
+            $data[$v->getIdFacture()]=$v->getIdVeto();
+        }
         $view = 'Facture';
         $controller = 'facture';
         $pagetitle = 'Factures';
@@ -33,7 +48,7 @@ class ControllerFacture
                     'crediteur' => $_POST['crediteur'],
                 );
             }
-            if (isset($_POST['nomVeto'])) {
+            if ($_POST['nomVeto']!='') {
                 $infosVeto = array(
                     'nomVeto' => $_POST['nomVeto'],
                     'numVeto' => $_POST['numVeto'],
@@ -95,7 +110,7 @@ class ControllerFacture
                     if (isset($factureVeto)) {
                         $f = ModelFacture::getFactureByNumFacture($infosFacture);
                         $factureVeto['idFacture'] = $f->getIdFacture();
-                        ModelFactureVeto::ajouterFacture();
+                        ModelFactureVeto::ajouterFacture($factureVeto);
                     }
                     $message = 'enregistrée';
                     $titre = 'Ajouter Facture';

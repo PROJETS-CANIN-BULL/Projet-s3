@@ -13,13 +13,12 @@ class ModelFacture
     private $cout;
     private $dateFacture;
     private $crediteur;
-    private $numVeto;
     private $idFacture;
 
 
-    public function __construct($idFacture = NULL, $num = NULL, $numPuce = NULL, $type = NULL, $motif = NULL, $cout = NULL, $dateFacture = NULL, $crediteur = NULL, $numVeto = NULL)
+    public function __construct($idFacture = NULL, $num = NULL, $numPuce = NULL, $type = NULL, $motif = NULL, $cout = NULL, $dateFacture = NULL, $crediteur = NULL)
     {
-        if (!is_null($idFacture) && !is_null($num) && !is_null($numPuce) && !is_null($type) && !is_null($motif) && !is_null($cout) && !is_null($dateFacture) && !is_null($crediteur) && !is_null($numVeto)) {
+        if (!is_null($idFacture) && !is_null($num) && !is_null($numPuce) && !is_null($type) && !is_null($motif) && !is_null($cout) && !is_null($dateFacture) && !is_null($crediteur)) {
             $this->idFacture = $idFacture;
             $this->numFacture = $num;
             $this->numPuce = $numPuce;
@@ -28,7 +27,6 @@ class ModelFacture
             $this->cout = $cout;
             $this->dateFacture = $dateFacture;
             $this->crediteur = $crediteur;
-            $this->numVeto = $numVeto;
         }
     }
 
@@ -601,6 +599,10 @@ class ModelFacture
 
 
     //Getter
+    public function getIdFacture()
+    {
+        return $this->idFacture;
+    }
     public function getNumpuce()
     {
         return $this->numPuce;
@@ -636,10 +638,7 @@ class ModelFacture
         return $this->crediteur;
     }
 
-    public function getNumVeto()
-    {
-        return $this->numVeto;
-    }
+
 
 
 }

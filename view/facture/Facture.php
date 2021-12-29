@@ -214,7 +214,7 @@
                     } else {
                         foreach ($frais as $f) {
                             echo '<h3 class="container text-center">' . htmlspecialchars($f->getNumFacture()) . '</h3><div class="row description">';
-                            echo '<li> Type : ' . htmlspecialchars($f->getType()) . '</li> ';
+                            echo '<ul><li> Type : ' . htmlspecialchars($f->getType()) . '</li> ';
                             echo '<li> Motif : ' . htmlspecialchars($f->getMotif()) . '</li>';
                             echo '<li> Cout : ' . htmlspecialchars($f->getCout()) . ' euros </li>';
                             echo '<li> Date : ' . htmlspecialchars($f->getDateFacture()) . '</li>';
@@ -233,6 +233,9 @@
                             if ($_SESSION['isAdmin'] == 1) {
                                 echo '<p><a href="index.php?controller=Facture&action=modificationFormulaire&numFacture=' . rawurlencode($f->getNumFacture()) . '&crediteur=' . rawurlencode($f->getCrediteur()) . '"> Modifier la facture </a></p>';
                                 echo '<p><a href="index.php?controller=Facture&action=supprimerFacture&numFacture=' . rawurlencode($f->getNumFacture()) . '&crediteur=' . rawurlencode($f->getCrediteur()) . '"> Supprimer la facture </a></p>';
+                            }
+                            if(isset($data[$f->getIdFacture()])){
+                                echo '<p><a href="index.php?controller=Facture&action=veterinaire&idVeto=' . rawurlencode($data[$f->getIdFacture()]) . '"> Voir les coordonnées du vétérinaire</a></p>';
                             }
 
                         }

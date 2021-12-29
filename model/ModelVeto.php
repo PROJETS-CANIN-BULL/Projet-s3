@@ -82,7 +82,25 @@ class ModelVeto
         }
         return $veto[0];
     }
+      public static function getVeterinaireById($infos)
+    {
+        $sql = "SELECT * from Veterinaire WHERE idVeto=:nom_tag";
+        $req_prep = Model::getPDO()->prepare($sql);
 
+        $values = array(
+            "nom_tag" => $infos,
+
+        );
+
+        $req_prep->execute($values);
+
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelVeto');
+        $veto = $req_prep->fetchAll();
+        if (empty($veto)) {
+            return false;
+        }
+        return $veto[0];
+    }
 
     public function getIdVeto()
     {
