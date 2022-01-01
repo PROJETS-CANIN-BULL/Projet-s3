@@ -120,10 +120,12 @@ class ControllerFacture
                     require(File::build_path(array("view", "view.php")));
                 }
             } 
-         }     
-        $view = 'accueil';
-        $pagetitle = 'Page Accueil';
-        require(File::build_path(array("view", "view.php")));
+         } else{
+            $view = 'accueil';
+            $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php")));   
+         }    
+        
     }
 
     public static function formulaireFacture()
@@ -142,10 +144,13 @@ class ControllerFacture
             $controller = 'facture';
             $pagetitle = 'formulaire Facture';
             require(File::build_path(array("view", "view.php")));
+        }else{
+            $view = 'accueil';
+            $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php")));   
         }     
-        $view = 'accueil';
-        $pagetitle = 'Page Accueil';
-        require(File::build_path(array("view", "view.php")));
+
+        
 
     }
 
@@ -164,10 +169,12 @@ class ControllerFacture
             $pagetitle = 'Modification Facture';
             require(File::build_path(array("view", "view.php")));
        
-        }     
-        $view = 'accueil';
-        $pagetitle = 'Page Accueil';
-        require(File::build_path(array("view", "view.php")));
+        }  else{
+            $view = 'accueil';
+            $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php")));    
+        }   
+        
 
     }
 
@@ -191,10 +198,12 @@ class ControllerFacture
             $controller = 'facture';
             $pagetitle = 'Modifier Factures';
             require(File::build_path(array("view", "view.php")));
+         }else{
+            $view = 'accueil';
+            $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php")));  
          }     
-        $view = 'accueil';
-        $pagetitle = 'Page Accueil';
-        require(File::build_path(array("view", "view.php")));
+        
 
     }
 
@@ -215,10 +224,12 @@ class ControllerFacture
             $view = 'AjoutFactureReussi';
             $pagetitle = 'Supprimer Facture';
             require(File::build_path(array("view", "view.php")));
-           }     
-        $view = 'accueil';
-        $pagetitle = 'Page Accueil';
-        require(File::build_path(array("view", "view.php")));
+        }else{
+            $view = 'accueil';
+            $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php"))); 
+        }   
+        
     }
 
     public static function totaliserFactures()

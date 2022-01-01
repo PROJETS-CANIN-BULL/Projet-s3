@@ -13,10 +13,11 @@ class ControllerChien
             $view = 'Validation';
             $pagetitle = 'Les Animaux en Attente';
             require(File::build_path(array("view", "view.php")));
-        }     
-        $view = 'accueil';
-        $pagetitle = 'Page Accueil';
-        require(File::build_path(array("view", "view.php")));
+        }else{
+            $view = 'accueil';
+            $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php")));
+        }       
     }
 
     public static function Valider()
@@ -24,10 +25,12 @@ class ControllerChien
         if (ModelUtilisateur::getTypeID($_SESSION['login']) == 1) {
             ModelChien::modifierChienAttente($_GET['numPuce']);
             ControllerChien::validation();
-        }     
-        $view = 'accueil';
-        $pagetitle = 'Page Accueil';
-        require(File::build_path(array("view", "view.php")));
+        } else{
+            $view = 'accueil';
+            $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php")));
+        }    
+       
     }
 
      public static function Refuser()
@@ -35,10 +38,12 @@ class ControllerChien
          if (ModelUtilisateur::getTypeID($_SESSION['login']) == 1) {
              ModelChien::supprimerChien($_GET['numPuce']);
             ControllerChien::validation();
-        }     
-        $view = 'accueil';
-        $pagetitle = 'Page Accueil';
-        require(File::build_path(array("view", "view.php")));
+        } else{
+            $view = 'accueil';
+            $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php")));
+        }    
+       
        
     }
 
@@ -209,12 +214,11 @@ class ControllerChien
             }
 
             
-        }     
-        $view = 'accueil';
-        $pagetitle = 'Page Accueil';
-        require(File::build_path(array("view", "view.php")));
-
-
+        }else{
+            $view = 'accueil';
+            $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php")));
+        } 
     }
 
     public static function formulaireAdoptionChien()
@@ -235,10 +239,12 @@ class ControllerChien
             $pagetitle = 'Modification Chien';
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));;
-        }     
-        $view = 'accueil';
-        $pagetitle = 'Page Accueil';
-        require(File::build_path(array("view", "view.php")));
+        }else{
+            $view = 'accueil';
+            $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php")));   
+        }   
+        
         
 
     }
@@ -275,10 +281,12 @@ class ControllerChien
             $pagetitle = 'Modifier Chien';
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
-        }     
-        $view = 'accueil';
-        $pagetitle = 'Page Accueil';
-        require(File::build_path(array("view", "view.php")));
+        }else{
+            $view = 'accueil';
+            $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php")));   
+        }    
+        
 
     }
 
@@ -298,10 +306,12 @@ class ControllerChien
             $pagetitle = 'Supprimer Chien';
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
-         }     
-        $view = 'accueil';
-        $pagetitle = 'Page Accueil';
-        require(File::build_path(array("view", "view.php")));
+         }else{
+             $view = 'accueil';
+            $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php")));   
+         }    
+        
 
     }
 
@@ -314,10 +324,12 @@ class ControllerChien
             $pagetitle = 'Adopter';
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
-        }     
-        $view = 'accueil';
-        $pagetitle = 'Page Accueil';
-        require(File::build_path(array("view", "view.php")));
+        }else{
+            $view = 'accueil';
+            $pagetitle = 'Page Accueil';
+            require(File::build_path(array("view", "view.php")));    
+            }     
+        
     }
 
 
