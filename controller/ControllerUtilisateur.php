@@ -15,90 +15,97 @@ class ControllerUtilisateur
 {
     public static function generateAccueilPDF()
     {
+        if (isset($_SESSION['login'])) {
 
-        if (($_POST['mailA']) == "autre") {
-            $infoFamille = array(
-                'civilite' => $_POST['civilite'],
-                'nomFamille' => $_POST['nomFamilleAccueil'],
-                'prenomFamille' => $_POST['prenomFamilleAccueil'],
-                'mail' => $_POST['mail'],
-                'numTelephone' => $_POST['telephoneMobile'],
-                'numTelephoneFixe' => $_POST['telephoneFixe'],
-                'adresse' => $_POST['adresseFamilleAccueil'],
-                'codePostal'=> $_POST['codePostalFamilleAccueil'],
-                'ville' => $_POST['villeFamilleAccueil'],
-                'pays' => $_POST['paysFamilleAccueil']
-            );
-            if(ModelFamille::getFamilleByNom($infoFamille['mail'])==NULL){
-                ModelFamille::ajouterFamille2($infoFamille);
+            if (($_POST['mailA']) == "autre") {
+                $infoFamille = array(
+                    'civilite' => $_POST['civilite'],
+                    'nomFamille' => $_POST['nomFamilleAccueil'],
+                    'prenomFamille' => $_POST['prenomFamilleAccueil'],
+                    'mail' => $_POST['mail'],
+                    'numTelephone' => $_POST['telephoneMobile'],
+                    'numTelephoneFixe' => $_POST['telephoneFixe'],
+                    'adresse' => $_POST['adresseFamilleAccueil'],
+                    'codePostal' => $_POST['codePostalFamilleAccueil'],
+                    'ville' => $_POST['villeFamilleAccueil'],
+                    'pays' => $_POST['paysFamilleAccueil']
+                );
+                if (ModelFamille::getFamilleByNom($infoFamille['mail']) == NULL) {
+                    ModelFamille::ajouterFamille2($infoFamille);
+                }
+                $mail['mail'] = $_POST['mail'];
+                $mail['lieu'] = $_POST['lieu'];
+                $mail['dateForm'] = $_POST['dateForm'];
+            } else {
+                $mail['mail'] = $_POST['mailA'];
+                $mail['lieu'] = $_POST['lieuA'];
+                $mail['dateForm'] = $_POST['dateFormA'];
+
             }
-            $mail['mail'] = $_POST['mail'];
-            $mail['lieu'] = $_POST['lieu'];
-            $mail['dateForm'] = $_POST['dateForm'];
+
+            $famille = ModelFamille::getFamilleByNom($mail['mail']);
+            $data = array(
+                'numPuce' => $_POST['numPuce'],
+                'idFamille' => $famille->getIdFamille()
+            );
+
+
+            ModelAccueil::ajouterAccueil($data);
+            AccueilPDF::generateAccueilPDF($mail);
+            require_once(File::build_path(array("lib", "AccueilPDF.php")));
         } else {
-            $mail['mail'] = $_POST['mailA'];
-            $mail['lieu'] = $_POST['lieuA'];
-            $mail['dateForm'] = $_POST['dateFormA'];
-
+            ControllerUtilisateur::seConnecter();
         }
-
-        $famille = ModelFamille::getFamilleByNom($mail['mail']);
-        $data = array(
-            'numPuce' => $_POST['numPuce'],
-            'idFamille' => $famille->getIdFamille()
-        );
-
-
-        ModelAccueil::ajouterAccueil($data);
-        AccueilPDF::generateAccueilPDF($mail);
-        require_once(File::build_path(array("lib", "AccueilPDF.php")));
 
     }
 
     public static function generateAdoptionPDF()
     {
-        $infoFamille = array(
-            'civilite' => $_POST['civilite'],
-            'nomFamille' => $_POST['nomFamilleAccueil'],
-            'prenomFamille' => $_POST['prenomFamilleAccueil'],
-            'mail' => $_POST['mail'],
-            'numTelephone' => $_POST['telephone'],
-            'adresse' => $_POST['adresseFamilleAccueil'],
-            'codePostal' => $_POST['codePostalFamilleAccueil'],
-            'ville' => $_POST['villeFamilleAccueil'],
-            'pays' => $_POST['paysFamilleAccueil']
-        );
-        if (!filter_var($infoFamille['mail'], FILTER_VALIDATE_EMAIL)) {
-            $error = 'l\'adresse mail n\'est pas valide';
-            $view = 'AdoptionChienNonReussie';
-            $pagetitle = 'Erreur';
-            $controller='chien';
-            require(File::build_path(array("view", "view.php")));
-        }else{
-            if(ModelFamille::getFamilleByNom($infoFamille['mail'])==NULL){
-                ModelFamille::ajouterFamille($infoFamille);
-            }
-
-          
-
-            $data = array(
-                'numPuce' => $_POST['numPuce'],
-                'idFamille' => ModelFamille::getFamilleByNom($infoFamille['mail'])->getIdFamille()
+        if (isset($_SESSION['login'])) {
+            $infoFamille = array(
+                'civilite' => $_POST['civilite'],
+                'nomFamille' => $_POST['nomFamilleAccueil'],
+                'prenomFamille' => $_POST['prenomFamilleAccueil'],
+                'mail' => $_POST['mail'],
+                'numTelephone' => $_POST['telephone'],
+                'adresse' => $_POST['adresseFamilleAccueil'],
+                'codePostal' => $_POST['codePostalFamilleAccueil'],
+                'ville' => $_POST['villeFamilleAccueil'],
+                'pays' => $_POST['paysFamilleAccueil']
             );
-
-            if(ModelAdoption::ajouterAdoption($data)!=NULL){
-                $error='il y a un problème à l\'ajout du chien';
+            if (!filter_var($infoFamille['mail'], FILTER_VALIDATE_EMAIL)) {
+                $error = 'l\'adresse mail n\'est pas valide';
                 $view = 'AdoptionChienNonReussie';
                 $pagetitle = 'Erreur';
-                $controller='chien';
+                $controller = 'chien';
                 require(File::build_path(array("view", "view.php")));
-            }else{
-                AdoptionPDF::generateAdoptionPDF();
-                require_once(File::build_path(array("lib", "AdoptionPDF.php")));
-            }
+            } else {
+                if (ModelFamille::getFamilleByNom($infoFamille['mail']) == NULL) {
+                    ModelFamille::ajouterFamille($infoFamille);
+                }
 
+
+                $data = array(
+                    'numPuce' => $_POST['numPuce'],
+                    'idFamille' => ModelFamille::getFamilleByNom($infoFamille['mail'])->getIdFamille()
+                );
+
+                if (ModelAdoption::ajouterAdoption($data) != NULL) {
+                    $error = 'il y a un problème à l\'ajout du chien';
+                    $view = 'AdoptionChienNonReussie';
+                    $pagetitle = 'Erreur';
+                    $controller = 'chien';
+                    require(File::build_path(array("view", "view.php")));
+                } else {
+                    AdoptionPDF::generateAdoptionPDF();
+                    require_once(File::build_path(array("lib", "AdoptionPDF.php")));
+                }
+
+            }
+        } else {
+            ControllerUtilisateur::seConnecter();
         }
-       
+
     }
 
     public static function seConnecter()
@@ -176,94 +183,134 @@ class ControllerUtilisateur
 
     public static function compte()
     {
-        $u = ModelUtilisateur::getUtilisateurByPseudo($_SESSION['login']);
-        $view = 'Compte';
-        $controller = 'utilisateur';
-        $pagetitle = 'Compte';
-        require(File::build_path(array("view", "view.php")));
-    }
+        if (isset($_SESSION['login'])) {
 
-    public static function modificationCompte()
-    {
-        $u = ModelUtilisateur::getUtilisateurByPseudo($_SESSION['login']);
-        $view = 'modificationCompte';
-        $controller = 'utilisateur';
-        $pagetitle = 'Modifier Compte';
-        require(File::build_path(array("view", "view.php")));
-    }
-
-    public static function modifierCompte()
-    {
-        $data = array(
-            'pseudo' => $_POST['pseudo'],
-            'mail' => $_POST['mail'],
-        );
-        if ($_POST['motDePasse'] != $_POST['motDePasse1']) {
-            $view = 'modificationUtilisateurNonReussi';
+            $u = ModelUtilisateur::getUtilisateurByPseudo($_SESSION['login']);
+            $view = 'Compte';
             $controller = 'utilisateur';
             $pagetitle = 'Compte';
             require(File::build_path(array("view", "view.php")));
         } else {
-            $passwordHache = Security::hacher($_POST['motDePasse']);
-            $data['motDePasse'] = $passwordHache;
-            ModelUtilisateur::modifierUtilisateur($data);
-            $view = 'modificationUtilisateurReussi';
+            ControllerUtilisateur::seConnecter();
+        }
+    }
+
+    public static function modificationCompte()
+    {
+        if (isset($_SESSION['login'])) {
+            $u = ModelUtilisateur::getUtilisateurByPseudo($_SESSION['login']);
+            $view = 'modificationCompte';
             $controller = 'utilisateur';
-            $pagetitle = 'Compte';
+            $pagetitle = 'Modifier Compte';
             require(File::build_path(array("view", "view.php")));
+        } else {
+            ControllerUtilisateur::seConnecter();
+        }
+    }
+
+    public static function modifierCompte()
+    {
+        if (isset($_SESSION['login'])) {
+            $data = array(
+                'pseudo' => $_POST['pseudo'],
+                'mail' => $_POST['mail'],
+            );
+            if ($_POST['motDePasse'] != $_POST['motDePasse1']) {
+                $view = 'modificationUtilisateurNonReussi';
+                $controller = 'utilisateur';
+                $pagetitle = 'Compte';
+                require(File::build_path(array("view", "view.php")));
+            } else {
+                $passwordHache = Security::hacher($_POST['motDePasse']);
+                $data['motDePasse'] = $passwordHache;
+                ModelUtilisateur::modifierUtilisateur($data);
+                $view = 'modificationUtilisateurReussi';
+                $controller = 'utilisateur';
+                $pagetitle = 'Compte';
+                require(File::build_path(array("view", "view.php")));
+            }
+        } else {
+            ControllerUtilisateur::seConnecter();
         }
     }
 
     public static function sendEmail()
     {
-        $alert = ContactLib::sendEmail();
-        $view = 'Contact';
-        $pagetitle = 'Contact';
-        require(File::build_path(array("view", "view.php")));
+        if (isset($_SESSION['login'])) {
+            $alert = ContactLib::sendEmail();
+
+            $view = 'Contact';
+            $pagetitle = 'Contact';
+            require(File::build_path(array("view", "view.php")));
+        } else {
+            ControllerUtilisateur::seConnecter();
+        }
     }
 
 
     public static function accueil()
     {
-        $view = 'accueil';
-        $pagetitle = 'Accueil';
-        require(File::build_path(array("view", "view.php")));
+        if (isset($_SESSION['login'])) {
+            $view = 'accueil';
+
+            $pagetitle = 'Accueil';
+            require(File::build_path(array("view", "view.php")));
+        } else {
+            ControllerUtilisateur::seConnecter();
+        }
     }
 
 
     public static function Contact()
     {
-        $view = 'Contact';
-        $pagetitle = 'Contact';
-        $alert = "";
-        require(File::build_path(array("view", "view.php")));
+        if (isset($_SESSION['login'])) {
+            $view = 'Contact';
+            $pagetitle = 'Contact';
+            $alert = "";
+            require(File::build_path(array("view", "view.php")));
+        } else {
+            ControllerUtilisateur::seConnecter();
+        }
     }
 
     public static function FAQ()
     {
-        $view = 'FAQ';
-        $pagetitle = 'FAQ';
-        require(File::build_path(array("view", "view.php")));
+        if (isset($_SESSION['login'])) {
+            $view = 'FAQ';
+            $pagetitle = 'FAQ';
+            require(File::build_path(array("view", "view.php")));
+        } else {
+            ControllerUtilisateur::seConnecter();
+        }
     }
 
     public static function ouvrirPDF()
     {
-        $file = File::build_path(array("pdf", $_POST['name']));
+        if (isset($_SESSION['login'])) {
+            $file = File::build_path(array("pdf", $_POST['name']));
 
-        header("Content-type: application/pdf");
+            header("Content-type: application/pdf");
 
-        header("Content-Length: " . filesize($file));
+            header("Content-Length: " . filesize($file));
 
-        readfile($file);
+            readfile($file);
+        } else {
+            ControllerUtilisateur::seConnecter();
+        }
     }
 
     public static function deconnexion()
     {
-        session_unset();     // unset $_SESSION variable for the run-time
-        session_destroy();   // destroy session data in storage
-        setcookie(session_name(), '', time() - 1);
-        require(File::build_path(array("view", "Connexion.php")));
+        if (isset($_SESSION['login'])) {
+            session_unset();     // unset $_SESSION variable for the run-time
+            session_destroy();   // destroy session data in storage
+            setcookie(session_name(), '', time() - 1);
+            require(File::build_path(array("view", "Connexion.php")));
+        } else {
+            ControllerUtilisateur::seConnecter();
+        }
     }
+
 
 }
 
