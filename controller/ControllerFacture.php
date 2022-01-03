@@ -54,7 +54,7 @@ class ControllerFacture
                     'crediteur' => $_POST['crediteur'],
                 );
 
-                if (isset($_POST['idVeto'])) {
+                if ($_POST['idVeto']!="autre") {
                     $factureVeto['idVeto'] = $_POST['idVeto'];
                     $infosFacture = array(
                         'numFacture' => $_POST['numFacture'],

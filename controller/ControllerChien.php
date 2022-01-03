@@ -150,18 +150,20 @@ class ControllerChien
 
             $data['nomPhoto'] = $_FILES['photo']['name'];
             $existe = ModelChien::getChienByNumPuce($data['numPuce']);
-            $etat = ModelChien::addChienAttente($data);
-            if ($etat == 12 || $existe != NULL || $resultat == false) {
-                if ($etat == 12 || $existe != NULL) {
-                    $erreur = "le chien est déjà existant";
-                }
+            if ($existe!=NULL){
+                 $erreur = "le chien est déjà existant";
+             }else{
+                $etat = ModelChien::addChienAttente($data);
+             }
+            if ($existe != NULL || $resultat == false || isset($etat)) {
 
                 if (!$resultat) {
                     $erreur = 'le déplacement des fichiers a connu une erreur';
-                } else {
+                    ModelChien::supprimerChien($data['numPuce']);
+                } else if(isset($etat)){
                     unlink($nom);
+                    $erreur = "une erreur est survenue";
                 }
-                ModelChien::supprimerChienAttente($data['numPuce']);
 
                 $controller = 'chien';
                 $view = 'AjoutChienNonReussi';

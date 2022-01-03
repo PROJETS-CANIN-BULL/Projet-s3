@@ -94,6 +94,7 @@
                                 <div class="input">
                                     <span class="inputItem">Veterinaire*</span>
                                     <select class="inputField" id="idVeto" name="idVeto">
+                                        <option value="autre" selected>...</option>
                                         <?php foreach ($veto as $v) {
                                             echo '<option value="' . htmlspecialchars($v->getIdVeto()) . '">' . htmlspecialchars($v->getNomVeto()) . '</option>';
                                         }
