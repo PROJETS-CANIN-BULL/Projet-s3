@@ -21,7 +21,7 @@ class ControllerFamille
             $controller = 'famille';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -50,7 +50,7 @@ class ControllerFamille
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }

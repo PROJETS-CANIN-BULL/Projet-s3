@@ -16,7 +16,7 @@ class ControllerFacture
             $pagetitle = 'veterinaire';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -34,7 +34,7 @@ class ControllerFacture
             $pagetitle = 'Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -139,7 +139,7 @@ class ControllerFacture
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -168,7 +168,7 @@ class ControllerFacture
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
 
@@ -197,7 +197,7 @@ class ControllerFacture
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
 
@@ -231,7 +231,7 @@ class ControllerFacture
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
 
@@ -262,7 +262,7 @@ class ControllerFacture
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -277,7 +277,7 @@ class ControllerFacture
             $pagetitle = 'Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -291,7 +291,7 @@ class ControllerFacture
             $controller = 'facture';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -305,7 +305,7 @@ class ControllerFacture
             $controller = 'facture';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -319,7 +319,7 @@ class ControllerFacture
             $pagetitle = 'Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -334,7 +334,7 @@ class ControllerFacture
             $pagetitle = 'Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -348,7 +348,7 @@ class ControllerFacture
             $controller = 'facture';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -359,7 +359,7 @@ class ControllerFacture
 
             $couts = ModelFacture::totaliserFactures();
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -375,7 +375,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -389,7 +389,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -406,7 +406,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -421,7 +421,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -435,7 +435,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -450,7 +450,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -466,7 +466,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -481,7 +481,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -495,7 +495,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -509,7 +509,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -523,7 +523,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -542,7 +542,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -560,7 +560,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -575,7 +575,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -589,7 +589,7 @@ class ControllerFacture
             $pagetitle = 'Les Factures';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 

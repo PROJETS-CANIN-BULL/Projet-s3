@@ -21,7 +21,7 @@ class ControllerChien
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -38,7 +38,7 @@ class ControllerChien
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -56,7 +56,7 @@ class ControllerChien
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
 
@@ -72,7 +72,7 @@ class ControllerChien
             $pagetitle = 'Les Protégés';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -93,7 +93,7 @@ class ControllerChien
             $pagetitle = 'Les Adoptés';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -106,7 +106,7 @@ class ControllerChien
             $pagetitle = 'formulaire Chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -177,7 +177,7 @@ class ControllerChien
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -258,7 +258,7 @@ class ControllerChien
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -272,7 +272,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -293,7 +293,7 @@ class ControllerChien
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
 
@@ -339,7 +339,7 @@ class ControllerChien
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
 
@@ -369,7 +369,7 @@ class ControllerChien
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
 
@@ -392,7 +392,7 @@ class ControllerChien
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -410,7 +410,7 @@ class ControllerChien
             require(File::build_path(array("view", "view.php")));
             require(File::build_path(array("lib", "AccueilPDF.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -428,7 +428,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
 
@@ -444,7 +444,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -460,7 +460,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -475,7 +475,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -490,7 +490,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -506,7 +506,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -522,7 +522,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -537,7 +537,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -553,7 +553,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -573,7 +573,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -588,7 +588,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -603,7 +603,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -618,7 +618,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -634,7 +634,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -650,7 +650,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -669,7 +669,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -685,7 +685,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -700,7 +700,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
 
@@ -717,7 +717,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -735,7 +735,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -750,7 +750,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -766,7 +766,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -782,7 +782,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -798,7 +798,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -815,7 +815,7 @@ class ControllerChien
             $pagetitle = 'A Adopter';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -830,7 +830,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -845,7 +845,7 @@ class ControllerChien
             $pagetitle = 'Les Adoptés';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -861,7 +861,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -880,7 +880,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -896,7 +896,7 @@ class ControllerChien
             $pagetitle = 'A Adopter';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -912,7 +912,7 @@ class ControllerChien
             $pagetitle = 'Les Adoptés';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -927,7 +927,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -943,7 +943,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -960,7 +960,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -979,7 +979,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -995,7 +995,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -1010,7 +1010,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -1026,7 +1026,7 @@ class ControllerChien
             $controller = 'chien';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }

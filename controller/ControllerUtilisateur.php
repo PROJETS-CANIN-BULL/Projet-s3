@@ -54,7 +54,7 @@ class ControllerUtilisateur
             AccueilPDF::generateAccueilPDF($mail);
             require_once(File::build_path(array("lib", "AccueilPDF.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -103,7 +103,7 @@ class ControllerUtilisateur
 
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
 
     }
@@ -191,7 +191,7 @@ class ControllerUtilisateur
             $pagetitle = 'Compte';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -204,7 +204,7 @@ class ControllerUtilisateur
             $pagetitle = 'Modifier Compte';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -230,7 +230,7 @@ class ControllerUtilisateur
                 require(File::build_path(array("view", "view.php")));
             }
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -243,7 +243,7 @@ class ControllerUtilisateur
             $pagetitle = 'Contact';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -256,7 +256,7 @@ class ControllerUtilisateur
             $pagetitle = 'Accueil';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -269,7 +269,7 @@ class ControllerUtilisateur
             $alert = "";
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -280,7 +280,7 @@ class ControllerUtilisateur
             $pagetitle = 'FAQ';
             require(File::build_path(array("view", "view.php")));
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
@@ -295,7 +295,7 @@ class ControllerUtilisateur
 
             readfile($file);
         } else {
-            ControllerUtilisateur::seConnecter();
+            ControllerUtilisateur::deconnexion();
         }
     }
 
