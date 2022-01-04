@@ -66,7 +66,8 @@ require $filepath;
                     </p>
                 </div>
             </div>-->
-            <div class="col-md-4">
+            <div class="footer-info">
+            <div class="footer-col-1">
                 <h5>Contacts</h5>
                 <dl class="contact-list">
                     <dt>Numéro de Téléphone (en cas d'urgence):</dt>
@@ -74,23 +75,24 @@ require $filepath;
                     </dd>
                 </dl>
             </div>
-            <div class="col-md-4 col-xl-3">
+            <div class="footer-col-2">
                 <h5>Links</h5>
-                <ul class="nav-list">
-                    <li><a href="index.php?controller=Chien&action=Adopter">Adoption</a></li>
-                    <li><a href="index.php?action=Contact">Contacts</a></li>
-                    <li><a href="index.php?action=FAQ">FAQ</a></li>
+                <ul>
+                    <li><a href="index.php?controller=Chien&action=Adopter">- Adoption</a></li>
+                    <li><a href="index.php?action=Contact">- Contacts</a></li>
+                    <li><a href="index.php?action=FAQ">- FAQ</a></li>
                 </ul>
+            </div>
             </div>
         </div>
     </div>
-    <div class="row no-gutters social-container">
-        <div class="col"><a class="social-inner" href="https://m.facebook.com/Bullsfriendsassociation?fref=ts"><img
-                        src="image/fb.png" ))></a></div>
-        <div class="col"><a class="social-inner" href="http://twitter.com/share?text=Bull%27s%20Friends%20Association&url=https%3A%2F%2Fwww.bullsfriends.com%2F"><img
-                        src="image/twt.png" ))></a></div>
-        <div class="col"><a class="social-inner" href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.bullsfriends.com/&title=Bull%27s%20Friends%20Association"><img
-                        src="image/lkdin.png" ))></a></div>
+    <div class="footer-social">
+        <a class="social-inner" href="https://m.facebook.com/Bullsfriendsassociation?fref=ts"><img
+                        src="image/fb.png" ))></a>
+        <a class="social-inner" href="http://twitter.com/share?text=Bull%27s%20Friends%20Association&url=https%3A%2F%2Fwww.bullsfriends.com%2F"><img
+                    src="image/twt.png" ))></a>
+        <a class="social-inner" href="http://www.linkedin.com/shareArticle?mini=true&url=https://www.bullsfriends.com/&title=Bull%27s%20Friends%20Association"><img
+                        src="image/lkdin.png" ))></a>
     </div>
 </footer>
 

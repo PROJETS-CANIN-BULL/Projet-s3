@@ -2,13 +2,9 @@
     <link href="css/accueil.css" rel="stylesheet" type="text/css">
 </head>
 
-<div class="container-fluid red">
-    <div class="container text-center">
-        <h2> Bull's Association</h2>
-    </div>
-    <div class="container-fluid blue">
-        <div class="row">
-            <article class="col-2">
+        <h2>Compte</h2>
+        <div class="articles">
+            <article class="col-1">
                 <div>
                     <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
                     <button class="btn left" type="button"
@@ -32,9 +28,8 @@
                     </div>
                 <?php } ?>
                </article>
-            <article class="col-10">
+            <article class="col-2">
                 <div class="accueil">
-                    <h2> Compte </h2>
                     <p>Votre pseudo est : <?php echo htmlspecialchars($u->getId()) ?></p>
                     <p>Votre mail est : <?php echo htmlspecialchars($u->getMail()) ?></p>
                     <button class="btn left" type="button"
@@ -45,7 +40,5 @@
             </article>
 
         </div>
-    </div>
-</div>
 
 </main>

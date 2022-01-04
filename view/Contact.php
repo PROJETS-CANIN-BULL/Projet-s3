@@ -4,13 +4,11 @@
     <link href="css/Contact.css" rel="stylesheet" type="text/css">
 </head>
 <main>
-    <div class="container-fluid red">
         <div class="container text-center">
             <h2> Contact</h2>
         </div>
-        <div class="container-fluid blue">
-            <div class="row">
-                <article class="col-2">
+            <div class="articles">
+                <article class="col-1">
                     <div>
                         <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
                         <button class="btn left" type="button"
@@ -19,7 +17,7 @@
                         </button>
                     </div>
                 </article>
-                <article class="col-10">
+                <article class="col-2">
                     <?php echo $alert; ?>
                     <form class="centrer" action="index.php" method="post">
                         <fieldset>
@@ -77,8 +75,6 @@
 
                     </form>
                 </article>
-            </div>
-        </div>
     </div>
 </main>
 

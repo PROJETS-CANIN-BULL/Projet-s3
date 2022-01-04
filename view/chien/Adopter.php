@@ -3,13 +3,9 @@
 </head>
 
 <main>
-    <div class="container-fluid red">
-        <div class="container text-center">
             <h2> A ADOPTER</h2>
-        </div>
-        <div class="container-fluid blue">
-            <div class="row">
-                <article class="col-2">
+            <div class="articles">
+                <article class="col-1">
                     <div>
                         <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
                         <button class="btn left" type="button"
@@ -21,7 +17,7 @@
 
 
                 </article>
-                <article class="col-10">
+                <article class="col-2">
 
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="container-fluid">

@@ -67,9 +67,6 @@ button.btn.left  {
     color: rgba(255, 255, 255, 0.8);
 }
 
-.footer-classic a, .footer-classic a:focus, .footer-classic a:active {
-    color: #ffffff;
-}
 .nav-list li {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -190,4 +187,52 @@ a.btn-drop{
 a.btn-drop:hover{
     transition-duration: 0.5s;
     background-color: #0e1f2b;
+}
+
+h2{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.footer-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.footer-col-1{
+    padding: 3em;
+
+}
+
+.footer-col-2{
+    padding: 3em;
+}
+
+.footer-col-2 > ul > li > a{
+    text-decoration: none;
+    color: white;
+}
+
+.footer-social{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+a.social-inner{
+    margin-bottom: 2%;
+    margin-right: 5%;
+    margin-left: 5%;
+    width: 3%;
+}
+
+.menu-tri{
+    display: flex;
+    flex-direction: row;
+}
+
+ul.filtres{
+    display: flex;
+    flex-direction: row;
 }

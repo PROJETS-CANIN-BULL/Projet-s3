@@ -19,26 +19,22 @@
 
                 </article>
                 <article class="col-2">
-                    <nav class="barre-menu">
-                        <div class="container-fluid">
+                    <nav class="menu-tri">
                             <a class="navbar-brand" href="#">Trier par</a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item dropdown">
+                                <ul class="filtres">
+                                    <li class="menu-déroulant">
                                         <a class="nav-link dropdown-toggle"
                                            href="index.php?controller=Chien&action=trierNoms"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Nom</a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item"
+                                        <ul class="menu-déroulant">
+                                            <li class="sous-menu"><a class="dropdown-item"
                                                    href="index.php?controller=Chien&action=trierNoms">A-Z</a></li>
-                                            <li><a class="dropdown-item"
+                                            <li class="sous-menu"><a class="dropdown-item"
                                                    href="index.php?controller=Chien&action=trierNomsDecroissants">Z-A</a>
                                             </li>
                                             <div>Ou</div>
+                                            <li class="sous-menu">
                                             <form method="post" name="" action="index.php">
                                                 <fieldset>
                                                     <li><span class="inputItem">Nom</span>
@@ -52,6 +48,7 @@
                                                     <input type='hidden' name='action' value='trouverChiensNoms'>
                                                 </div>
                                             </form>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -59,7 +56,7 @@
                                            href="index.php?controller=Chien&action=trierNumPuces"
                                            id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                            aria-expanded="false">Numero Puce</a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <ul class="menu-déroulant">
                                             <li><a class="dropdown-item"
                                                    href="index.php?controller=Chien&action=trierNumPuces">Croissant</a>
                                             </li>
@@ -253,8 +250,6 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </div>
-                        </div>
                     </nav>
                     <div class="container">
 
