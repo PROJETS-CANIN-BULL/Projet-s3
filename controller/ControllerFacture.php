@@ -53,15 +53,16 @@ class ControllerFacture
                     'dateFacture' => $_POST['dateFacture'],
                     'crediteur' => $_POST['crediteur'],
                 );
-
-                if ($_POST['idVeto']!="autre") {
+                if($_POST['type']=='veterinaire'){
+                     if ($_POST['idVeto']!="autre") {
                     $factureVeto['idVeto'] = $_POST['idVeto'];
                     $infosFacture = array(
                         'numFacture' => $_POST['numFacture'],
                         'crediteur' => $_POST['crediteur'],
                     );
-                }
-                if ($_POST['nomVeto'] != '') {
+                    }
+
+                  if ($_POST['nomVeto'] != '') {
                     $infosVeto = array(
                         'nomVeto' => $_POST['nomVeto'],
                         'numVeto' => $_POST['numVeto'],
@@ -81,7 +82,11 @@ class ControllerFacture
                         'numFacture' => $_POST['numFacture'],
                         'crediteur' => $_POST['crediteur'],
                     );
+                    }   
                 }
+
+               
+               
 
                 $erreur = 'null';
                 $name = $data['numFacture'] . "-" . $data["crediteur"] . '.pdf';
