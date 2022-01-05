@@ -436,7 +436,7 @@ class ModelChien
     public static function getChiensRaces($race)
     {
 
-        $sql = "SELECT * FROM Chien WHERE   enAttente IS NULL AND race LIKE:race1";
+        $sql = "SELECT * FROM Chien WHERE enAttente IS NULL AND race LIKE :race1";
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
@@ -651,7 +651,7 @@ class ModelChien
         $req_prep = Model::getPDO()->prepare($sql);
 
         $values = array(
-            "nom1" => '%' . nomAncienProp . '%',
+            "nom1" => '%' . $nomAncienProp . '%',
         );
 
         $req_prep->execute($values);

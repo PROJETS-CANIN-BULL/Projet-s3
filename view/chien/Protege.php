@@ -98,13 +98,11 @@
                                                 <fieldset>
                                                     <li><span class="inputItem">Date min</span>
                                                         <input class="inputField" id="datemin" name="datemin"
-                                                               type="text" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-                                                               placeholder="AAAA-MM-JJ" required>
+                                                               type="date" required>
                                                     </li>
                                                     <li><span class="inputItem">Date max</span>
                                                         <input class="inputField" id="datemax" name="datemax"
-                                                               type="text" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-                                                               placeholder="AAAA-MM-JJ" required></li>
+                                                               type="date"  required></li>
 
                                                 </fieldset>
                                                 <div class="input" id="send">
@@ -164,13 +162,11 @@
                                                 <fieldset>
                                                     <li><span class="inputItem">Date min</span>
                                                         <input class="inputField" id="datemin" name="datemin"
-                                                               type="text" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-                                                               placeholder="AAAA-MM-JJ" required>
+                                                               type="date"  required>
                                                     </li>
                                                     <li><span class="inputItem">Date max</span>
                                                         <input class="inputField" id="datemax" name="datemax"
-                                                               type="text" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-                                                               placeholder="AAAA-MM-JJ" required></li>
+                                                               type="date" required></li>
 
                                                 </fieldset>
                                                 <div class="input" id="send">
