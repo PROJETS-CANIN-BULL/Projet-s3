@@ -19,10 +19,11 @@ img {
 
 .col-1{
     width: 25%;
+    margin-left: 5%;
 }
 
 .col-2{
-    width: 50%;
+    width: 60%;
     padding: 5%;
     padding-top: 1%;
 

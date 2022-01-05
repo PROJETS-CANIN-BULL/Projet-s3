@@ -9,7 +9,7 @@
                 <article class="col-2">
 
                     <div>
-                        <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
+                        <p>Cliquez sur le bouton ci-dessous pour ajouter un Protégé: </p>
                         <button class="btn left" type="button"
                                 onclick="location.href = 'index.php?controller=Chien&action=formulaireChien';">Ajouter
                             un Protégé

@@ -10,7 +10,7 @@
         <div class="articles">
                 <article class="col-1">
                     <div>
-                        <p>Cliquez sur le bouton ci-dessous pour ajouter un Portégé: </p>
+                        <p>Cliquez sur le bouton ci-dessous pour ajouter un Protégé: </p>
                         <button class="btn left" type="button"
                                 onclick="location.href = 'index.php?controller=Chien&action=formulaireChien';">Ajouter
                             un Protégé
@@ -19,19 +19,14 @@
 
                 </article>
                 <article class="col-2">
-                    <nav class="menu-tri">
-                            <a class="navbar-brand" href="#">Trier par</a>
-                                <ul class="filtres">
+                    <div class="barre-menu" id="filtres">
+                    <nav class="menu">
+                            <a class="btn-simple" href="#">Trier par</a>
                                     <li class="menu-déroulant">
-                                        <a class="nav-link dropdown-toggle"
-                                           href="index.php?controller=Chien&action=trierNoms"
-                                           id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                                           aria-expanded="false">Nom</a>
-                                        <ul class="menu-déroulant">
-                                            <li class="sous-menu"><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierNoms">A-Z</a></li>
-                                            <li class="sous-menu"><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierNomsDecroissants">Z-A</a>
+                                        <a class="menu-déroulant" role="button" href="index.php?controller=Chien&action=trierNoms">Nom</a>
+                                        <ul class="sous-menu">
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierNoms">A-Z</a></li>
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierNomsDecroissants">Z-A</a>
                                             </li>
                                             <div>Ou</div>
                                             <li class="sous-menu">
@@ -51,17 +46,12 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle"
-                                           href="index.php?controller=Chien&action=trierNumPuces"
-                                           id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                                           aria-expanded="false">Numero Puce</a>
-                                        <ul class="menu-déroulant">
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierNumPuces">Croissant</a>
+                                    <li class="menu-déroulant">
+                                        <a class="menu-déroulant" href="index.php?controller=Chien&action=trierNumPuces" role="button">Numero Puce</a>
+                                        <ul class="sous-menu">
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierNumPuces">Croissant</a>
                                             </li>
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierNumPucesDecroissants">Decroissant</a>
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierNumPucesDecroissants">Decroissant</a>
                                             </li>
                                             <div>Ou</div>
                                             <form method="post" name="" action="index.php">
@@ -79,16 +69,11 @@
                                             </form>
                                         </ul>
                                     </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle"
-                                           href="index.php?controller=Chien&action=trierRaces"
-                                           id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                                           aria-expanded="false">Race</a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierRaces">A-Z</a></li>
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierRacesDecroissants">Z-A</a>
+                                    <li class="menu-déroulant">
+                                        <a class="menu-déroulant" href="index.php?controller=Chien&action=trierRaces" role="button">Race</a>
+                                        <ul class="sous-menu">
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierRaces">A-Z</a></li>
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierRacesDecroissants">Z-A</a>
                                             </li>
                                             <div>Ou</div>
                                             <form method="post" name="" action="index.php">
@@ -106,12 +91,9 @@
                                             </form>
                                         </ul>
                                     </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle"
-                                           href="index.php?controller=Chien&action=trierDateNaissances"
-                                           id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                                           aria-expanded="false">Date Naissance</a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li class="menu-déroulant">
+                                        <a class="menu-déroulant" href="index.php?controller=Chien&action=trierDateNaissances" role="button">Date Naissance</a>
+                                        <ul class="sous-menu">
                                             <form method="post" name="" action="index.php">
                                                 <fieldset>
                                                     <li><span class="inputItem">Date min</span>
@@ -135,30 +117,20 @@
                                             </form>
                                         </ul>
                                     </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle"
-                                           href="index.php?controller=Chien&action=trierSexes"
-                                           id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                                           aria-expanded="false">Sexe</a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierSexes&sexe=femelle">Femelle</a>
+                                    <li class="menu-déroulant">
+                                        <a class="menu-déroulant" href="index.php?controller=Chien&action=trierSexes" role="button">Sexe</a>
+                                        <ul class="sous-menu">
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierSexes&sexe=femelle">Femelle</a>
                                             </li>
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierSexes&sexe=male">Male</a>
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierSexes&sexe=male">Male</a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle"
-                                           href="index.php?controller=Chien&action=trierRobes"
-                                           id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                                           aria-expanded="false">Robe</a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierRobes">A-Z</a></li>
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierRobesDecroissants">Z-A</a>
+                                    <li class="menu-déroulant">
+                                        <a class="menu-déroulant" href="index.php?controller=Chien&action=trierRobes" role="button">Robe</a>
+                                        <ul class="sous-menu">
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierRobes">A-Z</a></li>
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierRobesDecroissants">Z-A</a>
                                             </li>
                                             <div>Ou</div>
                                             <form method="post" name="" action="index.php">
@@ -176,26 +148,18 @@
                                             </form>
                                         </ul>
                                     </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle"
-                                           href="index.php?controller=Chien&action=trierSterilisations"
-                                           id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                                           aria-expanded="false">Sterelisation</a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierSterilisations&avis=oui">Oui</a>
+                                    <li class="menu-déroulant">
+                                        <a class="menu-déroulant" href="index.php?controller=Chien&action=trierSterilisations" role="button">Sterelisation</a>
+                                        <ul class="sous-menu">
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierSterilisations&avis=oui">Oui</a>
                                             </li>
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierSterilisations&avis=non">Non</a>
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierSterilisations&avis=non">Non</a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle"
-                                           href="index.php?controller=Chien&action=trierDateAccueils"
-                                           id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                                           aria-expanded="false">Date Accueil</a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li class="menu-déroulant">
+                                        <a class="menu-déroulant" href="index.php?controller=Chien&action=trierDateAccueils" role="button">Date Accueil</a>
+                                        <ul class="sous-menu">
                                             <form method="post" name="" action="index.php">
                                                 <fieldset>
                                                     <li><span class="inputItem">Date min</span>
@@ -219,18 +183,12 @@
                                             </form>
                                         </ul>
                                     </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle"
-                                           href="index.php?controller=Chien&action=trierNomAncienProprio"
-                                           id="navbarDropdown"
-                                           role="button" data-bs-toggle="dropdown" aria-expanded="false">Nom Ancien
-                                            Proprietaire</a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierNomAncienProprio">A-Z</a>
+                                    <li class="menu-déroulant">
+                                        <a class= "menu-déroulant" href="index.php?controller=Chien&action=trierNomAncienProprio" role="button" data-bs-toggle="dropdown">Nom Ancien Proprietaire</a>
+                                        <ul class="sous-menu">
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierNomAncienProprio">A-Z</a>
                                             </li>
-                                            <li><a class="dropdown-item"
-                                                   href="index.php?controller=Chien&action=trierNomAncienProprioDecroissant">Z-A</a>
+                                            <li class="sous-menu"><a class="btn-drop" href="index.php?controller=Chien&action=trierNomAncienProprioDecroissant">Z-A</a>
                                             </li>
                                             <div>Ou</div>
                                             <form method="post" name="" action="index.php">
@@ -249,8 +207,8 @@
                                             </form>
                                         </ul>
                                     </li>
-                                </ul>
                     </nav>
+                    </div>
                     <div class="container">
 
                         <?php

@@ -236,3 +236,7 @@ ul.filtres{
     display: flex;
     flex-direction: row;
 }
+
+.barre-menu#filtres{
+    margin-bottom: 18%;
+}
