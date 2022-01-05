@@ -72,7 +72,7 @@ class ModelFacture
                 "tag5" => $data["cout"],
                 "tag6" => $data["dateFacture"],
                 "tag7" => $data["crediteur"],
-                "tag2" => 'IS NULL',
+                "tag2" => 'autre',
             );
             $req_prep->execute($values);
             return true;
