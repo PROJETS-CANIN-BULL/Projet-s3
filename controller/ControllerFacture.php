@@ -107,7 +107,22 @@ class ControllerFacture
                     $pagetitle = 'Erreur Factures';
                     require(File::build_path(array("view", "view.php")));
                 } else {
-                    if (ModelFacture::ajouterFacture($data) == false || $resultat == false) {
+                    if($_POST['numPuce']=='autre'){
+                        $data2 = array(
+                            'numFacture' => $_POST['numFacture'],
+                            'type' => $_POST['type'],
+                            'motif' => $_POST['motif'],
+                            'cout' => $_POST['cout'],
+                            'dateFacture' => $_POST['dateFacture'],
+                            'crediteur' => $_POST['crediteur'],
+                          );
+
+                        $f =ModelFacture::ajouterFacture2($data2);
+
+                    }else{
+                        $f= ModelFacture::ajouterFacture($data);
+                    }
+                    if ( $f== false || $resultat == false) {
                         $erreur = "une des dates n'est pas dans le bon format";
 
                         if (!$resultat) {

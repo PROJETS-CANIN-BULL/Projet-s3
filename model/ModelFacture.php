@@ -59,6 +59,34 @@ class ModelFacture
             die();
         }
     }
+     public static function ajouterFacture2($data)
+    {
+        try {
+            $sql = "INSERT INTO `Facture`(`numFacture`, `type`,`numpuce`, `motif`, `cout`, `dateFacture`, `crediteur`) VALUES (:tag,:tag3, :tag2 , :tag4,:tag5,:tag6,:tag7)";
+            $req_prep = Model::getPDO()->prepare($sql);
+
+            $values = array(
+                "tag" => $data["numFacture"],
+                "tag3" => $data["type"],
+                "tag4" => $data["motif"],
+                "tag5" => $data["cout"],
+                "tag6" => $data["dateFacture"],
+                "tag7" => $data["crediteur"],
+                "tag2" => 'IS NULL',
+            );
+            $req_prep->execute($values);
+            return true;
+        } catch (PDOException $e) {
+            if ($e->getCode() == 22007) {
+                return false;
+            } else if (Conf::getDebug()) {
+                echo $e->getMessage();
+            } else {
+                echo 'Une erreur est survenue <a href="index.php?action=accueil"> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
 
     public static function modifierFacture($infos)
     {

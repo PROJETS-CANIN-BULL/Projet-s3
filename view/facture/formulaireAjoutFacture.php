@@ -46,6 +46,7 @@
                                 <div class="input">
                                     <span class="inputItem">Numero de Puce de l'animal Concerné *</span>
                                     <select class="inputField" id="numPuce" name="numPuce">
+                                        <option value="autre">Ne concerne pas un animal</option>
                                         <?php foreach ($chiens as $c) {
                                             echo '<option value="' . htmlspecialchars($c->getNumPuce()) . '">' . htmlspecialchars($c->getNumPuce()) . '</option>';
                                         }
