@@ -4,16 +4,14 @@
 
 <main>
 
-    <div class="container-fluid red">
-        <div class="container text-center">
+   <div class="main-body">
+        <div class="texte-centrer">
             <h3> Calculer le total des Factures</h3>
 
         </div>
 
-        <div class="container-fluid blue">
-            <div class="row">
-                <article class="col-2">
-
+       <div class="articles">
+            <article class="col-1">
                     <?php
 
                     if ($_SESSION['isAdmin'] == 1) {
@@ -30,48 +28,39 @@
                         </div>
                     <?php } ?>
                 </article>
-                <article class="col-10">
+                <article class="col-2">
+                    <div class="barre-menu" id="filtres">
+                    <nav class="menu">
+                        <a class="btn-simple" href="index.php?controller=Facture&action=trierFacturesNums">En fonction de</a>
+                        <li class="menu-déroulant">
+                            <a class="menu-déroulant" role="button"
+                               href="index.php?controller=Facture&action=totaliserFactures">Total</a>
+                        </li>
+                        <li class="menu-déroulant">
+                            <a class="menu-déroulant" role="button"
+                               href="index.php?controller=Facture&action=totaliserFacturesNumPuces">Numero de Puce</a>
+                        </li>
+                        <li class="menu-déroulant">
+                            <a class="menu-déroulant" role="button"
+                               href="index.php?controller=Facture&action=totaliserFacturesRaces">Race</a>
+                        </li>
+                        <li class="menu-déroulant">
+                            <a class="menu-déroulant" role="button"
+                               href="index.php?controller=Facture&action=totaliserFacturesTypes">Types</a>
+                        </li>
+                           <li class="menu-déroulant">
+                            <a class="menu-déroulant" role="button"
+                               href="index.php?controller=Facture&action=totaliserFacturesMotifs">Motifs</a>
+                        </li>
+                           <li class="menu-déroulant">
+                            <a class="menu-déroulant" role="button"
+                               href="index.php?controller=Facture&action=totaliserFacturesCrediteurs">Crediteurs</a>
+                        </li>
 
-
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <div class="container-fluid">
-                            <a class="navbar-brand">En fonction de :</a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                                    aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page"
-                                           href="index.php?controller=Facture&action=totaliserFactures">Total</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link"
-                                           href="index.php?controller=Facture&action=totaliserFacturesNumPuces">Numero
-                                            Puce</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link"
-                                           href="index.php?controller=Facture&action=totaliserFacturesRaces">Race</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link"
-                                           href="index.php?controller=Facture&action=totaliserFacturesTypes">Types</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link"
-                                           href="index.php?controller=Facture&action=totaliserFacturesMotifs">Motifs</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link"
-                                           href="index.php?controller=Facture&action=totaliserFacturesCrediteurs">Crediteurs</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                            
                     </nav>
+                </div>
+
                     <div class="total">
                         <p> Totalisateur des Factures : </p>
 
@@ -89,3 +78,7 @@
                         ?>
                     </div>
                 </article>
+            </div>
+        </div>
+
+</main>

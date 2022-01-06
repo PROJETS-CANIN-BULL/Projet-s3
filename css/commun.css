@@ -162,6 +162,20 @@ ul.sous-menu{
 
 li.menu-déroulant:hover .sous-menu{
     display: block;
+
+}
+nav{
+    z-index: 100;
+}
+
+.col-2:not(nav){
+    z-index: 1;
+}
+
+.sous-menu fieldset{
+   background-color: white;
+
+
 }
 
 
@@ -173,6 +187,8 @@ a.btn-drop{
     text-decoration: none;
     font-family: arial;
     margin: 0px;
+    padding-left: 2px;
+    padding-right: 2px;
     font-size: 1em;
     color: white;
     background-color: #2b344b;
